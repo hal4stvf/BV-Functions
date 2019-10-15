@@ -1,0 +1,7 @@
+Makefile
+*.aux
+*.blg
+*.out
+*.l*
+*.tdo
+*.toc

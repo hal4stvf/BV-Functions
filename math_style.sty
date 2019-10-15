@@ -1,0 +1,128 @@
+\ProvidesPackage{pde_style}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} 
+\usepackage[a4paper,top=30mm,bottom=20mm,inner=30mm,outer=30mm]{geometry} 
+\usepackage{paralist} %Adds more function to listing environments
+\usepackage{hyperref} %Reference
+\usepackage{multicol}
+
+%more features for environments and other stuff
+\usepackage{tikz} 
+\usetikzlibrary{decorations.pathreplacing,angles,quotes}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% 		math environments %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% basic packages
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+
+\newtheorem{theoremN}{Theorem}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{maintheorem}{Main Theorem}
+\theoremstyle{definition} 
+\newtheorem*{cor}{Corollary}
+\newtheorem{corN}{Corollary}
+\newtheorem{lemmaN}{Lemma}
+\newtheorem*{lemma}{Lemma}
+\newtheorem{propositionN}{Proposition}
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{definition}{Definition}
+\newtheorem{definitionN}{Definition}
+\newtheorem*{remark}{Remark}
+\newtheorem*{remarks}{Remarks}
+\newtheorem*{examples}{Examples}
+\newtheorem*{example}{Examples}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%   Math macros  $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Zahlenkörper
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\T}{\mathbb{T}}
+%\newcommand{\supp}{\textnormal{supp}\,}
+\newcommand{\skp}{\boldsymbol{\cdot}}
+\newcommand{\eff}[2][-]{e^{#1 \pi i \, #2}}
+	
+%% sehr langer rechts Pfeil
+\newcommand{\verylongrightarrow}{\,\tikz[baseline={([yshift=-.6ex]current
+bounding box.center)}] {\draw[->] (0,0) -- (0.8,0);}\,}
+%% Meanvalue Integral
+\newcommand{\meanint}{-\hspace{-1.13em}\int}
+
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\Avg}{Avg}
+\DeclareMathOperator{\pv}{p.v.}
+
+\newcommand{\fcheck}[1][2]{\hspace{-#1pt}\check{\phantom{f}}\hspace{-#1pt}}
+\newcommand{\fhat}[1][2]{\hspace{-#1pt}\hat{\phantom{f}}\hspace{-#1pt}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\noHAparts{}
+\newcommand{\refScript}[2]{
+%\includepdf[pages={#1},pagecommand={\thispagestyle{empty}},scale=0.15]{../B_Vorlesungsfotos/HA19_01_LpSpacesAndInterpolation.pdf}
+\texttt{see: HA19\_0#2, p.#1} 
+}
+\ifx\noHAparts\undefined
+\newcommand{\refSkript}[1]{
+\includepdf[pages={#1},pagecommand={\thispagestyle{plain}},scale=1]{../B_Vorlesungsfotos/HApart1to5.pdf}	
+}
+\newcommand{\refSkriptII}[1]{
+\includepdf[pages={#1},pagecommand={\thispagestyle{plain}},scale=1]{../B_Vorlesungsfotos/HApart6to8.pdf}	
+}
+\else
+\newcommand{\refSkript}[1]{} 
+\newcommand{\refSkriptII}[1]{}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%TODOs
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{calc}
+\newcommand{\TODO}{\parbox{4em}{\todo[color=red,inline]{TODO}}}
+\newcommand{\TODOthis}[1]{\parbox{\widthof{TODO:#1as}}{\todo[color=gray!10,inline]{TODO:#1}}}
+\newcommand{\PROOFit}{\parbox{\widthof{PROOFita}}{\todo[color=white,inline]{Proof
+if!}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% mit startimportant definiert man ein command in ein environment um
+%\newenvironment{dummy}{\startimportant}{}
+
+\newenvironment{NochzuErledigen}{%
+~\par
+\parbox{0.25\linewidth}{\todo[inline,color=red!50!orange]{
+	\color{white}\texttt{Still to finish is }}}
+%\todo{siehe hier}
+
+\startimportant
+}
+{}
+%{
+%\end{itemize}
+%\end{minipage}	
+%}
+
+\def\startimportant#1\end{\fbox{
+	\begin{minipage}{\linewidth}
+	\begin{itemize}[-]
+	#1
+	\end{itemize}
+	\end{minipage}
+	}\end}
+
+%% Changing footnotesymbols
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\makeatletter
+\def\@fnsymbol#1{\ensuremath{\ifcase#1\or 
+\sharp\or 
+{\sharp\kern-0.5pt\sharp}\or
+\flat\or {\flat\kern-1.4pt\flat}\or
+\natural\or
+\natural\natural\or
+{\sharp\kern-0.5pt\sharp\kern-0.5pt\sharp}\or
+\ddagger \or \ddagger\ddagger \else\@ctrerr\fi}}
+\makeatother
