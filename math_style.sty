@@ -35,7 +35,7 @@
 \newtheorem*{remark}{Remark}
 \newtheorem*{remarks}{Remarks}
 \newtheorem*{examples}{Examples}
-\newtheorem*{example}{Examples}
+\newtheorem*{example}{Example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%   Math macros  $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -45,9 +45,9 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\T}{\mathbb{T}}
+
 %\newcommand{\supp}{\textnormal{supp}\,}
 \newcommand{\skp}{\boldsymbol{\cdot}}
-\newcommand{\eff}[2][-]{e^{#1 \pi i \, #2}}
 	
 %% sehr langer rechts Pfeil
 \newcommand{\verylongrightarrow}{\,\tikz[baseline={([yshift=-.6ex]current
@@ -60,26 +60,11 @@ bounding box.center)}] {\draw[->] (0,0) -- (0.8,0);}\,}
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \DeclareMathOperator*{\Avg}{Avg}
 \DeclareMathOperator{\pv}{p.v.}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\diam}{diam}
+\newcommand{\mres}{\mathbin{\vrule height 1.6ex depth 0pt width
+0.13ex\vrule height 0.13ex depth 0pt width 1.3ex}}
 
-\newcommand{\fcheck}[1][2]{\hspace{-#1pt}\check{\phantom{f}}\hspace{-#1pt}}
-\newcommand{\fhat}[1][2]{\hspace{-#1pt}\hat{\phantom{f}}\hspace{-#1pt}}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\def\noHAparts{}
-\newcommand{\refScript}[2]{
-%\includepdf[pages={#1},pagecommand={\thispagestyle{empty}},scale=0.15]{../B_Vorlesungsfotos/HA19_01_LpSpacesAndInterpolation.pdf}
-\texttt{see: HA19\_0#2, p.#1} 
-}
-\ifx\noHAparts\undefined
-\newcommand{\refSkript}[1]{
-\includepdf[pages={#1},pagecommand={\thispagestyle{plain}},scale=1]{../B_Vorlesungsfotos/HApart1to5.pdf}	
-}
-\newcommand{\refSkriptII}[1]{
-\includepdf[pages={#1},pagecommand={\thispagestyle{plain}},scale=1]{../B_Vorlesungsfotos/HApart6to8.pdf}	
-}
-\else
-\newcommand{\refSkript}[1]{} 
-\newcommand{\refSkriptII}[1]{}
-\fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TODOs
 \usepackage[colorinlistoftodos]{todonotes}
@@ -114,6 +99,7 @@ if!}}}
 	\end{minipage}
 	}\end}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Changing footnotesymbols
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \makeatletter
