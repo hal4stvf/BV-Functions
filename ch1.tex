@@ -391,18 +391,19 @@ Let $\alpha \geq 0$, $A \subset \R^n$.
 \begin{enumerate}[(1)]
 \item If $f : \R^n \to \R^m$ is Lipschitz, then $\mathcal{H}^\alpha(f(A)) \leq
 (\Lip(f))^\alpha \mathcal{H}^\alpha(A)$.
-\item If $g : \R^n \to \R^m$ is $\gamma$-Hölder (e.g. $|g(x) - g(y)| \leq
-C_\gamma |x-y|^\gamma$ for a $\gamma \in (0,1)$), then $\mathcal{H}^\alpha(g(A)) \leq
+\item If $g : \R^n \to \R^m$ is $\gamma$-Hölder\footnote{E.g. $|g(x) - g(y)| \leq
+C_\gamma |x-y|^\gamma$ for a $\gamma \in (0,1)$.}, then $\mathcal{H}^\alpha(g(A)) \leq
 C_{\alpha,\gamma} \mathcal{H}^\alpha(A)$.
 \end{enumerate}
 \end{proposition}
+
 \begin{proof}[Proof of (2)]
 Fix $\delta > 0$, and take a (at most countable) family of subsets $(C_j)_{j\in I}$
 such that $ A \subset \bigcup_{j\in I} C_j$ and $\diam C_j \leq \delta$.
 For $g(C_j)$ we get for all $j\in I$
 \[
 \begin{aligned}
-\diam(g(C_j)) \leq C \left(\diam C_j\right)^\gamma \leq C \delta^\gamma
+\diam g(C_j)\leq C \left(\diam C_j\right)^\gamma \leq C \delta^\gamma
 \quad \text{and} \quad
 g(A) \subseteq \bigcup_{j\in I} g(C_j).
 \end{aligned}
