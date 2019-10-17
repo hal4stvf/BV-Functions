@@ -258,6 +258,171 @@ index sets $I$ and $\Z$ to an index set $I^{(k,\delta)}$ this last expressions r
 I^{(k,\delta)}} C_j^{(k)},\, \diam C_j^{(k)} \leq \delta \right\} \geq \mathcal{H}^1_\delta.
 \]
 And since this is true for every $\delta >0$ we arrive at the claim.
-\item \TODO
+\item Let $\alpha > n$ and $Q$ be a unit cube in $\R^n$. If we consider cubes
+$Q_i$ with side length $\frac{1}{m}$ for any fixed $m\in \N$, we get $\diam Q_i
+= \frac{\sqrt{n}}{m}$ and $Q \subset \bigcup_{i=1}^{m^n} Q_i$. From this we can 
+infer
+\[
+\begin{aligned}
+\mathcal{H}_{\frac{\sqrt{n}}{m}}^\alpha (Q) 
+& \leq \sum_{j=1}^{m^n} \omega_\alpha \left(\frac{\diam Q_i}{2}\right)^\alpha
+= \frac{\omega_\alpha}{2^\alpha} \sum_{j=1}^{m^n}
+\left(\frac{\sqrt{n}}{m}\right)^\alpha = \frac{\omega_\alpha}{2^\alpha}
+n^{\frac{\alpha}{2}} m^{n-\alpha}
+%\qquad \searrow 0 \quad \text{as} \quad m \to \infty.
+\end{aligned}
+\]
+and read off with the crucial assumptions $ n < \alpha$
+\[
+\begin{aligned}
+\mathcal{H}^\alpha (Q) = \lim_{m\to \infty} \mathcal{H}_{\frac{\sqrt{n}}{m}}^\alpha (Q) 
+= \frac{\omega_\alpha}{2^\alpha}
+\lim_{m\to \infty} n^{\frac{\alpha}{2}} m^{n-\alpha}
+= 0.
+\end{aligned}
+\]
+This is the claim, since $\R^n$ can be covered by a countable collection of unit cubes.
 \end{enumerate}
+\end{proof}
+
+\begin{lemma}
+Let $A \subset \R^n$ and $\delta > 0$ such that $\mathcal{H}^\alpha_\delta = 0$,
+then follows that $\mathcal{H}^\alpha(A) = 0$.
+\end{lemma}
+
+\begin{proof}
+Since the Hausdorff content is non-increasing in $\delta$, we have $0 =
+\mathcal{H}^\alpha_\delta(A) \geq \mathcal{H}^\alpha_\infty(A)$. That
+convergence means that for every $\varepsilon > 0$ there exists a (at most
+countable) family of subsets $(C_j)_{j\in I}$ such that 
+\[
+A \subseteq
+\bigcup_{j\in I} C_j 
+\quad \text{and} \quad
+\sum_{j\in I} \omega_\alpha \left(\frac{\diam C_j}{2} \right)^\alpha <
+\varepsilon.
+\]
+For this to be true the diameter of every $C_j$ must be controlled by $\diam C_j
+\leq 2 \left(\frac{\varepsilon}{\omega_\alpha}\right)^{\frac{1}{\alpha}} = :
+\delta_\varepsilon$. So we have $\mathcal{H}^\alpha_{\delta_\varepsilon} \leq
+\varepsilon$ and as $\delta_\varepsilon \searrow 0$ so will $\varepsilon \searrow
+0$. But this is the claim $\mathcal{H}^\alpha (A) = 0$.
+\end{proof}
+
+\begin{proposition}
+Let $A \subseteq \R^n$, $0 \leq s < t < \infty$.
+\begin{enumerate}[(1)]
+\item If $\mathcal{H}^s(A) < \infty$, then $\mathcal{H}^t(A) = 0$. 
+\item If $\mathcal{H}^t(A) > 0$, then $\mathcal{H}^s(A) = +\infty$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+\begin{enumerate}[(1)]
+\item Fix $\delta > 0$ and a (at most countable) family of subsets 
+$(C_j)_{j\in I}$ such that 
+\[
+\diam C_j \leq \delta 
+\quad \text{and} \quad
+\sum_{j\in I} \omega_s
+\left(\frac{\diam C_j}{2}\right)^s \leq \mathcal{H}^s_\delta(A) + 1 \leq
+\mathcal{H}^s(A) + 1.
+\]
+From this follows
+\[
+\begin{aligned}
+\mathcal{H}^t_\delta(A) \leq \sum_{j\in I} \omega_t \left(\diam C_j\right)^t 
+&= \frac{\omega_t}{\omega_s} s^{s-t} \sum_{j\in I} \omega_s 
+\left(\frac{\diam C_j}{2} \right)^s (\diam C_j)^{t-s}
+\\ &\leq C_{s,t} \delta^{t-s} \left(\mathcal{H}^s(A) +1 \right) 
+\, \longrightarrow 0 \quad \text{as} \quad \delta \to 0,
+\end{aligned}
+\]
+which is the claim $\mathcal{H}^t(A) = 0$.
+\item If by contradiction $\mathcal{H}^s(A) < \infty$, then by $(1)$ if follows
+that $\mathcal{H}^r(A) = 0$ for all $ r > s$ and such in particular $r = t$.
+\end{enumerate}
+\end{proof}
+
+\begin{definition}
+We call the \emph{Hausdorff dimension} of a set $A\subset \R^n$
+\[
+\dim_{\mathcal{H}}(A) := \inf\left\{ \alpha \geq 0 : \mathcal{H}^\alpha(A) = 0
+\right\}.
+\]
+\end{definition}
+
+\begin{remark}
+\todo{@GC please check and edit}
+Let $\alpha = \dim_{\mathcal{H}}(A)$. Then one has
+\[
+\mathcal{H}^s(A) = 0 \quad \text{for all} \quad s > \alpha
+\qquad \text{and also} \qquad
+\mathcal{H}^t(A) = +\infty \quad \text{for all} \quad t < \alpha,
+\]
+where the first equality is clear from the definition of the Hausdorff dimension
+and the second fact follows like this: Suppose by contradiction
+$\mathcal{H}^t(A) < \infty$ for some $t < \alpha$, then by the
+above proposition we have $\mathcal{H}^r(A) = 0$ for all $ r > t$. But this
+means it even holds for all $r \in (t,\alpha)$ and this is a  
+contradiction to the fact that $\alpha$ is indeed the infimum. \todo{@GC Is this
+the right argument?}
+\\ 
+In particular $\mathcal{H}^\alpha$ is \emph{not} a Radon measure for all $\alpha \in
+[0,n)$. Take for example the closed unit Ball $\overline{B(0,1)}$ in $\R^n$. We
+know that $0 < \mathcal{H}^n(\overline{B(0,1)}) < \infty$ and so
+$\mathcal{H}^\alpha(\overline{B(0,1)}) = +\infty$ for all $\alpha < n$.
+\end{remark}
+
+If a Borel set $E \subseteq \R^n$ satisfies $\mathcal{H}^\alpha(E) \in
+(0,\infty)$, then $\mathcal{H}^\alpha \mres E$ is a Radon measure. Indeed in
+general we have the following
+
+\begin{theorem}
+If $\mu$ is a Borel regular measure in $\R^n$ and $A \subset \R^n$ is
+$\mu$-measurable and $\mu(A) < \infty$, then $\mu \mres A$ is a Radon measure. 
+\end{theorem}
+
+\begin{theorem}
+$\mathcal{H}^n = \mathcal{L}^n$
+\end{theorem}
+
+\begin{proposition}
+Let $\alpha \geq 0$, $A \subset \R^n$.
+\begin{enumerate}[(1)]
+\item If $f : \R^n \to \R^m$ is Lipschitz, then $\mathcal{H}^\alpha(f(A)) \leq
+(\Lip(f))^\alpha \mathcal{H}^\alpha(A)$.
+\item If $g : \R^n \to \R^m$ is $\gamma$-Hölder (e.g. $|g(x) - g(y)| \leq
+C_\gamma |x-y|^\gamma$ for a $\gamma \in (0,1)$), then $\mathcal{H}^\alpha(g(A)) \leq
+C_{\alpha,\gamma} \mathcal{H}^\alpha(A)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}[Proof of (2)]
+Fix $\delta > 0$, and take a (at most countable) family of subsets $(C_j)_{j\in I}$
+such that $ A \subset \bigcup_{j\in I} C_j$ and $\diam C_j \leq \delta$.
+For $g(C_j)$ we get for all $j\in I$
+\[
+\begin{aligned}
+\diam(g(C_j)) \leq C \left(\diam C_j\right)^\gamma \leq C \delta^\gamma
+\quad \text{and} \quad
+g(A) \subseteq \bigcup_{j\in I} g(C_j).
+\end{aligned}
+\]
+Using this, we can infer
+\[
+\begin{aligned}
+\mathcal{H}^\alpha_{C \delta^\gamma}(g(A)) \leq \sum_{j\in I} \omega_\alpha
+\left(\frac{\diam g(C_j)}{2}\right)^\alpha
+\leq 
+\underbrace{\frac{\omega_\alpha}{2^\alpha} \frac{C^\alpha
+2^{\alpha\gamma}}{\omega_{\alpha\gamma}}}_{=: C_{\alpha,\gamma}} \sum_{j\in I} \omega_{\alpha \gamma} 
+\left(\frac{\diam C_j}{2}\right)^{\alpha\gamma}
+\end{aligned}
+\]
+%\vspace{-10em}
+and by taking the infimum over all coverings $(C_j)_{j\in I}$ we get
+\[
+\mathcal{H}^\alpha_{C\delta^\gamma} (g(A)) \leq C_{\alpha,\gamma}
+\mathcal{H}^{\alpha\gamma}_\delta (A)
+\]
+and by sending $\delta \searrow 0 $ we arrive at the claim.
 \end{proof}
