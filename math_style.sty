@@ -20,28 +20,37 @@
 \usepackage{amsmath}
 \usepackage{mathrsfs}
 
-\newtheorem{theoremN}{Theorem}
-\newtheorem*{theorem}{Theorem}
-\newtheorem*{maintheorem}{Main Theorem}
+%\newtheorem{theoremN}{Theorem}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{maintheorem}[theorem]{Main Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{corN}{Corollary}
+%\newtheorem{lemmaN}{Lemma}
+\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{propositionN}{Proposition}
+\newtheorem{proposition}[theorem]{Proposition}
+
 \theoremstyle{definition} 
-\newtheorem*{cor}{Corollary}
-\newtheorem{corN}{Corollary}
-\newtheorem{lemmaN}{Lemma}
-\newtheorem*{lemma}{Lemma}
-\newtheorem{propositionN}{Proposition}
-\newtheorem*{proposition}{Proposition}
-\newtheorem*{definition}{Definition}
-\newtheorem{definitionN}{Definition}
-\newtheorem*{remark}{Remark}
-\newtheorem*{remarks}{Remarks}
+\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{definitionN}{Definition}
+\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem*{remark}{Remark}
+\newtheorem{example}[theorem]{Example}
 \newtheorem*{examples}{Examples}
-\newtheorem*{example}{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{remarks}{Remarks}
+\newtheorem{question}[theorem]{Question}
+
+\numberwithin{equation}{section}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%   Math macros  $%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Zahlenkörper
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\T}{\mathbb{T}}
@@ -55,6 +64,8 @@ bounding box.center)}] {\draw[->] (0,0) -- (0.8,0);}\,}
 %% Meanvalue Integral
 \newcommand{\meanint}{-\hspace{-1.13em}\int}
 
+\newcommand{\tildef}[1]{\widetilde{ #1}}
+
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator*{\esssup}{ess\,sup}
@@ -65,6 +76,14 @@ bounding box.center)}] {\draw[->] (0,0) -- (0.8,0);}\,}
 \DeclareMathOperator{\Lip}{Lip}
 \newcommand{\mres}{\mathbin{\vrule height 1.6ex depth 0pt width
 0.13ex\vrule height 0.13ex depth 0pt width 1.3ex}}
+
+\newcommand{\Haus}[1]{\mathscr{H}^{#1}} % Hausdorff measure
+\newcommand{\Leb}[1]{\mathscr{L}^{#1}} % Lebesgue measure
+\renewcommand{\Cap}{\mathrm{Cap}} %capacity
+\renewcommand{\div}{\mathrm{div}} %divergence
+\newcommand{\redb}{\mathscr{F}} %reduced boundary 
+\newcommand{\mtb}{\partial^{*}} %measure theoretic boundary
+\renewcommand{\dim}{{\rm dim}} %dimension
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TODOs

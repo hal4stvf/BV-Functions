@@ -1,54 +1,31 @@
-\setcounter{section}{-1}
-\section{Motivation}
-Let's  consider
-\[
-\inf\left\{\int_\Omega |\nabla u|dx \,:\, u \in W^{1,1}(\Omega), \|u\|_{L^1} = K
-> 0 \right\} =: m_K,
-\]
-where $W^{1,1}(\Omega) := \{u \in L^1(\Omega) : Du \in L^1(\Omega, \R^n)\}$ is
-the Sobolev space. Then there exists a sequence $(u_j \in
-W^{1,1}(\Omega))_{j\in\N}$ such that $\|u_j\|_{L^1(\Omega)}=K$ and $\|\nabla
-u_j\|_{L^1(\Omega)} \to m_K$ for $j \to \infty$. Now, in general this does
-\emph{not} imply that there is a subsequence $(u_{j_k})_{k\in\N}$ which will
-convergence even only weakly to an $v \in W^{1,1}(\Omega)$ with $\|v\|_{L^1} =
-K$ and $\|\nabla v \|_{L^1} = m_k$. 
-
-The reason for this is essentially because $L^1$ is not a (topological) dual of
-any space, though it is contain in one. \todo{Lacks details}
-
-Another example is the \emph{\textbf{Isoperimetric problem}}:
-\[
-\min\left\{\sigma_{n-1}(\partial F) \,:\, \text{$F$ with some regularity}, |F| =
-K > 0 \right\} =: \gamma_k,
-\]
-where $|F| =: \mathcal{L}^n(F)$ denotes the $n$-dimensional Lebesgue measure.
-
-\section{Measures}
+\section{General measures}
 
 Let $X$ be a non-empty set. We denote by $\mathcal{P}(X)$ (or $2^X$) the
-\emph{power set}, that is, the collection of all subsets of $X$.
+\emph{power set}; that is, the collection of all subsets of $X$.
 
-\begin{definition}[(outer) measure]
+\begin{definition}[Measures] \label{def:measure}
 A mapping $\mu : \mathcal{P}(X) \to [0,+\infty]$ satisfying
 \begin{enumerate}[(1)]
-\item $\mu(\emptyset) = 0$ 
+\item $\mu(\emptyset) = 0$, 
 \item $\mu(A) \leq \sum_{k=1}^\infty \mu(A_k)$ if $A \subset
-\bigcup_{k=1}^\infty A_k$ \hfill ($\sigma$-subadditivity)
+\bigcup_{k=1}^\infty A_k$ ($\sigma$-subadditivity),
 \end{enumerate}
-is called an (outer) measure.
+is called a measure.
 \end{definition}
 
+It should be noticed that in the literature a mapping as the one in Definition \ref{def:measure} is also called an {\em outer measure}, while the name of measure is used to denote the restriction of the mapping to the family of measurable set (see Definition \ref{def:measurable_set} below). We shall nevertheless follow the notation of \cite{evans2015measure}, in order to be able to assign a measure even to nonmeasurable sets.
+
 \begin{remark}
-The (outer) measure is not decreasing, that is, for $A\subset B$, where $A,B \in
-\mathcal{P}(X)$, we have $\mu(A) \leq \mu(B)$. 
+Thanks to $\sigma$-subadditivity, any measure is not decreasing; that is, for $A\subset B$, where $A,B \in \mathcal{P}(X)$, we have $\mu(A) \leq \mu(B)$. 
 \end{remark}
 
 \begin{definition}[Restriction of a measure] If $Y \subset X$, the
 \emph{restriction of $\mu$ to $Y$}, denoted by $\mu \mres Y$,
-is defined as $(\mu \mres Y)(A) := \mu(Y\cap A)$.
+is defined as $(\mu \mres Y)(A) := \mu(Y\cap A)$ for any $A \subset X$.
 \end{definition}
 
-\begin{definition}[$\mu$-measurable] We call a subset $A \subset X$
+\begin{definition}[$\mu$-measurable sets] \label{def:measurable_set} 
+We call a subset $A \subset X$
 $\mu$-measurable if 
 \[
 \mu(B) = \mu(B\cap A) + \mu(B \setminus A)
@@ -57,244 +34,281 @@ $\mu$-measurable if
 \end{definition}
 
 \begin{remark}
-This definition is meaningful since \emph{Vitali} found that there exists a set
-$E \subset \R$ which is \emph{not} $\mathcal{L}^1$-measurable.
+This definition is meaningful, since the italian mathematician \emph{Giuseppe Vitali} proved in 1905 that there exists a set
+$E \subset \R$ which is \emph{not} $\Leb{1}$-measurable \cite{vitali1905sul}. For a modern presentation of his construction, we refer to \cite[Section I.1.2]{maggi2012sets}.
 \end{remark}
 
 \begin{definition}[$\sigma$-algebra]
 A subset $\mathfrak{F} \subset \mathcal{P}(X)$ is called a \emph{$\sigma$-algebra of
-sets} if holds
+sets} if the following conditions hold:
 \begin{enumerate}[(1)]
 \item $\emptyset,X \in \mathfrak{F}$,
-\item for $A \in \mathfrak{F}$ also $X\setminus A \in \mathfrak{F}$,
-\item for a family $(A_i \in \mathfrak{F})_{i\in I}$ we have 
-have $\bigcup_{i\in I} A_i \in \mathfrak{F}$.
+\item for any $A \in \mathfrak{F}$ we have $X\setminus A \in \mathfrak{F}$,
+\item for any countable family of sets $\{A_i\}_{i \in I}$ such that $A_{i} \in \mathfrak{F}$ for any $i \in I$ we have 
+have $$\bigcup_{i\in I} A_i \in \mathfrak{F}.$$
 \end{enumerate}
 \end{definition}
 
 \begin{theorem}
-Let $\mu$ be a (outer) measure on $X$, then the restriction to the
+Given any measure $\mu$ on $X$, the family of $\mu$-measurable sets forms a $\sigma$-algebra.
+\end{theorem}
+
+\begin{theorem}
+Let $\mu$ be a measure on $X$, then the restriction to the
 $\sigma$-algebra of $\mu$-measurable sets is $\sigma$-additive, that is, if
-$(A_j)_{j\in I}$ is a (at most) countable disjoint $\mu$-measurable family of
+$(A_j)_{j\in I}$ is a countable disjoint $\mu$-measurable family of
 subsets of $X$, then 
 \[
 \mu\left(\bigcup_{j \in I} A_j\right) = \sum_{j\in I} \mu\left(A_j\right).
 \]
 \end{theorem}
 
-\begin{definition} Here we collect some important definitions 
+We list now some relevant definitions.
+
+\begin{definition} \hfill
 \begin{enumerate}[(1)]
 %%%
-\item Let $\mathfrak{C} \subset \mathcal{P}(X)$, we call the smallest
+\item Given any $\mathfrak{C} \subset \mathcal{P}(X)$, we call the smallest
 $\sigma$-algebra containing $\mathfrak{C}$, the \emph{$\sigma$-algebra generated by
-$\mathfrak{C}$}.\footnote{Here $\mathfrak{C}=\setminus\text{mathfrak}\{C\}$} 
+$\mathfrak{C}$}.%\footnote{Here $\mathfrak{C}=\setminus\text{mathfrak}\{C\}$} 
 %%%
-\item The \emph{Borel-algebra} on $\R^n$, denoted by $\mathcal{B}(\R^n)$, is the
+\item The \emph{Borel $\sigma$-algebra} on $\R^n$, denoted by $\mathcal{B}(\R^n)$, is the
 $\sigma$-algebra generated by the family of open sets in $\R^n$ (in the standard
-topology). The elements of the Borel-algebra are called \emph{Borel sets}.
+topology). The elements of the Borel $\sigma$-algebra are called \emph{Borel sets}.
 %%%
-\item A (outer) measure $\mu$ in $\R^n$ is called a \emph{Borel measure} if each
+\item A measure $\mu$ in $\R^n$ is called a \emph{Borel measure} if each
 Borel sets is $\mu$-measurable.
-\item A (outer) measure $\mu$ in $\R^n$ is called \emph{Borel regular} if for
+\item A measure $\mu$ in $\R^n$ is called \emph{Borel regular} if for
 all subsets $A \subseteq \R^n$ there exists a Borel set $B$ such that $A \subseteq
 B$ and $\mu(A) = \mu(B)$.
-\item A Borel regular measure $\mu$ which is locally finite (e.g. $\mu(K) <
+\item A Borel regular measure $\mu$ which is locally finite (i.e. $\mu(K) <
 \infty$ for all compact subsets $K \subset \R^n$), is called a \emph{Radon measure}.
 \end{enumerate}
 \end{definition}
 
 \begin{theorem}
-Let $\mu$ be a Radon measure on $\R^n$. We have
+Let $\mu$ be a Radon measure on $\R^n$. Then we have
 \begin{enumerate}[(1)]
-\item  for all $A \subseteq \R^n$ holds $\mu(A) = \inf\left\{ \mu(U) \,:\,
-U \supset A,\, U \text{ open}\right\}$ \hfill (outer regularity),
-\item for all $\mu$-measurable sets $B$ holds 
-$\mu(B) = \sup \left\{ \mu (K): K \subset B,\, K \text{ compact}\right\}$ \hfill
+\item $\mu(A) = \inf\left\{ \mu(U) \,:\,
+U \supset A,\, U \text{ open}\right\}$ for all $A \subseteq \R^n$ \hfill (outer regularity),
+\item $\mu(B) = \sup \left\{ \mu (K): K \subset B,\, K \text{ compact}\right\}$ for all $\mu$-measurable sets $B$ \hfill
 (inner regularity).
 \end{enumerate}
 \end{theorem}
 
-\begin{theorem}[Carath\'eodory's criteria]
-Let $\mu$ be a (outer) measure on $\R^n$. If for all $A,B \subset \R^n$ that
-satisfy $\dist(A,B) > 0$ we have $\mu(A \cup B) = \mu(A) + \mu(B)$, then $\mu$
+\begin{theorem}[Carath\'eodory's criterion] \label{caratheodory_criterion}
+Let $\mu$ be a measure on $\R^n$. If for all $A,B \subset \R^n$ such that $\dist(A,B) > 0$ we have $$\mu(A \cup B) = \mu(A) + \mu(B),$$ then $\mu$
 is a Borel measure.
 \end{theorem}
 
-\begin{examples}~
-\begin{enumerate}[(1)]
-\item For $x \in \R^n$ we can define that \emph{dirac measure} by  
+Not any Borel regular measure is a Radon measure. However, it is possible to obtain a Radon measure as a restriction of a Borel regular one, as stated in the followin theorem.
+
+\begin{theorem} \label{thm:Borel_restriction_Radon}
+If $\mu$ is a Borel regular measure in $\R^n$ and $A \subset \R^n$ is
+$\mu$-measurable and $\mu(A) < \infty$, then $\mu \mres A$ is a Radon measure. 
+\end{theorem}
+
+\begin{example}[Dirac delta]
+For $x \in \R^n$ we define the \emph{Dirac\footnote{Named after Paul Adrien Maurice Dirac (1902-1984), English theoretical physicist who shared the 1933 Nobel Prize in Physics with Erwin Schrödinger "for the discovery of new productive forms of atomic theory". He actually introduced the so-called {\em Dirac delta function} as a "convenient notation" in his influential 1930 book {\em The Principles of Quantum Mechanics}. The name "delta function" was chosen since it works like a continuous analogue of the discrete Kronecker delta 
+\[
+\delta_{i \, j} := 
+\begin{cases}
+1 & \text{if} \, i = j,
+\\
+0 & \text{if} \, i \neq j.
+\end{cases}
+\]
+Indeed, for any sequence $\{a_{j}\}_{j \in \Z}$, we have
+\begin{equation*}
+\sum_{j = -\infty}^{\infty} a_{j} \delta_{i \, j} = a_{i},
+\end{equation*}
+and, analogously, for any $x \in \R^{n}$ and any continuous function $f : \R \to \R$, the Dirac delta satisfies the property
+\begin{equation*}
+\int_{- \infty}^{+ \infty} f(y) \delta(x - y) \, dy = \int_{- \infty}^{\infty} f(y)\, d \delta_{x}(y) = f(x).
+\end{equation*}
+} measure centered in $x$} by setting
 \[
 \delta_x(A) := 
 \begin{cases}
-1 & x \in A
+1 & x \in A,
 \\
 0 & x \not\in A.
 \end{cases}
 \]
-This is in fact a Radon measure.
-%%%
-\item We define the \emph{counting measure} by
+It is easy to check that this is indeed a Radon measure. In addition, any set in $\R^{n}$ is $\delta_{x}$-measurable.
+\end{example}
+
+\begin{example}[The counting measure] 
+We define the \emph{counting measure} by setting
 \[
 \# (E) = 
 \begin{cases}
-\text{card}(E) & \text{if $E$ is finite}
+\text{card}(E) & \text{if $E$ is finite,}
 \\
 +\infty & \text{otherwise}.
 \end{cases}
 \]
-This measure is Borel regular, but \emph{not} a Radon measure (since it is
-clearly not locally finite).
-\item The also have the well-known \emph{Lebesgue measure} defined by
+This measure is Borel regular, but \emph{not} a Radon measure, since it is
+clearly not locally finite.
+\end{example}
+
+\begin{example}[The Lebesgue measure] 
+The well-known \emph{Lebesgue measure} is defined by
 \[
-\mathcal{L}^n(A) := \inf \left\{\sum_{i=1}^\infty \mathcal{L}^n(Q_i) \mid A
+\Leb{n}(A) := \inf \left\{\sum_{i=1}^\infty \Leb{n}(Q_i) \mid A
 \subset \bigcup_{i=1}^\infty Q_i,\, Q_i \text{ cubes}\right\},
 \]
-where $\mathcal{L}^n(Q_i)$ is equal to the side length of the cubes $Q_i$ to the
-$n$-th power. In particular, we have
+where $\Leb{n}(Q_i) = ( l(Q_{i})^{n}$ and $l(Q_{i})$ is the side length of the cube $Q_i$. It is actually possible to show that in one dimension we have
 \[
-\mathcal{L}^1(A) = \inf \left\{ \sum_{i=1}^\infty  \diam C_j \mid A
+\Leb{1}(A) = \inf \left\{ \sum_{ij=1}^\infty  \diam C_j \mid A
 \subset \bigcup_{i=1}^\infty C_j, \, C_j \subset \R \right\}
 \]
-and so we can characterize
+and that we can characterize $\Leb{n}$ in an alternative way as
 \[
-\mathcal{L}^n = \underbrace{\mathcal{L}^1\times\mathcal{L}^1 \times \dots \times
-\mathcal{L}^1}_{n-\text{times}} = \mathcal{L}^{n-1} \times \mathcal{L}^1.
+\Leb{n} = \underbrace{\Leb{1}\times\Leb{1} \times \dots \times \Leb{1}}_{n-\text{times}} = \Leb{n-1} \times \Leb{1}.
 \]
-%%%%%
-\item (\textbf{Hausdorff measure}) Consider $A \subseteq \R^n$, $\alpha \geq 0$, $\delta \in (0,+\infty]$, we
-define the \emph{Hausdorff $\alpha$-dimensional content of $A$} as
+\end{example}
+
+
+\section{The Hausdorff measure}
+
+\begin{definition}[Hausdorff content] Consider $A \subseteq \R^n$, $\alpha \geq 0$, $\delta \in (0,+\infty]$, we
+define the \emph{$\alpha$-dimensional Hausdorff content} of $A$ as
 \[
-\mathcal{H}^\alpha_\delta(A) := \inf\left\{ \sum_{j\in I} \omega_\alpha
+\Haus{\alpha}_\delta(A) := \inf\left\{ \sum_{j\in I} \omega_\alpha
 \left(\frac{\diam C_j}{2}\right)^\alpha \mid A \subset \bigcup_{j\in I \subset \N} C_j, \, \diam
 C_j \leq \delta, C_j \subseteq \R^n \right\},
 \]
-where the infimum is taking over all the (at most countable) coverings $(C_j \subset
-\R^n)_{j\in I}$ of $A$, and set $$\omega_\alpha :=
-\frac{\pi^{\frac{\alpha}{2}}}{\Gamma\left(\frac{\alpha}{2}+1\right)}.$$ Since
-$\mathcal{H}^\alpha_\delta$ is a not-increasing function in $\delta$ the
-following limit
-\[
-\mathcal{H}^\alpha(A) := \lim_{\delta \searrow 0} \mathcal{H}^\alpha_\delta (A) =
-\sup_{\delta > 0} \mathcal{H}^\alpha_\delta(A)
-\]
-always exists in the extended real numbers. This limit is defined to be the
-\emph{Hausdorff measure}.
-\end{enumerate}
-\end{examples}
+where the infimum is taken over all the (at most countable) {\em $\delta$-coverings} $\{C_j\}_{j\in I}$ of $A$, and we set $$\omega_\alpha :=
+\frac{\pi^{\frac{\alpha}{2}}}{\Gamma\left(\frac{\alpha}{2}+1\right)}.$$ 
+\end{definition}
 
-\begin{theorem}[Hausdorff measure is Borel regular]
-$\mathcal{H}^\alpha$ is a Borel regular measure on $\R^n$ for all $\alpha \geq
+We notice that $\Haus{\alpha}_\delta(A)$ is a non-decreasing function in $\delta$, so that we can take the limit as $\delta \searrow 0$ and it always exists in the extended real numbers. This justifies the following definition.
+
+\begin{definition}[Hausdorff measure]
+For any $A \subset \R^{n}$ and $\alpha \ge 0$, we define the \emph{$\alpha$-dimensional Hausdorff measure} of $A$ as 
+\[
+\Haus{\alpha}(A) := \lim_{\delta \searrow 0} \Haus{\alpha}_\delta (A) =
+\sup_{\delta > 0} \Haus{\alpha}_\delta(A).
+\]
+\end{definition}
+
+Roughly speaking, we take the limit as $\delta \searrow 0$ since it forces the coverings to follow the local geometry of the set $A$. Indeed, the key idea behind the definition of the Hausdorff measure is that it should be able to capture the properties of thin sets in $\R^{n}$ (in particular, Lebesgue negligible sets). As we shall see in the following, if $\alpha = k \in \{ 1, \dots , n - 1\}$, then $\Haus{k}$ agrees with the $k$-dimensional surface area on sufficiently regular sets, as for instance $k$-dimensional planes.
+
+It is not too difficult to prove that, as a consequence of Carath\'eodory's criterion, Theorem \ref{caratheodory_criterion}, any Borel set is $\Haus{\alpha}$-measurable, for any $\alpha \ge 0$.
+
+\begin{theorem}[Hausdorff measures are Borel regular]
+$\Haus{\alpha}$ is a Borel regular measure on $\R^n$ for all $\alpha \geq
 0$.
 \end{theorem}
 
 \begin{theorem}[Basic properties of the Hausdorff measure]~
+The following statements hold true:
 \begin{enumerate}[(1)]
-\item $\mathcal{H}^0 = \#$ 
-\item $\mathcal{H}^1 = \mathcal{L}^1$ on $\R$ 
-\item $\mathcal{H}^\alpha \equiv 0$ for all $\alpha > n$ in $\R^n$. 
-\item $\mathcal{H}^\alpha(\lambda A) = \lambda^\alpha \mathcal{H}^\alpha(A)$ for
-all $A \subseteq \R^n$ and $\lambda > 0$
-\item $\mathcal{H}^\alpha(L(A)) = \mathcal{H}^\alpha(A)$ for all affine
+\item $\Haus{0} = \#$; 
+\item $\Haus{1} = \Haus{1}_{\delta} = \Leb{1}$ on $\R$, for any $\delta > 0$; 
+\item $\Haus{\alpha} \equiv 0$ for all $\alpha > n$ in $\R^n$;
+\item $\Haus{\alpha}(\lambda A) = \lambda^\alpha \Haus{\alpha}(A)$ for all $A \subseteq \R^n$ and $\lambda > 0$;
+\item $\Haus{\alpha}(L(A)) = \Haus{\alpha}(A)$ for all affine
 isometry $L : \R^n \to \R^n$.
 \end{enumerate}
 \end{theorem}
 
 \begin{proof}~
 \begin{enumerate}[(1)]
-\item Since $\omega_0 = 1$ we have 
-\[
-\begin{aligned}
-\mathcal{H}^0(A) &= \lim_{\delta \searrow 0} \inf \left\{ \sum_{j\in I}
-\left(\frac{\diam(C_j)}{2}\right)^0 \mid A \subset \bigcup_{j\in I \subset \N}
-C_j, \,
-\diam C_j \leq \delta  \right\} 
-\\& =
-\lim_{\delta \searrow 0} \inf \left\{ \sum_{j\in I}
-1 \mid A \subset \bigcup_{j\in I} C_j,\,
-\diam C_j \leq \delta  \right\} 
-\\&=
-\begin{cases}
-\text{card}(A) & \text{if $A$ is finite}
-\\
-\infty & \text{otherwise}
-\end{cases}
-\end{aligned}
-\]
+\item Since $\omega_0 = 1$, we have $\Haus{0}_{\delta}(\{x\}) = 1$ for every $x \in \R^{n}$ and $\delta > 0$. Indeed, 
+$$\omega_{0} \left(\frac{\diam(C_j)}{2}\right)^0 = 1,$$
+which implies $\Haus{0}_{\delta}(\{x\}) \ge 1$, and, on the other hand, we can clearly cover the singleton only with itself. Hence, $\Haus{0}(\{x\}) = 1$ for every $x \in \R^{n}$. Since $\Haus{0}$ is a Borel measure, it is $\sigma$-additive on Borel sets, so that
+$$ \Haus{0}(A) = \sum_{x \in A} \Haus{0}(\{x\}) = \# A, $$
+for any finite or countable set $A$. Finally, if $A$ is incountable, then $A$ contains a countable set $B$, and so $\Haus{0}(A) \ge \Haus{0}(B) = + \infty$.
+%\[
+%\begin{aligned}
+%\Haus{0}(A) &= \lim_{\delta \searrow 0} \inf \left\{ \sum_{j\in I}
+%\left(\frac{\diam(C_j)}{2}\right)^0 \mid A \subset \bigcup_{j\in I \subset \N}
+%C_j, \,
+%\diam C_j \leq \delta  \right\} 
+%\\& =
+%\lim_{\delta \searrow 0} \inf \left\{ \sum_{j\in I}
+%1 \mid A \subset \bigcup_{j\in I} C_j,\,
+%\diam C_j \leq \delta  \right\} 
+%\\&=
+%\begin{cases}
+%\text{card}(A) & \text{if $A$ is finite}
+%\\
+%\infty & \text{otherwise}
+%\end{cases}
+%\end{aligned}
+%\]
 %%
-\item We estimate the Lebesgue measure $\mathcal{L}^1$ from both sides by the
-Hausdorff measure: Since $\omega_1 = 2 = |(-1,1)|$ we first get 
+\item We estimate the Lebesgue measure $\Leb{1}$ from both sides by the
+Hausdorff measure. Since $\omega_1 = 2 = |(-1,1)|$, for any $\delta > 0$ we first get 
 \[
 \begin{aligned}
-\mathcal{L}^1(A) 
+\Leb{1}(A) 
 &= \inf \left\{ \sum_{j\in I} \diam C_j \mid A \subset \bigcup_{j\in I} C_j \right\}
 \\ & \leq 
 \inf \left\{ \sum_{j\in I} \diam C_j \mid A \subset \bigcup_{j\in I} C_j, \,
 \diam C_j \leq \delta \right\}
 = 
-\mathcal{H}^1_\delta(A),
+\Haus{1}_\delta(A),
 \end{aligned}
 \]
-which is true for all $\delta > 0$ so we obtained $\mathcal{L}^1(A) \leq
-\mathcal{H}^1(A)$.
-\\
-Now, we define a partition of $\R$ by $J_{k,\delta} := [k\delta, (k+1)\delta]$
-for $k \in \Z$ and first fixed $\delta >0$. These are intervals of diameter
-$\delta$ so for every $j \in I$ we get $\diam(C_j \cap I_{k,\delta}) \leq
-\delta$. Also we have $\sum_{k\in\Z} \diam(C_j \cap I_{k,\delta}) \leq \diam C_j$,
-since $I_{k,\delta}$ are a partition $\R$ of disjoint intervals in $k$. So we
-get
+%which is true for all $\delta > 0$ so we obtained $\Leb{1}(A) \leq \Haus{1}(A)$.
+Now, we define a partition of $\R$ by setting $J_{k,\delta} := [k\delta, (k+1)\delta]$
+for $k \in \Z$. These are intervals of diameter
+$\delta$, so that, for every $j \in I$, we get 
+\begin{equation} \label{eq:diam_J_k_delta}
+\diam(C_j \cap J_{k,\delta}) \leq \delta.
+\end{equation}
+In addition, we have 
+\begin{equation} \label{eq:diam_sum_control}
+\sum_{k\in\Z} \diam(C_j \cap J_{k,\delta}) \leq \diam C_j,
+\end{equation}
+since $\{J_{k,\delta}\}_{k \in \Z}$ is a partition $\R$ of essentially disjoint intervals, because $\# (J_{k, \delta} \cap J_{m, \delta}) \le 1$ for any $k \neq m$. Therefore, by \eqref{eq:diam_sum_control} we get
+\begin{align*}
+\Leb{1}(A) & = \inf \left\{ \sum_{j\in I} \diam C_j \mid A \subset
+\bigcup_{j\in I} C_j \right\} \\
+& \geq \inf \left\{ \sum_{j\in I} \sum_{k\in\Z} \diam (C_j \cap J_{k,\delta}) \mid A \subset
+\bigcup_{j\in I} \bigcup_{k\in\Z} C_j\cap J_{k,\delta} \right\}.
+\end{align*}
+We set now $C_{j} \cap J_{k, \delta} =: \tildef{C}_{i_{j, k}}$, by relabeling the indexes sets $I$ and $\Z$ to an index set $\tildef{I}$. Thanks to \eqref{eq:diam_J_k_delta}, we have $\diam(\tildef{C}_{i}) \le \delta$ and so we get
+\begin{align*}
+\Leb{1}(A) & \ge \inf \left\{ \sum_{j \in \tildef{I}} \tildef{C}_{i} \mid A \subset \bigcup_{i \in \tildef{I}} \tildef{C}_{i},\, \diam \tildef{C}_i \leq \delta \right\} \geq \Haus{1}_\delta(A).
+\end{align*}
+All in all, we get $\Leb{1} = \Haus{1}_{\delta}$ for any $\delta > 0$, from which it easily follows $\Leb{1} = \Haus{1}$ on $\R$.
+\item Let $\alpha > n$ and $Q$ be a unit cube in $\R^n$. It is easy to see that, for any fixed $m\in \N$, $Q$ can be covered by $m^{n}$ smaller cubes $Q_i$ with side length $\frac{1}{m}$. Clearly, we have $\diam Q_i
+= \frac{\sqrt{n}}{m}$. Therefore, we obtain 
 \[
 \begin{aligned}
-\mathcal{L}^1(A) = \inf \left\{ \sum_{j\in I} \diam C_j \mid A \subset
-\bigcup_{j\in I} C_j \right\}
-\geq \inf \left\{ \sum_{j\in I} \sum_{k\in\Z} \diam (C_j \cap I_{k,\delta}) \mid A \subset
-\bigcup_{j\in I} \bigcup_{k\in\Z} C_j\cap I_{k,\delta} \right\}
-\end{aligned}
-\]
-since $\diam (C_j \cap I_{k,\delta} ) \leq \delta$ and after relabeling the
-index sets $I$ and $\Z$ to an index set $I^{(k,\delta)}$ this last expressions reads 
-\[
-\dots = \inf \left\{ \sum_{j \in I^{(k,\delta)}} C_j^{(k)} \mid A \subset \bigcup_{j \in
-I^{(k,\delta)}} C_j^{(k)},\, \diam C_j^{(k)} \leq \delta \right\} \geq \mathcal{H}^1_\delta.
-\]
-And since this is true for every $\delta >0$ we arrive at the claim.
-\item Let $\alpha > n$ and $Q$ be a unit cube in $\R^n$. If we consider cubes
-$Q_i$ with side length $\frac{1}{m}$ for any fixed $m\in \N$, we get $\diam Q_i
-= \frac{\sqrt{n}}{m}$ and $Q \subset \bigcup_{i=1}^{m^n} Q_i$. From this we can 
-infer
-\[
-\begin{aligned}
-\mathcal{H}_{\frac{\sqrt{n}}{m}}^\alpha (Q) 
+\Haus{\alpha}_{\frac{\sqrt{n}}{m}} (Q) 
 & \leq \sum_{j=1}^{m^n} \omega_\alpha \left(\frac{\diam Q_i}{2}\right)^\alpha
 = \frac{\omega_\alpha}{2^\alpha} \sum_{j=1}^{m^n}
 \left(\frac{\sqrt{n}}{m}\right)^\alpha = \frac{\omega_\alpha}{2^\alpha}
-n^{\frac{\alpha}{2}} m^{n-\alpha}
+n^{\frac{\alpha}{2}} m^{n-\alpha},
 %\qquad \searrow 0 \quad \text{as} \quad m \to \infty.
 \end{aligned}
 \]
-and read off with the crucial assumptions $ n < \alpha$
+from which we deduce that, since $n < \alpha$,
 \[
 \begin{aligned}
-\mathcal{H}^\alpha (Q) = \lim_{m\to \infty} \mathcal{H}_{\frac{\sqrt{n}}{m}}^\alpha (Q) 
-= \frac{\omega_\alpha}{2^\alpha}
-\lim_{m\to \infty} n^{\frac{\alpha}{2}} m^{n-\alpha}
+\Haus{\alpha} (Q) = \lim_{m\to \infty} \Haus{\alpha}_{\frac{\sqrt{n}}{m}} (Q) 
+\le \frac{\omega_\alpha}{2^\alpha} n^{\frac{\alpha}{2}}
+\lim_{m\to \infty} m^{n-\alpha}
 = 0.
 \end{aligned}
 \]
-This is the claim, since $\R^n$ can be covered by a countable collection of unit cubes.
+Thus, the claim easily follows, since $\R^n$ can be covered by a countable collection of unit cubes and $\Haus{n}$ is $\sigma$-subadditive.
 \end{enumerate}
+The proofs of (4) and (5) are left as an exercise.
 \end{proof}
 
 \begin{lemma}
-Let $A \subset \R^n$ and $\delta > 0$ such that $\mathcal{H}^\alpha_\delta = 0$,
-then follows that $\mathcal{H}^\alpha(A) = 0$.
+Let $A \subset \R^n$ and $\delta_{0} > 0$ such that $\Haus{\alpha}_{\delta_{0}}(A) = 0$,
+then we have $\Haus{\alpha}(A) = 0$.
 \end{lemma}
 
 \begin{proof}
-Since the Hausdorff content is non-increasing in $\delta$, we have $0 =
-\mathcal{H}^\alpha_\delta(A) \geq \mathcal{H}^\alpha_\infty(A)$. That
-convergence means that for every $\varepsilon > 0$ there exists a (at most
-countable) family of subsets $(C_j)_{j\in I}$ such that 
+Since the Hausdorff content is non-increasing in $\delta$, we have $\Haus{\alpha}_\infty(A) \le \Haus{\alpha}_\delta(A)$ for any $\delta > 0$. In particular, this means that $\Haus{\alpha}_{\infty}(A) \le \Haus{\alpha}_{\delta_{0}}(A) = 0$, so that, for every $\varepsilon > 0$, there exists a countable family of sets $\{C_j\}_{j\in I}$ such that 
 \[
 A \subseteq
 \bigcup_{j\in I} C_j 
@@ -302,117 +316,150 @@ A \subseteq
 \sum_{j\in I} \omega_\alpha \left(\frac{\diam C_j}{2} \right)^\alpha <
 \varepsilon.
 \]
-For this to be true the diameter of every $C_j$ must be controlled by $\diam C_j
+In particular, the second condition immediately implies $$\diam C_j
 \leq 2 \left(\frac{\varepsilon}{\omega_\alpha}\right)^{\frac{1}{\alpha}} = :
-\delta_\varepsilon$. So we have $\mathcal{H}^\alpha_{\delta_\varepsilon} \leq
-\varepsilon$ and as $\delta_\varepsilon \searrow 0$ so will $\varepsilon \searrow
-0$. But this is the claim $\mathcal{H}^\alpha (A) = 0$.
+\delta_\varepsilon.$$ 
+Hence, we have $\Haus{\alpha}_{\delta_\varepsilon} \leq
+\varepsilon$, and $\delta_\varepsilon \searrow 0$ if and only if $\varepsilon \searrow
+0$. This implies the claim $\Haus{\alpha}(A) = 0$.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition} \label{prop:prop_Hausdorff_dim}
 Let $A \subseteq \R^n$, $0 \leq s < t < \infty$.
 \begin{enumerate}[(1)]
-\item If $\mathcal{H}^s(A) < \infty$, then $\mathcal{H}^t(A) = 0$. 
-\item If $\mathcal{H}^t(A) > 0$, then $\mathcal{H}^s(A) = +\infty$.
+\item If $\Haus{s}(A) < \infty$, then $\Haus{t}(A) = 0$. 
+\item If $\Haus{t}(A) > 0$, then $\Haus{s}(A) = +\infty$.
 \end{enumerate}
 \end{proposition}
 \begin{proof}
 \begin{enumerate}[(1)]
-\item Fix $\delta > 0$ and a (at most countable) family of subsets 
-$(C_j)_{j\in I}$ such that 
+\item Fix $\delta > 0$ and a countable family of subsets 
+$\{C_j\}_{j\in I}$ such that 
 \[
 \diam C_j \leq \delta 
 \quad \text{and} \quad
 \sum_{j\in I} \omega_s
-\left(\frac{\diam C_j}{2}\right)^s \leq \mathcal{H}^s_\delta(A) + 1 \leq
-\mathcal{H}^s(A) + 1.
+\left(\frac{\diam C_j}{2}\right)^s \leq \Haus{s}_\delta(A) + 1 \leq
+\Haus{s}(A) + 1.
 \]
-From this follows
+From this, it follows that
 \[
 \begin{aligned}
-\mathcal{H}^t_\delta(A) \leq \sum_{j\in I} \omega_t \left(\diam C_j\right)^t 
-&= \frac{\omega_t}{\omega_s} s^{s-t} \sum_{j\in I} \omega_s 
+\Haus{t}_\delta(A) \leq \sum_{j\in I} \omega_t \left(\frac{\diam C_j}{2}\right)^t 
+&= \frac{\omega_t}{\omega_s} 2^{s-t} \sum_{j\in I} \omega_s 
 \left(\frac{\diam C_j}{2} \right)^s (\diam C_j)^{t-s}
-\\ &\leq C_{s,t} \delta^{t-s} \left(\mathcal{H}^s(A) +1 \right) 
+\\ &\leq C_{s,t} \delta^{t-s} \left(\Haus{s}(A) +1 \right) 
 \, \longrightarrow 0 \quad \text{as} \quad \delta \to 0,
 \end{aligned}
 \]
-which is the claim $\mathcal{H}^t(A) = 0$.
-\item If by contradiction $\mathcal{H}^s(A) < \infty$, then by $(1)$ if follows
-that $\mathcal{H}^r(A) = 0$ for all $ r > s$ and such in particular $r = t$.
+which implies the claim $\Haus{t}(A) = 0$.
+\item If by contradiction $\Haus{s}(A) < \infty$, then by $(1)$ if follows
+that $\Haus{r}(A) = 0$ for all $ r > s$ and in particular for $r = t$, which is clearly absurd.
 \end{enumerate}
 \end{proof}
 
 \begin{definition}
-We call the \emph{Hausdorff dimension} of a set $A\subset \R^n$
+We call the \emph{Hausdorff dimension} of a set $A\subset \R^n$ the number
 \[
-\dim_{\mathcal{H}}(A) := \inf\left\{ \alpha \geq 0 : \mathcal{H}^\alpha(A) = 0
+\dim_{\Haus{}}(A) := \inf\left\{ \alpha \geq 0 : \Haus{\alpha}(A) = 0
 \right\}.
 \]
 \end{definition}
 
 \begin{remark}
-\todo{@GC please check and edit}
-Let $\alpha = \dim_{\mathcal{H}}(A)$. Then one has
-\[
-\mathcal{H}^s(A) = 0 \quad \text{for all} \quad s > \alpha
-\qquad \text{and also} \qquad
-\mathcal{H}^t(A) = +\infty \quad \text{for all} \quad t < \alpha,
-\]
-where the first equality is clear from the definition of the Hausdorff dimension
-and the second fact follows like this: Suppose by contradiction
-$\mathcal{H}^t(A) < \infty$ for some $t < \alpha$, then by the
-above proposition we have $\mathcal{H}^r(A) = 0$ for all $ r > t$. But this
-means it even holds for all $r \in (t,\alpha)$ and this is a  
-contradiction to the fact that $\alpha$ is indeed the infimum. \todo{@GC Is this
-the right argument?}
-\\ 
-In particular $\mathcal{H}^\alpha$ is \emph{not} a Radon measure for all $\alpha \in
-[0,n)$. Take for example the closed unit Ball $\overline{B(0,1)}$ in $\R^n$. We
-know that $0 < \mathcal{H}^n(\overline{B(0,1)}) < \infty$ and so
-$\mathcal{H}^\alpha(\overline{B(0,1)}) = +\infty$ for all $\alpha < n$.
+Let $\alpha = \dim_{\Haus{}}(A)$. Then one has
+\begin{equation} \label{eq:H_dim_consequence}
+\Haus{s}(A) = 0 \quad \text{for all} \quad s > \alpha
+\qquad \text{and} \qquad
+\Haus{t}(A) = +\infty \quad \text{for all} \quad t < \alpha.
+\end{equation}
+The first part of \eqref{eq:H_dim_consequence} follows clearly from the definition of the Hausdorff dimension. The second, instead, can be proved by contradiction. Suppose by contradiction that $\Haus{t}(A) < \infty$ for some $t < \alpha$, then, by the Proposition \ref{prop:prop_Hausdorff_dim}, we have $\Haus{r}(A) = 0$ for all $ r > t$. This implies 
+$$\alpha = \inf\left\{ \beta \geq 0 : \Haus{\beta}(A) = 0
+\right\} \le t < \alpha,$$
+which is clearly absurd.
+
+It should be noticed that, in general, $\Haus{\alpha}(A)$ can be any number in $[0, + \infty]$.
 \end{remark}
 
-If a Borel set $E \subseteq \R^n$ satisfies $\mathcal{H}^\alpha(E) \in
-(0,\infty)$, then $\mathcal{H}^\alpha \mres E$ is a Radon measure. Indeed in
-general we have the following
+We state now an important result on the equivalence between the Lebesgue measure on $\R^{n}$ and the $n$-dimensional Hausdorff measure, whose proof we postpone to the end of the section.
 
-\begin{theorem}
-If $\mu$ is a Borel regular measure in $\R^n$ and $A \subset \R^n$ is
-$\mu$-measurable and $\mu(A) < \infty$, then $\mu \mres A$ is a Radon measure. 
+\begin{theorem} \label{thm:equivalence_Haus_Leb}
+$\Haus{n}_{\delta} = \Haus{n} = \Leb{n}$ on $\R^{n}$, for any $\delta > 0$.
 \end{theorem}
 
-\begin{theorem}
-$\mathcal{H}^n = \mathcal{L}^n$
-\end{theorem}
+\begin{remark}
+As a consequence of Theorem \ref{thm:equivalence_Haus_Leb}, we see that $\Haus{\alpha}$ is \emph{not} a Radon measure for all $\alpha \in
+[0,n)$. Indeed, it is not bounded on some compact sets. Take for example the closed unit ball $\overline{B(0,1)}$ in $\R^n$. We know that $0 < \Haus{n}(\overline{B(0,1)}) < \infty$ and so, by Proposition \ref{prop:prop_Hausdorff_dim},
+$\Haus{\alpha}(\overline{B(0,1)}) = +\infty$ for all $\alpha < n$.
+\end{remark}
+
+Even though $\Haus{\alpha}$ is not a Radon measure for $\alpha \in [0, n)$, it is possible to show that its restriction to some suitable Borel set is indeed a Radon measure.
+
+\begin{proposition}
+If a Borel set $E \subseteq \R^n$ satisfies $\Haus{\alpha}(E) \in
+(0,\infty)$, then $\Haus{\alpha} \mres E$ is a Radon measure.
+\end{proposition}
+\begin{proof}
+It is a simple consequence of Theorem \ref{thm:Borel_restriction_Radon}. 
+\end{proof}
+
+We investigate now the behaviour of the Hausdorff measure under the action of Lipschitz and H\"older functions. We recall first the definition of such family of functions.
+
+\begin{definition}[Lipschitz and H\"older functions] Let $\Omega \subset \R^{n}$ be an open set.
+\begin{enumerate}[(1)]
+\item We say that $f : \Omega \to \R^{m}$ is {\em Lipschitz continuous} if there exists a constant $C > 0$ such that
+\begin{equation} \label{eq:Lip_def}
+|f(x) - f(y)| \le C |x - y| \ \ \text{for any} \ x, y \in \Omega.
+\end{equation}
+The smallest constant for which \eqref{eq:Lip_def} holds is called the {\em Lipschitz constant} of $f$, denoted by $\Lip(f)$ and alternatively characterized by
+\begin{equation}
+\Lip(f) := \sup \left \{ \frac{|f(x) - f(y)|}{|x - y|} \mid x, y \in \Omega, x \neq y \right \}.
+\end{equation}
+\item Let $\gamma \in (0,1)$. We say that $f: \Omega \to \R^{m}$ is {\em $\gamma$-H\"older continuous} if there exists a constant $C > 0$ such that
+\begin{equation} \label{eq:Holder_def}
+|f(x) - f(y)| \le C |x - y|^{\gamma} \ \ \text{for any} \ x, y \in \Omega.
+\end{equation}
+\end{enumerate}
+\end{definition}
+
+From this point on, we shall refer to Lipschitz continuous and H\"older continuous functions simply as Lipschitz and H\"older functions. 
+
+\begin{exercise}
+Show that any Lipschitz or $\gamma$-H\"older function (for some $\gamma \in (0,1)$) is indeed continuous.
+\end{exercise}
+
+\begin{remark} \label{rem:Lip_Holder}
+Lipschitz functions can be seen as $1$-H\"older functions. Indeed, for any open set $\Omega \subset \R^{n}$ and any $\gamma \in [0, 1]$, we can define the space $C^{0, \gamma}(\Omega; \R^{m})$ of $\gamma$-H\"older functions as the set of continuous functions $f : \Omega \to \R^{m}$ for which there exists a constant $C > 0$ such that \eqref{eq:Holder_def} holds. If $\gamma = 0$, we have $C^{0, 0}(\Omega; \R^{m}) = C^{0}(\Omega; \R^{m})$. 
+\end{remark}
+
+\begin{exercise}
+Let $\gamma > 1$ and $f: \Omega \to \R^{m}$ be such that there exists a constant $C > 0$ such that \eqref{eq:Holder_def} holds. Show that $f$ is constant.
+\end{exercise}
 
 \begin{proposition}
 Let $\alpha \geq 0$, $A \subset \R^n$.
 \begin{enumerate}[(1)]
-\item If $f : \R^n \to \R^m$ is Lipschitz, then $\mathcal{H}^\alpha(f(A)) \leq
-(\Lip(f))^\alpha \mathcal{H}^\alpha(A)$.
-\item If $g : \R^n \to \R^m$ is $\gamma$-Hölder\footnote{E.g. $|g(x) - g(y)| \leq
-C_\gamma |x-y|^\gamma$ for a $\gamma \in (0,1)$.}, then $\mathcal{H}^\alpha(g(A)) \leq
-C_{\alpha,\gamma} \mathcal{H}^\alpha(A)$.
+\item If $f : \R^n \to \R^m$ is Lipschitz, then $\Haus{\alpha}(f(A)) \leq
+(\Lip(f))^\alpha \Haus{\alpha}(A)$.
+\item If $f : \R^n \to \R^m$ is $\gamma$-H\"older, for some $\gamma \in (0, 1)$, then $\Haus{\alpha}(f(A)) \leq
+C_{\alpha,\gamma} \Haus{\alpha \gamma}(A)$.
 \end{enumerate}
 \end{proposition}
 
-\begin{proof}[Proof of (2)]
-Fix $\delta > 0$, and take a (at most countable) family of subsets $(C_j)_{j\in I}$
-such that $ A \subset \bigcup_{j\in I} C_j$ and $\diam C_j \leq \delta$.
-For $g(C_j)$ we get for all $j\in I$
+\begin{proof}
+Thanks to Remark \ref{rem:Lip_Holder}, it is enough to prove (2) for any $\gamma \in (0, 1]$. Fix $\delta > 0$, and take a countable family of sets $\{C_j\}_{j\in I}$
+such that $A \subset \bigcup_{j\in I} C_j$ and $\diam C_j \leq \delta$. It is clear that
+$$f(A) \subseteq \bigcup_{j\in I} f(C_j).$$
+Thanks to \eqref{eq:Holder_def}, we see that $f(C_j)$ satisfies
+\begin{equation*}
+\diam f(C_j)\leq C \left(\diam C_j\right)^\gamma \leq C \delta^\gamma,
+\end{equation*}
+where $C = \Lip(f)$ is $\gamma = 1$.
+Hence, we obtain
 \[
 \begin{aligned}
-\diam g(C_j)\leq C \left(\diam C_j\right)^\gamma \leq C \delta^\gamma
-\quad \text{and} \quad
-g(A) \subseteq \bigcup_{j\in I} g(C_j).
-\end{aligned}
-\]
-Using this, we can infer
-\[
-\begin{aligned}
-\mathcal{H}^\alpha_{C \delta^\gamma}(g(A)) \leq \sum_{j\in I} \omega_\alpha
-\left(\frac{\diam g(C_j)}{2}\right)^\alpha
+\Haus{\alpha}_{C \delta^\gamma}(f(A)) \leq \sum_{j\in I} \omega_\alpha
+\left(\frac{\diam f(C_j)}{2}\right)^\alpha
 \leq 
 \underbrace{\frac{\omega_\alpha}{2^\alpha} \frac{C^\alpha
 2^{\alpha\gamma}}{\omega_{\alpha\gamma}}}_{=: C_{\alpha,\gamma}} \sum_{j\in I} \omega_{\alpha \gamma} 
@@ -420,10 +467,11 @@ Using this, we can infer
 \end{aligned}
 \]
 %\vspace{-10em}
-and by taking the infimum over all coverings $(C_j)_{j\in I}$ we get
+and by taking the infimum over all $\delta$-coverings $\{C_j\}_{j\in I}$ we get
 \[
-\mathcal{H}^\alpha_{C\delta^\gamma} (g(A)) \leq C_{\alpha,\gamma}
-\mathcal{H}^{\alpha\gamma}_\delta (A)
+\Haus{\alpha}_{C\delta^\gamma} (g(A)) \leq C_{\alpha,\gamma}
+\Haus{\alpha\gamma}_\delta (A),
 \]
-and by sending $\delta \searrow 0 $ we arrive at the claim.
+where $C_{\alpha, \gamma} = \Lip(f)^{\alpha}$, if $\gamma = 1$.
+By sending $\delta \searrow 0$ we conclude the proof.
 \end{proof}
