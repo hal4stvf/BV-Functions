@@ -427,3 +427,163 @@ and by taking the infimum over all coverings $(C_j)_{j\in I}$ we get
 \]
 and by sending $\delta \searrow 0 $ we arrive at the claim.
 \end{proof}
+
+Silyinksi triangle (Wachar Siejinski 1915).
+
+Construction a fractal of triangles in triangles. Specifically take $S_k$ is the
+union of $s^k$ equilateral triangles with side length $2^{-k}$.
+\[
+S = \bigcup_{k=0}^\infty S_k
+\qquad
+\mathcal{H}^\alpha_{\frac{1}{2^k}} \leq \sum_{j=1}^{3^k}
+\frac{\omega_\alpha}{2^\alpha} ( \diam S_k^j)^\alpha 
+= \frac{\omega_\alpha}{2^\alpha} 3^k 2^{-k\alpha} \searrow 0 \quad as \quad k\to
+\infty \quad iff \quad \alpha > \frac{\log^3}{\log^2}
+\]
+\[
+\Rightarrow \mathcal{H}^\alpha(S) = 0 \quad \forall \alpha > \frac{\log 3}{\log
+2} \Rightarrow \dim_{\mathcal{H}}(S) \leq \frac{\log 3}{\log 2}
+\]
+
+\begin{theorem}
+$\mathcal{H}^n = \mathcal{L}^n$ on $\R^n$.
+\end{theorem}
+
+\begin{lemma}[Vitali covering property for $\mathcal{L}$]
+For all open $U$ and for all $\delta > 0$ there exists a family of disjunct
+closed balls $(\overline{B_K})_{k=1}^\infty$ such that $\diam B_k < \delta$ and
+$\mathcal{L}^n(U \setminus \bigcup_{k=1}^\infty \overline{B_k}) = 0$ 
+\end{lemma}
+
+\begin{theorem}[isodiametric inequality]
+For all $E \subset \R^n$ Lebesgue measurable we have 
+\[
+|E| \leq \omega_n \left(\frac{\diam E}{2}\right)^n.
+\]
+\end{theorem}
+
+\begin{proof}[Proof of first theorem]
+\TODO
+\begin{enumerate}[{Step} 2]
+\item $\mathcal{L}^n(A) \leq \mathcal{H}^n(A)$ for all $A \subset \R^n$ 
+Fix $\delta > 0$. Let $(C_j)_{j\in I}$: $A \subset \bigcup_{j\in I} C_j$, $\diam
+C_j \leq \delta$. From this follows 
+\[
+\mathcal{L}^n(A) \leq \sum_{j=1}^\infty \mathcal{L}^n(C_j) \leq
+\sum_{j=1}^\infty \omega_n \left(\frac{\diam C_j}{2}\right)^n,
+\]
+where in the last inequality we used the \emph{isometric inequality}. Taking the
+infimum over all $(C_j)$ we get 
+\[
+\mathcal{L}^n(A) \leq \mathcal{H}^n_\delta (A) \qquad \text{for all} \quad
+\delta > 0.
+\]
+\item $\mathcal{H}^n_{\delta} \leq C_n \mathcal{L}^n$ for some $C_n \geq 1$
+\[
+\mathcal{L}^n(A) 
+= \inf\left\{ \sum_{j=1}^\infty \mathcal{L}^n(Q_j) \mid A
+\subset \bigcup Q_j\right\}
+\geq \inf\left\{ \sum_{j=1}^\infty \mathcal{L}^n(Q_j) \mid A
+\subset \bigcup Q_j, \diam Q_j < \delta \right\}
+= \frac{2^n}{(\sqrt{n})^n \omega_n} \inf
+\left\{\sum_{j=1}^\infty \omega_n (\frac{\diam Q_j}{2})^2 \mid 
+A \subset \bigcup Q_j, \diam Q_j < \delta\right\}
+\geq \frac{1}{C_n} \mathcal{H}^n_\delta (A)
+\]
+\item By definition of $\mathcal{L}^n$, for all $\delta, \varepsilon > 0$, there
+exists $(Q_i)_{j=1}^\infty$ such that $A \subset \bigcup_{j=1}^\infty Q_j$,
+$\diam Q_j \leq \delta$ and $\sum_{j=1}^\infty \mathcal{L}^n(Q_j) \leq
+\mathcal{L}^n(A) + \varepsilon$. There exists $(B_j^i)_{i=1}^\infty$ disjoint
+closed balls such that $B_j^i \subset Q_j$ for all $(\diam B^i_j \subset
+\delta)$ and $\mathcal{L}^n(\circ Q^j \setminus \bigcup_{i=1}^\infty
+\overline{B}_j^i) = 0 = \mathcal{L}^n(Q_j \setminus \bigcup_{i=1}^\infty$
+\end{enumerate}
+\end{proof}
+
+\begin{proof}[Proof of isodiametric inequality]
+If $E \subset B(x, \frac{\diam E}{2})$ for some $x$ then it's trivial.
+WLOG, $E$ is compact. $\diam A = \diam \overline{A}$.
+Steiner symmetrization (1838). Decompose $\R^n = \R^{n-1}\times \R^1$ and let $p
+: \R^n \to \R^{n-1}$, $q: \R^n \to \R$ so that $x = (px, qx)$, $q(x) = x_n$
+\[
+\forall x \in \R^{n-1} \quad E_z := \left\{t\in\R : (z,t) \in E\right\}
+\quad \textnormal{vertical section}
+\]
+define
+\[
+E^s := \left\{ x \in \R^n: |q(x)| \leq \frac{\mathcal{L}^1(E(p(x)))}{2}\right\}
+\]
+By Fubini's theorem, $E_z$ is $\mathcal{L}^1$-measurable for
+$\mathcal{L}^{n-1}$-a.e. $z$, $z \mapsto \mathcal{L}^1(E_z)$ is Lebesgue
+measurable 
+\[
+|E| = \int_{\R^{n-1}} \mathcal{L}^1(E_z) dz = \int_{\R^{n-1}}
+\mathcal{L}^1(E_z^s) dz = |E^s|
+\]
+where the first equal sign is a \TODO(nebenrechnung), and the second equality
+follows with Fubini.
+\parbox{1\linewidth}{
+$\mathcal{L}^1(E^s_z) = \mathcal{L}^1(E_z)$	
+\[
+E^s_z = 
+\]
+}
+\\ %
+Now we claim $\diam E^s \leq \diam E$. Let $x \in E^s$ and define $M(x), m(x)
+\in E$ to be the points for which 
+\[
+\begin{aligned}
+p(m(x)) &= p(M (x)) = px
+\\
+q(m(x)) &= q(z) \leq q(M(x))
+\qquad \text{for all} \quad z \in E \quad \text{with} \quad p(z) = p(x).
+\end{aligned}
+\]
+Let $x,y \in E^s$, 
+\[
+|q(x) - q(y)| \leq \max \left\{|q(M(x)) - q(m(y))|, |q(M(y)) - q(m(x))|\right\}
+\overset{WLOG}{=} |q(M(x)) - q(m(y))|
+\]
+\[
+|x-y|^2 = |p(x-y)|^2 + |q(x-y)|^2 \leq \max \left\{|M(x) - m(y)|, |M(y) -
+m(x)|\right\}^2
+\leq (\diam E)^2 .
+\]
+From this follows $|x - y| \leq \diam E$ for all $x,y \in E^s$.
+
+Given a $\mathcal{L}^n$ measurable set $F$, we define $F^i$ to be the Steiner
+symmetrization with respect to the $i$-th coordinate axis.
+$E_0 := E$, $E_i := (E_{i=1})^i$ with $i \in \{1,2,\dots,n\}$. Then $|E_n| = |E|$,
+$\diam E_n \leq \diam E$ and, if $x\in E_n$, then $-x \in E_n$. From this
+follows $E_n \subset B\left(0,\frac{\diam E_n}{2}\right)$.
+And with this we are done!
+\end{proof}
+
+\section{Integration}
+
+Let $X \neq \emptyset$, $\mu$ be a measure on $X$.
+
+\begin{definition}
+\begin{enumerate}[(1]
+\item A function $u : X \to [-\infty,\infty]$ $\overline{R}$ is $\mu$-measurable if
+$\{u > t\} = \{ x \in X : u(x) > t\}$ is $\mu$-measurable for all $t\in \R$.
+\item $u$ is a $\mu$-simple function is it is $\mu$-measurable and $u(X)$ is
+countable (that is $u(x) = \sum_{k=1} u_k \chi_{E_k}(x)$)
+\item If $u$ is a non-negative $\mu$-simple function, we define 
+\[
+\int_X u d\mu := \sum_{t \in u(X)} t\mu(\{u=t\}) = \sum_{k=1}^\infty u_k
+\mu(E_k) \in [0,\infty]
+\]
+where $0 \cdot \infty = 0$.
+\item Set $u^\pm := \max\{\pm u, 0 \}$, $u = u^+ - u^-$. 
+If $u$ is $\mu$-simple and $\int_X u^+ d\mu$ or $\int_X u^- d\mu < \infty$, then
+\[
+\int_X u d\mu := \int_X u^+ d\mu - \int_X \mu^- d\mu \in [-\infty,\infty]
+\]
+If $v$ satisfies (4), is called $\mu$-integrable simple function.
+\item If $u$ is $\mu$-measurable, we define the upper and lower integrals of $u$
+as
+\item \TODO
+\end{enumerate}
+\TODO
+\end{definition}
