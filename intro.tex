@@ -1,0 +1,120 @@
+\addcontentsline{toc}{chapter}{Introduction}
+\footnote{These notes have been written for the course of {\em $BV$ Functions and Sets of Finite Perimeter} held in the Department of Mathematics of the Hamburg Universität. The main references are the books \cite{AFP, evans2015measure, maggi2012sets}. Please write an email to giovanni.comi@uni-hamburg.de if you have corrections, comments, suggestions or questions.} 
+{\em Geometric Measure Theory} is the branch of Analysis which studies the fine properties of weakly regular functions and nonsmooth surfaces generalizing techniques from differential geometry through measure theoretic arguments. The theory of {\em functions of bounded variations} and {\em sets of finite perimeter} is one of the core topics of Geometric Measure Theory, since it deals with extension of the classical notion of Sobolev functions and regular surfaces.
+
+\section*{The $1$-Laplace operator and $BV$ as a natural extension of $W^{1, 1}$}
+
+In the Calculus of Variation, the {\em Direct Method} is a general way of proving the existence of a minimizer for a given functional. More precisely, let $X$ be a topological space and $F : X \to ( - \infty, + \infty]$ be a functional. We are interested in finding a minimizer of $F$ in $X$; that is, a $u \in X$ such that $F(u) \le F(v)$ for any $v \in X$. Assume that
+\begin{equation*}
+m := \inf \{ F(v) \, : \, v \in X\} > - \infty.
+\end{equation*}
+This ensure the existence of a minimizing sequence $\{v_{j}\}$; that is, a sequence of elements $v_{j} \in X$ such that $F(v_{j}) \to m$. Then, the Direct Method consists in the following steps:
+\begin{enumerate}[(1)]
+\item show that $\{v_{j}\}$ admits a converging subsequence $\{v_{j_{k}}\}$ and $u \in X$ such that $v_{j_{k}} \to u$, with respect to a the topology of $X$;
+\item show that $F$ is (sequentially) lower semicontinuous with respect to the topology of $X$; that is, if $z_{j} \to z_{0}$ in $X$, then
+$$ F(z_{0}) \le \liminf_{j \to + \infty} F(z_{j}).$$
+\end{enumerate} 
+If these properties hold true, we can conclude that $u$ is a minimizer of $F$. Indeed, we have
+\begin{equation*}
+m = \lim_{k \to + \infty} F(v_{j_{k}}) \ge \liminf_{k \to + \infty} F(v_{j_{k}}) \ge F(u) \ge m,
+\end{equation*}
+from which we immediately conclude that $F(u) = \min \{ F(v) \, : \, v \in X \}$.
+
+This method is fundamental in proving the existence of solutions to minimization problems related to boundary value problems. Let us consider for instance the classical Dirichlet problem for the Laplace equation on an open set $\Omega$ with $C^{1}$-smooth boundary:
+\begin{equation*}
+\begin{cases} 
+- \Delta u = f & \text{in} \ \Omega, \\
+u = 0 & \text{on} \ \partial \Omega,
+\end{cases}
+\end{equation*}
+for some $f \in L^{2}(\Omega)$.
+It is possible to see this system as the Euler-Lagrange equations for the functional
+\begin{equation*}
+F(u) = \frac{1}{2} \int_{\Omega} |D u|^{2} \, dx - \int_{\Omega} f u \, dx
+\end{equation*}
+defined on the space 
+\begin{equation*}
+X = W^{1, 2}_{0}(\Omega) := \{ u \in L^{2}(\Omega) \, : \,  Du \in L^{2}(\Omega; \R^{n}), u = 0 \ \text{on} \ \partial \Omega \};
+\end{equation*}
+that is, the space of $2$-summable weakly differentiable Sobolev functions with zero trace on $\partial \Omega$\footnote{We refer to \cite[Chapter 4]{evans2015measure} for a detailed account on Sobolev spaces.}. As customary, we denote by $Du$ the weak gradient of $u$.
+Thanks to Poincar\'e inequality, we can prove that 
+\begin{equation*}
+\inf \{ F(u) \, :\, u \in W^{1, 2}_{0}(\Omega) \} > - \infty.
+\end{equation*}
+Hence, we can find the solution looking for minizers of $F$ through the Direct Method: let $\{u_{j}\}_{j \in \N}$ be a minimizing sequence. It is possible to show that $\{u_{j}\}$ is uniformly bounded in $W^{1, 2}_{0}(\Omega)$, which is an Hilbert space, and in particular reflexive: as a consequence, there exists a subsequence $\{u_{j_{k}}\}$ converging to some $u \in W^{1, 2}_{0}(\Omega)$ with respect to the weak topology. In addition, $F$ is lower semicontinuous with respect to the weak topology, and so we infer the existence of a solution for the minimization problem
+\begin{equation*}
+\min \left \{ \int_{\Omega} \frac{1}{2} |D u|^{2} - f u \, dx \, : \, u \in W^{1, 2}_{0}(\Omega) \right \}.
+\end{equation*}
+It seems natural now to wonder if we could substitute the exponent $2$ with any $p \in (1, \infty)$. Thanks to the Poincar\'e inequality and the reflexivity of the $L^{p}$-spaces for $p \in (1, \infty)$, it is indeed possible to show that, for any $f \in L^{p'}(\Omega)$, $\frac{1}{p} + \frac{1}{p'} = 1$, the problem
+\begin{equation*}
+\min \left \{ \int_{\Omega} \frac{1}{p} |D u|^{p} - f u \, dx \, : \, u \in W^{1, p}_{0}(\Omega) \right \}
+\end{equation*}
+admits a solution, where $$W^{1, p}_{0}(\Omega) := \{ u \in L^{p}(\Omega) \, : \, Du \in L^{p}(\Omega; \R^{n}), u = 0 \ \text{on} \ \partial \Omega\}.$$ 
+The minimizers to this problem solves the following boundary value problem:
+\begin{equation*}
+\begin{cases} 
+- \div \left ( \nabla u |\nabla u|^{p - 2} \right ) = f & \text{in} \ \Omega, \\
+u = 0 & \text{on} \ \partial \Omega,
+\end{cases}
+\end{equation*}
+where $\div \left ( \nabla u |\nabla u|^{p - 2} \right ) =: \Delta_{p}u$ is the $p$-Laplace operator.
+
+The next logical step is to consider also the case $p = 1$: for a given $f \in L^{\infty}(\Omega)$, we want to find a function $u$ which realizes
+\begin{equation} \label{eq:min_probl_W_1}
+\inf\left\{\int_\Omega |D u| - f u \, dx \,:\, u \in W^{1,1}_{0}(\Omega) \right\} =: m,
+\end{equation}
+where $$W^{1,1}_{0}(\Omega) := \{u \in L^1(\Omega) : Du \in L^1(\Omega; \R^n), u = 0 \ \text{on} \ \partial \Omega \}.$$
+If we assume $\|f\|_{L^{\infty}(\Omega)}$ to be sufficiently small, we can again employ the Poincar\'e inequality to prove that $m \in (- \infty, + \infty]$. Hence, there exists a sequence $\{u_j \}_{j\in\N}$ in $W^{1,1}_{0}(\Omega)$ such that $$\lim_{j \to + \infty} \int_\Omega |D u_{j}| - f u_{j} \, dx = m.$$ 
+However, in this case we cannot argue as above in the case $p > 1$, since, in general this does \emph{not} imply that the existence of a subsequence $\{u_{j_k}\}_{k\in\N}$ weakly converging to some $u \in W^{1,1}_{0}(\Omega)$ such that $$\int_\Omega |D u| - f u \, dx = m.$$ 
+
+The reason for this lies in the fact that $L^1(\Omega)$ is not reflexive, and actually it is not the topological dual of any separable space. However, $L^{1}(\Omega)$ is contained in the space of finite Radon measures on $\Omega$, $\mathcal{M}(\Omega)$, and this space can be see as the dual of the space of continuous functions vanishing on the boundary of $\Omega$, $C_{0}(\Omega)$.
+
+This fact suggests the definition of a space which contains the Sobolev space $W^{1, 1}(\Omega)$ and which, although not reflexive, enjoys the property that bounded sets are weakly$^*$ compact: the space of {\em functions with bounded variation},
+\begin{equation*}
+BV(\Omega) := \{ u \in L^{1}(\Omega) \, : \, Du \in \mathcal{M}(\Omega; \R^{n}) \}.
+\end{equation*}
+
+It is not difficult to prove that the total variation of the Radon measure $Du$ over $\Omega$ is indeed lower semicontinuous with respect to the weak$^*$ converge of the gradient measures. This indicates that the correct space where to look solutions to \eqref{eq:min_probl_W_1} is the space of functions with bounded variation with zero trace\footnote{It can be proved that the trace of a function with bounded variation is well defined on any $C^{1}$-regular surface, as in the Sobolev case.}, 
+\begin{equation*}
+BV_{0}(\Omega) := \{ u \in L^{1}(\Omega) \, : \, Du \in \mathcal{M}(\Omega; \R^{n}), u = 0 \ \text{on} \ \partial \Omega \}.
+\end{equation*}
+Finally, it is relevant to mention the fact that the minimizers to \eqref{eq:min_probl_W_1} solve the following boundary value problem:
+\begin{equation*}
+\begin{cases} 
+- \div \left ( \frac{\nabla u}{|\nabla u|} \right ) = f & \text{in} \ \Omega, \\
+u = 0 & \text{on} \ \partial \Omega,
+\end{cases}
+\end{equation*}
+where $\div \left ( \frac{\nabla u}{|\nabla u|} \right ) =: \Delta_{1}u$ is the $1$-Laplace operator, which is non trivially defined on nonsmooth functions because of the highly degenerate term $\frac{\nabla u}{|\nabla u|}$.
+
+\section*{Minimal area problems and sets of finite perimeter}
+
+Other historically relevant problems from the Calculus of Variation are the minimal area problems, among which the most famous example is the \emph{Euclidean isoperimetric problem}: find the possibly unique set with minimal surface area among those with fixed volume. In mathematical terms, if we denote by $|F|$ the $n$-dimensional volume of a set $F \subset \R^{n}$ (hence, its Lebesgue measure $\Leb{n}(F)$) and by $\sigma_{n-1}(\partial F)$ its surface area (under the assumption the $\partial F$ is regular enough), we are looking for the set which realizes
+\[
+\inf \left\{\sigma_{n-1}(\partial F) \,:\, \partial F \in \mathcal{R}, |F| =
+k \right\} =: \gamma_{k},
+\]
+where $\mathcal{R}$ is a class of sufficiently smooth surfaces and $k > 0$. The Direct Method now consists in considering a minimizing sequence of sets $F_{j}$ such that 
+\begin{equation} \label{introeq:min_sequence}
+\partial F_{j} \in \mathcal{R}, \quad |F_{j}| = k \quad \text{and} \quad \sigma_{n - 1}(\partial F_{j}) \to \gamma_{k},
+\end{equation}
+and then in trying to prove the convergence (possibly up to subsequences) to some limit set $E$ such that 
+\begin{equation*}
+\partial E \in \mathcal{R}, \quad |E| = k \quad \text{and} \quad \sigma_{n - 1}(\partial E) = \gamma_{k}.
+\end{equation*}
+In order to achieve this result, some compactness property in the family of sets satisfying \eqref{introeq:min_sequence} is required. In addition, the surface measure $\sigma_{n - 1}$ need to be a lower semicontinuous with respect to the chosen convergence of sets, in the sense that
+\begin{equation*}
+\sigma_{n - 1}(\partial E) \le \liminf_{j \to + \infty} \sigma_{n - 1}(\partial F_{j})
+\end{equation*}
+if $F_{j} \to E$ in a suitable sense.
+However, these compactness and lower semicontinuity properties in general fail to be true in family of sets with regular topological boundary. In addition, we notice that the topological boundary is very unstable under modification of a set by Lebesgue negligible sets. For instance, let 
+\begin{equation*}
+E_{1} = B(0, 1) \quad \text{and} \quad E_{2} = B(0, 1) \cup \left ( \partial B(0, 2) \cap \Q^{n}\right ).
+\end{equation*}
+It is plain to see that $|E_{1} \Delta E_{2}| = 0$, so that these two sets are equivalent with respect to the Lebesgue measure, and so they have the same volume. However, their topological boundary, which are smooth surfaces, are very different:
+\begin{equation*}
+\partial E_{1} = \partial B(0, 1) \quad \text{and} \quad \partial E_{2} = \partial B(0, 1) \cup \partial B(0, 2).
+\end{equation*} 
+The need of ruling out these problems and of recovering a notion of compactness and a lower semicontinuity property for the surface area is one of the main reasons for the birth of Geometric Measure Theory. This theory concerns methods to study the geometric properties of rough, irregular sets from a measure theoretic point of view. In this course we shall see how to exploit this approach to give a meaningful notion of surface area for an irregular set and to define a suitable class of sets for which we can apply the Direct Method of the Calculus of Variation in order to deal with minimal area problems: the {\em sets of finite perimeter}. Broadly speaking, the notion of set of finite perimeter extends the idea of manifold with smooth boundary, in this way providing a suitable space in which is possible to study the existence of a solution to minimal area problems and other similar geometric variational minimization problems. More precisely, we say that $E$ is a set of locally finite perimeter in $\R^{n}$ is its characteristic function $\chi_{E}$ is a function with locally bounded variation.
+
+
