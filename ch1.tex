@@ -476,108 +476,203 @@ where $C_{\alpha, \gamma} = \Lip(f)^{\alpha}$, if $\gamma = 1$.
 By sending $\delta \searrow 0$ we conclude the proof.
 \end{proof}
 
-Silyinksi triangle (Wachar Siejinski 1915).
+\begin{remark}[Sierpinski triangle (Waclaw Sierpinski 1915)]
+One can construct a fractal triangle as follows: 
 
-Construction a fractal of triangles in triangles. Specifically take $S_k$ is the
-union of $s^k$ equilateral triangles with side length $2^{-k}$.
+\begin{enumerate}[1.]
+\item Take $S_0$ to be a equilateral
+triangle. 
+\item Divide $S_0$ evenly into four smaller equilateral
+triangles. Cut out the triangle in the center.
+\item Now do the step in $2.$ with these three equilateral triangles indefinitely.
+\end{enumerate}
+
+So the $S_k$'s are the 
+union of $3^k$ equilateral triangles with side length $2^{-k}$. We define 
 \[
-S = \bigcup_{k=0}^\infty S_k
-\qquad
-\mathcal{H}^\alpha_{\frac{1}{2^k}} \leq \sum_{j=1}^{3^k}
-\frac{\omega_\alpha}{2^\alpha} ( \diam S_k^j)^\alpha 
-= \frac{\omega_\alpha}{2^\alpha} 3^k 2^{-k\alpha} \searrow 0 \quad as \quad k\to
-\infty \quad iff \quad \alpha > \frac{\log^3}{\log^2}
+S := \bigcup_{k=0}^\infty S_k
+\vspace{-1em}
 \]
+and compute
 \[
-\Rightarrow \mathcal{H}^\alpha(S) = 0 \quad \forall \alpha > \frac{\log 3}{\log
-2} \Rightarrow \dim_{\mathcal{H}}(S) \leq \frac{\log 3}{\log 2}
+\Haus{\alpha}_{\frac{1}{2^k}}(S) 
+\leq \sum_{j=1}^{3^k}
+\frac{\omega_\alpha}{2^\alpha} 
+\left(\diam {S_k}^j\right)^\alpha 
+= \frac{\omega_\alpha}{2^\alpha} 3^k 2^{-k\alpha},
+%\searrow 0 \quad as \quad k\to \infty \quad \text{iff} \quad \alpha >
+%\frac{\log^3}{\log^2}.
 \]
+which goes to zero for $k\to \infty$ if and only if $\alpha >
+\frac{\log^3}{\log^2}$.
+So we can conclude that for all $\alpha > \frac{\log{3}}{\log{2}}$ we
+have $\Haus{\alpha}(S) = 0$ and with that we found:
+%\[
+%\Rightarrow \Haus{\alpha}(S) = 0 \quad \forall \alpha > \frac{\log 3}{\log
+%2} \Rightarrow \dim_{\mathcal{H}}(S) \leq \frac{\log 3}{\log 2}.
+%\]
+\[
+\dim_{\mathcal{H}}(S) \leq \frac{\log 3}{\log 2}.
+\]
+\end{remark}
+
+Next we aim to proof an important characterization for the Hausdorff measure for
+positive integers:
 
 \begin{theorem}
-$\mathcal{H}^n = \mathcal{L}^n$ on $\R^n$.
+\label{thmHeqL}
+$\Haus{n}= \Leb{n}$ on $\R^n$.
 \end{theorem}
 
-\begin{lemma}[Vitali covering property for $\mathcal{L}$]
-For all open $U$ and for all $\delta > 0$ there exists a family of disjunct
-closed balls $(\overline{B_K})_{k=1}^\infty$ such that $\diam B_k < \delta$ and
-$\mathcal{L}^n(U \setminus \bigcup_{k=1}^\infty \overline{B_k}) = 0$ 
+The proof is crucially based on the two following statements.
+
+\begin{lemma}[Vitali covering property for $\Leb{n}$]
+\label{lemmaVitaliCovering}
+For all open $U$ and for all $\delta > 0$ there exists a family of disjoint
+closed balls $\{\overline{B_k}\}_{k=1}^\infty$ such that $\diam B_k < \delta$ and
+$\Leb{n}(U \setminus \bigcup_{k=1}^\infty \overline{B_k}) = 0$.
 \end{lemma}
 
 \begin{theorem}[isodiametric inequality]
-For all $E \subset \R^n$ Lebesgue measurable we have 
+\label{thmIso}
+For all $\Leb{n}$-measurable sets $E \subset \R^n$ we have 
 \[
 |E| \leq \omega_n \left(\frac{\diam E}{2}\right)^n.
 \]
 \end{theorem}
 
-\begin{proof}[Proof of first theorem]
-\TODO
-\begin{enumerate}[{Step} 2]
-\item $\mathcal{L}^n(A) \leq \mathcal{H}^n(A)$ for all $A \subset \R^n$ 
-Fix $\delta > 0$. Let $(C_j)_{j\in I}$: $A \subset \bigcup_{j\in I} C_j$, $\diam
+\begin{proof}[Proof of theorem \ref{thmHeqL}]
+We show the proof in three steps.~
+\begin{enumerate}[({Step} 1) To show:]
+\item $\Leb{n}(A) \leq \Haus{n}(A)$ for all $A \subset \R^n$.
+\todo{@GC:A
+measurable?}
+\\
+Fix $\delta > 0$. Let $\{C_j\}_{j\in I}$: $A \subset \bigcup_{j\in I} C_j$, $\diam
 C_j \leq \delta$. From this follows 
 \[
-\mathcal{L}^n(A) \leq \sum_{j=1}^\infty \mathcal{L}^n(C_j) \leq
+\Leb{n}(A) \leq \sum_{j=1}^\infty \Leb{n}(C_j) \leq
 \sum_{j=1}^\infty \omega_n \left(\frac{\diam C_j}{2}\right)^n,
 \]
-where in the last inequality we used the \emph{isometric inequality}. Taking the
-infimum over all $(C_j)$ we get 
+where in the last inequality we used the \emph{isometric
+inequality} (e.g. theorem \ref{thmIso}). Taking the
+infimum over all $\{C_j\}$ we arrive at claim
 \[
-\mathcal{L}^n(A) \leq \mathcal{H}^n_\delta (A) \qquad \text{for all} \quad
+\Leb{n}(A) \leq \Haus{n}_\delta (A) \qquad \text{for all} \quad
 \delta > 0.
 \]
-\item $\mathcal{H}^n_{\delta} \leq C_n \mathcal{L}^n$ for some $C_n \geq 1$
+%%% Step 2
+\item $\Haus{n}_{\delta} \leq C_n \Leb{n}$ for some $C_n \geq 1$.
+\\
+With the definition of the Lebesgue measure we get
 \[
-\mathcal{L}^n(A) 
-= \inf\left\{ \sum_{j=1}^\infty \mathcal{L}^n(Q_j) \mid A
+\begin{aligned}
+\Leb{n}(A) 
+&= \inf\left\{ \sum_{j=1}^\infty \Leb{n}(Q_j) \mid A
 \subset \bigcup Q_j\right\}
-\geq \inf\left\{ \sum_{j=1}^\infty \mathcal{L}^n(Q_j) \mid A
-\subset \bigcup Q_j, \diam Q_j < \delta \right\}
-= \frac{2^n}{(\sqrt{n})^n \omega_n} \inf
-\left\{\sum_{j=1}^\infty \omega_n (\frac{\diam Q_j}{2})^2 \mid 
-A \subset \bigcup Q_j, \diam Q_j < \delta\right\}
-\geq \frac{1}{C_n} \mathcal{H}^n_\delta (A)
+\\&= \inf\left\{ \sum_{j=1}^\infty \Leb{n}(Q_j) \mid A
+\subset \bigcup Q_j,\, \diam Q_j < \delta \right\}
+\\& = \frac{2^n}{\left(\sqrt{n}\right)^n \omega_n} \inf
+\left\{\sum_{j=1}^\infty \omega_n \left(\frac{\diam Q_j}{2}\right)^2 \mid 
+A \subset \bigcup Q_j,\, \diam Q_j < \delta\right\}
+\\&\geq \frac{1}{C_n} \Haus{n}_\delta (A),
+\end{aligned}
 \]
-\item By definition of $\mathcal{L}^n$, for all $\delta, \varepsilon > 0$, there
-exists $(Q_i)_{j=1}^\infty$ such that $A \subset \bigcup_{j=1}^\infty Q_j$,
-$\diam Q_j \leq \delta$ and $\sum_{j=1}^\infty \mathcal{L}^n(Q_j) \leq
-\mathcal{L}^n(A) + \varepsilon$. There exists $(B_j^i)_{i=1}^\infty$ disjoint
-closed balls such that $B_j^i \subset Q_j$ for all $(\diam B^i_j \subset
-\delta)$ and $\mathcal{L}^n(\circ Q^j \setminus \bigcup_{i=1}^\infty
-\overline{B}_j^i) = 0 = \mathcal{L}^n(Q_j \setminus \bigcup_{i=1}^\infty$
+where for the second equality we used that 
+\[
+\Leb{n} = \underbrace{\Leb{1} \times \dots \times \Leb{1}}_{n-\text{times}}\,,
+\qquad 
+\Leb{1} = \Haus{1}_\delta \quad \text{in } \R \quad \text{ for all } \delta > 0, 
+\quad \text{and} \quad 
+\Leb{n}(Q_j) = \left(\frac{ \diam
+Q_j}{\sqrt{n}}\right)^n.
+\]
+
+\item $\Haus{n}_\delta(A) \leq \Leb{n}(A) + \varepsilon$ for any $\varepsilon >
+0$.
+\\
+By definition of $\Leb{n}$: For all $\delta, \varepsilon > 0$, 
+there exists a family $\{Q_j\}_{j=1}^\infty$ such that $A \subset
+\bigcup_{j=1}^\infty Q_j$, $\diam Q_j \leq \delta$ 
+and $\sum_{j=1}^\infty \Leb{n}(Q_j) \leq \Leb{n}(A) + \varepsilon$.
+Now, with lemma \ref{lemmaVitaliCovering}, there exists a family
+$(B_j^i)_{i=1}^\infty$ of disjoint
+closed balls such that $B_j^i \subset Q_j$ for all $(\diam B^i_j \leq
+\delta)$ and 
+\vspace{-0.4em}
+\[
+%\vspace{-1em}
+\Leb{n}\left(\overset{\circ}{Q}_j \setminus \bigcup_{i=1}^\infty
+\overline{B_j^i}\right) 
+= 0 
+= \Leb{n}\left(Q_j \setminus \bigcup_{i=1}^\infty
+\overline{B_j^i}\right).
+\]
+So with step 2 we also have
+\vspace{-0.4em}
+\[
+\Haus{n}_\delta\left(Q_j \setminus \bigcup_{i=1}^\infty
+\overline{B_j^i}\right) = 0,
+\]
+%From this we can with the help of step 2 calculate:
+from which we can infer that
+\[
+\begin{aligned}
+\Haus{n}_\delta(A) 
+&\leq \sum_{j=1}^\infty \Haus{n}_\delta(Q_j) 
+= \sum_{j=1}^\infty \Haus{n}_\delta \left(\bigcup_{i=1}^\infty
+\overline{B_j^i}\right)
+\\&= \sum_{j=1}^\infty  \sum_{i=1}^\infty
+\Haus{n}_\delta \left( B_j^i\right)
+\leq \sum_{j=1}^\infty  \sum_{i=1}^\infty
+\underbrace{
+\omega_n\left(\frac{\diam
+B^i_j}{2}\right)^n}%
+_{=\Leb{n}\left(\overline{B^i_j}\right)}
+\\&= 
+\sum_{j=1}^\infty  
+\Leb{n}\left(\bigcup_{i=1}^\infty\overline{B^i_j}\right)
+= 
+\sum_{j=1}^\infty  
+\Leb{n}(Q_j)
+\\ &\leq \Leb{n}(A) + \varepsilon.
+\end{aligned}
+\]
 \end{enumerate}
+And since the $\varepsilon > 0$ is arbitrary in (step 2) we arrive at the claim.
 \end{proof}
 
-\begin{proof}[Proof of isodiametric inequality]
+\begin{proof}[Proof of isodiametric inequality (lemma \ref{thmIso})]
 If $E \subset B(x, \frac{\diam E}{2})$ for some $x$ then it's trivial.
-WLOG, $E$ is compact. $\diam A = \diam \overline{A}$.
+w.l.o.g, $E$ is compact. $\diam A = \diam \overline{A}$.
 Steiner symmetrization (1838). Decompose $\R^n = \R^{n-1}\times \R^1$ and let $p
 : \R^n \to \R^{n-1}$, $q: \R^n \to \R$ so that $x = (px, qx)$, $q(x) = x_n$
 \[
-\forall x \in \R^{n-1} \quad E_z := \left\{t\in\R : (z,t) \in E\right\}
+\forall z \in \R^{n-1} \quad E_z := \left\{t\in\R : (z,t) \in E\right\}
 \quad \textnormal{vertical section}
 \]
 define
 \[
-E^s := \left\{ x \in \R^n: |q(x)| \leq \frac{\mathcal{L}^1(E(p(x)))}{2}\right\}
+E^s := \left\{ x \in \R^n: |q(x)| \leq \frac{\Leb{1}(E_{p(x)})}{2}\right\}.
 \]
-By Fubini's theorem, $E_z$ is $\mathcal{L}^1$-measurable for
-$\mathcal{L}^{n-1}$-a.e. $z$, $z \mapsto \mathcal{L}^1(E_z)$ is Lebesgue
-measurable 
+By Fubini's theorem, $E_z$ is $\Leb{1}$-measurable for
+$\Leb{n-1}$-a.e. $z$, $z \mapsto \Leb{1}(E_z)$ is Lebesgue
+measurable and so we get
 \[
-|E| = \int_{\R^{n-1}} \mathcal{L}^1(E_z) dz = \int_{\R^{n-1}}
-\mathcal{L}^1(E_z^s) dz = |E^s|
+|E| = \int_{\R^{n-1}} \Leb{1}(E_z) dz = \int_{\R^{n-1}}
+\Leb{1}(E_z^s) dz = |E^s|,
 \]
-where the first equal sign is a \TODO(nebenrechnung), and the second equality
-follows with Fubini.
-\parbox{1\linewidth}{
-$\mathcal{L}^1(E^s_z) = \mathcal{L}^1(E_z)$	
+where the first equality follows with Fubini,
+and the second equal sign is due to 
 \[
-E^s_z = 
+(E^s)_z = \{ t\in\R : (z,t) \in E^s \}
+= \left\{ t\in \R : |t| \leq \frac{\Leb{1}(E_z)}{2} \right\}
+= \left[ - \frac{\Leb{1}(E_z)}{2}, \frac{\Leb{1}(E_z)}{2} \right].
 \]
-}
-\\ %
-Now we claim $\diam E^s \leq \diam E$. Let $x \in E^s$ and define $M(x), m(x)
+
+Now we claim 
+$$\diam E^s \leq \diam E.$$ 
+To proof this, let $x \in E^s$ and define $M(x), m(x)
 \in E$ to be the points for which 
 \[
 \begin{aligned}
@@ -590,7 +685,7 @@ q(m(x)) &= q(z) \leq q(M(x))
 Let $x,y \in E^s$, 
 \[
 |q(x) - q(y)| \leq \max \left\{|q(M(x)) - q(m(y))|, |q(M(y)) - q(m(x))|\right\}
-\overset{WLOG}{=} |q(M(x)) - q(m(y))|
+\overset{w.l.o.g.}{=} |q(M(x)) - q(m(y))|
 \]
 \[
 |x-y|^2 = |p(x-y)|^2 + |q(x-y)|^2 \leq \max \left\{|M(x) - m(y)|, |M(y) -
@@ -599,7 +694,7 @@ m(x)|\right\}^2
 \]
 From this follows $|x - y| \leq \diam E$ for all $x,y \in E^s$.
 
-Given a $\mathcal{L}^n$ measurable set $F$, we define $F^i$ to be the Steiner
+Given a $\Leb{n}$ measurable set $F$, we define $F^i$ to be the Steiner
 symmetrization with respect to the $i$-th coordinate axis.
 $E_0 := E$, $E_i := (E_{i=1})^i$ with $i \in \{1,2,\dots,n\}$. Then $|E_n| = |E|$,
 $\diam E_n \leq \diam E$ and, if $x\in E_n$, then $-x \in E_n$. From this
@@ -611,12 +706,13 @@ And with this we are done!
 
 Let $X \neq \emptyset$, $\mu$ be a measure on $X$.
 
-\begin{definition}
-\begin{enumerate}[(1]
-\item A function $u : X \to [-\infty,\infty]$ $\overline{R}$ is $\mu$-measurable if
-$\{u > t\} = \{ x \in X : u(x) > t\}$ is $\mu$-measurable for all $t\in \R$.
-\item $u$ is a $\mu$-simple function is it is $\mu$-measurable and $u(X)$ is
-countable (that is $u(x) = \sum_{k=1} u_k \chi_{E_k}(x)$)
+\begin{definition}~
+\begin{enumerate}[(1)]
+\item A function $u : X \to [-\infty,\infty] =: \overline{\R}$ is \emph{$\mu$-measurable} if
+$\{u > t\} = \{ x \in X : u(x) > t\}$ is $\mu$-measurable for all $t\in
+\overline{\R}$.
+\item $u$ is a \emph{$\mu$-simple function} if it is $\mu$-measurable and $u(X)$ is
+countable (that is $u(x) = \sum_{k=1}^\infty u_k \chi_{E_k}(x)$)
 \item If $u$ is a non-negative $\mu$-simple function, we define 
 \[
 \int_X u d\mu := \sum_{t \in u(X)} t\mu(\{u=t\}) = \sum_{k=1}^\infty u_k
@@ -631,7 +727,59 @@ If $u$ is $\mu$-simple and $\int_X u^+ d\mu$ or $\int_X u^- d\mu < \infty$, then
 If $v$ satisfies (4), is called $\mu$-integrable simple function.
 \item If $u$ is $\mu$-measurable, we define the upper and lower integrals of $u$
 as
-\item \TODO
+\[
+\int^*_X u d\mu := \inf \left\{ \int_X v d\mu \mid 
+\text{$v \geq u$ $\mu$-a.e, $v$ $\mu$-integrable simple function}
+\right\}
+\]
+or
+\[
+{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u d\mu := \sup\left\{ \int_X v d\mu \mid 
+\text{$v \leq u$ $\mu$-a.e, $v$ $\mu$-integrable simple function}
+\right\}
+\]
+respectively. 
+If
+\[
+{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u d\mu = \int^*_X u d\mu,
+\]
+then $u$ is $\mu$-integrable.
+\item A measurable function $u$ is \emph{$\mu$-summable} if $|u|$ is
+$\mu$-integrable and 
+\[
+\int_X |u| d\mu < \infty
+\]
+\item Now we define the following sets 
+\begin{itemize}[]
+\item $L^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid \text{$u$ is
+$\mu$-summable} \right\}$
+\item $L_{\textnormal{loc}}^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid
+\text{$u\chi_K$ is
+$\mu$-summable for all $K\subset X$ compact} \right\}$
+\item $L^p(X,\mu) := \left\{ u: X \to \overline{\R} \mid \text{$|u|^p$ is
+$\mu$-summable} \right\}$
+\item $L_{\textnormal{loc}}^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid
+\text{$|u|^p\chi_K$ is
+$\mu$-summable for all $K\subset X$ compact} \right\}$
+\end{itemize}
 \end{enumerate}
-\TODO
+\end{definition}
+
+\begin{definition}
+If $u : X \to [0,\infty]$ $\mu$-measurable, then we define $\nu = u \mu$ (or
+$\mu \mres u$) as 
+\[
+\nu(A) = \int_A u d\mu = \int_X u \chi_A d\mu 
+\qquad \text{for all} \quad  \mu\text{-measurable } A
+\]
+\end{definition}
+
+\begin{definition}[Radon measure]
+Given a Radon measure $\mu$ on an open subset $\Omega \subset \R^n$ and $f: \Omega \to
+[-\infty,\infty]$ locally $\mu$-summable. Then $\nu := f \mu$ defined by
+\[
+\nu(A) = \int_A f d\mu 
+\qquad \text{for all }  A \, \mu\text{-measurable }
+\]
+is said to be a \emph{signed Radon measure} on $\Omega$.
 \end{definition}
