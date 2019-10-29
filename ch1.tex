@@ -783,3 +783,278 @@ Given a Radon measure $\mu$ on an open subset $\Omega \subset \R^n$ and $f: \Ome
 \]
 is said to be a \emph{signed Radon measure} on $\Omega$.
 \end{definition}
+
+\begin{definition}[Radon measure]
+Given a non-negative Radon measure $\mu$ on an open subset $\Omega \subset \R^n$ and $f: \Omega \to
+\R^m$ is locally $\mu$-summable. Then we set $\nu := f \mu$ the vector valued
+Radon measure satisfying
+\[
+\nu(A) = \int_A f d\mu 
+\qquad \text{for all }  A \, \mu\text{-measurable }
+\]
+is said to be a \emph{signed Radon measure} on $\Omega$.
+\end{definition}
+
+\begin{definition}(alternative approach). Let $\Omega \subset \R^n$ be open.
+\begin{itemize}
+\item A non-negative Radon measure is a mapping $\mu : \mathcal{B}{\Omega} \to
+[0,\infty]$ which is $\sigma$-additive and finite compact sets.
+\item A real (vector valued) Radon measure is a mapping $\mu :
+\mathcal{B}(\Omega) \to \R^m$ which is $\sigma$-additive and its total variation
+$|\mu|$ is finite on compact sets; that is
+\[
+|\mu|(B) := \sup \left\{
+\sum_{j=1}^\infty |\mu(B_j)| \mid K = \bigcup_{j} B_j, B_i \cap B_i = \emptyset
+\text{ if } i\neq j
+\right\}
+\qquad \text{for all $K$ compact in $\Omega$}.
+\]
+In particular, $\sum \mu(B_j)$ is absolutely convergent for all $\{B_j\}$
+partition of a compact set $K$.
+\item We say that a non-negative Radon measure $\mu : \mathcal{B}(\Omega) \to
+[0,\infty)$ is finite if $\mu(\Omega) < \infty$; and we denote $\mu \in
+\mathcal{M}^+(\Omega)$.
+\item We say that a non-negative vector-valued Radon measure $\mu : \mathcal{B}(\Omega) \to
+\R^m$ is finite if $|\mu|(\Omega) < \infty$; and we denote $\mu \in
+\mathcal{M}(\Omega,\R^m)$.
+\end{itemize}
+\end{definition}
+
+\begin{remarks}[Basic facts]
+\begin{itemize}
+\item If $\mu \in \mathcal{M}_{loc}(\Omega,\R^m)$, then $|\mu| \in
+\mathcal{M}^+_{loc}(\Omega)$.
+\[
+|\mu|(B) := \sup \{\sum_{j=1} ^\infty |\mu(B_j)| \mid 
+B= \bigcup B_j, B_j \cap B_i = \emptyset \, i\neq j, B_j \in \mathcal{\Omega}
+\}
+\]
+\item The total variation is the smallest non-negative Radon measure $\nu$ such
+that $\nu (B) \geq |\mu(B)|$ for all $B \in \mathcal{B}(\Omega)$.
+\item If $\mu \in \mathcal{M}(\Omega)$, we define the positive and negative
+parts of $\mu$ (Jordan decomposition (unique)
+\[
+\mu^+ = \frac{|mu| + \mu}{2} \qquad 
+\mu^- = \frac{|mu| - \mu}{2} \qquad 
+\mu^{\pm} \geq 0.
+\]
+\end{itemize}
+\end{remarks}
+
+\begin{lemma}
+If $\mu \in \mathcal{M}^+(\Omega)$ and $f\in L^1(\Omega,\mu;\R^m)$, then $f\mu
+\in \mathcal{M}(\Omega,\R^m)$ and $|f\mu| = |f|\mu$
+\end{lemma}
+\begin{proof}
+Let $B \in \mathcal{B}(\Omega)$.
+\begin{itemize}
+\item $|f \mu(B)| = | \int_B f d\mu| \leq \int_B |f| d\mu$. From this follows
+$|f\mu| \leq |f| \mu$ From this follows $f\mu \in \mathcal{M}(\Omega;\R^m)$ 
+\item Let $\varepsilon > 0$ and $D = \{z_h\}_{h\in\N}$ countable dense set in
+$S^{m-1}$, let $B \in \mathcal{B}(\Omega)$. We define 
+\[
+\sigma(x) := \min \{h\in \N: f(x) z_h \geq (1-\varepsilon)|f(x)|\}
+\]
+it is Borel measurable. Further define $B_h = \sigma^{-1}(\{h\}) \cap B \in
+\mathcal{B}(\Omega)$, $B = \bigcup_{h\in\N} B_h$, $B_h \cap B_k = \empty$ if
+$h\neq k$. From this follows
+\[
+\begin{aligned}
+\int_B |f| d\mu 
+&= \sum_{k\in\N} \int_{B_h} |f| d\mu 
+\leq \frac{1}{1-\varepsilon} \sum_{h\in\N} \int_{B_h} f z_h d\mu 
+\leq \frac{1}{1-\varepsilon} \sum_{h\in\N} |f_\mu|(B_h)  
+\leq \frac{1}{1-\varepsilon}  |f_\mu|(B),
+\end{aligned}
+\]
+where we used
+\[
+\int_{B_h} f z_h d\mu 
+= z_h \int_{B_h} f d\mu 
+\leq \left|\int_{B_h} f d\mu \right|
+= |f_\mu|(B_h)  
+\]
+\end{itemize}
+\end{proof}
+
+\begin{definition}
+Let $\mu$ be a non-negative measure on $\Omega$.
+\begin{itemize}
+\item We say that $\mu$ is concentrated on a set $E \subset \Omega$ if  
+\[
+\mu(\Omega \setminus E) = 0.
+\]
+\item We call the support of $\mu$, $\supp \mu$, the smallest closed set on
+which $\mu$ is concentrated :
+\[
+\supp \mu = \bigcap_{C \text{ closed}, \mu (\Omega\setminus C) = 0} C.
+\]
+\end{itemize}
+\end{definition}
+\begin{exercise}
+Equivalently, 
+\[
+\supp \mu = \{x \in \Omega \mid \mu(B(x,r)) > 0, \forall B(x,r) \subset \Omega\}
+\]
+\todo{@GC: A counterexample?!}
+\end{exercise}
+
+\begin{definition}
+\begin{enumerate}[1.]
+\item Let $\mu \in \mathcal{M}^+(\Omega)$, $\mu \in \mathcal{M}(\Omega,\R^m)$. We say
+that $\mu$ is absolutely continuous w.r.t $\mu$, and we write $\nu << \mu$, if
+for all $B \in \mathcal{B}(\Omega)$ such that $\mu(B) = 0$, then $|\mu|(B) = 0$.
+\item If $\mu,\nu \in \mathcal{M}^+(\Omega)$, we say that they are mutually
+singular if there exists $E,F \in \mathcal{B}(\Omega)$ such that $\mu(F) =0$,
+$\mu(E) = 0$ and 
+\[
+\mu(B) = \mu (B\cap E) \qquad \text{and} \qquad
+\nu(B) = \nu(B \cap F)
+\]
+for all $B \in \mathcal{B}(\Omega)$ and we write $\mu \perp \nu$. If $\mu,\nu
+\in \mathcal{M}(\Omega,\R^m)$, 
+\[
+\mu \perp \nu :\iff |\mu| \perp |\mu|
+\]
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Radon-Nikodyn]
+Let $\mu \in \mathcal{M}(\Omega,\R^m)$, $\mu \in \mathcal{M}^+(\Omega)$. Then
+there exists exactly one $\nu^{ac},\nu^{s} \in \mathcal{M}(\Omega; \R^m)$ such
+that $\nu^{ac} << \mu$, $\nu^s \perp \mu$ and $\nu = \nu^{ac} + \nu^s$. In
+addition, there exists exactly one $f\in L^1(\Omega,\mu;\R^m)$ such that
+$\nu^{ac} = f\mu$.
+\\
+In particular, if $\mu = \Leb{n}$, every $\mu \in \mathcal{\Omega;\R^m}$ can be
+uniquely decomposed in
+\[
+\mu = f \Leb{n} + \nu^s, \nu^s \perp \Leb{n}
+\qquad f\in L^1(\Omega; \R^n).
+\]
+\end{theorem}
+
+\begin{definition} We say that a property holds $|\mu|$-almost everywhere or for
+$|\mu|$-almost every $x$ if the set where the property does not hold is
+$|\mu|$-negligable; that is, it has zero $|\mu|$-measure.
+\end{definition}
+
+\begin{corollary}[Polar decomposition]
+Let $\mu \in \mathcal{M}(\Omega;\R^m)$. Then there exists a unique $f \in
+L^1(\Omega,|\mu|;\R^m)$ such that $|f(x)| =1 $ $|\mu|$-a.e and $\mu = f|\nu|$.
+\end{corollary}
+
+\begin{proof}[Proof of corollary]
+Apply Radon-Nikodyn to $\mu$ and $|\mu|$. We know that 
+\(
+|\mu(B)| \leq |\mu|(B) 
+\)
+for all $B \in \mathcal{B}(\Omega)$. From this follows $\mu << |\nu|$ From this
+follows $\mu = \mu^{ac} = f|\mu|$.
+\\
+We proved that  $|f|\mu|| = |f||\mu|$ From this follows
+\[
+|mu| = |f|\mu|| = |f||\mu|
+\qquad 
+(|f| - 1)|mu| = 0
+\]
+\[
+\int_B(|f| - 1)d|mu| = 0
+\]
+So $|f| =1$ $|\mu|$-a.e. on $B$.
+\end{proof}
+
+\begin{corollary}[Hahn decomposition]
+Let $\mu \in \mathcal{M}(\Omega)$, there exists a unique $A \in
+\mathcal{B}(\Omega)$ (up to $|\mu|-negligible)$ such that 
+\[
+\mu^+ = \mu \mres A
+\qquad 
+\mu^- = -\mu \mres (\Omega \setminus A).
+\]
+\end{corollary}
+\begin{proof}
+By the polar decomposition, $\mu = f|\mu|$, $f(x) \in \{\pm 1\}$ for
+$|\mu|$-a.e. $x\in\Omega$.
+\[
+A:= \{f =1 \} 
+\qquad 
+f(x) = \chi_A - \chi_{\Omega\setminus A}
+\qquad
+\mu^+ - \mu^- = \mu = \chi_A |\mu| - \chi_{\Omega\setminus A} |\mu|,
+\]
+where we used the Jordan decomposition (which is unique).
+\end{proof}
+
+Another characterization is given via the duality with continuous functions.
+
+\begin{definition}
+We say that $B \Subset \Omega$ if $\overline{B} \subset \Omega$ and it is
+compact in $\Omega$.
+\[
+C^0_C(\Omega; \R^m) := \{u \in C^0(\Omega;\R^m) \mit \supp u \Subset \Omega \}
+\]
+\[
+C^0_o(\Omega; \R^m) := \{u \in C^0(\Omega;\R^m) \mit \forall \varepsilon > 0
+\exists K \subset \Omega: |u(x)| < \varepsilon \quad \forall x \not\in K 
+\}
+\]
+\[
+\|u\|_{\infty} : = \sup_{\Omega} |u(x)|
+\]
+\end{definition}
+
+\begin{remark}
+$C^0_0(\Omega;\R^m) = \overline{C^0_c(\Omega;\R^n)}^{\|\cdot\|_\infty}$,
+$(C^0_0(\Omega;\R^n),\|\cdot\|_\infty)$ is Banach.
+$C^0_c$ is separable, locally convex, topological vector space with the
+following topology:
+\TODO
+\end{remark}
+
+\begin{theorem}[Lusin]
+Let $\mu$ Borel on $\Omega$ and $u : \Omega \to \R$ is $\mu$-measurable, $u
+\equiv 0$ in $\Omega \setminus E$ with $\mu(E) < \infty$. Then for all
+$\varepsilon > 0$ there exists $v \in C^0(\Omega)$ such that $\|v\|_\infty
+\leq \|u\|_\infty$
+\[
+\mu(\{x \in \Omega: v(x) \neq u(x)\}) < \varepsilon.
+\]
+\end{theorem}
+
+\begin{remark}
+An equivalent formulation state that, under the additional assumption
+$\mu(\Omega) < \infty$, then there exists $\{K_h\}$ compact sets such that
+\[
+\mu(\Omega \setminus \bigcup K_l) = 0
+\qquad \text{and} \qquad
+u\big|_{K_h} \text{ is continuous}.
+\]
+There exists $\{u_h\} \in C^0(\Omega)$: $u = u_h$ on $K_h$ and $\|u_h\|_\infty
+\leq \|u\|_\infty$.
+\end{remark}
+
+\begin{proposition}
+Let $u \in \mathcal{M}(\Omega;\R^m)$. Then for all $A\subset \Omega$ open.
+\[
+|\mu|(A) = \sup\{ \int_\Omega \varphi \cdot d\mu \mid 
+\varphi \in C^0_c(A;\R^m), \|\varphi\|_\infty \leq 1\}.
+\]
+\end{proposition}
+
+\begin{proof}
+Polar decomposition implies that
+$\mu = f|\mu|$, $|f| =1 $ $\mu$-a.e
+\[
+\int_\Omega \varphi \cdot d\mu = \int_A \varphi \cdot fd|\mu| \leq |\mu|(A).
+\]
+By Lusin theorem, for all $\varepsilon > 0$ there exists $\varphi \in
+C^0(A;\R^m)$ such that $\|\varphi\|_\infty \leq 1$ and 
+\[
+|\mu|(\{x \in A : \varphi(x) \neq f(x)\}) < \varepsilon.
+\]
+Take $K \subset A$ compact such that $|\mu|(A\setminus K) < \varepsilon$.
+Construct $\eta \in C^\infty_c(A)$, $0 \leq \eta \leq 1$, $\eta \equiv 1$ on
+$K$, 
+\TODO{Not yet finished}
+\end{proof}
