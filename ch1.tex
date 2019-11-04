@@ -545,8 +545,6 @@ For all $\Leb{n}$-measurable sets $E \subset \R^n$ we have
 We show the proof in three steps.~
 \begin{enumerate}[({Step} 1) To show:]
 \item $\Leb{n}(A) \leq \Haus{n}(A)$ for all $A \subset \R^n$.
-\todo{@GC:A
-measurable?}
 \\
 Fix $\delta > 0$. Let $\{C_j\}_{j\in I}$: $A \subset \bigcup_{j\in I} C_j$, $\diam
 C_j \leq \delta$. From this follows 
@@ -1009,7 +1007,14 @@ $C^0_0(\Omega;\R^m) = \overline{C^0_c(\Omega;\R^n)}^{\|\cdot\|_\infty}$,
 $(C^0_0(\Omega;\R^n),\|\cdot\|_\infty)$ is Banach.
 $C^0_c$ is separable, locally convex, topological vector space with the
 following topology:
-\TODO
+\[
+\varphi_k \longrightarrow \varphi \quad \text{in} \quad C^0_c 
+\qquad :\iff \qquad
+\|\varphi_k - \varphi\|_\infty \to 0
+\quad \text{and} \quad
+\text{there exist } K \subset \Omega:
+\supp \varphi \cup \bigcup_{k\in\N} \supp \varphi_k \subset K
+\]
 \end{remark}
 
 \begin{theorem}[Lusin]
@@ -1035,26 +1040,43 @@ There exists $\{u_h\} \in C^0(\Omega)$: $u = u_h$ on $K_h$ and $\|u_h\|_\infty
 \end{remark}
 
 \begin{proposition}
-Let $u \in \mathcal{M}(\Omega;\R^m)$. Then for all $A\subset \Omega$ open.
+Let $u \in \mathcal{M}(\Omega;\R^m)$. Then for all $A\subset \Omega$ open we
+have 
 \[
-|\mu|(A) = \sup\{ \int_\Omega \varphi \cdot d\mu \mid 
-\varphi \in C^0_c(A;\R^m), \|\varphi\|_\infty \leq 1\}.
+|\mu|(A) = \sup\left\{ \int_\Omega \varphi \cdot d\mu \mid 
+\varphi \in C^0_c(A;\R^m), \|\varphi\|_\infty \leq 1\right\},
+\]
+where we understand 
+\[
+\int_\Omega \varphi \cdot d\mu := \sum_{j=1}^m \int_\Omega \varphi_j d\mu_j.
 \]
 \end{proposition}
 
 \begin{proof}
 Polar decomposition implies that
-$\mu = f|\mu|$, $|f| =1 $ $\mu$-a.e
+$\mu = f|\mu|$, $|f| =1 $ $\mu$-a.e. So we get
 \[
 \int_\Omega \varphi \cdot d\mu = \int_A \varphi \cdot fd|\mu| \leq |\mu|(A).
 \]
 By Lusin theorem, for all $\varepsilon > 0$ there exists $\varphi \in
 C^0(A;\R^m)$ such that $\|\varphi\|_\infty \leq 1$ and 
 \[
-|\mu|(\{x \in A : \varphi(x) \neq f(x)\}) < \varepsilon.
+|\mu|\left(\left\{x \in A : \varphi(x) \neq f(x)\right\}\right) < \varepsilon.
 \]
 Take $K \subset A$ compact such that $|\mu|(A\setminus K) < \varepsilon$.
 Construct $\eta \in C^\infty_c(A)$, $0 \leq \eta \leq 1$, $\eta \equiv 1$ on
-$K$, 
-\TODO{Not yet finished}
+$K$, $\tilde \varphi = \varphi \eta \in C^0_c(A;\R^m)$ and 
+\[
+|\mu|\left(\left\{ x: \tilde \varphi(x) \neq f(x) \right\}\right)
+\leq
+|\mu|(A\setminus K)
++
+|\mu|\left(\left\{ x: \varphi(x) \neq f(x) \right\}\right)
+\leq 2
+\]
+to get 
+\[
+\int_A \tilde \varphi \cdot d\mu \geq |\mu|(K) - 2 \varepsilon 
+\]
+and by sending $K$ to $A$ and $\varepsilon \searrow 0$ we arrive at the claim.
 \end{proof}
