@@ -20,8 +20,8 @@ Thanks to $\sigma$-subadditivity, any measure is not decreasing; that is, for $A
 \end{remark}
 
 \begin{definition}[Restriction of a measure] If $Y \subset X$, the
-\emph{restriction of $\mu$ to $Y$}, denoted by $\mu \mres Y$,
-is defined as $(\mu \mres Y)(A) := \mu(Y\cap A)$ for any $A \subset X$.
+\emph{restriction of $\mu$ to $Y$}, denoted by $\mu \res Y$,
+is defined as $(\mu \res Y)(A) := \mu(Y\cap A)$ for any $A \subset X$.
 \end{definition}
 
 \begin{definition}[$\mu$-measurable sets] \label{def:measurable_set} 
@@ -105,7 +105,7 @@ Not any Borel regular measure is a Radon measure. However, it is possible to obt
 
 \begin{theorem} \label{thm:Borel_restriction_Radon}
 If $\mu$ is a Borel regular measure in $\R^n$ and $A \subset \R^n$ is
-$\mu$-measurable and $\mu(A) < \infty$, then $\mu \mres A$ is a Radon measure. 
+$\mu$-measurable and $\mu(A) < \infty$, then $\mu \res A$ is a Radon measure. 
 \end{theorem}
 
 \begin{example}[Dirac delta]
@@ -397,7 +397,7 @@ Even though $\Haus{\alpha}$ is not a Radon measure for $\alpha \in [0, n)$, it i
 
 \begin{proposition}
 If a Borel set $E \subseteq \R^n$ satisfies $\Haus{\alpha}(E) \in
-(0,\infty)$, then $\Haus{\alpha} \mres E$ is a Radon measure.
+(0,\infty)$, then $\Haus{\alpha} \res E$ is a Radon measure.
 \end{proposition}
 \begin{proof}
 It is a simple consequence of Theorem \ref{thm:Borel_restriction_Radon}. 
@@ -700,9 +700,9 @@ follows $E_n \subset B\left(0,\frac{\diam E_n}{2}\right)$.
 And with this we are done!
 \end{proof}
 
-\section{Integration}
+\section{Integration and Radon measures}
 
-Let $X \neq \emptyset$, $\mu$ be a measure on $X$.
+Let $X \neq \emptyset$, and $\mu$ be a measure on $X$.
 
 \begin{definition}~
 \begin{enumerate}[(1)]
@@ -765,7 +765,7 @@ $\mu$-summable for all $K\subset X$ compact} \right\}$
 
 \begin{definition}
 If $u : X \to [0,\infty]$ $\mu$-measurable, then we define $\nu = u \mu$ (or
-$\mu \mres u$) as 
+$\mu \res u$) as 
 \[
 \nu(A) = \int_A u d\mu = \int_X u \chi_A d\mu 
 \qquad \text{for all} \quad  \mu\text{-measurable } A
@@ -832,8 +832,8 @@ that $\nu (B) \geq |\mu(B)|$ for all $B \in \mathcal{B}(\Omega)$.
 \item If $\mu \in \mathcal{M}(\Omega)$, we define the positive and negative
 parts of $\mu$ (Jordan decomposition (unique)
 \[
-\mu^+ = \frac{|mu| + \mu}{2} \qquad 
-\mu^- = \frac{|mu| - \mu}{2} \qquad 
+\mu^+ = \frac{|\mu| + \mu}{2} \qquad 
+\mu^- = \frac{|\mu| - \mu}{2} \qquad 
 \mu^{\pm} \geq 0.
 \]
 \end{itemize}
@@ -939,7 +939,7 @@ $|\mu|$-negligable; that is, it has zero $|\mu|$-measure.
 
 \begin{corollary}[Polar decomposition]
 Let $\mu \in \mathcal{M}(\Omega;\R^m)$. Then there exists a unique $f \in
-L^1(\Omega,|\mu|;\R^m)$ such that $|f(x)| =1 $ $|\mu|$-a.e and $\mu = f|\nu|$.
+L^1(\Omega,|\mu|;\R^m)$ such that $|f(x)| =1 $ $|\mu|$-a.e and $\mu = f|\mu|$.
 \end{corollary}
 
 \begin{proof}[Proof of corollary]
@@ -947,28 +947,28 @@ Apply Radon-Nikodyn to $\mu$ and $|\mu|$. We know that
 \(
 |\mu(B)| \leq |\mu|(B) 
 \)
-for all $B \in \mathcal{B}(\Omega)$. From this follows $\mu << |\nu|$ From this
-follows $\mu = \mu^{ac} = f|\mu|$.
+for all $B \in \mathcal{B}(\Omega)$. From this follows $\mu << |\mu|$, and so there exists $f \in L^{1}(\Omega, |\mu|; \R^{m})$ such that $\mu = f|\mu|$.
 \\
-We proved that  $|f|\mu|| = |f||\mu|$ From this follows
+We proved that $|f|\mu|| = |f||\mu|$, hence we obtain
 \[
 |mu| = |f|\mu|| = |f||\mu|
 \qquad 
-(|f| - 1)|mu| = 0
+(|f| - 1)|mu| = 0.
 \]
+This means that we have
 \[
-\int_B(|f| - 1)d|mu| = 0
+\int_{\Omega}(|f| - 1)d|mu| = 0,
 \]
-So $|f| =1$ $|\mu|$-a.e. on $B$.
+which yields $|f(x)| =1$ for $|\mu|$-a.e. $x \in \Omega$. 
 \end{proof}
 
 \begin{corollary}[Hahn decomposition]
 Let $\mu \in \mathcal{M}(\Omega)$, there exists a unique $A \in
 \mathcal{B}(\Omega)$ (up to $|\mu|-negligible)$ such that 
 \[
-\mu^+ = \mu \mres A
+\mu^+ = \mu \res A
 \qquad 
-\mu^- = -\mu \mres (\Omega \setminus A).
+\mu^- = -\mu \res (\Omega \setminus A).
 \]
 \end{corollary}
 \begin{proof}
@@ -984,21 +984,23 @@ f(x) = \chi_A - \chi_{\Omega\setminus A}
 where we used the Jordan decomposition (which is unique).
 \end{proof}
 
+\section{Duality for Radon measures}
+
 Another characterization is given via the duality with continuous functions.
 
 \begin{definition}
 We say that $B \Subset \Omega$ if $\overline{B} \subset \Omega$ and it is
 compact in $\Omega$.
 \[
-C^0_C(\Omega; \R^m) := \{u \in C^0(\Omega;\R^m) \mit \supp u \Subset \Omega \}
+C^0_C(\Omega; \R^m) := \{u \in C^0(\Omega;\R^m) : \supp u \Subset \Omega \}
 \]
 \[
-C^0_o(\Omega; \R^m) := \{u \in C^0(\Omega;\R^m) \mit \forall \varepsilon > 0
+C^0_0(\Omega; \R^m) := \{u \in C^0(\Omega;\R^m) : \forall \varepsilon > 0 \
 \exists K \subset \Omega: |u(x)| < \varepsilon \quad \forall x \not\in K 
 \}
 \]
 \[
-\|u\|_{\infty} : = \sup_{\Omega} |u(x)|
+\|u\|_{\infty} : = \sup_{x \in \Omega} |u(x)|
 \]
 \end{definition}
 
@@ -1012,7 +1014,7 @@ following topology:
 \qquad :\iff \qquad
 \|\varphi_k - \varphi\|_\infty \to 0
 \quad \text{and} \quad
-\text{there exist } K \subset \Omega:
+\text{there exists } K \subset \Omega:
 \supp \varphi \cup \bigcup_{k\in\N} \supp \varphi_k \subset K
 \]
 \end{remark}
@@ -1039,13 +1041,12 @@ There exists $\{u_h\} \in C^0(\Omega)$: $u = u_h$ on $K_h$ and $\|u_h\|_\infty
 \leq \|u\|_\infty$.
 \end{remark}
 
-\begin{proposition}
-Let $u \in \mathcal{M}(\Omega;\R^m)$. Then for all $A\subset \Omega$ open we
-have 
-\[
+\begin{proposition} \label{prop:characterization_tot_var}
+Let $\mu \in \mathcal{M}(\Omega;\R^m)$. Then for all $A\subset \Omega$ open we have 
+\begin{equation} \label{eq:tot_var_characterization}
 |\mu|(A) = \sup\left\{ \int_\Omega \varphi \cdot d\mu \mid 
 \varphi \in C^0_c(A;\R^m), \|\varphi\|_\infty \leq 1\right\},
-\]
+\end{equation}
 where we understand 
 \[
 \int_\Omega \varphi \cdot d\mu := \sum_{j=1}^m \int_\Omega \varphi_j d\mu_j.
@@ -1080,3 +1081,161 @@ to get
 \]
 and by sending $K$ to $A$ and $\varepsilon \searrow 0$ we arrive at the claim.
 \end{proof}
+
+
+Proposition \ref{prop:characterization_tot_var} shows that, given $\mu \in \mathcal{M}(\Omega;\R^m)$, we can define a linear continuous functional $L_{\mu} : C^{0}_{0}(\Omega; \R^{m}) \to \R$ as
+\begin{equation*}
+L_{\mu}(\varphi) := \int_{\Omega} \varphi \cdot d \mu,
+\end{equation*}
+for any $\varphi \in C^{0}_{0}(\Omega; \R^{m})$. In addition, the operatorial norm of $L_{\mu}$ is equal to $|\mu|(\Omega)$, since, by the density of $C^{0}_{c}$ in $C^{0}_{0}$ with respect to the supremum norm and by \eqref{eq:tot_var_characterization}, we have
+\begin{align*}
+\|L_{\mu}\| & := \sup\{ L_{\mu}(\varphi) : \varphi \in C^{0}_{0}(\Omega; \R^{m}), \|\varphi\|_{\infty} \le 1 \} \\
+& = \sup\left\{ \int_\Omega \varphi \cdot d\mu \mid 
+\varphi \in C^0_c(\Omega;\R^m), \|\varphi\|_\infty \leq 1\right\} = |\mu|(\Omega).
+\end{align*}
+
+This suggests that it is possible to characterize $\mathcal{M}(\Omega; \mathbb{R}^{m})$ as a dual space. In such a way, we gain yields a weaker topology on the space of vector valued Radon measure, and therefore weak$^{*}$ compactness of bounded sequences. 
+
+\begin{theorem} \label{Rieszreprfin} {\bf (Riesz Representation Theorem)} 
+Let $L: C_{0} (\Omega; \mathbb{R}^{m}) \to \mathbb{R}$ be a continuous linear functional; that is, $L$ is linear and satisfies
+\[ \mathrm{sup} \{ L(\phi) : \phi \in C_{0} (\Omega; \mathbb{R}^{m}), \|\phi\|_{\infty} \le 1 \} < \infty. \]
+Then there exists a unique $\mu \in \mathcal{M}(\Omega; \mathbb{R}^{m})$ such that
+\[ L(\phi) = \int_{\Omega} \phi \cdot \, d\mu, \  \ \forall \phi \in C_{0}(\Omega; \mathbb{R}^{m}).  \]
+Moreover, 
+\[ |\mu|(\Omega) = \mathrm{sup}\{ L(\phi) : \phi \in C_{c}(\Omega; \mathbb{R}^{m}), \|\phi\|_{\infty} \le 1\} = \|L\|. \]
+\end{theorem}
+For the proof we refer to \cite[Theorem 1.54]{AFP}.
+
+The following corollary is a direct consequence of the global version of the Riesz Representation Theorem.
+
+\begin{corollary} \label{Rieszrepr} Let $L: C_{c} (\Omega; \mathbb{R}^{m}) \to \mathbb{R}$ be a linear functional satisfying
+\[ \mathrm{sup} \{ L(\phi) : \phi \in C_{c} (\Omega; \mathbb{R}^{m}), \|\phi\|_{\infty} \le 1, \mathrm{supp}(\phi) \subset K \} < \infty, \]
+for any compact set $K \subset \Omega$.
+Then there exists a unique $\mu \in \mathcal{M}_{\rm loc}(\Omega; \mathbb{R}^{m})$ such that
+\[ L(\phi) = \int_{\Omega} \phi \cdot \, d\mu, \  \ \forall \phi \in C_{c}(\Omega; \mathbb{R}^{m}).  \]
+\end{corollary}
+
+Thus we can identify any $\mu \in \mathcal{M}(\Omega; \mathbb{R}^{m})$ with a continuous linear functional on $C_{0}(\Omega; \mathbb{R}^{m})$, written as
+\[ L_{\mu}(\phi) := \int_{\Omega} \phi \cdot \, d\mu, \      \     \forall \phi \in C_{0}(\Omega; \mathbb{R}^{m}),   \]
+and analogously $\mathcal{M}_{\rm loc}(\Omega; \mathbb{R}^{m})$ can be identified with the dual of $C_{c}(\Omega; \mathbb{R}^{m})$.
+
+This leads us to the following notion.
+
+\begin{definition} Given a sequence $\{\mu_{k}\}$ in $\mathcal{M}(\Omega)$, we say that $\mu_{k}$ {\em weak-star converges to} $\mu$, if and only if
+\[ \int_{\Omega} \phi \cdot \, d\mu_{k} \to \int_{\Omega} \phi \cdot \, d\mu, \    \   \forall \phi \in C_{0}(\Omega; \mathbb{R}^{m}).   \]
+If $\{\mu_{k}\}$ and $\mu$ are in $\mathcal{M}_{\rm loc}(\Omega)$, we say that $\mu_{k}$ {\em locally weak-star converges to} $\mu$, if and only if
+\[ \int_{\Omega} \phi \cdot \, d\mu_{k} \to \int_{\Omega} \phi \cdot \, d\mu, \    \   \forall \phi \in C_{c}(\Omega; \mathbb{R}^{m}).   \]
+\end{definition}
+
+\begin{lemma} \label{weaktopology} Let $\{ \mu_{k} \} \subset \mathcal{M}(\Omega; \mathbb{R}^{m})$ be a weak-star convergent sequence, and let $\mu$ be its limit. Then we have
+\[ \limsup\limits_{k \to +\infty} |\mu_{k}|(\Omega) < \infty \]
+and
+\[ |\mu|(\Omega) \le \liminf\limits_{k \to +\infty} |\mu_{k}|(\Omega). \]
+\end{lemma}
+\begin{proof}
+The first assertion follows from Uniform Boundedness Principle (Banach-Steinhaus Theorem), since $L_{\mu_{k}}(\phi) \to L_{\mu}(\phi)$ for each $\phi \in C_{0}(\Omega; \mathbb{R}^{m})$ and therefore $\{ L_{\mu_{k}}(\phi) \}$ is a bounded sequence in $\mathbb{R}$. 
+\\
+The second inequality comes from:
+\[ |L_{\mu_{k}}(\phi)| \le \|\phi\|_{\infty} |\mu_{k}|(\Omega) \]
+then, passing to the limit we have $|L_{\mu}(\phi)| \le \liminf\limits_{k \to +\infty} \|\phi\|_{\infty} |\mu_{k}|(\Omega)$ and taking supremum in $\phi$ yields the result. 
+\end{proof}
+
+\begin{remark} \label{equivalenceweak-star} Weak-star convergence of finite Radon measures is equivalent to local weak-star convergence with the condition that $\sup |\mu_{k}|(\Omega) = C < \infty$. We observe that, by Lemma \ref{weaktopology}, this condition implies $|\mu|(\Omega) \le C$. 
+\\
+Clearly weak-star convergence always implies local weak-star convergence. 
+\\
+On the other hand, if we suppose that $\mu_{k}$ locally weak-star converges to $\mu$, then, given $\psi \in C_{0}(\Omega; \mathbb{R}^{m})$, for any $\epsilon > 0$ there exists $\phi \in C_{c}(\Omega; \mathbb{R}^{m})$ such that $\|\psi - \phi\|_{\infty} < \epsilon$ and so
+\begin{align*} \left | \int_{\Omega} \psi \cdot \, d\mu_{k} - \int_{\Omega} \psi \cdot \, d\mu \right | & \le \left | \int_{\Omega} (\psi - \phi) \cdot \, d\mu_{k} \right | + \left | \int_{\Omega} (\psi - \phi) \cdot \, d\mu \right | \\
+& + \left | \int_{\Omega} \phi \cdot \, d\mu_{k} - \int_{\Omega} \phi \cdot \, d\mu \right | \\
+& \le 2 C \epsilon + \left | \int_{\Omega} \phi \cdot \, d\mu_{k} - \int_{\Omega} \phi \cdot \, d\mu \right |.
+\end{align*}
+Now, $\int_{\Omega} \phi \cdot \, d\mu_{k} \to \int_{\Omega} \phi \cdot \, d\mu$ and so, since $\epsilon$ is arbitrary, we obtain weak-star convergence.
+\\
+Therefore, in what follows, we will always write $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ to denote local weak-star convergence, and, in the case of finite Radon measures, we will also check the condition $\sup |\mu_{k}|(\Omega) < \infty$.
+\end{remark}
+
+We quote now a useful result about weak-star convergence.
+
+\begin{lemma} \label{muweak-star} Let $\mu$ be a Radon measure on $\Omega$, and let $\{\mu_{k}\}$ be a sequence of Radon measures.
+\\
+If $\mu_{k}$ and $\mu$ are positive, then the following are equivalent:
+\begin{enumerate}
+	\item $\mu_{k} \stackrel {*} {\rightharpoonup} \mu$.
+	\item $\forall A \subset \Omega$ open,
+\[ \mu(A) \le \liminf\limits_{k \to +\infty} \mu_{k}(A) \]
+and $\forall K \subset \Omega$ compact,
+\[ \mu(K) \ge \limsup\limits_{k \to +\infty} \mu_{k}(K). \]
+	\item $\forall B \subset \subset \Omega$ Borel set with $\mu(\partial B) = 0$,
+\[ \lim_{k \to +\infty} \mu_{k}(B) = \mu(B). \]
+\end{enumerate}
+If $\mu_{k}$ and $\mu$ are $\mathbb{R}^{m}$-vector valued Radon measures, $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ and $|\mu_{k}| \stackrel {*} {\rightharpoonup} \nu$, then $|\mu| \le \nu$. Moreover, if a $\mu$-measurable set $E \subset \subset \Omega$ satisfies $\nu(\partial E) = 0$, then 
+\[ \mu(E) = \lim_{k \to +\infty} \mu_{k}(E).  \]
+More generally, if $f : \Omega \to \mathbb{R}^{m}$ is a bounded Borel function with compact support such that the set of its discontinuity points is $\nu$-neglegible, then
+\[ \lim_{k \to +\infty} \int_{\Omega} f \cdot d\mu_{k} = \int_{\Omega} f \cdot d\mu.  \]
+\end{lemma}
+\begin{proof} For the second part of the statement and the implication $1 \to 2$ we refer to [AFP], Proposition 1.62. For the two remaining implications, we adapt the proof in [EG], Section 1.9, Theorem 1, where $\Omega = \mathbb{R}^{N}$.
+\\
+In order to show that $2$ implies $3$, we take a Borel set $B$ such that $\overline{B} \subset \Omega$ and $\mu(\partial B) = 0$. Then
+\begin{align*} \mu(B) = \mu(B^{\circ}) & \le \liminf\limits_{k \to +\infty} \mu_{k}(B^{\circ}) \le \limsup\limits_{k \to +\infty} \mu_{k}(\overline{B}) \le \mu(\overline{B}) = \mu(B). \end{align*}
+Now we suppose that 3 holds and we observe that, since $\phi$ can be decomposed into its positive and negative parts, we need only to prove 1 for nonnegative functions. We fix $\epsilon > 0$ and $\phi \in C_{c}(\Omega)$ with $\phi \ge 0$. Let $\Omega_{s}$ be defined as in the proof of Proposition \ref{regularityRadon}, but for $s \in (1, + \infty)$. By Remark \ref{neglcountable}, for all but countable $s$, we have $\mu(\partial \Omega_{s}) = 0$. Therefore, there exists $s_{0}$ such that $\mathrm{supp}(\phi) \subset \Omega_{s_{0}}$ and $\mu(\partial \Omega_{s_{0}}) = 0$. We can choose $0 = t_{0} < t_{1} < ... < t_{N} = 2 \|\phi\|_{\infty}$ such that $0 < t_{i} - t_{i - 1} < \epsilon$ and $\mu(\phi^{-1}(\{t_{i}\})) = 0$ for any $i = 1, ..., N$, by Remark \ref{neglcountable}. We set $B_{i} = \phi^{-1}((t_{i - 1}, t_{i}])$, then $\mu(\partial B_{i}) = 0$ for $i \ge 2$. Now
+\[ \sum_{i = 2}^{N} t_{i - 1} \mu_{k}(B_{i}) \le \int_{\Omega} \phi \, d \mu_{k} \le \sum_{i = 2}^{N} t_{i} \mu_{k}(B_{i}) + t_{1} \mu_{k}(\Omega_{s_{0}})\]
+and
+\[ \sum_{i = 2}^{N} t_{i - 1} \mu(B_{i}) \le \int_{\Omega} \phi \, d \mu \le \sum_{i = 2}^{N} t_{i} \mu(B_{i}) + t_{1} \mu(\Omega_{s_{0}}); \]
+and so 3 implies
+\[ \limsup \limits_{k \to + \infty} \left | \int_{\Omega} \phi \, d \mu_{k} - \int_{\Omega} \phi \, d \mu \right | \le 2 \epsilon \mu(\Omega_{s_{0}}), \]
+which gives 1. 
+\end{proof}
+
+\begin{remark} \label{neglcountable} Let $\mu$ be a positive Radon measure. If $\{A_{t}\}_{t \in \mathcal{I}}$, where $\mathcal{I}$ is uncountable, is a family of $\mu$-measurable sets in $\Omega$ such that their boundaries are disjoint, $\bigcup_{t \in \mathcal{I}} \partial A_{t} = \Omega$ and for every compact $K$ there exists an uncountable set of indices $\mathcal{J} \subset \mathcal{I}$ such that $K \cap \partial A_{t} \neq \emptyset, \ \forall t \in \mathcal{J}$, then there exists a countable set $\mathcal{N}$ such that
+\[ \mu(K \cap \partial A_{t}) = 0 \  \ \forall t \notin \mathcal{N}. \]
+We claim that, if such a set $\mathcal{N}$ did not exist, then there would be an uncountable set $\mathcal{Y}$ such that $\mu(K \cap \partial A_{t}) > \epsilon > 0, \  \ \forall t \in \mathcal{Y}$.
+Suppose to the contrary that for each $\epsilon > 0$ the set of $t$'s which satisfy $\mu(K \cap \partial A_{t}) > \epsilon$ is countable. 
+\\
+We set $\epsilon_{j} = \frac{1}{j}$ and we have 
+\[ \{ t \in \mathcal{I} : \mu(K \cap \partial A_{t}) \neq 0 \} = \bigcup_{j=1}^{+\infty} \left \{ t \in \mathcal{I}: \mu(K \cap \partial A_{t}) > \frac{1}{j} \right \}, \]
+so this set, being countable union of countable sets, is itself countable, contradicting our assumption.
+We extract now from $\mathcal{Y}$ a sequence $\{t_{j}\}$.
+\\
+By the monotonicity and the $\sigma$-additivity, we have
+\[ \mu(K) \ge \sum_{j = 1}^{+\infty} \mu(K \cap \partial A_{t_{j}}) = +\infty, \]
+which is absurd, since $\mu$ is a Radon measure. Therefore, such a $\mathcal{Y}$ cannot exist and so $\mathcal{N}$ exists.
+\\
+In the following chapters, the sets $\{A_{t}\}$ will usually be balls $B(x,r)$.
+\end{remark}
+
+\begin{remark} By Remark \ref{neglcountable} and Lemma \ref{muweak-star}, we can assert that, if $\mu_{k}$ and $\mu$ are positive Radon measures in $\Omega$, for any $x \in \Omega$ and almost every $r \in (0, R)$, with $R = R_{x} > 0$ such that $B(x, R_{x}) \subset \subset \Omega$, $\mu(\partial B(x,r)) = 0$ and so, if $\mu_{k} \stackrel {*} {\rightharpoonup} \mu$, $\mu_{k}(B(x,r)) \to \mu(B(x,r))$. 
+\\
+Moreover, if $\mu_{k}$ and $\mu$ are vector valued Radon measures, $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ and $|\mu_{k}| \stackrel {*} {\rightharpoonup} \nu$, then for any $x \in \Omega$ and almost every $r \in (0, R)$, with $R = R_{x} > 0$ such that $B(x, R_{x}) \subset \subset \Omega$, $\nu(\partial B(x,r)) = 0$ and $\mu_{k}(B(x,r)) \to \mu(B(x,r))$.
+\end{remark}
+
+Finally, we state a characterization of nonnegative linear functionals on $C^{\infty}_{c}(\Omega)$.
+
+\begin{lemma} \label{Schwartzlemma} Let $L : C^{\infty}_{c}(\Omega) \to \mathbb{R}$ be linear and nonnegative; that is, 
+\[L(\phi) \ge 0, \ \ \forall \phi \in C^{\infty}_{c}(\Omega) \ \text{with} \ \phi \ge 0.\] 
+Then there exists a positive Radon measure $\mu \in \mathcal{M}_{\rm loc}(\Omega)$ such that
+\[ L(\phi) = \int_{\Omega} \phi \, d \mu, \ \ \forall \phi \in C^{\infty}_{c}(\Omega). \]
+\end{lemma}
+\begin{proof} We choose a compact set $K \subset \Omega$ and we select a smooth function $\zeta \in C^{\infty}_{c}(\Omega)$ with $\zeta = 1$ on $K$ and $0 \le \zeta \le 1$. Then, for any $\phi \in C^{\infty}_{c}(\Omega)$ with $\mathrm{supp}(\phi) \subset K$, we set $\psi = \|\phi\|_{\infty} \zeta - \phi \ge 0$. Therefore, since $L$ is nonnegative, we have $0 \le L(\psi) = \|\phi\|_{\infty} L(\zeta) - L(\phi)$ and so $L(\phi) \le C \|\phi\|_{\infty}$, with $C := L(\zeta)$.
+\\
+$L$ thus may be extended to a linear mapping $\hat{L} : C_{c}(\Omega) \to \mathbb{R}$ such that, for any compact $K \subset \Omega$, 
+\[ \mathrm{sup} \{ L(\phi) : \phi \in C_{c} (\Omega; \mathbb{R}^{m}), \|\phi\|_{\infty} \le 1, \mathrm{supp}(\phi) \subset K \} < \infty. \]
+Hence, Corollary \ref{Rieszrepr} yields the existence of a real Radon measure $\mu$ such that
+\[ L(\phi) = \int_{\Omega} \phi \, d \mu, \ \ \forall \phi \in C_{c}(\Omega). \]
+By the polar decomposition of measures, $\mu = h |\mu|$, where $|h| = 1$ $|\mu|$-a.e. The fact that $L$ is nonnegative implies that $h = 1$ $|\mu|$-a.e.; that is, $\mu$ is a positive Radon measure. 
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

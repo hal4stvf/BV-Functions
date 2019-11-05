@@ -1,0 +1,28 @@
+\section{The area formula}
+
+
+\section{The coarea formula}
+
+
+\section{Rectifiability}
+
+We start with the definitions of rectifiable set and approximated tangent space.
+
+\begin{definition}
+Let $k \in [0, n]$ be an integer and let $S \subset \R^{n}$ be a $\Haus{k}$-measurable set. We say that $S$ is countably $k$-rectifiable if there exist countably many Lipschitz functions $f_{i} : \R^{k} \to \R^{n}$ such that 
+\begin{equation*}
+S \subset \bigcup_{i} f_{i}(\R^{k}).
+\end{equation*}
+\end{definition}
+
+\begin{definition}
+Let $k \in [0, n]$ be an integer, $\mu$ be a Radon measure in $\Omega$ and $x \in \Omega$. We say that the approximate tangent space of $\mu$ is a $k$-plane $\pi$ with multiplicity $\theta \in \R$ in $x$, and we write 
+\begin{equation*}
+\Tan^{k}(\mu, x) = \theta \Haus{k} \res \pi
+\end{equation*}
+if $r^{-k} \mu_{x, r}$ locally weak$^*$ converges to $\theta \Haus{k} \res \pi$ in $\Omega$ as $r \to 0$; that is, 
+\begin{equation*}
+\lim_{r \to 0} \frac{1}{r^{k}} \int_{\Omega} \phi\left (\frac{y - x}{r}\right) \, d \mu(y) = \int_{\pi} \phi(y) \, d \Haus{k}(y)
+\end{equation*}
+for any $\phi \in C_{c}(\Omega)$.
+\end{definition}
