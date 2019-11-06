@@ -1224,18 +1224,74 @@ Hence, Corollary \ref{Rieszrepr} yields the existence of a real Radon measure $\
 By the polar decomposition of measures, $\mu = h |\mu|$, where $|h| = 1$ $|\mu|$-a.e. The fact that $L$ is nonnegative implies that $h = 1$ $|\mu|$-a.e.; that is, $\mu$ is a positive Radon measure. 
 \end{proof}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\begin{theorem}[Criterions for weak-$*$-convergence]
+Let $\mu_h, \mu \in \mathcal{M}^+(\Omega)$ Then following are equivalent
+\begin{enumerate}[(1)]
+\item $\mu_h \stackrel {*}{\rightharpoonup} \mu$ 
+\item For all $U \subset \Omega$ open: $\liminf _{h\to \infty} \mu_h(U) \geq
+\mu(U)$ and for all $\limsup_{h \to \infty} \mu_h(K) \leq \mu(K)$ 
+\item For all $B$ Borel $B\Subset \Omega$ such that $\mu(\partial B) = 0$, we
+have $\lim_{h\to \infty} \mu_h(B) = \mu(B)$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\TODO
+\begin{enumerate}[(1)]
+\item[(1) $\Rightarrow$ (2)] Let $K\subset U \subset \Omega$ where $K$ is compact and $U$ is open, and
+choose $\varphi \in C_0(\Omega)$, $\supp \varphi \subset U$, $0 \leq \varphi
+\leq 1$ and $\varphi \equiv 1$ on $K$.
+\[
+\begin{aligned}
+\int_\Omega \varphi d\mu_k \to \int_\Omega d\mu;
+\end{aligned}
+\]
+\TODO
+\[
+\mu(K) \leq \int_\Omega \varphi d\mu = \lim_{h\to \infty} \int_\Omega \varphi
+d\mu_H \leq \liminf_{h\to\ infty} \mu_h(U)
+\]
+Now take supremum in $K \subset U$ and use innner regularity
+\[
+\mu(U) \geq \int_\Omega \varphi d\mu = \lim_{h\to \infty} \int_\Omega \varphi
+d\mu_h \geq \limsup_{k\to \infty} \mu_h(K)
+\]
+Now take infimum in $U \supset K$ and use outer regularity
+\item[$(2) \Rightarrow (3)$] 
+\[
+\begin{aligned}
+\mu(B) &= \mu(\overset{\circ}{B}) + \mu(\partial B \cap B) =
+\mu(\overset{\circ}{B}) \leq \liminf_{h\to\infty} \mu_h(\overset{\circ}{B}) 
+\\ &\leq \limsup_{h\to\infty} \mu_h(\overset{\circ}{B})
+\leq \limsup_{h\to\infty} \mu_h(\overline{B}) \leq \mu(\overline{B}) = \mu(B).
+\end{aligned}
+\]
+\item[$(3) \Rightarrow (1)$] Let $\varepsilon >0$ and $\varphi \in
+C^0_c(\Omega)$, $\varphi \geq 0$. We need to prove that 
+\[
+\begin{aligned}
+\int_\Omega \varphi d\mu_k \to \int_\Omega d\mu.
+\end{aligned}
+\]
+Choose $0 = t_0 < t_1 < \dots < t_N := 2\|\varphi\|_\infty$, 
+$0 < t_i - t_{i-1} < \varepsilon$, $\mu(\varphi^{-1}\{t_i\}) = 0$\footnote{why
+this is possible we see later}.
+Let $B_i = \varphi^{-1}((t_{i-1},t_i))$, then $\mu(\partial B_i) = 0$. Hence,
+\[
+\mu_h(B_i) \to \mu(B_i).
+\]
+\[
+\begin{aligned}
+\sum_{i=2}^N t_{i-1}\mu_h(B_i) \leq \int_\Omega \varphi d\mu_h
+\leq \sum_{i=2}^N t_i \mu_h (B_i) +t_1\mu_h(B_0)
+\end{aligned}
+\]
+and the same holds for $\mu$.
+\[
+\left|\Omega \varphi d\mu - \int_\Omega \varphi d\mu\right| \leq 
+\sum_{i=2}^N(t_i - t_{i-1}) \mu(B_i) + t_1 \mu(B_0)
+\leq \varepsilon \mu(\supp \varphi)
+\]
+and we conclude since $\varepsilon$ is arbitrary.
+If $\varphi : \Omega\to \R$, then $\psi = \|\varphi\|_\infty \xi$
+\end{enumerate}
+\end{proof}
