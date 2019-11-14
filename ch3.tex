@@ -2,45 +2,45 @@
 
 \begin{definition} A function $u \in L^{1}(\Omega)$ is called a {\em function of bounded variation} if
 
-\[ \mathrm{sup}\left \{ \int_{\Omega} u\, \mathrm{div}\phi\, dx : \phi \in C_{c}^{\infty}(\Omega; \mathbb{R}^{N}), \|\phi\|_{\infty} \le 1 \right \} < \infty. \]
+\[ \mathrm{sup}\left \{ \int_{\Omega} u\, \mathrm{div}\phi\, dx : \phi \in C_{c}^{\infty}(\Omega; \mathbb{R}^{n}), \|\phi\|_{\infty} \le 1 \right \} < \infty. \]
 \\
 We denote by $BV(\Omega)$ the space of all functions of bounded variation on $\Omega$.
 \\
 We say that $u$ is {\em locally of bounded variation}, and we write $u \in BV_{\rm loc}(\Omega)$, if $u \in L^{1}_{\rm loc}(\Omega)$ and if $\forall$ open set $W \subset \subset \Omega$,
 
-\[ \mathrm{sup}\left \{ \int_{W} u\, \mathrm{div}\phi\, dx : \phi \in C_{c}^{\infty}(W; \mathbb{R}^{d}), \|\phi\|_{\infty} \le 1 \right \} < \infty. \] 
+\[ \mathrm{sup}\left \{ \int_{W} u\, \mathrm{div}\phi\, dx : \phi \in C_{c}^{\infty}(W; \mathbb{R}^{n}), \|\phi\|_{\infty} \le 1 \right \} < \infty. \] 
 \end{definition}
 
-\begin{theorem} \label{RieszBV} {\bf (Riesz)} Let $u \in BV_{\rm loc}(\Omega)$, then there exists a unique $\mathbb{R}^{N}$-vector valued Radon measure $\mu$ such that
+\begin{theorem} \label{RieszBV} {\bf (Riesz)} Let $u \in BV_{\rm loc}(\Omega)$, then there exists a unique $\mathbb{R}^{n}$-vector valued Radon measure $\mu$ such that
 
-\[ \int_{\Omega} u\, \mathrm{div}\phi\,dx = - \int_{\Omega} \phi \cdot d\mu   \   \  \ \forall \phi \in C_{c}^{1}(\Omega; \mathbb{R}^{N}). \]
+\[ \int_{\Omega} u\, \mathrm{div}\phi\,dx = - \int_{\Omega} \phi \cdot d\mu   \   \  \ \forall \phi \in C_{c}^{1}(\Omega; \mathbb{R}^{n}). \]
 \end{theorem}
-Proof. We define the linear functional $L : C_{c}^{1}(\Omega; \mathbb{R}^{N}) \to \mathbb{R}$ by
-\[ L(\phi) := -\int_{\Omega} u\, \mathrm{div}\phi \,dx, \ \ \text{for} \ \ \phi \in C_{c}^{1}(\Omega; \mathbb{R}^{N}). \]
+Proof. We define the linear functional $L : C_{c}^{1}(\Omega; \mathbb{R}^{n}) \to \mathbb{R}$ by
+\[ L(\phi) := -\int_{\Omega} u\, \mathrm{div}\phi \,dx, \ \ \text{for} \ \ \phi \in C_{c}^{1}(\Omega; \mathbb{R}^{n}). \]
 
 Since $u \in BV_{\rm loc}(\Omega)$, we have
-\[ \mathrm{sup}\left \{ L(\phi) : \phi \in C_{c}^{\infty}(W; \mathbb{R}^{N}), \|\phi\|_{\infty} \le 1 \right \} = C(W) < \infty\]
+\[ \mathrm{sup}\left \{ L(\phi) : \phi \in C_{c}^{\infty}(W; \mathbb{R}^{n}), \|\phi\|_{\infty} \le 1 \right \} = C(W) < \infty\]
 for each open set $W \subset \subset \Omega$, and thus
-\[ |L(\phi)| \le C(W) \|\phi\|_{\infty} \  \ \text{for} \  \ \phi \in C^{1}_{c}(W ; \mathbb{R}^{N}). \]
+\[ |L(\phi)| \le C(W) \|\phi\|_{\infty} \  \ \text{for} \  \ \phi \in C^{1}_{c}(W ; \mathbb{R}^{n}). \]
 
-We fix any compact set $K \subset \Omega$ and then we choose an open set $W$ such that $K \subset W \subset \subset \Omega$. For each $\phi \in C_{c}(\Omega ; \mathbb{R}^{N})$ with $\mathrm{supp}(\phi) \subset K$, we choose a sequence $\phi_{k} \in C^{1}_{c}(W ; \mathbb{R}^{N})$ such that $\phi_{k} \to \phi$ uniformly on $W$. Then we define
+We fix any compact set $K \subset \Omega$ and then we choose an open set $W$ such that $K \subset W \subset \subset \Omega$. For each $\phi \in C_{c}(\Omega ; \mathbb{R}^{n})$ with $\mathrm{supp}(\phi) \subset K$, we choose a sequence $\phi_{k} \in C^{1}_{c}(W ; \mathbb{R}^{n})$ such that $\phi_{k} \to \phi$ uniformly on $W$. Then we define
 \[ \bar L(\phi) := \lim_{k \to +\infty} L(\phi_{k}). \]
 
-By the continuity of $L$ on $C^{1}_{c}(\Omega ; \mathbb{R}^{N})$ we have that this limit exists and is independent of the choice of the sequence $\{ \phi_{k} \}$ converging to $\phi$. Thus $\bar L$ uniquely extends to a linear functional 
-\[ \bar L : C_{c}(\Omega ; \mathbb{R}^{N}) \to \mathbb{R}  \]
+By the continuity of $L$ on $C^{1}_{c}(\Omega ; \mathbb{R}^{n})$ we have that this limit exists and is independent of the choice of the sequence $\{ \phi_{k} \}$ converging to $\phi$. Thus $\bar L$ uniquely extends to a linear functional 
+\[ \bar L : C_{c}(\Omega ; \mathbb{R}^{n}) \to \mathbb{R}  \]
 and
-\[ \mathrm{sup}\left \{ \bar L (\phi) : \phi \in C_{c}^{\infty}(\Omega ; \mathbb{R}^{N}), \|\phi\|_{\infty} \le 1, \mathrm{supp}(\phi) \subset K \right \} < \infty \]
-for each compact set $K \subset \Omega$. So, by the Riesz Representation Theorem (Corollary \ref{Rieszrepr}), there exists an $\mathbb{R}^{N}$-vector valued Radon measure $\mu$ satisfying
-\[ \bar L (\phi) = - \int_{\Omega} \phi \cdot d\mu,   \    \ \forall \phi \in C_{c}(\Omega,\mathbb{R}^{N}) \]
-and so, since $\bar L (\phi) = L(\phi)$ for $\phi \in C^{1}_{c}(\Omega,\mathbb{R}^{N})$, the result follows. $\Box$ 
+\[ \mathrm{sup}\left \{ \bar L (\phi) : \phi \in C_{c}^{\infty}(\Omega ; \mathbb{R}^{n}), \|\phi\|_{\infty} \le 1, \mathrm{supp}(\phi) \subset K \right \} < \infty \]
+for each compact set $K \subset \Omega$. So, by the Riesz Representation Theorem (Corollary \ref{Rieszrepr}), there exists an $\mathbb{R}^{n}$-vector valued Radon measure $\mu$ satisfying
+\[ \bar L (\phi) = - \int_{\Omega} \phi \cdot d\mu,   \    \ \forall \phi \in C_{c}(\Omega,\mathbb{R}^{n}) \]
+and so, since $\bar L (\phi) = L(\phi)$ for $\phi \in C^{1}_{c}(\Omega,\mathbb{R}^{n})$, the result follows. $\Box$ 
 \\
 
-This means that the distributional derivative $Du$ of a $BV$ function $u$ is an $\mathbb{R}^{N}$-vector valued Radon measure.
+This means that the distributional derivative $Du$ of a $BV$ function $u$ is an $\mathbb{R}^{n}$-vector valued Radon measure.
 \\
 We write $|Du|$ to indicate its total variation, which is a positive Radon measure on $\Omega$.
 
 
-\begin{remark} $W^{1,1}(\Omega) \subset BV(\Omega)$ and $|Du|(\Omega) = \|Du\|_{L^{1}(\Omega; \mathbb{R}^{N})}$ for $u \in W^{1,1}(\Omega)$.
+\begin{remark} $W^{1,1}(\Omega) \subset BV(\Omega)$ and $|Du|(\Omega) = \|Du\|_{L^{1}(\Omega; \mathbb{R}^{n})}$ for $u \in W^{1,1}(\Omega)$.
 \end{remark}
 
 
@@ -48,12 +48,12 @@ We write $|Du|$ to indicate its total variation, which is a positive Radon measu
 \begin{theorem} \label{WLSCBV} If $\{u_{n}\} \subset BV(\Omega)$ is such that $u_{n} \rightharpoonup u$ in $L^{p}(\Omega)$ for some $p \in [1, +\infty)$, or weak-star for $p = +\infty$, or in $L^{p}_{\rm loc}(\Omega)$. Then $\forall A \subseteq \Omega$ open
 \[ |Du|(A) \le \liminf\limits_{n \to +\infty} |Du_{n}|(A). \]
 \end{theorem}
-Proof. Indeed, we have $\forall \phi \in C_{c}^{\infty}(A; \mathbb{R}^{N})$
+Proof. Indeed, we have $\forall \phi \in C_{c}^{\infty}(A; \mathbb{R}^{n})$
 \[ \int_{A} u_{n}\, \mathrm{div}\phi\, dx \to \int_{A} u\, \mathrm{div}\phi\, dx \]
 and so, by Proposition \ref{totvaropenRadon},
 \[ \int_{A} u\, \mathrm{div}\phi\, dx = \lim_{n \to +\infty} \int_{A} u_{n}\, \mathrm{div}\phi\, dx \le \liminf\limits_{n \to +\infty} |Du_{n}|(A). \]
 
-Taking the supremum over $\phi \in C_{c}^{\infty}(A; \mathbb{R}^{N})$ with $\|\phi\|_{\infty} \le 1$ on the left hand side, we have the claim. $\Box$
+Taking the supremum over $\phi \in C_{c}^{\infty}(A; \mathbb{R}^{n})$ with $\|\phi\|_{\infty} \le 1$ on the left hand side, we have the claim. $\Box$
 
 
 
@@ -99,7 +99,7 @@ We define now $\Sigma_{k} := \Omega_{k+1} \setminus \overline \Omega_{k-1}$. Sin
 Then we take a standard mollifier $\rho$ and $\forall k$  we choose $\epsilon_{k}$ such that:
 \[ \mathrm{spt}(\rho_{\epsilon_{k}} \ast (u\zeta_{k})) \subset \Sigma_{k}\]
 \[ \|\rho_{\epsilon_{k}} \ast (u\zeta_{k}) - u\zeta_{k}\|_{L^{1}(\Omega)} < \frac{\epsilon}{2^{k}}\]
-\[ \|\rho_{\epsilon_{k}} \ast (u\nabla\zeta_{k}) - u\nabla\zeta_{k}\|_{L^{1}(\Omega; \mathbb{R}^{N})} < \frac{\epsilon}{2^{k}}\]
+\[ \|\rho_{\epsilon_{k}} \ast (u\nabla\zeta_{k}) - u\nabla\zeta_{k}\|_{L^{1}(\Omega; \mathbb{R}^{n})} < \frac{\epsilon}{2^{k}}\]
 and we define $u_{\epsilon} = \sum_{k=1}^{+\infty} \rho_{\epsilon_{k}} \ast (u\zeta_{k})$. 
 \\
 Then $u_{\epsilon} \in C^{\infty}$, since locally there are only a finite number of nonzero terms in the sum.
@@ -110,7 +110,7 @@ Also, $u_{\epsilon} \to u$ in $L^{1}(\Omega)$ since
 Now, since $u_{\epsilon} \in L^{1}(\Omega)$, Theorem \ref{WLSCBV} implies $|Du|(\Omega) \le \liminf\limits_{\epsilon \to 0} |Du_{\epsilon}|(\Omega)$.
 \\
 
-In order to obtain the reverse inequality, let $\phi \in C^{\infty}_{c}(\Omega; \mathbb{R}^{N}), \|\phi\|_{\infty} \le 1$. Then
+In order to obtain the reverse inequality, let $\phi \in C^{\infty}_{c}(\Omega; \mathbb{R}^{n}), \|\phi\|_{\infty} \le 1$. Then
 \begin{align*} \int_{\Omega} u_{\epsilon} \mathrm{div}\phi dx & = \sum_{k=1}^{+\infty} \int_{\Omega} \rho_{\epsilon_{k}} \ast (u\zeta_{k}) \mathrm{div}\phi dx = \sum_{k=1}^{+\infty} \int_{\Omega} u \zeta_{k} \mathrm{div}(\rho_{\epsilon_{k}} \ast \phi) dx \\
 & = \sum_{k=1}^{+\infty} \int_{\Omega} u \mathrm{div}(\zeta_{k} (\rho_{\epsilon_{k}} \ast \phi)) dx - \sum_{k=1}^{+\infty} \int_{\Omega} u \nabla \zeta_{k} \cdot (\rho_{\epsilon_{k}} \ast \phi) dx. 
 \end{align*}
@@ -126,40 +126,40 @@ For the second term, we have $|I_{2}^{\epsilon}| < \epsilon$ directly from our c
 \\
 Therefore, after passing to the supremum over $\phi$, $|Du_{\epsilon}|(\Omega) \le |Du|(\Omega) + 4 \epsilon$, which yields $u_{\epsilon} \in BV(\Omega)$ and point 2. $\Box$
 
-\begin{remark} \label{BVR^N} If $u \in BV(\mathbb{R}^{N})$; that is, if $\Omega$ is the entire space $\mathbb{R}^{N}$, then the approximating sequence satisfying properties 1) and 2) of Theorem \ref{Meyers-SerrinBV} is much easier to construct. Indeed, we need just to take $u_{\epsilon} = u \ast \rho_{\epsilon}$, where $\rho$ is a standard symmetric mollifier.
+\begin{remark} \label{BVR^N} If $u \in BV(\mathbb{R}^{n})$; that is, if $\Omega$ is the entire space $\mathbb{R}^{n}$, then the approximating sequence satisfying properties 1) and 2) of Theorem \ref{Meyers-SerrinBV} is much easier to construct. Indeed, we need just to take $u_{\epsilon} = u \ast \rho_{\epsilon}$, where $\rho$ is a standard symmetric mollifier.
 \\
-Indeed, $u_{\epsilon} \to u$ in $L^{1}(\mathbb{R}^{N})$ since $u \in L^{1}(\mathbb{R}^{N})$.
+Indeed, $u_{\epsilon} \to u$ in $L^{1}(\mathbb{R}^{n})$ since $u \in L^{1}(\mathbb{R}^{n})$.
 \\
 Secondly, we observe that
-\begin{align*} & \|\nabla u_{\epsilon}\|_{L^{1}(\mathbb{R}^{N}; \mathbb{R}^{N})} = \sup \left \{ \int_{\mathbb{R}^{N}} u_{\epsilon}(x) \mathrm{div}\phi(x) \, dx : \phi \in C^{\infty}_{c}(\mathbb{R}^{N}; \mathbb{R}^{N}), \|\phi\|_{\infty} \le 1 \right \} \\
-& = \sup \left \{ \int_{\mathbb{R}^{N}} \int_{\mathbb{R}^{N}} u(y) \rho_{\epsilon}(x-y) \mathrm{div}\phi(x) \, dx dy : \phi \in C^{\infty}_{c}(\mathbb{R}^{N}; \mathbb{R}^{N}), \|\phi\|_{\infty} \le 1 \right \} \\
-& = \sup \left \{ \int_{\mathbb{R}^{N}} u(y) \mathrm{div}\phi_{\epsilon}(y) \, dx : \phi \in C^{\infty}_{c}(\mathbb{R}^{N}; \mathbb{R}^{N}), \|\phi\|_{\infty} \le 1 \right \} \le |Du|(\mathbb{R}^{N}) \end{align*}
-and so, by lower semicontinuity of the total variation, $\|\nabla u_{\epsilon}\|_{L^{1}(\mathbb{R}^{N}; \mathbb{R}^{N})} \to |Du|(\mathbb{R}^{N})$.
+\begin{align*} & \|\nabla u_{\epsilon}\|_{L^{1}(\mathbb{R}^{n}; \mathbb{R}^{n})} = \sup \left \{ \int_{\mathbb{R}^{n}} u_{\epsilon}(x) \mathrm{div}\phi(x) \, dx : \phi \in C^{\infty}_{c}(\mathbb{R}^{n}; \mathbb{R}^{n}), \|\phi\|_{\infty} \le 1 \right \} \\
+& = \sup \left \{ \int_{\mathbb{R}^{n}} \int_{\mathbb{R}^{n}} u(y) \rho_{\epsilon}(x-y) \mathrm{div}\phi(x) \, dx dy : \phi \in C^{\infty}_{c}(\mathbb{R}^{n}; \mathbb{R}^{n}), \|\phi\|_{\infty} \le 1 \right \} \\
+& = \sup \left \{ \int_{\mathbb{R}^{n}} u(y) \mathrm{div}\phi_{\epsilon}(y) \, dx : \phi \in C^{\infty}_{c}(\mathbb{R}^{n}; \mathbb{R}^{n}), \|\phi\|_{\infty} \le 1 \right \} \le |Du|(\mathbb{R}^{n}) \end{align*}
+and so, by lower semicontinuity of the total variation, $\|\nabla u_{\epsilon}\|_{L^{1}(\mathbb{R}^{n}; \mathbb{R}^{n})} \to |Du|(\mathbb{R}^{n})$.
 \\
-We may fix a sequence $\epsilon_{k} \to 0$. Theorem \ref{WLSCBV} implies that for any open set $A$ $|D u|(A) \le \liminf\limits_{k \to +\infty} |D u_{\epsilon_{k}}|(A)$ and we observe that for any compact set $K$ and $\phi \in C^{\infty}_{c}(K; \mathbb{R}^{N}), \|\phi\|_{\infty} \le 1$ we have
-\begin{align*} \int_{\mathbb{R}^{N}} u_{\epsilon_{k}}(x) \mathrm{div}\phi(x) \, dx & = \int_{\mathbb{R}^{N}} \int_{\mathbb{R}^{N}} \mathrm{div}\phi(x) u(y)  \rho_{\epsilon_{k}}(x - y) \, dy dx \\
-& = \int_{\mathbb{R}^{N}} u(y) \mathrm{div}\phi_{\epsilon_{k}}(y) \, dy \le |D u|(K + \overline{B(0, \epsilon_{k})})
+We may fix a sequence $\epsilon_{k} \to 0$. Theorem \ref{WLSCBV} implies that for any open set $A$ $|D u|(A) \le \liminf\limits_{k \to +\infty} |D u_{\epsilon_{k}}|(A)$ and we observe that for any compact set $K$ and $\phi \in C^{\infty}_{c}(K; \mathbb{R}^{n}), \|\phi\|_{\infty} \le 1$ we have
+\begin{align*} \int_{\mathbb{R}^{n}} u_{\epsilon_{k}}(x) \mathrm{div}\phi(x) \, dx & = \int_{\mathbb{R}^{n}} \int_{\mathbb{R}^{n}} \mathrm{div}\phi(x) u(y)  \rho_{\epsilon_{k}}(x - y) \, dy dx \\
+& = \int_{\mathbb{R}^{n}} u(y) \mathrm{div}\phi_{\epsilon_{k}}(y) \, dy \le |D u|(K + \overline{B(0, \epsilon_{k})})
 \end{align*}
 since $\mathrm{supp}(\phi_{\epsilon_{k}}) \subset K + \overline{B(0, \epsilon_{k})}$. Thus we can take the supremum over $\phi$ in order to obtain $|D u_{\epsilon_{k}}|(K) \le |D u|(K + \overline{B(0, \epsilon_{k})})$, which implies $\limsup \limits_{k \to + \infty} |D u_{\epsilon_{k}}|(K) \le |D u|(K)$ since $K$ is compact.
 \\
-Hence the sequence of Radon measures $|\nabla u_{\epsilon_{k}}| \Leb{n}$ satisfies point 2 of Lemma \ref{muweak-star} and so we have point 1 of the same lemma; that is, $|D u_{\epsilon_{k}}| \stackrel {*}{\rightharpoonup} |Du|$ in $\mathcal{M}_{\rm loc}(\mathbb{R}^{N})$. Moreover, since we have shown above that $\sup_{k} |Du_{\epsilon_{k}}|(\mathbb{R}^{N}) \le |Du|(\mathbb{R}^{N}) < \infty$, Remark \ref{equivalenceweak-star} yields also weak-star convergence in $\mathcal{M}(\mathbb{R}^{N})$.
+Hence the sequence of Radon measures $|\nabla u_{\epsilon_{k}}| \Leb{n}$ satisfies point 2 of Lemma \ref{muweak-star} and so we have point 1 of the same lemma; that is, $|D u_{\epsilon_{k}}| \stackrel {*}{\rightharpoonup} |Du|$ in $\mathcal{M}_{\rm loc}(\mathbb{R}^{n})$. Moreover, since we have shown above that $\sup_{k} |Du_{\epsilon_{k}}|(\mathbb{R}^{n}) \le |Du|(\mathbb{R}^{n}) < \infty$, Remark \ref{equivalenceweak-star} yields also weak-star convergence in $\mathcal{M}(\mathbb{R}^{n})$.
 \\
 
-This remark applies also to BV functions with compact support inside $\Omega$, since these are trivially in $BV(\mathbb{R}^{N})$. Given $u \in BV(\Omega)$ with compact support, we can indeed extend it to 
-\[ \hat{u}(x) = \begin{cases} u(x) & \mbox{if} \ \ x \in \Omega \\ 0 & \mbox{if} \ \ x \in \mathbb{R}^{N} \setminus \Omega. \end{cases} \]
-It is clear that $\hat{u} \in L^{1}(\mathbb{R}^{N})$. If we let $\xi \in C^{\infty}_{c}(\Omega)$, $\|\xi\|_{\infty} \le 1$ and $\xi = 1$ in a neighborhood of the support of $u$, then, for any $\phi \in C^{\infty}_{c}(\mathbb{R}^{N}; \mathbb{R}^{N})$, $\|\phi\|_{\infty} \le 1$, we have
-\begin{align*} \int_{\mathbb{R}^{N}} \hat{u} \mathrm{div}\phi \, dx & = \int_{\Omega} u \mathrm{div}\phi \, dx = \int_{\Omega} u \mathrm{div}(\xi \phi + (1 - \xi) \phi) \, dx \\
+This remark applies also to BV functions with compact support inside $\Omega$, since these are trivially in $BV(\mathbb{R}^{n})$. Given $u \in BV(\Omega)$ with compact support, we can indeed extend it to 
+\[ \hat{u}(x) = \begin{cases} u(x) & \mbox{if} \ \ x \in \Omega \\ 0 & \mbox{if} \ \ x \in \mathbb{R}^{n} \setminus \Omega. \end{cases} \]
+It is clear that $\hat{u} \in L^{1}(\mathbb{R}^{n})$. If we let $\xi \in C^{\infty}_{c}(\Omega)$, $\|\xi\|_{\infty} \le 1$ and $\xi = 1$ in a neighborhood of the support of $u$, then, for any $\phi \in C^{\infty}_{c}(\mathbb{R}^{n}; \mathbb{R}^{n})$, $\|\phi\|_{\infty} \le 1$, we have
+\begin{align*} \int_{\mathbb{R}^{n}} \hat{u} \mathrm{div}\phi \, dx & = \int_{\Omega} u \mathrm{div}\phi \, dx = \int_{\Omega} u \mathrm{div}(\xi \phi + (1 - \xi) \phi) \, dx \\
 & = \int_{\Omega} u \mathrm{div}(\xi \phi) \, dx \le |Du|(\Omega), 
 \end{align*}
-since $\xi \phi \in C^{\infty}_{c}(\Omega; \mathbb{R}^{N})$ and $\|\xi \phi\|_{\infty} \le 1$. 
+since $\xi \phi \in C^{\infty}_{c}(\Omega; \mathbb{R}^{n})$ and $\|\xi \phi\|_{\infty} \le 1$. 
 \\
-Taking the supremum over $\phi$ we obtain $|D \hat{u}|(\mathbb{R}^{N}) \le |Du|(\Omega) < \infty$.
+Taking the supremum over $\phi$ we obtain $|D \hat{u}|(\mathbb{R}^{n}) \le |Du|(\Omega) < \infty$.
 \end{remark}
 
 
-\begin{lemma} \label{BVweak-star} Let $u \in BV(\Omega)$ and $\{u_{n}\}$ which satisfies point 1) and 2) in Theorem \ref{Meyers-SerrinBV}. Then, if we define for all Borel sets $B \subset \mathbb{R}^{N}$ the Radon measures $\mu_{n}(B) := \int_{B \cap \Omega} \nabla u_{n} \, dx$ and $\mu(B) := Du(B \cap \Omega)$, we have $\mu_{n} \stackrel {*}{\rightharpoonup} \mu$ in $\mathcal{M}(\mathbb{R}^{N})$, i.e., 
+\begin{lemma} \label{BVweak-star} Let $u \in BV(\Omega)$ and $\{u_{n}\}$ which satisfies point 1) and 2) in Theorem \ref{Meyers-SerrinBV}. Then, if we define for all Borel sets $B \subset \mathbb{R}^{n}$ the Radon measures $\mu_{n}(B) := \int_{B \cap \Omega} \nabla u_{n} \, dx$ and $\mu(B) := Du(B \cap \Omega)$, we have $\mu_{n} \stackrel {*}{\rightharpoonup} \mu$ in $\mathcal{M}(\mathbb{R}^{n})$, i.e., 
 
-\[ \int_{\mathbb{R}^{N}} \xi \cdot d \mu_{n} \to \int_{\mathbb{R}^{N}} \xi \cdot d \mu \  \ \forall \xi \in C_{c}(\mathbb{R}^{N}; \mathbb{R}^{N}). \]
+\[ \int_{\mathbb{R}^{n}} \xi \cdot d \mu_{n} \to \int_{\mathbb{R}^{n}} \xi \cdot d \mu \  \ \forall \xi \in C_{c}(\mathbb{R}^{n}; \mathbb{R}^{n}). \]
 \end{lemma}
 Proof. 
 \\
@@ -167,21 +167,21 @@ We define $\Omega_{1}$ as in the proof of Theorem \ref{Meyers-SerrinBV}, so that
 \\
 Let $\eta$ be a smooth cut-off function such that $\eta = 1$ in $\Omega_{1}$, $0 \le \eta \le 1$ and $\mathrm{supp}(\eta) \subset \Omega$.
 \\
-Let $\xi \in C^{1}_{c}(\mathbb{R}^{N}; \mathbb{R}^{N})$, then
+Let $\xi \in C^{1}_{c}(\mathbb{R}^{n}; \mathbb{R}^{n})$, then
 
-\[ \int_{\mathbb{R}^{N}} \xi \cdot d \mu_{n} = \int_{\mathbb{R}^{N}} \xi \cdot \nabla u_{n} \, dx = \int_{\mathbb{R}^{N}} \eta \xi \cdot \nabla u_{n} \, dx + \int_{\mathbb{R}^{N}} (1 - \eta) \xi \cdot \nabla u_{n} \, dx. \]
+\[ \int_{\mathbb{R}^{n}} \xi \cdot d \mu_{n} = \int_{\mathbb{R}^{n}} \xi \cdot \nabla u_{n} \, dx = \int_{\mathbb{R}^{n}} \eta \xi \cdot \nabla u_{n} \, dx + \int_{\mathbb{R}^{n}} (1 - \eta) \xi \cdot \nabla u_{n} \, dx. \]
 Now, since $u_{n} \to u$ in $L^{1}(\Omega)$ and by the Riesz Theorem (Theorem \ref{Rieszrepr}),  
 
-\begin{align*} & \int_{\mathbb{R}^{N}} \eta \xi \cdot \nabla u_{n} \, dx = - \int_{\mathbb{R}^{N}} u_{n} \mathrm{div}(\eta \xi) \, dx \to - \int_{\mathbb{R}^{N}} u \mathrm{div}(\eta \xi) \, dx \\
-& = \int_{\mathbb{R}^{N}} \eta \xi \cdot d Du = \int_{\mathbb{R}^{N}} \xi \cdot d Du + \int_{\mathbb{R}^{N}} (\eta - 1) \xi \cdot d Du \end{align*}
+\begin{align*} & \int_{\mathbb{R}^{n}} \eta \xi \cdot \nabla u_{n} \, dx = - \int_{\mathbb{R}^{n}} u_{n} \mathrm{div}(\eta \xi) \, dx \to - \int_{\mathbb{R}^{n}} u \mathrm{div}(\eta \xi) \, dx \\
+& = \int_{\mathbb{R}^{n}} \eta \xi \cdot d Du = \int_{\mathbb{R}^{n}} \xi \cdot d Du + \int_{\mathbb{R}^{n}} (\eta - 1) \xi \cdot d Du \end{align*}
 
 and 
 
-\[ \left | \int_{\mathbb{R}^{N}} (\eta - 1) \xi \cdot d Du \right | \le \|\xi\|_{\infty} |Du|( \Omega \setminus \Omega_{1}) < \epsilon \|\xi\|_{\infty}. \]
+\[ \left | \int_{\mathbb{R}^{n}} (\eta - 1) \xi \cdot d Du \right | \le \|\xi\|_{\infty} |Du|( \Omega \setminus \Omega_{1}) < \epsilon \|\xi\|_{\infty}. \]
 
 Also,
 
-\[ \left | \int_{\mathbb{R}^{N}} (1 - \eta) \xi \cdot \nabla u_{n} \, dx \right | \le \|\xi\|_{\infty} |Du_{n}|(\Omega \setminus \Omega_{1}) < \epsilon \|\xi\|_{\infty}, \]
+\[ \left | \int_{\mathbb{R}^{n}} (1 - \eta) \xi \cdot \nabla u_{n} \, dx \right | \le \|\xi\|_{\infty} |Du_{n}|(\Omega \setminus \Omega_{1}) < \epsilon \|\xi\|_{\infty}, \]
 since, by the fact that $|Du_{n}|(\Omega) \to |Du|(\Omega)$ and by the lower semicontinuity of the total variation,
 
 \[ \liminf \limits_{n \to +\infty} |Du_{n}|(\Omega \setminus \Omega_{1}) = \liminf \limits_{n \to +\infty} |Du_{n}|(\Omega) - |Du_{n}|(\Omega_{1}) \le \]
@@ -189,14 +189,14 @@ since, by the fact that $|Du_{n}|(\Omega) \to |Du|(\Omega)$ and by the lower sem
 
 Therefore, for any $\epsilon > 0$, there exists a $n_{0}$ such that, $\forall n \ge n_{0}$,
 
-\[ \left | \int_{\mathbb{R}^{N}} \xi \cdot d \mu_{n} - \int_{\mathbb{R}^{N}} \xi \cdot d \mu \right | \le 2 \epsilon \|\xi\|_{\infty}. \]
+\[ \left | \int_{\mathbb{R}^{n}} \xi \cdot d \mu_{n} - \int_{\mathbb{R}^{n}} \xi \cdot d \mu \right | \le 2 \epsilon \|\xi\|_{\infty}. \]
 
-Now let $\xi \in C_{c}( \mathbb{R}^{N}; \mathbb{R}^{N})$, and take its mollification $\xi_{\delta} = \xi \ast \rho_{\delta}$. 
+Now let $\xi \in C_{c}( \mathbb{R}^{n}; \mathbb{R}^{n})$, and take its mollification $\xi_{\delta} = \xi \ast \rho_{\delta}$. 
 \\
-$\xi_{\delta} \to \xi$ uniformly on compact subsets of $\mathbb{R}^{N}$, in particular on $K := \mathrm{supp}(\eta)$. So
-\begin{align*} & \left | \int_{\mathbb{R}^{N}} \xi \cdot d \mu_{n} - \int_{\mathbb{R}^{N}} \xi \cdot d \mu \right | \le \left | \int_{\mathbb{R}^{N}} \eta (\xi - \xi_{\delta}) \cdot d \mu_{n} \right | + \left | \int_{\mathbb{R}^{N}} \eta (\xi -\xi_{\delta}) \cdot d \mu \right | + \\
-& + \left | \int_{\mathbb{R}^{N}} \xi_{\delta} \cdot d \mu_{n} - \int_{\mathbb{R}^{N}} \xi_{\delta} \cdot d \mu \right | + \left | \int_{\mathbb{R}^{N}} (1 - \eta) (\xi - \xi_{\delta}) \cdot d \mu_{n} \right | + \\
-& + \left | \int_{\mathbb{R}^{N}} (1 - \eta) (\xi_{\delta} - \xi) \cdot d \mu \right | \le \|\xi - \xi_{\delta}\|_{L^{\infty}(K)} (|Du_{n}|(\Omega) + |Du|(\Omega)) + \\
+$\xi_{\delta} \to \xi$ uniformly on compact subsets of $\mathbb{R}^{n}$, in particular on $K := \mathrm{supp}(\eta)$. So
+\begin{align*} & \left | \int_{\mathbb{R}^{n}} \xi \cdot d \mu_{n} - \int_{\mathbb{R}^{n}} \xi \cdot d \mu \right | \le \left | \int_{\mathbb{R}^{n}} \eta (\xi - \xi_{\delta}) \cdot d \mu_{n} \right | + \left | \int_{\mathbb{R}^{n}} \eta (\xi -\xi_{\delta}) \cdot d \mu \right | + \\
+& + \left | \int_{\mathbb{R}^{n}} \xi_{\delta} \cdot d \mu_{n} - \int_{\mathbb{R}^{n}} \xi_{\delta} \cdot d \mu \right | + \left | \int_{\mathbb{R}^{n}} (1 - \eta) (\xi - \xi_{\delta}) \cdot d \mu_{n} \right | + \\
+& + \left | \int_{\mathbb{R}^{n}} (1 - \eta) (\xi_{\delta} - \xi) \cdot d \mu \right | \le \|\xi - \xi_{\delta}\|_{L^{\infty}(K)} (|Du_{n}|(\Omega) + |Du|(\Omega)) + \\
 & + \epsilon \|\xi_{\delta}\|_{\infty} + 2\|\xi\|_{\infty}(|Du_{n}|(\Omega \setminus \Omega_{1}) + |Du|(\Omega \setminus \Omega_{1}) ) \end{align*}
 
 and, by the estimates already found, we can conclude that, up to choosing a suitable $\delta(\epsilon)$, it is all bounded by $C \epsilon$ for $n$ big enough, thus proving weak-star convergence of measures. $\Box$
@@ -226,10 +226,10 @@ and, by the estimates already found, we can conclude that, up to choosing a suit
 
 \begin{definition} A measurable set $E \subset \Omega$ is called a {\em finite perimeter set} in $\Omega$ (or a Caccioppoli set) if $\chi_{E} \in BV(\Omega)$.
 \\
-A measurable set $E \subset \mathbb{R}^{N}$ is said to have {\em locally finite perimeter} in $\Omega$ if $\chi_{E} \in BV_{\rm loc}(\Omega)$.
+A measurable set $E \subset \mathbb{R}^{n}$ is said to have {\em locally finite perimeter} in $\Omega$ if $\chi_{E} \in BV_{\rm loc}(\Omega)$.
 \end{definition}
 
-Consequently, $D\chi_{E}$ is an $\mathbb{R}^{N}$-vector valued Radon measure on $\Omega$ whose total variation is $|D\chi_{E}|$.
+Consequently, $D\chi_{E}$ is an $\mathbb{R}^{n}$-vector valued Radon measure on $\Omega$ whose total variation is $|D\chi_{E}|$.
 \\
 By the polar decomposition of measures, there exists a $|D\chi_{E}|$-measurable function with modulus $1$ $|D\chi_{E}|$-a.e., which we denote by $\nu_{E}$, such that $D\chi_{E} = \nu_{E} |D\chi_{E}|$.
 \\
@@ -237,34 +237,34 @@ Unless otherwise stated, from now on $E$ will be a set of locally finite perimet
 
 \begin{example} Any open bounded set $E \subset \Omega$ with $\partial E \in C^{2}$ is a set of finite perimeter in $\Omega$.
 \\ 
-Indeed, $\forall \phi \in C_{c}^{\infty}(\Omega; \mathbb{R}^{N})$ with $\|\phi\|_{\infty} \le 1$, by the classical Gauss-Green formula we have
-\begin{align*} \int_{\Omega \cap E} \mathrm{div} \phi \, dx & = - \int_{\partial(\Omega \cap E)} \phi \cdot \nu_{E} \, d\mathcal{H}^{N - 1}  = - \int_{\Omega \cap \partial E} \phi \cdot \nu_{E} \, d\mathcal{H}^{N - 1} \\
-& \le \int_{\Omega \cap \partial E} |\phi| |\nu_{E}| \, d\mathcal{H}^{N - 1} \le \mathcal{H}^{N - 1}(\Omega \cap \partial E), 
+Indeed, $\forall \phi \in C_{c}^{\infty}(\Omega; \mathbb{R}^{n})$ with $\|\phi\|_{\infty} \le 1$, by the classical Gauss-Green formula we have
+\begin{align*} \int_{\Omega \cap E} \mathrm{div} \phi \, dx & = - \int_{\partial(\Omega \cap E)} \phi \cdot \nu_{E} \, d\mathcal{H}^{n - 1}  = - \int_{\Omega \cap \partial E} \phi \cdot \nu_{E} \, d\mathcal{H}^{n - 1} \\
+& \le \int_{\Omega \cap \partial E} |\phi| |\nu_{E}| \, d\mathcal{H}^{n - 1} \le \Haus{n - 1}(\Omega \cap \partial E), 
 \end{align*}
-where $\nu_{E}$ is the interior unit normal. Taking the supremum over $\phi$ yields $|D \chi_{E}|(\Omega) \le \mathcal{H}^{N - 1}(\Omega \cap \partial E)$.
+where $\nu_{E}$ is the interior unit normal. Taking the supremum over $\phi$ yields $|D \chi_{E}|(\Omega) \le \Haus{n - 1}(\Omega \cap \partial E)$.
 \\
-Therefore, $E$ has finite perimeter and so, for any $\phi \in C^{\infty}_{c}(\Omega; \mathbb{R}^{N})$,
-\[ \int_{\Omega} \chi_{E} \mathrm{div} \phi \, dx = - \int_{\Omega} \phi \cdot D \chi_{E} = - \int_{\Omega \cap \partial E} \phi \cdot \nu_{E} \, d\mathcal{H}^{N - 1}. \] 
-This implies that $D \chi_{E} = \nu_{E} \, \mathcal{H}^{N - 1} \llcorner \partial E$ in $\mathcal{M}(\Omega; \mathbb{R}^{N})$, by Riesz Representation Theorem (Theorem \ref{RieszBV}), and so $|D \chi_{E}| = \mathcal{H}^{N - 1} \llcorner \partial E$, which in particular yields
-\begin{equation} \label{Esmooth} |D \chi_{E}|(\Omega) = \mathcal{H}^{N - 1} (\Omega \cap \partial E). \end{equation}
+Therefore, $E$ has finite perimeter and so, for any $\phi \in C^{\infty}_{c}(\Omega; \mathbb{R}^{n})$,
+\[ \int_{\Omega} \chi_{E} \mathrm{div} \phi \, dx = - \int_{\Omega} \phi \cdot D \chi_{E} = - \int_{\Omega \cap \partial E} \phi \cdot \nu_{E} \, d\mathcal{H}^{n - 1}. \] 
+This implies that $D \chi_{E} = \nu_{E} \, \Haus{n - 1} \llcorner \partial E$ in $\mathcal{M}(\Omega; \mathbb{R}^{n})$, by Riesz Representation Theorem (Theorem \ref{RieszBV}), and so $|D \chi_{E}| = \Haus{n - 1} \llcorner \partial E$, which in particular yields
+\begin{equation} \label{Esmooth} |D \chi_{E}|(\Omega) = \Haus{n - 1} (\Omega \cap \partial E). \end{equation}
 \end{example}
 
-\begin{remark} \label{finpersetexample} It can be also shown that every open bounded set with Lipschitz boundary is a set of finite perimeter, with equality \eqref{Esmooth} holding, since this is a consequence of the extension theorem for functions of bounded variation (see [EG], Section 5.4). Moreover, any bounded open set $\Omega$ satisfying $\mathcal{H}^{N - 1}(\partial \Omega) < \infty$ has finite perimeter in $\mathbb{R}^{N}$ (see [AFP], Proposition 3.62).
+\begin{remark} \label{finpersetexample} It can be also shown that every open bounded set with Lipschitz boundary is a set of finite perimeter, with equality \eqref{Esmooth} holding, since this is a consequence of the extension theorem for functions of bounded variation (see [EG], Section 5.4). Moreover, any bounded open set $\Omega$ satisfying $\Haus{n - 1}(\partial \Omega) < \infty$ has finite perimeter in $\mathbb{R}^{n}$ (see [AFP], Proposition 3.62).
 \end{remark}
 
 Equality \eqref{Esmooth} is not valid in general for sets of finite perimeter, as the following example will show. 
 
-\begin{example} Let $N \ge 2$, $\{ x_{i} \} = \mathbb{Q}^{N} \cap [0, 1]^{N}$, $E = \bigcup_{i = 0}^{\infty} B(x_{i}, \epsilon 2^{-i})$, with $\epsilon > 0$ that shall be assigned, and $[0, 1]^{N} \subset \Omega$. We have
-\[ |E| \le \sum_{i = 0}^{\infty} \omega_{N} \epsilon^{N} 2^{-i N} = \frac{\omega_{N} \epsilon^{N}}{1 - 2^{- N}}. \]
-Since the rational points are dense in $[0, 1]^{N}$, then $\overline{E} = [0, 1]^{N}$ and $\partial E = \overline{E} \setminus E$, since $E$ is open, which implies
-\[ |\partial E| \ge |\overline{E}| - |E| \ge 1 - \frac{\omega_{N} \epsilon^{N}}{1 - 2^{- N}} > 0 \]
-for $\epsilon$ small enough. This implies $\mathcal{H}^{N - 1}(\partial E) = \infty$. 
+\begin{example} Let $n \ge 2$, $\{ x_{i} \} = \mathbb{Q}^{n} \cap [0, 1]^{n}$, $E = \bigcup_{i = 0}^{\infty} B(x_{i}, \epsilon 2^{-i})$, with $\epsilon > 0$ that shall be assigned, and $[0, 1]^{n} \subset \Omega$. We have
+\[ |E| \le \sum_{i = 0}^{\infty} \omega_{n} \epsilon^{n} 2^{-i n} = \frac{\omega_{n} \epsilon^{n}}{1 - 2^{- n}}. \]
+Since the rational points are dense in $[0, 1]^{n}$, then $\overline{E} = [0, 1]^{n}$ and $\partial E = \overline{E} \setminus E$, since $E$ is open, which implies
+\[ |\partial E| \ge |\overline{E}| - |E| \ge 1 - \frac{\omega_{n} \epsilon^{n}}{1 - 2^{- n}} > 0 \]
+for $\epsilon$ small enough. This implies $\Haus{n - 1}(\partial E) = \infty$. 
 \\
 Observing that $\partial E \subset \bigcup_{i = 0}^{\infty} \partial B(x_{i}, \epsilon 2^{- i})$, we have
-\begin{align*} \int_{\Omega \cap E} \mathrm{div} \phi \, dx &  = - \int_{\partial E} \phi \cdot \nu_{E} \, d\mathcal{H}^{N - 1} \le \sum_{i = 0}^{\infty} \int_{\partial B(x_{i}, \epsilon 2^{- i})} |\phi| |\nu_{E}| \, d\mathcal{H}^{N - 1} \\
-& \le  \sum_{i = 0}^{\infty} \mathcal{H}^{N - 1}(\partial B(x_{i}, \epsilon 2^{- i})) = \sum_{i = 0}^{\infty} N \omega_{N} \epsilon^{N - 1} 2^{- (N - 1) i} = \frac{N \omega_{N} \epsilon^{N - 1}}{1 - 2^{- (N - 1)}}.
+\begin{align*} \int_{\Omega \cap E} \mathrm{div} \phi \, dx &  = - \int_{\partial E} \phi \cdot \nu_{E} \, d\mathcal{H}^{n - 1} \le \sum_{i = 0}^{\infty} \int_{\partial B(x_{i}, \epsilon 2^{- i})} |\phi| |\nu_{E}| \, d\mathcal{H}^{n - 1} \\
+& \le  \sum_{i = 0}^{\infty} \Haus{n - 1}(\partial B(x_{i}, \epsilon 2^{- i})) = \sum_{i = 0}^{\infty} n \omega_{n} \epsilon^{n - 1} 2^{- (n - 1) i} = \frac{n \omega_{n} \epsilon^{n - 1}}{1 - 2^{- (n - 1)}}.
 \end{align*}
-Thus $E$ is a set of finite perimeter for which $|D \chi_{E}|(\Omega) \neq \mathcal{H}^{N - 1}(\Omega \cap \partial E)$. 
+Thus $E$ is a set of finite perimeter for which $|D \chi_{E}|(\Omega) \neq \Haus{n - 1}(\Omega \cap \partial E)$. 
 \end{example}
 
 This may suggest that for a set of finite perimeter is interesting to consider not the whole topological boundary, but subsets of $\partial E$ instead.
@@ -285,13 +285,13 @@ This may suggest that for a set of finite perimeter is interesting to consider n
 It can be shown that this definition implies a geometrical characterisation of the reduced boundary, by using the blow-up of the set $E$ around a point of $\partial^{*} E$.
 
 \begin{definition} For $x \in \partial^{*}E$ we define the hyperplane
-\[H(x) = \{ y \in \mathbb{R}^{N} : \ \nu(x) \cdot (y - x) = 0 \} \]
+\[H(x) = \{ y \in \mathbb{R}^{n} : \ \nu(x) \cdot (y - x) = 0 \} \]
 and the half-spaces
-\[H^{+}(x) = \{ y \in \mathbb{R}^{N} : \ \nu(x) \cdot (y - x) \ge 0 \}, \]
-\[H^{-}(x) = \{ y \in \mathbb{R}^{N} : \ \nu(x) \cdot (y - x) \le 0 \}. \]
+\[H^{+}(x) = \{ y \in \mathbb{R}^{n} : \ \nu(x) \cdot (y - x) \ge 0 \}, \]
+\[H^{-}(x) = \{ y \in \mathbb{R}^{n} : \ \nu(x) \cdot (y - x) \le 0 \}. \]
 
 Also, for $r > 0$, we set
-\[ E_{r} (x) = \{ y \in \mathbb{R}^{N} : \ x + r(y - x) \in E \} \]
+\[ E_{r} (x) = \{ y \in \mathbb{R}^{n} : \ x + r(y - x) \in E \} \]
 \end{definition}
 
 \begin{theorem} \label{convblowup} If $E$ is a set of finite perimeter in $\Omega$, $x \in \partial^{*}E$ and $\nu(x) = - \nu_{E}(x)$, then
@@ -307,16 +307,16 @@ Formulated in another way, for $r > 0$ small enough, $E \cap B(x, r)$ is approxi
 
 \begin{corollary} \label{blowcor} If $x \in \partial^{*}E$ and $\nu(x) = - \nu_{E}(x)$, then
 \begin{enumerate}
-	\item $\displaystyle \lim_{r \to 0} \frac{1}{r^{N}} |B(x,r) \cap E \cap H^{+}(x)| = 0,$
-	\item $\displaystyle \lim_{r \to 0} \frac{1}{r^{N}} |(B(x,r) \setminus E) \cap H^{-}(x)| = 0.$
+	\item $\displaystyle \lim_{r \to 0} \frac{1}{r^{n}} |B(x,r) \cap E \cap H^{+}(x)| = 0,$
+	\item $\displaystyle \lim_{r \to 0} \frac{1}{r^{n}} |(B(x,r) \setminus E) \cap H^{-}(x)| = 0.$
 \end{enumerate}
 \end{corollary}
 Proof. We have 
-\[\frac{1}{r^{N}} |B(x,r) \cap E \cap H^{+}(x)| = |B(x,1) \cap E_{r} \cap H^{+}(x)| \to |B(x,1) \cap H^{-}(x) \cap H^{+}(x)| = 0,\]
+\[\frac{1}{r^{n}} |B(x,r) \cap E \cap H^{+}(x)| = |B(x,1) \cap E_{r} \cap H^{+}(x)| \to |B(x,1) \cap H^{-}(x) \cap H^{+}(x)| = 0,\]
 by Theorem \ref{convblowup}. Point 2 follows from the same theorem and 
-\begin{align*} \frac{1}{r^{N}} |(B(x,r) \setminus E) \cap H^{-}(x)| & = \frac{1}{r^{N}} ( |B(x,r) \cap H^{-}(x)| - |B(x,r) \cap E \cap H^{-}(x)|) \\
-& = \frac{\omega_{N}}{2} - |B(x,1) \cap E_{r} \cap H^{-}(x)| \\
-& \to \frac{\omega_{N}}{2} - |B(x,1) \cap H^{-}(x)| = 0. \end{align*}
+\begin{align*} \frac{1}{r^{n}} |(B(x,r) \setminus E) \cap H^{-}(x)| & = \frac{1}{r^{n}} ( |B(x,r) \cap H^{-}(x)| - |B(x,r) \cap E \cap H^{-}(x)|) \\
+& = \frac{\omega_{n}}{2} - |B(x,1) \cap E_{r} \cap H^{-}(x)| \\
+& \to \frac{\omega_{n}}{2} - |B(x,1) \cap H^{-}(x)| = 0. \end{align*}
 \hfill $\Box$
 
 Using this result, we can give a generalization of the concept of unit interior normal (respectively, unit exterior normal, up to a sign).
@@ -325,16 +325,40 @@ Using this result, we can give a generalization of the concept of unit interior 
 \end{definition}
 
 It follows that the measure theoretic unit interior normal $\nu_{E}$ is well defined at least on the reduced boundary. 
-\\
-Moreover, the next theorem shows us that the reduced boundary can be written as a countable union of compact subset of $C^{1}$ manifolds, up to a set of Hausdorff dimension at most $N-1$. 
 
-\begin{theorem} \label{structhm1} Assume $E$ is a set of locally finite perimeter in $\mathbb{R}^{N}$. Then
+
+\subsection{Rectifiability}
+
+We start with the definitions of rectifiable set and approximated tangent space.
+
+\begin{definition}
+Let $k \in [0, n]$ be an integer and let $S \subset \R^{n}$ be a $\Haus{k}$-measurable set. We say that $S$ is countably $k$-rectifiable if there exist countably many Lipschitz functions $f_{i} : \R^{k} \to \R^{n}$ such that 
+\begin{equation*}
+S \subset \bigcup_{i} f_{i}(\R^{k}).
+\end{equation*}
+\end{definition}
+
+\begin{definition}
+Let $k \in [0, n]$ be an integer, $\mu$ be a Radon measure in $\Omega$ and $x \in \Omega$. We say that the approximate tangent space of $\mu$ is a $k$-plane $\pi$ with multiplicity $\theta \in \R$ in $x$, and we write 
+\begin{equation*}
+\Tan^{k}(\mu, x) = \theta \Haus{k} \res \pi
+\end{equation*}
+if $r^{-k} \mu_{x, r}$ locally weak$^*$ converges to $\theta \Haus{k} \res \pi$ in $\Omega$ as $r \to 0$; that is, 
+\begin{equation*}
+\lim_{r \to 0} \frac{1}{r^{k}} \int_{\Omega} \phi\left (\frac{y - x}{r}\right) \, d \mu(y) = \int_{\pi} \phi(y) \, d \Haus{k}(y)
+\end{equation*}
+for any $\phi \in C_{c}(\Omega)$.
+\end{definition}
+
+Moreover, the next theorem shows us that the reduced boundary can be written as a countable union of compact subset of $C^{1}$ manifolds, up to a set of Hausdorff dimension at most $n-1$. 
+
+\begin{theorem} \label{structhm1} Assume $E$ is a set of locally finite perimeter in $\mathbb{R}^{n}$. Then
 \begin{enumerate}
-	\item $\partial^{*}E$ is a $(N-1)$-rectifiable set; that is, there exist a countable family of $C^{1}$ manifolds $S_{k}$, a family of compact sets $K_{k} \subset S_{k}$ and set $\mathcal{N}$ of $\mathcal{H}^{N-1}$-measure zero such that
+	\item $\partial^{*}E$ is a $(n-1)$-rectifiable set; that is, there exist a countable family of $C^{1}$ manifolds $S_{k}$, a family of compact sets $K_{k} \subset S_{k}$ and set $\mathcal{N}$ of $\Haus{n-1}$-measure zero such that
 \[ \partial^{*}E = \bigcup_{k=1}^{+\infty} K_{k} \cup \mathcal{N}; \]
 	\item $\nu_{E} |_{S_{k}}$ is normal to $S_{k};$
-	\item $|D\chi_{E}| = \mathcal{H}^{N-1} \llcorner \partial^{*}E$ and for $\mathcal{H}^{N - 1}$-a.e. $x \in \partial^{*}E$,
-\[ \lim_{r \to 0 } \frac{|D\chi_{E}|(B(x,r))}{\omega_{N-1}r^{N - 1}} = 1. \]
+	\item $|D\chi_{E}| = \Haus{n-1} \llcorner \partial^{*}E$ and for $\Haus{n - 1}$-a.e. $x \in \partial^{*}E$,
+\[ \lim_{r \to 0 } \frac{|D\chi_{E}|(B(x,r))}{\omega_{n-1}r^{n - 1}} = 1. \]
 \end{enumerate}
 \end{theorem}
 Proof. See [EG] Section 5.7.3 Theorem 2.
@@ -342,8 +366,8 @@ Proof. See [EG] Section 5.7.3 Theorem 2.
 
 We introduce now the density of a set at a certain point, in order to select another useful subset of the topological boundary.
 
-\begin{definition} \label{density} For every $\alpha \in [0, 1]$ and every measurable set $E \subset \mathbb{R}^{N}$, we define
-\[ E^{\alpha} := \{ x \in \mathbb{R}^{N} : D(E, x) = \alpha \}, \]
+\begin{definition} \label{density} For every $\alpha \in [0, 1]$ and every measurable set $E \subset \mathbb{R}^{n}$, we define
+\[ E^{\alpha} := \{ x \in \mathbb{R}^{n} : D(E, x) = \alpha \}, \]
 where
 \[ D(E, x) := \lim_{r \to 0} \frac{|(B(x,r) \cap E)|}{|B(x,r)|}.  \]
 \end{definition}
@@ -352,36 +376,35 @@ where
 \begin{enumerate}
 	\item $E^{1}$ is called the {\em measure theoretic interior} of $E$.
 	\item $E^{0}$ is called the {\em measure theoretic exterior} of $E$.
-	\item The {\em measure theoretic (or essential) boundary} of $E$ is the set $\partial^{m}E := \mathbb{R}^{N} \setminus (E^{0} \cup E^{1})$.
+	\item The {\em measure theoretic (or essential) boundary} of $E$ is the set $\partial^{m}E := \mathbb{R}^{n} \setminus (E^{0} \cup E^{1})$.
 \end{enumerate}
 \end{definition}
 
-\begin{remark} \label{essboundnull} It is clear that $E^{\circ} \subset E^{1}$ and $\mathbb{R}^{N} \setminus \overline E \subset E^{0}$. Hence one has 
-\[ \partial^{m}E \subset \mathbb{R}^{N} \setminus (E^{\circ} \cup \mathbb{R}^{N} \setminus \overline E) = \overline E \setminus E^{\circ} = \partial E. \]
+\begin{remark} \label{essboundnull} It is clear that $E^{\circ} \subset E^{1}$ and $\mathbb{R}^{n} \setminus \overline E \subset E^{0}$. Hence one has 
+\[ \partial^{m}E \subset \mathbb{R}^{n} \setminus (E^{\circ} \cup \mathbb{R}^{n} \setminus \overline E) = \overline E \setminus E^{\circ} = \partial E. \]
 
-Moreover, by the Lebesgue-Besicovitch differentiation theorem (Theorem \ref{LebBesdiff}), $\partial^{m} E$ has $\mathcal{L}^{N}$-measure $0$, since it is the set of non-Lebesgue points of $\chi_{E}$.
+Moreover, by the Lebesgue-Besicovitch differentiation theorem (Theorem \ref{LebBesdiff}), $\partial^{m} E$ has $\Leb{n}$-measure $0$, since it is the set of non-Lebesgue points of $\chi_{E}$.
 \\
 
 We further observe that, as in [EG] Section 5.8, it is possibile to define the measure theoretic boundary without using the density of a set.
 \\
 Indeed the previous definition is equivalent to the following:
-\\
 
-\textbf{Definition \ref{measuretheorintext}'} Let $x \in \mathbb{R}^{N}$, then $x \in \partial^{m}E$, the meaure theoretic boundary of $E$, if the following two conditions hold:
+\textbf{Definition \label{measuretheorintext}'} Let $x \in \mathbb{R}^{n}$, then $x \in \partial^{m}E$, the meaure theoretic boundary of $E$, if the following two conditions hold:
 \begin{enumerate}
-	\item $\displaystyle \limsup\limits_{r \to 0} \frac{|B(x,r) \cap E|}{r^{N}} > 0,$
-	\item $\displaystyle \limsup\limits_{r \to 0} \frac{|B(x,r) \setminus E|}{r^{N}} > 0.$
+	\item $\displaystyle \limsup\limits_{r \to 0} \frac{|B(x,r) \cap E|}{r^{n}} > 0,$
+	\item $\displaystyle \limsup\limits_{r \to 0} \frac{|B(x,r) \setminus E|}{r^{n}} > 0.$
 \end{enumerate}
 \end{remark}
 
 \begin{theorem} \label{structhm2} If $E \subset \Omega$ is a set of finite perimeter, then
-\[ \partial^{*}E \subset E^{\frac{1}{2}} \subset \partial^{m}E, \  \ \mathcal{H}^{N-1}(\Omega \setminus (E^{0} \cup \partial^{*}E \cup E^{1}) = 0. \]
-In particular, $E$ has density either $0$, $\frac{1}{2}$ or $1$ at $\mathcal{H}^{N-1}$-a.e. $x \in \Omega$, and, even if $E$ is only locally of finite perimeter, $\mathcal{H}^{N-1}$-a.e. $x \in \partial^{m}E$ belongs to $\partial^{*}E$; that is, $\mathcal{H}^{N-1}(\partial^{m}E \setminus \partial^{*}E) = 0$.
+\[ \partial^{*}E \subset E^{\frac{1}{2}} \subset \partial^{m}E, \  \ \Haus{n-1}(\Omega \setminus (E^{0} \cup \partial^{*}E \cup E^{1}) = 0. \]
+In particular, $E$ has density either $0$, $\frac{1}{2}$ or $1$ at $\Haus{n-1}$-a.e. $x \in \Omega$, and, even if $E$ is only locally of finite perimeter, $\Haus{n-1}$-a.e. $x \in \partial^{m}E$ belongs to $\partial^{*}E$; that is, $\Haus{n-1}(\partial^{m}E \setminus \partial^{*}E) = 0$.
 \end{theorem}
 Proof. See [EG] Section 5.8 Lemma 1 and [AFP] Theorem 3.61.
 
 
-\begin{remark} \label{setrepr} Since the functions of bounded variations are elements of $L^{1}$, they are equivalence class of functions, so that changing the value of any such function on a set of $\mathcal{L}^{N}$-measure zero does not modify the BV class of the function.
+\begin{remark} \label{setrepr} Since the functions of bounded variations are elements of $L^{1}$, they are equivalence class of functions, so that changing the value of any such function on a set of $\Leb{n}$-measure zero does not modify the BV class of the function.
 \\
 Therefore, this is true also for sets of finite perimeter and we can choose any representative $\widetilde{E}$ for $E$, which differs only by a set of measure zero, without altering the reduced nor the measure theoretic boundary.
 \end{remark}
@@ -390,76 +413,76 @@ One of the greatest achievements of BV theory is to establish a generalization o
 
 \begin{theorem} \label{G-G fin per} {\bf (Gauss-Green formula on sets of finite perimeter)}
 \\
-Let $E \subset \mathbb{R}^{N}$ be a set of locally finite perimeter. Then for $\mathcal{H}^{N-1}$ a.e. $x \in \partial^{m} E$, there is a unique measure theoretic interior unit normal $\nu_{E}(x)$ such that $\forall \phi \in C_{c}^{1}(\mathbb{R}^{N}; \mathbb{R}^{N})$ one has
-\[ \int_{E} \mathrm{div}\phi\, dx = - \int_{\partial^{m} E} \phi \cdot \nu_{E}\, d\mathcal{H}^{N-1}. \]
+Let $E \subset \mathbb{R}^{n}$ be a set of locally finite perimeter. Then for $\Haus{n-1}$ a.e. $x \in \partial^{m} E$, there is a unique measure theoretic interior unit normal $\nu_{E}(x)$ such that $\forall \phi \in C_{c}^{1}(\mathbb{R}^{n}; \mathbb{R}^{n})$ one has
+\[ \int_{E} \mathrm{div}\phi\, dx = - \int_{\partial^{m} E} \phi \cdot \nu_{E}\, d\mathcal{H}^{n-1}. \]
 \end{theorem}
-Proof. Since $E$ is a set of locally finite perimeter, $D \chi_{E} = \nu_{E} \mathcal{H}^{N - 1} \llcorner \partial^{*} E$ (Theorem \ref{structhm1}), where $\nu_{E}$ is the measure theoretic interior unit normal. Also, Theorem \ref{structhm2} implies $\mathcal{H}^{N - 1}(\partial^{m} E \setminus \partial^{*} E) = 0$. Hence, for any $\phi \in C^{1}_{c}(\mathbb{R}^{N}; \mathbb{R}^{N})$,
-\[ \int_{\Omega} \chi_{E} \mathrm{div}\phi\, dx = - \int_{\Omega} \phi \cdot D \chi_{E} = - \int_{\partial^{m} E} \phi \cdot \nu_{E}\, d\mathcal{H}^{N-1}. \ \Box \]
+Proof. Since $E$ is a set of locally finite perimeter, $D \chi_{E} = \nu_{E} \Haus{n - 1} \llcorner \partial^{*} E$ (Theorem \ref{structhm1}), where $\nu_{E}$ is the measure theoretic interior unit normal. Also, Theorem \ref{structhm2} implies $\Haus{n - 1}(\partial^{m} E \setminus \partial^{*} E) = 0$. Hence, for any $\phi \in C^{1}_{c}(\mathbb{R}^{n}; \mathbb{R}^{n})$,
+\[ \int_{\Omega} \chi_{E} \mathrm{div}\phi\, dx = - \int_{\Omega} \phi \cdot D \chi_{E} = - \int_{\partial^{m} E} \phi \cdot \nu_{E}\, d\mathcal{H}^{n-1}. \ \Box \]
 
-\begin{remark} Since $\mathcal{H}^{N - 1} (\partial^{m} E \setminus \partial^{*} E) = 0$ (Theorem \ref{structhm2}), without change, we can integrate on the measure theoretic or on the reduced boundary with respect to the measure $\mathcal{H}^{N - 1}$. Since in many practical cases $\partial^{m} E$ is easier to be determined, Theorem \ref{G-G fin per} is often stated in this way. However, since Theorem \ref{structhm1} states that $|D \chi_{E}| \ll \mathcal{H}^{N - 1} \llcorner \partial^{*} E$ and the precise representative of $\chi_{E}$ is well defined on $E^{1} \cup \partial^{*}E \cup E^{0}$ (Lemma \ref{mollcharconv} below), in what follows we will always use the reduced boundary in the Gauss-Green formula.
+\begin{remark} Since $\Haus{n - 1} (\partial^{m} E \setminus \partial^{*} E) = 0$ (Theorem \ref{structhm2}), without change, we can integrate on the measure theoretic or on the reduced boundary with respect to the measure $\Haus{n - 1}$. Since in many practical cases $\partial^{m} E$ is easier to be determined, Theorem \ref{G-G fin per} is often stated in this way. However, since Theorem \ref{structhm1} states that $|D \chi_{E}| \ll \Haus{n - 1} \llcorner \partial^{*} E$ and the precise representative of $\chi_{E}$ is well defined on $E^{1} \cup \partial^{*}E \cup E^{0}$ (Lemma \ref{mollcharconv} below), in what follows we will always use the reduced boundary in the Gauss-Green formula.
 \end{remark}
 
-\begin{remark} \label{G-G fin per bounded} We also observe that if $E$ is a bounded set of finite perimeter in $\mathbb{R}^{N}$, then we can drop the assumption on the support of $\phi$. Indeed, there exists $R > 0$ such that $\overline{E} \subset B(0, R)$, and so, given $\phi \in C^{1}(\mathbb{R}^{N}; \mathbb{R}^{N})$, we can take $\varphi \in C^{\infty}_{c}(\mathbb{R}^{N})$, $\varphi = 1$ in $\overline{B(0, R)}$ (which in particular implies $\nabla \varphi = 0$ in $E$), in order to obtain
+\begin{remark} \label{G-G fin per bounded} We also observe that if $E$ is a bounded set of finite perimeter in $\mathbb{R}^{n}$, then we can drop the assumption on the support of $\phi$. Indeed, there exists $R > 0$ such that $\overline{E} \subset B(0, R)$, and so, given $\phi \in C^{1}(\mathbb{R}^{n}; \mathbb{R}^{n})$, we can take $\varphi \in C^{\infty}_{c}(\mathbb{R}^{n})$, $\varphi = 1$ in $\overline{B(0, R)}$ (which in particular implies $\nabla \varphi = 0$ in $E$), in order to obtain
 \begin{align*} \int_{E} \mathrm{div} \phi \, dx & = \int_{E} (\varphi \mathrm{div}\phi + \phi \cdot \nabla \varphi) \, dx = \int_{E} \mathrm{div}(\phi \varphi) \, dx \\
-& = - \int_{\partial^{*} E} (\phi \varphi) \cdot \nu_{E}\, d\mathcal{H}^{N-1} = - \int_{\partial^{*} E} \phi \cdot \nu_{E}\, d\mathcal{H}^{N-1}. 
+& = - \int_{\partial^{*} E} (\phi \varphi) \cdot \nu_{E}\, d\mathcal{H}^{n-1} = - \int_{\partial^{*} E} \phi \cdot \nu_{E}\, d\mathcal{H}^{n-1}. 
 \end{align*}
 
-It is also easy to see that if $E \subset \subset \Omega \subset \mathbb{R}^{N}$, then we can take just $\phi \in C^{1}(\Omega; \mathbb{R}^{N})$.
+It is also easy to see that if $E \subset \subset \Omega \subset \mathbb{R}^{n}$, then we can take just $\phi \in C^{1}(\Omega; \mathbb{R}^{n})$.
 \end{remark}
 
 As in the case of Sobolev functions, it can be shown that for BV functions the precise representative is well defined and it is the limit of the mollified sequence.
 
-\begin{definition} \label{approxlimrestr} Let $u \in L^{1}_{\rm loc}(\Omega)$ and $a \in \mathbb{R}^{N}$. 
+\begin{definition} \label{approxlimrestr} Let $u \in L^{1}_{\rm loc}(\Omega)$ and $a \in \mathbb{R}^{n}$. 
 \\
-We say that $u_{a}(x)$ is the approximate limit of $u$ at $x \in \Omega$ restricted to $\Pi_{a}(x) := \{y \in \mathbb{R}^{N} : (y - x) \cdot a \ge 0 \}$ if, for any $\epsilon > 0$,
+We say that $u_{a}(x)$ is the approximate limit of $u$ at $x \in \Omega$ restricted to $\Pi_{a}(x) := \{y \in \mathbb{R}^{n} : (y - x) \cdot a \ge 0 \}$ if, for any $\epsilon > 0$,
 
-\[\lim_{r \to 0} \frac{|\{y \in \mathbb{R}^{N} : |u(y) - u_{a}(x)| \ge \epsilon \} \cap B(x,r) \cap \Pi_{a}(x)|}{|B(x,r) \cap \Pi_{a}(x)|} = 0 \]
+\[\lim_{r \to 0} \frac{|\{y \in \mathbb{R}^{n} : |u(y) - u_{a}(x)| \ge \epsilon \} \cap B(x,r) \cap \Pi_{a}(x)|}{|B(x,r) \cap \Pi_{a}(x)|} = 0 \]
 \end{definition}
-\begin{definition} We say that $x \in \Omega$ is a {\em regular point} of a function $u \in BV(\Omega)$ if there exists a vector $a \in \mathbb{R}^{N}$ such that the approximate limits $u_{a}(x)$ and $u_{-a}(x)$ exist. The vector $a$ is called {\em defining vector}.
+\begin{definition} We say that $x \in \Omega$ is a {\em regular point} of a function $u \in BV(\Omega)$ if there exists a vector $a \in \mathbb{R}^{n}$ such that the approximate limits $u_{a}(x)$ and $u_{-a}(x)$ exist. The vector $a$ is called {\em defining vector}.
 \end{definition}
 
 \begin{example} \label{regpointchar} Let $E$ be a set of finite perimeter, for which we choose the representative $E^{1} \cup \partial^{m} E$ (see Remark \ref{setrepr}), and $u = \chi_{E}$, then each point in $E^{1} \cup E^{0} \cup \partial^{*}E$ is a regular point. 
 \\
-If $x \in E^{1}$, $\forall a \in \mathbb{R}^{N}$ $(\chi_{E})_{a}(x) = 1$.
+If $x \in E^{1}$, $\forall a \in \mathbb{R}^{n}$ $(\chi_{E})_{a}(x) = 1$.
 $\forall \epsilon > 0$ we have
 
-\[ \{y \in \mathbb{R}^{N} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x,r) = E^{0} \cap B(x, r) . \]
+\[ \{y \in \mathbb{R}^{n} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x,r) = E^{0} \cap B(x, r) . \]
 
 So, 
-\begin{align*} \lim_{r \to 0} \frac{|\{y \in \mathbb{R}^{N} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x,r)|}{|B(x, r)|} &= \lim_{r \to 0} \frac{|E^{0} \cap B(x, r)|}{|B(x, r)|} \\
+\begin{align*} \lim_{r \to 0} \frac{|\{y \in \mathbb{R}^{n} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x,r)|}{|B(x, r)|} &= \lim_{r \to 0} \frac{|E^{0} \cap B(x, r)|}{|B(x, r)|} \\
 &= 1 - D(E, x)  = 0. 
 \end{align*}
 
-Therefore, $\forall a \in \mathbb{R}^{N}$
-\begin{align*} & \frac{ |\{y \in \mathbb{R}^{N} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x, r) \cap \Pi_{a}(x)|}{|B(x, r) \cap \Pi_{a}(x)|} \\
-& \le \frac{|\{y \in \mathbb{R}^{N} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x, r)|}{|B(x, r)|} \frac{|B(x, r)|}{|B(x, r) \cap \Pi_{a}(x)|} \\
-& = 2 \frac{|\{y \in \mathbb{R}^{N} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x, r)|}{|B(x, r)|} \to 0 \ \ \text{as} \ \ r \to 0.
+Therefore, $\forall a \in \mathbb{R}^{n}$
+\begin{align*} & \frac{ |\{y \in \mathbb{R}^{n} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x, r) \cap \Pi_{a}(x)|}{|B(x, r) \cap \Pi_{a}(x)|} \\
+& \le \frac{|\{y \in \mathbb{R}^{n} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x, r)|}{|B(x, r)|} \frac{|B(x, r)|}{|B(x, r) \cap \Pi_{a}(x)|} \\
+& = 2 \frac{|\{y \in \mathbb{R}^{n} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x, r)|}{|B(x, r)|} \to 0 \ \ \text{as} \ \ r \to 0.
 \end{align*}
 
-In an analogous way, we show that $\forall x \in E^{0}$ $(\chi_{E})_{a}(x) = 0$ $\forall a \in \mathbb{R}^{N}$. $\forall \epsilon > 0$ we have
+In an analogous way, we show that $\forall x \in E^{0}$ $(\chi_{E})_{a}(x) = 0$ $\forall a \in \mathbb{R}^{n}$. $\forall \epsilon > 0$ we have
 
-\[ \{y \in \mathbb{R}^{N} : |\chi_{E}(y)| \ge \epsilon \} \cap B(x,r) = E \cap B(x, r)  \]
+\[ \{y \in \mathbb{R}^{n} : |\chi_{E}(y)| \ge \epsilon \} \cap B(x,r) = E \cap B(x, r)  \]
 and so
-\begin{align*} \lim_{r \to 0} \frac{|\{y \in \mathbb{R}^{N} : |\chi_{E}(y)| \ge \epsilon \} \cap B(x,r)|}{|B(x, r)|} &= \lim_{r \to 0} \frac{|E \cap B(x, r)|}{|B(x, r)|} \\
+\begin{align*} \lim_{r \to 0} \frac{|\{y \in \mathbb{R}^{n} : |\chi_{E}(y)| \ge \epsilon \} \cap B(x,r)|}{|B(x, r)|} &= \lim_{r \to 0} \frac{|E \cap B(x, r)|}{|B(x, r)|} \\
 &= D(E, x)  = 0. 
 \end{align*}
 
-Therefore, $\forall a \in \mathbb{R}^{N}$
-\begin{align*} & \frac{ |\{y \in \mathbb{R}^{N} : |\chi_{E}(y)| \ge \epsilon \}\cap B(x, r) \cap \Pi_{a}(x)|}{|B(x, r) \cap \Pi_{a}(x)|} \\
-& \le \frac{|\{y \in \mathbb{R}^{N} : |\chi_{E}(y)| \ge \epsilon \} \cap B(x, r)|}{|B(x, r)|} \frac{|B(x, r)|}{|B(x, r) \cap \Pi_{a}(x)|} \\
-& = 2 \frac{|\{y \in \mathbb{R}^{N} : |\chi_{E}(y)| \ge \epsilon \} \cap B(x, r)|}{|B(x, r)|} \to 0 \ \ \text{as} \ \ r \to 0.
+Therefore, $\forall a \in \mathbb{R}^{n}$
+\begin{align*} & \frac{ |\{y \in \mathbb{R}^{n} : |\chi_{E}(y)| \ge \epsilon \}\cap B(x, r) \cap \Pi_{a}(x)|}{|B(x, r) \cap \Pi_{a}(x)|} \\
+& \le \frac{|\{y \in \mathbb{R}^{n} : |\chi_{E}(y)| \ge \epsilon \} \cap B(x, r)|}{|B(x, r)|} \frac{|B(x, r)|}{|B(x, r) \cap \Pi_{a}(x)|} \\
+& = 2 \frac{|\{y \in \mathbb{R}^{n} : |\chi_{E}(y)| \ge \epsilon \} \cap B(x, r)|}{|B(x, r)|} \to 0 \ \ \text{as} \ \ r \to 0.
 \end{align*}
 
 Now let $x \in \partial^{*}E$ and $a$ be the measure theoretic interior normal. Then $(\chi_{E})_{a}(x) = 1$ and $(\chi_{E})_{-a}(x) = 0$.
 \\
 Referring to the notation of Corollary \ref{blowcor}, we have $\Pi_{a}(x) = H^{-}(x)$ and \\
 $\Pi_{-a}(x) = H^{+}(x)$, hence $\forall \epsilon > 0$
-\begin{align*} & \lim_{r \to 0} \frac{|\{y \in \mathbb{R}^{N} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x,r) \cap \Pi_{a}(x)|}{|B(x, r) \cap \Pi_{a}(x)|} \\
-&= \lim_{r \to 0} \frac{|E^{0} \cap B(x, r) \cap \Pi_{a}(x)|}{|B(x, r) \cap \Pi_{a}(x)|}  = \lim_{r \to 0} \frac{2}{\omega_{N} r^{N}} | (B(x, r) \setminus E ) \cap H^{-}(x)| = 0
+\begin{align*} & \lim_{r \to 0} \frac{|\{y \in \mathbb{R}^{n} : |\chi_{E}(y) - 1| \ge \epsilon \} \cap B(x,r) \cap \Pi_{a}(x)|}{|B(x, r) \cap \Pi_{a}(x)|} \\
+&= \lim_{r \to 0} \frac{|E^{0} \cap B(x, r) \cap \Pi_{a}(x)|}{|B(x, r) \cap \Pi_{a}(x)|}  = \lim_{r \to 0} \frac{2}{\omega_{n} r^{n}} | (B(x, r) \setminus E ) \cap H^{-}(x)| = 0
 \end{align*}
 and
-\begin{align*} & \lim_{r \to 0} \frac{|\{y \in \mathbb{R}^{N} : |\chi_{E}(y)| \ge \epsilon \} \cap B(x,r) \cap \Pi_{-a}(x)|}{|B(x, r) \cap \Pi_{-a}(x)|} \\ 
-&= \lim_{r \to 0} \frac{|E \cap B(x, r) \cap \Pi_{-a}(x)|}{|B(x, r) \cap \Pi_{-a}(x)|} = \lim_{r \to 0} \frac{2}{\omega_{N} r^{N}} | B(x, r) \cap E \cap H^{+}(x)| = 0.
+\begin{align*} & \lim_{r \to 0} \frac{|\{y \in \mathbb{R}^{n} : |\chi_{E}(y)| \ge \epsilon \} \cap B(x,r) \cap \Pi_{-a}(x)|}{|B(x, r) \cap \Pi_{-a}(x)|} \\ 
+&= \lim_{r \to 0} \frac{|E \cap B(x, r) \cap \Pi_{-a}(x)|}{|B(x, r) \cap \Pi_{-a}(x)|} = \lim_{r \to 0} \frac{2}{\omega_{n} r^{n}} | B(x, r) \cap E \cap H^{+}(x)| = 0.
 \end{align*}
 
 This shows our claim.
@@ -468,29 +491,29 @@ This shows our claim.
 
 
 
-\begin{theorem} \label{irregularpoints} Let $u \in BV(\Omega)$. The set of irregular points has $\mathcal{H}^{N-1}$-measure zero.
+\begin{theorem} \label{irregularpoints} Let $u \in BV(\Omega)$. The set of irregular points has $\Haus{n-1}$-measure zero.
 \end{theorem}
 
 Proof. See [VH] Chapter 4 §5.5, or [EG] Section 5.9 Theorem 3.
 
 \begin{theorem} \label{regularpoints} Let $u \in BV(\Omega)$ and $x$ be a regular point of $u$. Then
 \begin{enumerate}
-	\item If $u_{a}(x) = u_{-a}(x)$, any $b \in \mathbb{R}^{N}$ is a defining vector and $u_{b}(x) = u_{a}(x)$; that is, $x$ is a point of approximate continuity. 
+	\item If $u_{a}(x) = u_{-a}(x)$, any $b \in \mathbb{R}^{n}$ is a defining vector and $u_{b}(x) = u_{a}(x)$; that is, $x$ is a point of approximate continuity. 
 	\item If $u_{a}(x) \neq u_{-a}(x)$, then $a$ is unique up to a sign.
 	\item The mollification of $u$ converges to the precise representative $u^{*}$ at each regular point and $u^{*}(x) = \frac{1}{2} (u_{a}(x) + u_{-a}(x) )$.
 \end{enumerate}
 \end{theorem}
 Proof. See [VH] Chapter 4 §4.4 and Chapter 4 §5.6 Theorem 1, or [EG] Section 5.9 Corollary 1.
 
-\begin{remark} By Theorem \ref{approximatecontinuity}, we deduce that condition 1) in Theorem \ref{regularpoints} holds $\mathcal{L}^{N}$-a.e. 
+\begin{remark} By Theorem \ref{approximatecontinuity}, we deduce that condition 1) in Theorem \ref{regularpoints} holds $\Leb{n}$-a.e. 
 \end{remark}
 
 We state now some standard results on the mollification of characteristic functions of sets of finite perimeter.
 
 \begin{remark} \label{chargradbound} By Remark \ref{BVR^N}, if $E$ be a set of finite perimeter and $\{ \chi_{\delta_{k}} \}$ denotes the mollification of $\chi_{E}$, then
-\[ \|\nabla \chi_{\delta_{k}}\|_{L^{1}(\mathbb{R}^{N})} \le |D \chi_{E}|(\mathbb{R}^{N}) \]
+\[ \|\nabla \chi_{\delta_{k}}\|_{L^{1}(\mathbb{R}^{n})} \le |D \chi_{E}|(\mathbb{R}^{n}) \]
 and
-\[ \|\nabla \chi_{\delta_{k}}\|_{L^{1}(\mathbb{R}^{N})} \to |D \chi_{E}|(\mathbb{R}^{N}) \]
+\[ \|\nabla \chi_{\delta_{k}}\|_{L^{1}(\mathbb{R}^{n})} \to |D \chi_{E}|(\mathbb{R}^{n}) \]
 \end{remark}
 
 We state now some relevant properties of the mollifications of characteristic functions of sets of finite perimeter.
@@ -537,7 +560,7 @@ We state now the co-area formula, which shows an important connection between BV
 
 \begin{theorem} \label{Federer-Fleming co-area} {\bf (Federer and Fleming co-area fromula)}
 \\
-If $u \in BV(\Omega)$, then for $\mathcal{L}^{1}$ a.e. $s \in \mathbb{R}$, the set $\{ u > s \}$ has finite perimeter in $\Omega$ and
+If $u \in BV(\Omega)$, then for $\Leb{1}$ a.e. $s \in \mathbb{R}$, the set $\{ u > s \}$ has finite perimeter in $\Omega$ and
 \[ |Du|(\Omega) = \int_{-\infty}^{+\infty} |D\chi_{\{u > s\}}|(\Omega) ds. \]
 
 Conversely, if $u \in L^{1}(\Omega)$ and $\int_{-\infty}^{+\infty} |D\chi_{\{u > s\}}|(\Omega) ds < \infty$, then $u \in BV(\Omega)$.
@@ -570,14 +593,14 @@ $\Box$
 
 Proof. See [EG] Section 5.5 Theorem 1 and [AFP] Theorem 3.40.
 
-\begin{remark} \label{BVabscont} A consequence of Theorem \ref{Federer-Fleming co-area} is that, for any $u \in BV(\Omega)$, $|Du| \ll \mathcal{H}^{N - 1}$. Indeed, for any Borel set $B \subset \Omega$ such that $\mathcal{H}^{N - 1}(B) = 0$, co-area formula implies $|Du|(B) = 0$.
+\begin{remark} \label{BVabscont} A consequence of Theorem \ref{Federer-Fleming co-area} is that, for any $u \in BV(\Omega)$, $|Du| \ll \Haus{n - 1}$. Indeed, for any Borel set $B \subset \Omega$ such that $\Haus{n - 1}(B) = 0$, co-area formula implies $|Du|(B) = 0$.
 \end{remark}
 
-\begin{lemma} \label{nullcoarea} Let $u : \Omega \to \mathbb{R}$ be a Lipschitz function, and let $A \subset \mathbb{R}^{N}$ be a set of measure zero.
+\begin{lemma} \label{nullcoarea} Let $u : \Omega \to \mathbb{R}$ be a Lipschitz function, and let $A \subset \mathbb{R}^{n}$ be a set of measure zero.
 \\
 Then 
-\[ \mathcal{H}^{N-1}(A \cap u^{-1}(s) ) = 0 \  \ \text{for} \ \ \mathcal{L}^{1}\text{-a.e.} \, s \in \mathbb{R}. \]
+\[ \Haus{n-1}(A \cap u^{-1}(s) ) = 0 \  \ \text{for} \ \ \Leb{1}\text{-a.e.} \, s \in \mathbb{R}. \]
 \end{lemma}
 
 Proof. It is an immediate consequence of the classical co-area formula for Lipschitz functions (see [EG], Section 3.4.2 Theorem 1); that is,
-\[ 0 = \int_{A} |\nabla u(x)| dx = \int_{-\infty}^{+\infty} \mathcal{H}^{N-1}(A \cap u^{-1}(s)) ds. \, \Box \]
+\[ 0 = \int_{A} |\nabla u(x)| dx = \int_{-\infty}^{+\infty} \Haus{n-1}(A \cap u^{-1}(s)) ds. \, \Box \]

@@ -65,7 +65,7 @@ subsets of $X$, then
 
 We list now some relevant definitions.
 
-\begin{definition} \hfill
+\begin{definition} \label{def:Borel_Radon_measure} \hfill
 \begin{enumerate}[(1)]
 %%%
 \item Given any $\mathfrak{C} \subset \mathcal{P}(X)$, we call the smallest
@@ -359,7 +359,7 @@ that $\Haus{r}(A) = 0$ for all $ r > s$ and in particular for $r = t$, which is 
 \end{proof}
 
 \begin{definition}
-We call the \emph{Hausdorff dimension} of a set $A\subset \R^n$ the number
+We call the \emph{Hausdorff dimension}\footnote{The interested reader may find a detailed exposition on Hausdorff's and other related concepts of dimension in the monograph \cite{Falconer}.} of a set $A\subset \R^n$ the number
 \[
 \dim_{\Haus{}}(A) := \inf\left\{ \alpha \geq 0 : \Haus{\alpha}(A) = 0
 \right\}.
@@ -389,7 +389,11 @@ $\Haus{n}_{\delta} = \Haus{n} = \Leb{n}$ on $\R^{n}$, for any $\delta > 0$.
 
 \begin{remark}
 As a consequence of Theorem \ref{thm:equivalence_Haus_Leb}, we see that $\Haus{\alpha}$ is \emph{not} a Radon measure for all $\alpha \in
-[0,n)$. Indeed, it is not bounded on some compact sets. Take for example the closed unit ball $\overline{B(0,1)}$ in $\R^n$. We know that $0 < \Haus{n}(\overline{B(0,1)}) < \infty$ and so, by Proposition \ref{prop:prop_Hausdorff_dim},
+[0,n)$. Indeed, it is not bounded on some compact sets. Take for example the closed unit ball $\overline{B(0,1)}$ in $\R^n$. We know that 
+\begin{equation*}
+\Haus{n}(\overline{B(0,1)}) = \Leb{n}(\overline{B(0, 1)}) = \omega_{n} \in (0, \infty)
+\end{equation*} 
+and so, by Proposition \ref{prop:prop_Hausdorff_dim},
 $\Haus{\alpha}(\overline{B(0,1)}) = +\infty$ for all $\alpha < n$.
 \end{remark}
 
@@ -476,55 +480,44 @@ where $C_{\alpha, \gamma} = \Lip(f)^{\alpha}$, if $\gamma = 1$.
 By sending $\delta \searrow 0$ we conclude the proof.
 \end{proof}
 
-\begin{remark}[Sierpinski triangle (Waclaw Sierpinski 1915)]
-One can construct a fractal triangle as follows: 
+\begin{example}[Sierpinski triangle\footnote{Fractal described by Waclaw Sierpinski in 1915, \cite{sierpinski1915courbe}, and appearing in Italian art from the 11th century \cite{conversano2011sierpinski}.}] We provide an example on the estimation of the Hausdorff measure for a set with non integer Hausdorff dimension.
+Let us construct a self-similar fractal in $\R^{2}$ in the following way: 
 
 \begin{enumerate}[1.]
-\item Take $S_0$ to be a equilateral
-triangle. 
-\item Divide $S_0$ evenly into four smaller equilateral
-triangles. Cut out the triangle in the center.
-\item Now do the step in $2.$ with these three equilateral triangles indefinitely.
+\item Take $S_0$ to be an equilateral
+triangle with side length $1$. 
+\item Divide each side in half, then connect the three middle points, so that $S_0$ becomes the union of four congruent equilateral
+triangles. Then, remove the open triangle in the center and denote by $S_{1}$ the union of the three remaining closed triangles with side length $1/2$.
+\item Now repeat the step in $2.$ in each one of the three equilateral triangles in $S_{1}$ in order to generate nine triangles of side length $1/4$ which form $S_{2}$.
 \end{enumerate}
 
-So the $S_k$'s are the 
-union of $3^k$ equilateral triangles with side length $2^{-k}$. We define 
-\[
-S := \bigcup_{k=0}^\infty S_k
-\vspace{-1em}
-\]
-and compute
+By iterating this procedure $k$ times, we construct the set $S_k$ as the union of $3^k$ equilateral triangles with side length $2^{-k}$. Notice that $S_{k +1} \subset S_{k}$ and each one of the $S_{k}$'s is compact and nonempty. Hence, we define the {\em Sierpinski triangle} as the set
+\begin{equation*}
+S := \bigcup_{k=0}^\infty S_k,
+\end{equation*}
+which is therefore compact and nonempty. Since the area of an equilateral triangle of side length $l$ is $\frac{\sqrt{3}}{4} l^2$, so that we have
+\begin{equation*}
+\Leb{2}(S) \le \Leb{2}(S_{k}) = 3^{k} \frac{\sqrt{3}}{4} 4^{-k}
+\end{equation*}
+for any $k \ge 0$, so that, by taking the limit as $k \to + \infty$, we conclude that $\Leb{2}(S) = 0$. We proceed now to estimate the Hausdorff measure of $S$. We notice that $$S_{k} = \bigcup_{j = 1}^{3^{k}} S_{k, j},$$ if we denote by $S_{k, j}$ the $j$-th equilateral triangle of the $k$-th iteration step. It is not difficult to see that $\diam(S_{k, j}) = 2^{-k}$. Therefore, since clearly $S \subset S_{k}$, for any $k \ge 0$, we see that, by choosing $\delta = 2^{-k}$, we obtain the following estimate
 \[
 \Haus{\alpha}_{\frac{1}{2^k}}(S) 
 \leq \sum_{j=1}^{3^k}
 \frac{\omega_\alpha}{2^\alpha} 
-\left(\diam {S_k}^j\right)^\alpha 
+\left(\diam S_{k,j} \right)^\alpha 
 = \frac{\omega_\alpha}{2^\alpha} 3^k 2^{-k\alpha},
 %\searrow 0 \quad as \quad k\to \infty \quad \text{iff} \quad \alpha >
 %\frac{\log^3}{\log^2}.
 \]
-which goes to zero for $k\to \infty$ if and only if $\alpha >
-\frac{\log^3}{\log^2}$.
-So we can conclude that for all $\alpha > \frac{\log{3}}{\log{2}}$ we
-have $\Haus{\alpha}(S) = 0$ and with that we found:
-%\[
-%\Rightarrow \Haus{\alpha}(S) = 0 \quad \forall \alpha > \frac{\log 3}{\log
-%2} \Rightarrow \dim_{\mathcal{H}}(S) \leq \frac{\log 3}{\log 2}.
-%\]
+which goes to zero for $k\to \infty$ if $\alpha >
+\frac{\log^3}{\log^2}$. Thus, we can conclude that, for all $\alpha > \frac{\log{3}}{\log{2}}$, we
+have $\Haus{\alpha}(S) = 0$, and this yields an upper bound on the Hausdorff dimension of $S$:
 \[
 \dim_{\mathcal{H}}(S) \leq \frac{\log 3}{\log 2}.
 \]
-\end{remark}
+\end{example}
 
-Next we aim to proof an important characterization for the Hausdorff measure for
-positive integers:
-
-\begin{theorem}
-\label{thmHeqL}
-$\Haus{n}= \Leb{n}$ on $\R^n$.
-\end{theorem}
-
-The proof is crucially based on the two following statements.
+We come now to the proof of Theorem \ref{thm:equivalence_Haus_Leb}, which is crucially based on the two following statements.
 
 \begin{lemma}[Vitali covering property for $\Leb{n}$]
 \label{lemmaVitaliCovering}
@@ -533,7 +526,7 @@ closed balls $\{\overline{B_k}\}_{k=1}^\infty$ such that $\diam B_k < \delta$ an
 $\Leb{n}(U \setminus \bigcup_{k=1}^\infty \overline{B_k}) = 0$.
 \end{lemma}
 
-\begin{theorem}[isodiametric inequality]
+\begin{theorem}[Isodiametric inequality]
 \label{thmIso}
 For all $\Leb{n}$-measurable sets $E \subset \R^n$ we have 
 \[
@@ -541,79 +534,78 @@ For all $\Leb{n}$-measurable sets $E \subset \R^n$ we have
 \]
 \end{theorem}
 
-\begin{proof}[Proof of theorem \ref{thmHeqL}]
-We show the proof in three steps.~
-\begin{enumerate}[({Step} 1) To show:]
-\item $\Leb{n}(A) \leq \Haus{n}(A)$ for all $A \subset \R^n$.
+\begin{proof}[Proof of theorem \ref{thm:equivalence_Haus_Leb}]
+The proof consists of three steps.~
+\begin{enumerate}[({Step} 1) {Claim}:]
+\item $\Leb{n}(A) \leq \Haus{n}_{\delta}(A)$ for all $A \subset \R^n$ and for all $\delta > 0$.
 \\
 Fix $\delta > 0$. Let $\{C_j\}_{j\in I}$: $A \subset \bigcup_{j\in I} C_j$, $\diam
-C_j \leq \delta$. From this follows 
+C_j \leq \delta$. By the $\sigma$-subadditivity of the Lebesgue measure, we have
 \[
 \Leb{n}(A) \leq \sum_{j=1}^\infty \Leb{n}(C_j) \leq
 \sum_{j=1}^\infty \omega_n \left(\frac{\diam C_j}{2}\right)^n,
 \]
 where in the last inequality we used the \emph{isometric
-inequality} (e.g. theorem \ref{thmIso}). Taking the
-infimum over all $\{C_j\}$ we arrive at claim
+inequality}, Theorem \ref{thmIso}. Taking the
+infimum over all such $\delta$-coverings $\{C_j\}_{j \in J}$, we obtain the claim
 \[
 \Leb{n}(A) \leq \Haus{n}_\delta (A) \qquad \text{for all} \quad
 \delta > 0.
 \]
 %%% Step 2
-\item $\Haus{n}_{\delta} \leq C_n \Leb{n}$ for some $C_n \geq 1$.
-\\
-With the definition of the Lebesgue measure we get
+\item for all $\delta > 0$, there exists $C_{n} \geq 1$ such that $\Haus{n}_{\delta} \leq C_n \Leb{n}$.
+
+Notice that for any cube $Q$ we have
+\begin{equation*}
+\Leb{n}(Q) = \left(\frac{ \diam Q}{\sqrt{n}}\right)^n.
+\end{equation*}
+By the definition of the Lebesgue measure we get
 \[
 \begin{aligned}
 \Leb{n}(A) 
 &= \inf\left\{ \sum_{j=1}^\infty \Leb{n}(Q_j) \mid A
 \subset \bigcup Q_j\right\}
-\\&= \inf\left\{ \sum_{j=1}^\infty \Leb{n}(Q_j) \mid A
-\subset \bigcup Q_j,\, \diam Q_j < \delta \right\}
+\\& = \inf\left\{ \sum_{j=1}^\infty \Leb{n}(Q_j) \mid A
+\subset \bigcup Q_j,\, \diam Q_j \le \delta \right\}
 \\& = \frac{2^n}{\left(\sqrt{n}\right)^n \omega_n} \inf
-\left\{\sum_{j=1}^\infty \omega_n \left(\frac{\diam Q_j}{2}\right)^2 \mid 
+\left\{\sum_{j=1}^\infty \omega_n \left(\frac{\diam Q_j}{2}\right)^n \mid 
 A \subset \bigcup Q_j,\, \diam Q_j < \delta\right\}
 \\&\geq \frac{1}{C_n} \Haus{n}_\delta (A),
 \end{aligned}
 \]
-where for the second equality we used that 
+where in the second equality we used the fact that 
 \[
 \Leb{n} = \underbrace{\Leb{1} \times \dots \times \Leb{1}}_{n-\text{times}}\,,
-\qquad 
-\Leb{1} = \Haus{1}_\delta \quad \text{in } \R \quad \text{ for all } \delta > 0, 
-\quad \text{and} \quad 
-\Leb{n}(Q_j) = \left(\frac{ \diam
-Q_j}{\sqrt{n}}\right)^n.
+\quad \text{and} \quad
+\Leb{1} = \Haus{1}_\delta \quad \text{in } \R \quad \text{ for all } \delta > 0.
 \]
 
 \item $\Haus{n}_\delta(A) \leq \Leb{n}(A) + \varepsilon$ for any $\varepsilon >
 0$.
 \\
-By definition of $\Leb{n}$: For all $\delta, \varepsilon > 0$, 
+By the definition of $\Leb{n}$ we see that, for all fixed $\delta, \varepsilon > 0$, 
 there exists a family $\{Q_j\}_{j=1}^\infty$ such that $A \subset
 \bigcup_{j=1}^\infty Q_j$, $\diam Q_j \leq \delta$ 
 and $\sum_{j=1}^\infty \Leb{n}(Q_j) \leq \Leb{n}(A) + \varepsilon$.
-Now, with lemma \ref{lemmaVitaliCovering}, there exists a family
-$(B_j^i)_{i=1}^\infty$ of disjoint
-closed balls such that $B_j^i \subset Q_j$ for all $(\diam B^i_j \leq
+Now, by Lemma \ref{lemmaVitaliCovering}, there exists a family
+$(\overline{B_j^i})_{i=1}^\infty$ of disjoint
+closed balls such that $\overline{B_j^i} \subset Q_j$ for all $(\diam B^i_j \leq
 \delta)$ and 
 \vspace{-0.4em}
 \[
 %\vspace{-1em}
-\Leb{n}\left(\overset{\circ}{Q}_j \setminus \bigcup_{i=1}^\infty
+\Leb{n}\left(Q_j \setminus \bigcup_{i=1}^\infty
+\overline{B_j^i}\right) = \Leb{n}\left(\overset{\circ}{Q}_j \setminus \bigcup_{i=1}^\infty
 \overline{B_j^i}\right) 
-= 0 
-= \Leb{n}\left(Q_j \setminus \bigcup_{i=1}^\infty
-\overline{B_j^i}\right).
+= 0.
 \]
-So with step 2 we also have
+Therefore, by Step 2 we also have
 \vspace{-0.4em}
 \[
 \Haus{n}_\delta\left(Q_j \setminus \bigcup_{i=1}^\infty
 \overline{B_j^i}\right) = 0,
 \]
-%From this we can with the help of step 2 calculate:
-from which we can infer that
+from which we deduce that
 \[
 \begin{aligned}
 \Haus{n}_\delta(A) 
@@ -637,240 +629,316 @@ _{=\Leb{n}\left(\overline{B^i_j}\right)}
 \end{aligned}
 \]
 \end{enumerate}
-And since the $\varepsilon > 0$ is arbitrary in (step 2) we arrive at the claim.
+Since $\varepsilon > 0$ is arbitrary, this inequality ends the proof.
 \end{proof}
 
-\begin{proof}[Proof of isodiametric inequality (lemma \ref{thmIso})]
-If $E \subset B(x, \frac{\diam E}{2})$ for some $x$ then it's trivial.
-w.l.o.g, $E$ is compact. $\diam A = \diam \overline{A}$.
-Steiner symmetrization (1838). Decompose $\R^n = \R^{n-1}\times \R^1$ and let $p
-: \R^n \to \R^{n-1}$, $q: \R^n \to \R$ so that $x = (px, qx)$, $q(x) = x_n$
+\begin{proof}[Proof of the isodiametric inequality (Theorem \ref{thmIso})]
+Without loss of generality, we may assume $E$ to be compact. Indeed, notice that $\diam A = \diam \overline{A}$, and, if $\diam E = + \infty$, the inequality is trivially true.
+
+Next, observe that, if $E \subset B(x, \frac{\diam E}{2})$ for some $x \in \R^{n}$, then there is nothing to prove. We employ Steiner symmetrization\footnote{Introduced in 1838 by Jakob Steiner \cite{steiner1838einfache}.} in order to reduce ourselves to such a case.
+
+Decompose $\R^n = \R^{n-1}\times \R^1$ and let $p
+: \R^n \to \R^{n-1}$, $q: \R^n \to \R$ be the orthogonal projections, $$p(x) = (x_{1}, \dots, x_{n - 1}), \quad q(x) =x_{n},$$ so that $$x = (p(x), q(x)) \quad \text{and} \quad |x|^2 = |p(x)|^2 + |q(x)|^2.$$ T
+hen, for any $z \in \R^{n - 1}$ we define the {\em verital section}
 \[
-\forall z \in \R^{n-1} \quad E_z := \left\{t\in\R : (z,t) \in E\right\}
-\quad \textnormal{vertical section}
+ E_z := \left\{t\in\R : (z,t) \in E\right\},
 \]
-define
+and, as a consequence, we introduce the {\em symmetrization} of $E$ with respect $n$-th coordinate axis:
 \[
 E^s := \left\{ x \in \R^n: |q(x)| \leq \frac{\Leb{1}(E_{p(x)})}{2}\right\}.
 \]
 By Fubini's theorem, $E_z$ is $\Leb{1}$-measurable for
 $\Leb{n-1}$-a.e. $z$, $z \mapsto \Leb{1}(E_z)$ is Lebesgue
 measurable and so we get
-\[
+\begin{equation} \label{eq:Lebesgue_symm_equality}
 |E| = \int_{\R^{n-1}} \Leb{1}(E_z) dz = \int_{\R^{n-1}}
 \Leb{1}(E_z^s) dz = |E^s|,
-\]
-where the first equality follows with Fubini,
-and the second equal sign is due to 
+\end{equation}
+where the first equality follows by Fubini's theorem, and the second one is a consequence of the fact that
 \[
 (E^s)_z = \{ t\in\R : (z,t) \in E^s \}
 = \left\{ t\in \R : |t| \leq \frac{\Leb{1}(E_z)}{2} \right\}
 = \left[ - \frac{\Leb{1}(E_z)}{2}, \frac{\Leb{1}(E_z)}{2} \right].
 \]
 
-Now we claim 
-$$\diam E^s \leq \diam E.$$ 
-To proof this, let $x \in E^s$ and define $M(x), m(x)
+Now we claim that
+\begin{equation} \label{eq:diam_control}
+\diam E^s \leq \diam E.
+\end{equation}
+In order to prove this, let $x \in E^s$ and define $M(x), m(x)
 \in E$ to be the points for which 
 \[
 \begin{aligned}
-p(m(x)) &= p(M (x)) = px
+p(m(x)) &= p(M(x)) = p(x)
 \\
-q(m(x)) &= q(z) \leq q(M(x))
+q(m(x)) &\le q(z) \leq q(M(x))
 \qquad \text{for all} \quad z \in E \quad \text{with} \quad p(z) = p(x).
 \end{aligned}
 \]
-Let $x,y \in E^s$, 
+Hence, for all $x,y \in E^s$, we have
 \[
-|q(x) - q(y)| \leq \max \left\{|q(M(x)) - q(m(y))|, |q(M(y)) - q(m(x))|\right\}
-\overset{w.l.o.g.}{=} |q(M(x)) - q(m(y))|
+|q(x) - q(y)| \leq \max \left\{|q(M(x)) - q(m(y))|, |q(M(y)) - q(m(x))|\right\},
 \]
-\[
-|x-y|^2 = |p(x-y)|^2 + |q(x-y)|^2 \leq \max \left\{|M(x) - m(y)|, |M(y) -
+in particular, without loss of generality, we can assume that
+$$\max \left\{|q(M(x)) - q(m(y))|, |q(M(y)) - q(m(x))|\right\} = |q(M(x)) - q(m(y))|,$$
+so that
+$$ |q(x) - q(y)| \leq |q(M(x)) - q(m(y))|.$$
+As a consequence, we see that
+\begin{align*}
+|x-y|^2 & = |p(x-y)|^2 + |q(x-y)|^2 \leq |p(M(x)) - p(m(y))|^2 + |q(M(x)) - q(m(y))|^2 \\
+& = |M(x) - m(y)|^2 = \max \left\{|M(x) - m(y)|, |M(y) -
 m(x)|\right\}^2
 \leq (\diam E)^2 .
-\]
-From this follows $|x - y| \leq \diam E$ for all $x,y \in E^s$.
+\end{align*}
+This means that $|x - y| \leq \diam E$ for all $x,y \in E^s$, which immediately implies \eqref{eq:diam_control}.
 
 Given a $\Leb{n}$ measurable set $F$, we define $F^i$ to be the Steiner
-symmetrization with respect to the $i$-th coordinate axis.
-$E_0 := E$, $E_i := (E_{i=1})^i$ with $i \in \{1,2,\dots,n\}$. Then $|E_n| = |E|$,
-$\diam E_n \leq \diam E$ and, if $x\in E_n$, then $-x \in E_n$. From this
-follows $E_n \subset B\left(0,\frac{\diam E_n}{2}\right)$.
-And with this we are done!
+symmetrization with respect to the $i$-th coordinate axis. Hence, if we set $E_0 := E$, $E_i := (E_{i=1})^i$ with $i \in \{1,2,\dots,n\}$, then, by \eqref{eq:Lebesgue_symm_equality} we have $|E_n| = |E|$ and $\diam E_n \leq \diam E$ by \eqref{eq:diam_control}. In addition, we notice that, if $x\in E_n$, then $-x \in E_n$, which implies $E_n \subset B\left(0,\frac{\diam E_n}{2}\right)$. Thus, we conclude that
+\begin{equation*}
+|E| = |E_{n}| \le \omega_{n} \left ( \frac{\diam E_{n}}{2} \right )^{n} \le \omega_{n} \left ( \frac{\diam E}{2} \right )^{n}.
+\end{equation*}
+And so we are done!
 \end{proof}
 
 \section{Integration and Radon measures}
-
-Let $X \neq \emptyset$, and $\mu$ be a measure on $X$.
+ 
+In this section, let $X \neq \emptyset$, and $\mu$ be a measure on $X$. Recall the definition of the {\em extended real line} $$\overline{\R}:= [-\infty,\infty].$$
 
 \begin{definition}~
 \begin{enumerate}[(1)]
-\item A function $u : X \to [-\infty,\infty] =: \overline{\R}$ is \emph{$\mu$-measurable} if
-$\{u > t\} = \{ x \in X : u(x) > t\}$ is $\mu$-measurable for all $t\in
-\overline{\R}$.
+\item A function $u : X \to \overline{\R}$ is \emph{$\mu$-measurable} if the {\em superlevel set} $$\{u > t\} := \{ x \in X : u(x) > t\}$$ 
+is $\mu$-measurable for all $t\in \overline{\R}$.
 \item $u$ is a \emph{$\mu$-simple function} if it is $\mu$-measurable and $u(X)$ is
-countable (that is $u(x) = \sum_{k=1}^\infty u_k \chi_{E_k}(x)$)
+countable; that is, $$u(x) = \sum_{k=1}^\infty u_k \chi_{E_k}(x),$$
+for some sequences of real numbers $\{u_{k}\}$ and of $\mu$-measurable disjoint sets $\{E_{k}\}$.
 \item If $u$ is a non-negative $\mu$-simple function, we define 
 \[
-\int_X u d\mu := \sum_{t \in u(X)} t\mu(\{u=t\}) = \sum_{k=1}^\infty u_k
+\int_X u \, d\mu := \sum_{t \in u(X)} t\mu(\{u=t\}) = \sum_{k=1}^\infty u_k
 \mu(E_k) \in [0,\infty]
 \]
-where $0 \cdot \infty = 0$.
-\item Set $u^\pm := \max\{\pm u, 0 \}$, $u = u^+ - u^-$. 
-If $u$ is $\mu$-simple and $\int_X u^+ d\mu$ or $\int_X u^- d\mu < \infty$, then
-\[
-\int_X u d\mu := \int_X u^+ d\mu - \int_X \mu^- d\mu \in [-\infty,\infty]
-\]
-If $v$ satisfies (4), is called $\mu$-integrable simple function.
-\item If $u$ is $\mu$-measurable, we define the upper and lower integrals of $u$
+with the convention that $0 \cdot \infty = 0$.
+\item We set $u^\pm := \max\{\pm u, 0 \}$, so that $u = u^+ - u^-$ and $|u| = u^{+} + u^{-}$. 
+If $u$ is $\mu$-simple and $\int_X u^+ d\mu$ or $\int_X u^- d\mu < \infty$, then we define
+\begin{equation} \label{eq:mu_integrable_simple}
+\int_X u \, d\mu := \int_X u^+ d\mu - \int_X u^- d\mu \in [-\infty,\infty]
+\end{equation}
+If $u$ satisfies \eqref{eq:mu_integrable_simple}, then it is called {\em $\mu$-integrable simple function}.
+\item If $u$ is $\mu$-measurable, we define the {\em upper and lower integrals} of $u$
 as
 \[
-\int^*_X u d\mu := \inf \left\{ \int_X v d\mu \mid 
+\int^*_X u \, d\mu := \inf \left\{ \int_X v \, d\mu \mid 
 \text{$v \geq u$ $\mu$-a.e, $v$ $\mu$-integrable simple function}
 \right\}
 \]
 or
 \[
-{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u d\mu := \sup\left\{ \int_X v d\mu \mid 
+{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u \, d\mu := \sup\left\{ \int_X v \, d\mu \mid 
 \text{$v \leq u$ $\mu$-a.e, $v$ $\mu$-integrable simple function}
 \right\}
 \]
 respectively. 
 If
 \[
-{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u d\mu = \int^*_X u d\mu,
+{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u \, d\mu = \int^*_X u \, d\mu,
 \]
-then $u$ is $\mu$-integrable.
+then $u$ is {\em $\mu$-integrable}.
 \item A measurable function $u$ is \emph{$\mu$-summable} if $|u|$ is
 $\mu$-integrable and 
 \[
-\int_X |u| d\mu < \infty
+\int_X |u| \, d\mu < \infty.
 \]
-\item Now we define the following sets 
-\begin{itemize}[]
-\item $L^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid \text{$u$ is
-$\mu$-summable} \right\}$
-\item $L_{\textnormal{loc}}^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid
-\text{$u\chi_K$ is
-$\mu$-summable for all $K\subset X$ compact} \right\}$
-\item $L^p(X,\mu) := \left\{ u: X \to \overline{\R} \mid \text{$|u|^p$ is
-$\mu$-summable} \right\}$
-\item $L_{\textnormal{loc}}^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid
-\text{$|u|^p\chi_K$ is
-$\mu$-summable for all $K\subset X$ compact} \right\}$
-\end{itemize}
 \end{enumerate}
 \end{definition}
 
-\begin{definition}
-If $u : X \to [0,\infty]$ $\mu$-measurable, then we define $\nu = u \mu$ (or
-$\mu \res u$) as 
-\[
-\nu(A) = \int_A u d\mu = \int_X u \chi_A d\mu 
-\qquad \text{for all} \quad  \mu\text{-measurable } A
-\]
-\end{definition}
+\begin{example}[Integral with respect to the Dirac measure]
+Let $x_{0} \in X$ and $\mu = \delta_{x_{0}}$. Notice that any subset in $X$ is $\delta_{x_{0}}$-measurable, so that any function $u: X \to \overline{\R}$ is $\delta_{x_{0}}$-measurable. Then, any $u : X \to \overline{\R}$ simple function is $\mu$-integrable. Indeed, assuming at first $u : X \to [0, \infty]$, for some sequence of nonnegative real numbers $\{u_{k}\}$ and a partition $\{E_{k}\}$ of $X$, we have
+\begin{equation*}
+u(x) = \sum_{k=1}^\infty u_k \chi_{E_k}(x),
+\end{equation*}
+so that
+\begin{equation*}
+\int_{X} u \, d \delta_{x_{0}} = \sum_{k = 1}^{\infty} u_{k} \delta_{x_{0}}(E_{k}) = u_{k_{0}},
+\end{equation*}
+where $k_{0}$ satisfies $E_{k_{0}} \ni x_{0}$, which implies $u(x_{0}) = u_{k_{0}}$. Therefore, we can easily see that
+\begin{equation*}
+\int_{X} u \, d \delta_{x_{0}} = u^{+}(x_{0}) - u^{-}(x_{0}) = u(x_{0})
+\end{equation*}
+for any simple function $u$. As a consequence, any $u : X \to \overline{\R}$ is $\delta_{x_{0}}$-integrable. Indeed, for any simple function $v \ge u$ and any simple function $w \le u$, we have
+\begin{equation*}
+w(x_{0}) \le {\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u \, d\delta_{x_{0}} \le \int^*_X u \, d\delta_{x_{0}} \le v(x_{0}),
+\end{equation*} 
+so that we get 
+\begin{equation*}
+{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u \, d\delta_{x_{0}} = \int^*_X u \, d\delta_{x_{0}} = u(x_{0}),
+\end{equation*}
+by choosing 
+\begin{equation*}
+v(x) = \begin{cases} u(x_{0}) & x = x_{0}, \\
++ \infty & x \neq x_{0},
+\end{cases}
+\end{equation*}
+and
+\begin{equation*}
+w(x) = \begin{cases} u(x_{0}) & x = x_{0}, \\
+- \infty & x \neq x_{0}.
+\end{cases}
+\end{equation*}
+Thus, we conclude that, for any $u: X \to \overline{\R}$, we have
+\begin{equation*}
+\int_{X} u \, d \delta_{x_{0}} = u(x_{0}),
+\end{equation*}
+and that $u$ is $\delta_{x_{0}}$-summable if and only if $|u(x_{0})| < \infty$. 
+\end{example}
 
-\begin{definition}[Radon measure]
-Given a Radon measure $\mu$ on an open subset $\Omega \subset \R^n$ and $f: \Omega \to
-[-\infty,\infty]$ locally $\mu$-summable. Then $\nu := f \mu$ defined by
-\[
-\nu(A) = \int_A f d\mu 
-\qquad \text{for all }  A \, \mu\text{-measurable }
-\]
-is said to be a \emph{signed Radon measure} on $\Omega$.
-\end{definition}
+%On the other hand, $u(x_{0}) = + \infty$, then any simple function $v \ge u$ satisfies $v(x_{0}) = + \infty$, so that
+%\begin{equation*}
+%\int^*_X u \, d\delta_{x_{0}} = +\infty,
+%\end{equation*}
+%while we can choose a sequence of simple functions $v \le u$ satisfying $v(x_{0}) = k$, for any $k \in \N$, so that
+%\begin{equation*}
+%{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u \, d\delta_{x_{0}} \ge k,
+%\end{equation*}
+%which implies that also the lower integral must be $+ \infty$. Thus we have
+%\begin{equation*}
+%\int^*_X u \, d\delta_{x_{0}} = {\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u \, d\delta_{x_{0}} = + \infty,
+%\end{equation*}
+%and one can argue similarly in the case $u(x_{0}) = - \infty$.
 
-\begin{definition}[Radon measure]
-Given a non-negative Radon measure $\mu$ on an open subset $\Omega \subset \R^n$ and $f: \Omega \to
-\R^m$ is locally $\mu$-summable. Then we set $\nu := f \mu$ the vector valued
-Radon measure satisfying
-\[
-\nu(A) = \int_A f d\mu 
-\qquad \text{for all }  A \, \mu\text{-measurable }
-\]
-is said to be a \emph{signed Radon measure} on $\Omega$.
-\end{definition}
+We define now general versions of the familiar $L^{p}$-function spaces.
 
-\begin{definition}(alternative approach). Let $\Omega \subset \R^n$ be open.
-\begin{itemize}
-\item A non-negative Radon measure is a mapping $\mu : \mathcal{B}{\Omega} \to
-[0,\infty]$ which is $\sigma$-additive and finite compact sets.
-\item A real (vector valued) Radon measure is a mapping $\mu :
-\mathcal{B}(\Omega) \to \R^m$ which is $\sigma$-additive and its total variation
-$|\mu|$ is finite on compact sets; that is
-\[
-|\mu|(B) := \sup \left\{
-\sum_{j=1}^\infty |\mu(B_j)| \mid K = \bigcup_{j} B_j, B_i \cap B_i = \emptyset
-\text{ if } i\neq j
-\right\}
-\qquad \text{for all $K$ compact in $\Omega$}.
-\]
-In particular, $\sum \mu(B_j)$ is absolutely convergent for all $\{B_j\}$
-partition of a compact set $K$.
-\item We say that a non-negative Radon measure $\mu : \mathcal{B}(\Omega) \to
-[0,\infty)$ is finite if $\mu(\Omega) < \infty$; and we denote $\mu \in
-\mathcal{M}^+(\Omega)$.
-\item We say that a non-negative vector-valued Radon measure $\mu : \mathcal{B}(\Omega) \to
-\R^m$ is finite if $|\mu|(\Omega) < \infty$; and we denote $\mu \in
-\mathcal{M}(\Omega,\R^m)$.
+\begin{definition} Let $p \in (1, \infty)$.
+\begin{itemize}[]
+\item $L^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid \text{$u$ is
+$\mu$-summable} \right\}$ and we set $$\|u\|_{L^{1}(X, \mu)} := \int_{X} |u| \, d \mu.$$
+\item $L_{\textnormal{loc}}^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid \|u\chi_K \|_{L^{1}(X, \mu)} < \infty \text{ for all $K\subset X$ compact} \right\}.$
+\item $L^p(X,\mu) := \left\{ u: X \to \overline{\R} \mid \text{$|u|^p$ is
+$\mu$-summable} \right\}$ and we set $$\|u\|_{L^{p}(X, \mu)} := \left ( \int_{X} |u|^p \, d \mu \right )^{\frac{1}{p}}.$$
+\item $L_{\textnormal{loc}}^{p}(X,\mu) := \left\{ u: X \to \overline{\R} \mid \|u\chi_K \|_{L^{p}(X, \mu)} < \infty \text{ for all $K\subset X$ compact} \right\}.$
+\item Let $u : X \to \overline{R}$ be $\mu$-measurable. We set $$\|u\|_{L^{\infty}(X, \mu)} := \inf \{ \lambda > 0 : \mu(\{ |u| > \lambda \}) = 0 \}.$$
+As a consequence, we define $L^{\infty}(X, \mu) := \left \{ u: X \to \overline{\R} :  \|u\|_{L^{\infty}(X, \mu)} < \infty \right \}$.
+\item $L^{\infty}_{\rm loc}(X,\mu) := \left\{ u: X \to \overline{\R} \mid \|u\chi_K \|_{L^{\infty}(X, \mu)} < \infty \text{ for all $K\subset X$ compact} \right\}.$
 \end{itemize}
 \end{definition}
 
-\begin{remarks}[Basic facts]
+In the case $X = \R^{n}$ and $\mu = \Leb{n}$, we shall set for brevity $L^{p}(\R^{n}) := L^{p}(\R^{n}, \Leb{n})$, for any $p \in [1, \infty]$.
+
+\begin{definition}[Integral measures] \label{def:intregral_measure}
+If $u : X \to [0,\infty]$ $\mu$-measurable, then we define the {\em integral measure} $\nu = u \mu$ (or
+$\mu \res u$) as 
+\[
+\nu(A) = \int_A u \, d\mu = \int_X u \chi_A \, d\mu 
+\qquad \text{for all } \mu\text{-measurable } A.
+\]
+\end{definition}
+
+\section{Real and vector valued Radon measures}
+
+Through this section, let $\Omega \subset \R^{n}$ be an open set. We exploit now the concept of integral measure introduced in Definition \ref{def:intregral_measure} to define signed and vector valued Radon measures. In order to avoid ambiguity, from this point on we shall refer to the Radon measure introduced in Definition \ref{def:Borel_Radon_measure} as nonnegative Radon measures.
+
+\begin{definition}[Signed Radon measures]
+Given a non-negative Radon measure $\mu$ on $\Omega$ and $f: \Omega \to
+[-\infty,\infty]$ locally $\mu$-summable. Then we set $\nu := f \mu$ to be the integral measure satisfying
+\[
+\nu(K) = \int_K f \, d\mu 
+\qquad \text{for all }  K \, \text{compact.}
+\]
+$\nu$ is said to be a \emph{signed Radon measure} on $\Omega$.
+\end{definition}
+
+\begin{definition}[Vector valued Radon measures]
+Given a non-negative Radon measure $\mu$ on $\Omega$ and $f: \Omega \to
+\R^m$ is locally $\mu$-summable. Then we set $\nu := f \mu$ to be the vector valued Radon measure satisfying
+\[
+\nu(K) = \int_K f \, d\mu 
+\qquad \text{for all }  K \, \text{compact.}
+\]
+$\nu$ is said to be a \emph{vector valued Radon measure} on $\Omega$.
+\end{definition}
+
+
+
+\begin{definition}[Alternative approach] \hfill
+\begin{itemize}
+\item A non-negative Radon measure is a mapping $\mu : \mathcal{B}(\Omega) \to
+[0,\infty]$ which is $\sigma$-additive and finite on compact sets. We denote the space of such measures by $\mathcal{M}_{\rm loc}^{+}(\Omega)$.
+\item A vector valued (real or signed if $m = 1$) Radon measure is a mapping $\mu :
+\mathcal{B}(\Omega) \to \R^m$ which is $\sigma$-additive and its total variation
+$|\mu|$ is finite on compact sets; that is
+\[
+|\mu|(K) := \sup \left\{
+\sum_{j=1}^\infty |\mu(B_j)| \mid K = \bigcup_{j} B_j, B_i \cap B_i = \emptyset
+\text{ if } i\neq j
+\right\} < \infty \text{ for all $K$ compact in $\Omega$}.
+\]
+The space of such measures is denote by $\mathcal{M}_{\rm loc}(\Omega; \R^{m})$; and by $\mathcal{M}_{\rm loc}(\Omega)$ if $m = 1$.
+\item We say that a non-negative Radon measure $\mu : \mathcal{B}(\Omega) \to
+[0,\infty)$ is finite if $\mu(\Omega) < \infty$; and we denote by $\mathcal{M}^+(\Omega)$ the space of such measures.
+\item We say that a non-negative vector-valued Radon measure $\mu : \mathcal{B}(\Omega) \to
+\R^m$ is finite if $|\mu|(\Omega) < \infty$; and we denote by $\mathcal{M}(\Omega,\R^m)$, and $\mathcal{M}(\Omega)$ if $m = 1$, the space of such measures.
+\end{itemize}
+\end{definition}
+
+\begin{remarks}[Basic facts] \hfill
 \begin{itemize}
 \item If $\mu \in \mathcal{M}_{loc}(\Omega,\R^m)$, then $|\mu| \in
-\mathcal{M}^+_{loc}(\Omega)$.
+\mathcal{M}^+_{loc}(\Omega)$, where
 \[
-|\mu|(B) := \sup \{\sum_{j=1} ^\infty |\mu(B_j)| \mid 
-B= \bigcup B_j, B_j \cap B_i = \emptyset \, i\neq j, B_j \in \mathcal{\Omega}
-\}
+|\mu|(B) := \sup \left \{\sum_{j=1} ^\infty |\mu(B_j)| \mid 
+B= \bigcup B_j, B_j \cap B_i = \emptyset \, i\neq j, B_j \in \mathcal{B}(\Omega)
+\right \}
 \]
+for any $B \Subset \Omega$.
+In particular, $\sum \mu(B_j)$ is absolutely convergent for all $\{B_j\}$
+partition of a some set $B \Subset \Omega$.
 \item The total variation is the smallest non-negative Radon measure $\nu$ such
 that $\nu (B) \geq |\mu(B)|$ for all $B \in \mathcal{B}(\Omega)$.
-\item If $\mu \in \mathcal{M}(\Omega)$, we define the positive and negative
-parts of $\mu$ (Jordan decomposition (unique)
+\item If $\mu \in \mathcal{M}(\Omega)$, we define the {\em positive and negative
+parts} of $\mu$ 
 \[
-\mu^+ = \frac{|\mu| + \mu}{2} \qquad 
-\mu^- = \frac{|\mu| - \mu}{2} \qquad 
-\mu^{\pm} \geq 0.
+\mu^+ := \frac{|\mu| + \mu}{2} \quad \text{and} \quad
+\mu^- := \frac{|\mu| - \mu}{2}.
 \]
+It is easy to notice that $\mu^{\pm} \geq 0$ and that $\mu = \mu^{+} - \mu^{-}$, which is the {\em Jordan decomposition}, and it is unique. In addition, $|\mu| = \mu^{+} + \mu^{-}$.
 \end{itemize}
 \end{remarks}
 
 \begin{lemma}
-If $\mu \in \mathcal{M}^+(\Omega)$ and $f\in L^1(\Omega,\mu;\R^m)$, then $f\mu
-\in \mathcal{M}(\Omega,\R^m)$ and $|f\mu| = |f|\mu$
+If $\mu \in \mathcal{M}^+(\Omega)$ and $f\in L^1(\Omega,\mu;\R^m)$, then $f\mu \in \mathcal{M}(\Omega,\R^m)$ and $|f\mu| = |f|\mu$.
 \end{lemma}
 \begin{proof}
 Let $B \in \mathcal{B}(\Omega)$.
 \begin{itemize}
-\item $|f \mu(B)| = | \int_B f d\mu| \leq \int_B |f| d\mu$. From this follows
-$|f\mu| \leq |f| \mu$ From this follows $f\mu \in \mathcal{M}(\Omega;\R^m)$ 
+\item It is easy to notice that
+\begin{equation*}
+|(f \mu)(B)| := | \int_B f d\mu| \leq \int_B |f| d\mu.
+\end{equation*} 
+From this it follows immediately that $|f\mu| \leq |f| \mu$, which implies $f\mu \in \mathcal{M}(\Omega;\R^m)$. 
 \item Let $\varepsilon > 0$ and $D = \{z_h\}_{h\in\N}$ countable dense set in
-$S^{m-1}$, let $B \in \mathcal{B}(\Omega)$. We define 
+$\S^{m-1}$, let $B \in \mathcal{B}(\Omega)$. We define 
 \[
 \sigma(x) := \min \{h\in \N: f(x) z_h \geq (1-\varepsilon)|f(x)|\}
 \]
-it is Borel measurable. Further define $B_h = \sigma^{-1}(\{h\}) \cap B \in
-\mathcal{B}(\Omega)$, $B = \bigcup_{h\in\N} B_h$, $B_h \cap B_k = \empty$ if
-$h\neq k$. From this follows
+it is Borel measurable. Then, we set $$B_h : = \sigma^{-1}(\{h\}) \cap B,$$ 
+and we notice that 
+\begin{equation*}
+B_{h} \in \mathcal{B}(\Omega), \ B = \bigcup_{h\in\N} B_h \text{ and } B_h \cap B_k = \empty \text{ if } h\neq k. 
+\end{equation*}
+This implies that 
 \[
 \begin{aligned}
 \int_B |f| d\mu 
 &= \sum_{k\in\N} \int_{B_h} |f| d\mu 
 \leq \frac{1}{1-\varepsilon} \sum_{h\in\N} \int_{B_h} f z_h d\mu 
-\leq \frac{1}{1-\varepsilon} \sum_{h\in\N} |f_\mu|(B_h)  
-\leq \frac{1}{1-\varepsilon}  |f_\mu|(B),
+\leq \frac{1}{1-\varepsilon} \sum_{h\in\N} |(f \mu)(B_h)|  
+\leq \frac{1}{1-\varepsilon}  |f \mu|(B),
 \end{aligned}
 \]
-where we used
+since 
 \[
 \int_{B_h} f z_h d\mu 
 = z_h \int_{B_h} f d\mu 
 \leq \left|\int_{B_h} f d\mu \right|
-= |f_\mu|(B_h)  
+= |(f \mu)(B_h)|  
 \]
 \end{itemize}
 \end{proof}
@@ -885,23 +953,28 @@ Let $\mu$ be a non-negative measure on $\Omega$.
 \item We call the support of $\mu$, $\supp \mu$, the smallest closed set on
 which $\mu$ is concentrated :
 \[
-\supp \mu = \bigcap_{C \text{ closed}, \mu (\Omega\setminus C) = 0} C.
+\supp (\mu) := \bigcap_{C \text{ closed}, \mu (\Omega\setminus C) = 0} C.
 \]
 \end{itemize}
 \end{definition}
+
 \begin{exercise}
-Equivalently, 
+Equivalently, we may characterize the support of a non-negative Radon measure $\mu$ in terms of its behaviour on balls:
 \[
-\supp \mu = \{x \in \Omega \mid \mu(B(x,r)) > 0, \forall B(x,r) \subset \Omega\}
+\supp (\mu) = \{x \in \Omega \mid \mu(B(x,r)) > 0, \forall r > 0 \, \text{ such that } B(x,r) \subset \Omega\}
 \]
-\todo{@GC: A counterexample?!}
 \end{exercise}
+
+\begin{remark}
+Notice that a non-negative Radon measure may be concentrated on a set strictly smaller than its support. Indeed, let $\Omega = \R$ and $$\mu = \sum_{k = 1}^{\infty} \frac{1}{2^{k}} \delta_{\frac{1}{k}}.$$
+It is clear that $\mu$ is concentrated on the set $E = \left \{ \frac{1}{k}\right \}_{k \ge 1}$, but $\mu((-r, r)) > 0$ for any $r> 0$, so that $0 \in \supp(\mu)$. In fact, it is not difficult to check that $\supp(\mu) = \{0\} \cup \left \{ \frac{1}{k}\right \}_{k \ge 1} = \overline{E}$. 
+\end{remark}
 
 \begin{definition}
 \begin{enumerate}[1.]
 \item Let $\mu \in \mathcal{M}^+(\Omega)$, $\mu \in \mathcal{M}(\Omega,\R^m)$. We say
-that $\mu$ is absolutely continuous w.r.t $\mu$, and we write $\nu << \mu$, if
-for all $B \in \mathcal{B}(\Omega)$ such that $\mu(B) = 0$, then $|\mu|(B) = 0$.
+that $\mu$ is absolutely continuous with respect to $\mu$, and we write $\nu \ll \mu$, if
+for all $B \in \mathcal{B}(\Omega)$ such that $\mu(B) = 0$, then $|\nu|(B) = 0$.
 \item If $\mu,\nu \in \mathcal{M}^+(\Omega)$, we say that they are mutually
 singular if there exists $E,F \in \mathcal{B}(\Omega)$ such that $\mu(F) =0$,
 $\mu(E) = 0$ and 
@@ -912,29 +985,34 @@ $\mu(E) = 0$ and
 for all $B \in \mathcal{B}(\Omega)$ and we write $\mu \perp \nu$. If $\mu,\nu
 \in \mathcal{M}(\Omega,\R^m)$, 
 \[
-\mu \perp \nu :\iff |\mu| \perp |\mu|
+\mu \perp \nu \iff |\mu| \perp |\mu|
 \]
 \end{enumerate}
 \end{definition}
 
-\begin{theorem}[Radon-Nikodyn]
+\begin{theorem}[Radon-Nikodym] \label{thm:Radon_Nikodym}
 Let $\mu \in \mathcal{M}(\Omega,\R^m)$, $\mu \in \mathcal{M}^+(\Omega)$. Then
-there exists exactly one $\nu^{ac},\nu^{s} \in \mathcal{M}(\Omega; \R^m)$ such
-that $\nu^{ac} << \mu$, $\nu^s \perp \mu$ and $\nu = \nu^{ac} + \nu^s$. In
-addition, there exists exactly one $f\in L^1(\Omega,\mu;\R^m)$ such that
+there exist unique measures $\nu^{ac},\nu^{s} \in \mathcal{M}(\Omega; \R^m)$ such
+that $\nu^{ac} \ll \mu$, $\nu^s \perp \mu$ and 
+\begin{equation} \label{eq:Leb_decomp}
+\nu = \nu^{ac} + \nu^s. 
+\end{equation}
+In addition, there exists a unique measure $f\in L^1(\Omega,\mu;\R^m)$ such that
 $\nu^{ac} = f\mu$.
 \\
-In particular, if $\mu = \Leb{n}$, every $\mu \in \mathcal{\Omega;\R^m}$ can be
+In particular, if $\mu = \Leb{n}$, every $\mu \in \mathcal{M}(\Omega;\R^m)$ can be
 uniquely decomposed in
 \[
-\mu = f \Leb{n} + \nu^s, \nu^s \perp \Leb{n}
-\qquad f\in L^1(\Omega; \R^n).
+\mu = f \Leb{n} + \nu^s, 
 \]
+for some $f\in L^1(\Omega; \R^n)$ and $\nu^s \in \mathcal{M}(\Omega;\R^m), \nu^s \perp \Leb{n}$.
 \end{theorem}
+
+The decomposition in \eqref{eq:Leb_decomp} is called {\em Lebesgue decomposition} of the measure $\nu$ with respect to $\mu$.
 
 \begin{definition} We say that a property holds $|\mu|$-almost everywhere or for
 $|\mu|$-almost every $x$ if the set where the property does not hold is
-$|\mu|$-negligable; that is, it has zero $|\mu|$-measure.
+$|\mu|$-negligible; that is, it has zero $|\mu|$-measure.
 \end{definition}
 
 \begin{corollary}[Polar decomposition]
@@ -943,28 +1021,28 @@ L^1(\Omega,|\mu|;\R^m)$ such that $|f(x)| =1 $ $|\mu|$-a.e and $\mu = f|\mu|$.
 \end{corollary}
 
 \begin{proof}[Proof of corollary]
-Apply Radon-Nikodyn to $\mu$ and $|\mu|$. We know that 
+Apply Radon-Nikodym theorem (Theorem \ref{thm:Radon_Nikodym}) to $\mu$ and $|\mu|$. We know that 
 \(
 |\mu(B)| \leq |\mu|(B) 
 \)
-for all $B \in \mathcal{B}(\Omega)$. From this follows $\mu << |\mu|$, and so there exists $f \in L^{1}(\Omega, |\mu|; \R^{m})$ such that $\mu = f|\mu|$.
+for all $B \in \mathcal{B}(\Omega)$. From this follows $\mu \ll |\mu|$, and so there exists $f \in L^{1}(\Omega, |\mu|; \R^{m})$ such that $\mu = f|\mu|$.
 \\
 We proved that $|f|\mu|| = |f||\mu|$, hence we obtain
 \[
-|mu| = |f|\mu|| = |f||\mu|
-\qquad 
-(|f| - 1)|mu| = 0.
+|\mu| = |f|\mu|| = |f||\mu|
+\quad \text{and so} \quad
+(|f| - 1)|\mu| = 0.
 \]
 This means that we have
 \[
-\int_{\Omega}(|f| - 1)d|mu| = 0,
+\int_{\Omega}(|f| - 1)d|\mu| = 0,
 \]
 which yields $|f(x)| =1$ for $|\mu|$-a.e. $x \in \Omega$. 
 \end{proof}
 
 \begin{corollary}[Hahn decomposition]
 Let $\mu \in \mathcal{M}(\Omega)$, there exists a unique $A \in
-\mathcal{B}(\Omega)$ (up to $|\mu|-negligible)$ such that 
+\mathcal{B}(\Omega)$ (up to $|\mu|$-negligible sets) such that 
 \[
 \mu^+ = \mu \res A
 \qquad 
@@ -972,16 +1050,18 @@ Let $\mu \in \mathcal{M}(\Omega)$, there exists a unique $A \in
 \]
 \end{corollary}
 \begin{proof}
-By the polar decomposition, $\mu = f|\mu|$, $f(x) \in \{\pm 1\}$ for
-$|\mu|$-a.e. $x\in\Omega$.
-\[
-A:= \{f =1 \} 
-\qquad 
-f(x) = \chi_A - \chi_{\Omega\setminus A}
-\qquad
-\mu^+ - \mu^- = \mu = \chi_A |\mu| - \chi_{\Omega\setminus A} |\mu|,
-\]
-where we used the Jordan decomposition (which is unique).
+By the polar decomposition, there exists a unique $f \in L^{1}(\Omega, |\mu|)$ such that $\mu = f|\mu|$ and $f(x) \in \{\pm 1\}$ for
+$|\mu|$-a.e. $x\in\Omega$. This means that, if we set
+$$A:= \{f =1 \},$$
+we have
+\begin{equation*}
+f(x) = \chi_A - \chi_{\Omega\setminus A}.
+\end{equation*}
+Thus, we obtain
+\begin{align*}
+\mu^+ & := \frac{|\mu| + \mu}{2} = \frac{ 1 + \chi_A - \chi_{\Omega\setminus A}}{2} |\mu| = \chi_{A} |\mu|, \\
+\mu^- & := \frac{|\mu| - \mu}{2} = \frac{1 - \chi_{A} + \chi_{\Omega \setminus A}}{2} |\mu| = \chi_{\Omega \setminus A} |\mu|.
+\end{align*}
 \end{proof}
 
 \section{Duality for Radon measures}
@@ -1011,10 +1091,9 @@ $C^0_c$ is separable, locally convex, topological vector space with the
 following topology:
 \[
 \varphi_k \longrightarrow \varphi \quad \text{in} \quad C^0_c 
-\qquad :\iff \qquad
+\quad \iff \quad
 \|\varphi_k - \varphi\|_\infty \to 0
-\quad \text{and} \quad
-\text{there exists } K \subset \Omega:
+\quad \text{and there exists } K \subset \Omega:
 \supp \varphi \cup \bigcup_{k\in\N} \supp \varphi_k \subset K
 \]
 \end{remark}
@@ -1030,14 +1109,14 @@ $\varepsilon > 0$ there exists $v \in C^0(\Omega)$ such that $\|v\|_\infty
 \end{theorem}
 
 \begin{remark}
-An equivalent formulation state that, under the additional assumption
-$\mu(\Omega) < \infty$, then there exists $\{K_h\}$ compact sets such that
+An equivalent formulation states that, under the additional assumption
+$\mu(\Omega) < \infty$, then there exists a sequence of compact sets $\{K_h\}$ such that
 \[
-\mu(\Omega \setminus \bigcup K_l) = 0
+\mu \left (\Omega \setminus \bigcup_{h = 1}^{\infty} K_h \right ) = 0
 \qquad \text{and} \qquad
 u\big|_{K_h} \text{ is continuous}.
 \]
-There exists $\{u_h\} \in C^0(\Omega)$: $u = u_h$ on $K_h$ and $\|u_h\|_\infty
+In other terms, this means that there exists a sequence of functions $\{u_h\} \in C^0(\Omega)$ such that $u = u_h$ on $K_h$ and $\|u_h\|_\infty
 \leq \|u\|_\infty$.
 \end{remark}
 
@@ -1047,7 +1126,7 @@ Let $\mu \in \mathcal{M}(\Omega;\R^m)$. Then for all $A\subset \Omega$ open we h
 |\mu|(A) = \sup\left\{ \int_\Omega \varphi \cdot d\mu \mid 
 \varphi \in C^0_c(A;\R^m), \|\varphi\|_\infty \leq 1\right\},
 \end{equation}
-where we understand 
+with the convention that
 \[
 \int_\Omega \varphi \cdot d\mu := \sum_{j=1}^m \int_\Omega \varphi_j d\mu_j.
 \]
@@ -1117,9 +1196,9 @@ Then there exists a unique $\mu \in \mathcal{M}_{\rm loc}(\Omega; \mathbb{R}^{m}
 
 Thus we can identify any $\mu \in \mathcal{M}(\Omega; \mathbb{R}^{m})$ with a continuous linear functional on $C_{0}(\Omega; \mathbb{R}^{m})$, written as
 \[ L_{\mu}(\phi) := \int_{\Omega} \phi \cdot \, d\mu, \      \     \forall \phi \in C_{0}(\Omega; \mathbb{R}^{m}),   \]
-and analogously $\mathcal{M}_{\rm loc}(\Omega; \mathbb{R}^{m})$ can be identified with the dual of $C_{c}(\Omega; \mathbb{R}^{m})$.
+and analogously $\mathcal{M}_{\rm loc}(\Omega; \mathbb{R}^{m})$ can be identified with the dual of $C_{c}(\Omega; \mathbb{R}^{m})$. These facts lead us to a notion of weak$^{*}$ convergence for Radon measure.
 
-This leads us to the following notion.
+\section{Weak$^{*}$ convergence for Radon measures}
 
 \begin{definition} Given a sequence $\{\mu_{k}\}$ in $\mathcal{M}(\Omega)$, we say that $\mu_{k}$ {\em weak-star converges to} $\mu$, if and only if
 \[ \int_{\Omega} \phi \cdot \, d\mu_{k} \to \int_{\Omega} \phi \cdot \, d\mu, \    \   \forall \phi \in C_{0}(\Omega; \mathbb{R}^{m}).   \]
@@ -1154,38 +1233,6 @@ Now, $\int_{\Omega} \phi \cdot \, d\mu_{k} \to \int_{\Omega} \phi \cdot \, d\mu$
 Therefore, in what follows, we will always write $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ to denote local weak-star convergence, and, in the case of finite Radon measures, we will also check the condition $\sup |\mu_{k}|(\Omega) < \infty$.
 \end{remark}
 
-We quote now a useful result about weak-star convergence.
-
-\begin{lemma} \label{muweak-star} Let $\mu$ be a Radon measure on $\Omega$, and let $\{\mu_{k}\}$ be a sequence of Radon measures.
-\\
-If $\mu_{k}$ and $\mu$ are positive, then the following are equivalent:
-\begin{enumerate}
-	\item $\mu_{k} \stackrel {*} {\rightharpoonup} \mu$.
-	\item $\forall A \subset \Omega$ open,
-\[ \mu(A) \le \liminf\limits_{k \to +\infty} \mu_{k}(A) \]
-and $\forall K \subset \Omega$ compact,
-\[ \mu(K) \ge \limsup\limits_{k \to +\infty} \mu_{k}(K). \]
-	\item $\forall B \subset \subset \Omega$ Borel set with $\mu(\partial B) = 0$,
-\[ \lim_{k \to +\infty} \mu_{k}(B) = \mu(B). \]
-\end{enumerate}
-If $\mu_{k}$ and $\mu$ are $\mathbb{R}^{m}$-vector valued Radon measures, $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ and $|\mu_{k}| \stackrel {*} {\rightharpoonup} \nu$, then $|\mu| \le \nu$. Moreover, if a $\mu$-measurable set $E \subset \subset \Omega$ satisfies $\nu(\partial E) = 0$, then 
-\[ \mu(E) = \lim_{k \to +\infty} \mu_{k}(E).  \]
-More generally, if $f : \Omega \to \mathbb{R}^{m}$ is a bounded Borel function with compact support such that the set of its discontinuity points is $\nu$-neglegible, then
-\[ \lim_{k \to +\infty} \int_{\Omega} f \cdot d\mu_{k} = \int_{\Omega} f \cdot d\mu.  \]
-\end{lemma}
-\begin{proof} For the second part of the statement and the implication $1 \to 2$ we refer to [AFP], Proposition 1.62. For the two remaining implications, we adapt the proof in [EG], Section 1.9, Theorem 1, where $\Omega = \mathbb{R}^{N}$.
-\\
-In order to show that $2$ implies $3$, we take a Borel set $B$ such that $\overline{B} \subset \Omega$ and $\mu(\partial B) = 0$. Then
-\begin{align*} \mu(B) = \mu(B^{\circ}) & \le \liminf\limits_{k \to +\infty} \mu_{k}(B^{\circ}) \le \limsup\limits_{k \to +\infty} \mu_{k}(\overline{B}) \le \mu(\overline{B}) = \mu(B). \end{align*}
-Now we suppose that 3 holds and we observe that, since $\phi$ can be decomposed into its positive and negative parts, we need only to prove 1 for nonnegative functions. We fix $\epsilon > 0$ and $\phi \in C_{c}(\Omega)$ with $\phi \ge 0$. Let $\Omega_{s}$ be defined as in the proof of Proposition \ref{regularityRadon}, but for $s \in (1, + \infty)$. By Remark \ref{neglcountable}, for all but countable $s$, we have $\mu(\partial \Omega_{s}) = 0$. Therefore, there exists $s_{0}$ such that $\mathrm{supp}(\phi) \subset \Omega_{s_{0}}$ and $\mu(\partial \Omega_{s_{0}}) = 0$. We can choose $0 = t_{0} < t_{1} < ... < t_{N} = 2 \|\phi\|_{\infty}$ such that $0 < t_{i} - t_{i - 1} < \epsilon$ and $\mu(\phi^{-1}(\{t_{i}\})) = 0$ for any $i = 1, ..., N$, by Remark \ref{neglcountable}. We set $B_{i} = \phi^{-1}((t_{i - 1}, t_{i}])$, then $\mu(\partial B_{i}) = 0$ for $i \ge 2$. Now
-\[ \sum_{i = 2}^{N} t_{i - 1} \mu_{k}(B_{i}) \le \int_{\Omega} \phi \, d \mu_{k} \le \sum_{i = 2}^{N} t_{i} \mu_{k}(B_{i}) + t_{1} \mu_{k}(\Omega_{s_{0}})\]
-and
-\[ \sum_{i = 2}^{N} t_{i - 1} \mu(B_{i}) \le \int_{\Omega} \phi \, d \mu \le \sum_{i = 2}^{N} t_{i} \mu(B_{i}) + t_{1} \mu(\Omega_{s_{0}}); \]
-and so 3 implies
-\[ \limsup \limits_{k \to + \infty} \left | \int_{\Omega} \phi \, d \mu_{k} - \int_{\Omega} \phi \, d \mu \right | \le 2 \epsilon \mu(\Omega_{s_{0}}), \]
-which gives 1. 
-\end{proof}
-
 \begin{remark} \label{neglcountable} Let $\mu$ be a positive Radon measure. If $\{A_{t}\}_{t \in \mathcal{I}}$, where $\mathcal{I}$ is uncountable, is a family of $\mu$-measurable sets in $\Omega$ such that their boundaries are disjoint, $\bigcup_{t \in \mathcal{I}} \partial A_{t} = \Omega$ and for every compact $K$ there exists an uncountable set of indices $\mathcal{J} \subset \mathcal{I}$ such that $K \cap \partial A_{t} \neq \emptyset, \ \forall t \in \mathcal{J}$, then there exists a countable set $\mathcal{N}$ such that
 \[ \mu(K \cap \partial A_{t}) = 0 \  \ \forall t \notin \mathcal{N}. \]
 We claim that, if such a set $\mathcal{N}$ did not exist, then there would be an uncountable set $\mathcal{Y}$ such that $\mu(K \cap \partial A_{t}) > \epsilon > 0, \  \ \forall t \in \mathcal{Y}$.
@@ -1200,12 +1247,7 @@ By the monotonicity and the $\sigma$-additivity, we have
 \[ \mu(K) \ge \sum_{j = 1}^{+\infty} \mu(K \cap \partial A_{t_{j}}) = +\infty, \]
 which is absurd, since $\mu$ is a Radon measure. Therefore, such a $\mathcal{Y}$ cannot exist and so $\mathcal{N}$ exists.
 \\
-In the following chapters, the sets $\{A_{t}\}$ will usually be balls $B(x,r)$.
-\end{remark}
-
-\begin{remark} By Remark \ref{neglcountable} and Lemma \ref{muweak-star}, we can assert that, if $\mu_{k}$ and $\mu$ are positive Radon measures in $\Omega$, for any $x \in \Omega$ and almost every $r \in (0, R)$, with $R = R_{x} > 0$ such that $B(x, R_{x}) \subset \subset \Omega$, $\mu(\partial B(x,r)) = 0$ and so, if $\mu_{k} \stackrel {*} {\rightharpoonup} \mu$, $\mu_{k}(B(x,r)) \to \mu(B(x,r))$. 
-\\
-Moreover, if $\mu_{k}$ and $\mu$ are vector valued Radon measures, $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ and $|\mu_{k}| \stackrel {*} {\rightharpoonup} \nu$, then for any $x \in \Omega$ and almost every $r \in (0, R)$, with $R = R_{x} > 0$ such that $B(x, R_{x}) \subset \subset \Omega$, $\nu(\partial B(x,r)) = 0$ and $\mu_{k}(B(x,r)) \to \mu(B(x,r))$.
+In the applications, the sets $\{A_{t}\}$ will usually be balls $B(x,r)$.
 \end{remark}
 
 Finally, we state a characterization of nonnegative linear functionals on $C^{\infty}_{c}(\Omega)$.
@@ -1224,40 +1266,43 @@ Hence, Corollary \ref{Rieszrepr} yields the existence of a real Radon measure $\
 By the polar decomposition of measures, $\mu = h |\mu|$, where $|h| = 1$ $|\mu|$-a.e. The fact that $L$ is nonnegative implies that $h = 1$ $|\mu|$-a.e.; that is, $\mu$ is a positive Radon measure. 
 \end{proof}
 
-\begin{theorem}[Criterions for weak-$*$-convergence]
-Let $\mu_h, \mu \in \mathcal{M}_{loc}^+(\Omega)$ Then following are equivalent
+\begin{theorem}[Criterions for weak$*$ convergence]
+Let $\mu_h, \mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$. The following are equivalent
 \begin{enumerate}[(1)]
-\item $\mu_h \stackrel {*}{\rightharpoonup} \mu$ in duality with
-$C_c(\Omega,\R^m)$.
-\item For all $U \subset \Omega$ open: $\liminf _{h\to \infty} \mu_h(U) \geq
-\mu(U)$ and for all $\limsup_{h \to \infty} \mu_h(K) \leq \mu(K)$ 
-\item For all $B$ Borel $B\Subset \Omega$ such that $\mu(\partial B) = 0$, we
-have $\lim_{h\to \infty} \mu_h(B) = \mu(B)$.
+\item $\mu_h \stackrel {*}{\rightharpoonup} \mu$ in $\mathcal{M}_{\rm loc}(\Omega)$. 
+\item For all $U \subset \Omega$ open and for all $K \subset \Omega$ compact we have 
+\begin{align} \label{eq:liminf_ineq_open}
+\liminf _{h\to \infty} \mu_h(U) & \geq \mu(U), \\
+\limsup_{h \to \infty} \mu_h(K) & \leq \mu(K). \label{eq:limsup_ineq_compact}
+\end{align} 
+\item For all Borel sets $B\Subset \Omega$ such that $\mu(\partial B) = 0$, we
+have 
+\begin{equation} \label{eq:limit_Borel_no_boundary} 
+\lim_{h\to \infty} \mu_h(B) = \mu(B).
+\end{equation}
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-\TODO
 \begin{enumerate}[(1)]
 \item[(1) $\Rightarrow$ (2)] Let $K\subset U \subset \Omega$ where $K$ is compact and $U$ is open, and
 choose $\varphi \in C_0(\Omega)$, $\supp \varphi \subset U$, $0 \leq \varphi
-\leq 1$ and $\varphi \equiv 1$ on $K$.
+\leq 1$ and $\varphi \equiv 1$ on $K$. By our assumption, we have
 \[
 \begin{aligned}
-\int_\Omega \varphi d\mu_k \to \int_\Omega d\mu;
+\int_\Omega \varphi \, d\mu_h \to \int_\Omega \varphi \, d\mu.
 \end{aligned}
 \]
-\TODO
+Hence, we get
 \[
-\mu(K) \leq \int_\Omega \varphi d\mu = \lim_{h\to \infty} \int_\Omega \varphi
-d\mu_H \leq \liminf_{h\to\ infty} \mu_h(U)
+\mu(K) \leq \int_\Omega \varphi \, d\mu = \lim_{h\to \infty} \int_\Omega \varphi
+\, d\mu_h \leq \liminf_{h\to \infty} \mu_h(U),
 \]
-Now take supremum in $K \subset U$ and use innner regularity
+and we deduce \eqref{eq:liminf_ineq_open} by taking the supremum in $K \subset U$ and using the innner regularity of $\mu$. On the other hand, it also clear that we have
 \[
-\mu(U) \geq \int_\Omega \varphi d\mu = \lim_{h\to \infty} \int_\Omega \varphi
-d\mu_h \geq \limsup_{k\to \infty} \mu_h(K)
+\mu(U) \geq \int_\Omega \varphi \, d\mu = \lim_{h\to \infty} \int_\Omega \varphi \, d\mu_h \geq \limsup_{h \to \infty} \mu_h(K),
 \]
-Now take infimum in $U \supset K$ and use outer regularity
-\item[$(2) \Rightarrow (3)$] 
+from which we deduce \eqref{eq:limsup_ineq_compact} by taking the infimum in $U \supset K$ and using the outer regularity.
+\item[$(2) \Rightarrow (3)$]  Notice that $B = \overset{\circ}{B} \cup (\partial B \cap B)$. Therefore, using $\mu(\partial B) = 0$, we have
 \[
 \begin{aligned}
 \mu(B) &= \mu(\overset{\circ}{B}) + \mu(\partial B \cap B) =
@@ -1267,249 +1312,61 @@ Now take infimum in $U \supset K$ and use outer regularity
 \end{aligned}
 \]
 \item[$(3) \Rightarrow (1)$] Let $\varepsilon >0$ and $\varphi \in
-C^0_c(\Omega)$, $\varphi \geq 0$. We need to prove that 
+C^0_c(\Omega)$. We need to prove that 
 \[
 \begin{aligned}
-\int_\Omega \varphi d\mu_k \to \int_\Omega d\mu.
+\int_\Omega \varphi \, d\mu_h \to \int_\Omega \varphi \, d\mu.
 \end{aligned}
 \]
-Choose $0 = t_0 < t_1 < \dots < t_N := 2\|\varphi\|_\infty$, 
-$0 < t_i - t_{i-1} < \varepsilon$, $\mu(\varphi^{-1}\{t_i\}) = 0$\footnote{why
-this is possible we see later}.
-Let $B_i = \varphi^{-1}((t_{i-1},t_i))$, then $\mu(\partial B_i) = 0$. Hence,
+Let us at first assume $\varphi \ge 0$. 
+Choose $0 = t_0 < t_1 < \dots < t_N := 2\|\varphi\|_\infty$, such that 
+$0 < t_i - t_{i-1} < \varepsilon$ and $\mu(\varphi^{-1}\{t_i\}) = 0$. By Remark \ref{neglcountable}, it is always possible to choose such good $t_{i}$'s.
+Let $B_i = \varphi^{-1}((t_{i-1},t_i))$, then $\mu(\partial B_i) = 0$. Hence, by \eqref{eq:limit_Borel_no_boundary} we have
 \[
 \mu_h(B_i) \to \mu(B_i).
 \]
-\[
-\begin{aligned}
-\sum_{i=2}^N t_{i-1}\mu_h(B_i) \leq \int_\Omega \varphi d\mu_h
-\leq \sum_{i=2}^N t_i \mu_h (B_i) +t_1\mu_h(B_0)
-\end{aligned}
-\]
-and the same holds for $\mu$.
-\[
-\left|\Omega \varphi d\mu - \int_\Omega \varphi d\mu\right| \leq 
-\sum_{i=2}^N(t_i - t_{i-1}) \mu(B_i) + t_1 \mu(B_0)
-\leq \varepsilon \mu(\supp \varphi)
-\]
-and we conclude since $\varepsilon$ is arbitrary.
-If $\varphi : \Omega\to \R$, then $\psi = \|\varphi\|_\infty \xi$
+In addition, it is easy to notice that
+\begin{align*}
+\sum_{i=2}^N t_{i-1}\mu_h(B_i) \leq & \int_\Omega \varphi \, d\mu_h \leq \sum_{i=2}^N t_i \mu_h (B_i) +t_1\mu_h(B_0), \\
+\sum_{i=2}^N t_{i-1}\mu(B_i) \leq & \int_\Omega \varphi \, d\mu \leq \sum_{i=2}^N t_i \mu(B_i) +t_1\mu(B_0).
+\end{align*}
+Therefore, by the triangle inequality and the subadditivity of the limsup, we have
+\begin{align*}
+\limsup_{h \to + \infty} \left|\int_{\Omega} \varphi \, d\mu_{h} - \int_\Omega \varphi \, d\mu\right| & \leq \limsup_{h \to + \infty} \left|\int_{\Omega} \varphi \, d\mu_{h} - \sum_{i=2}^N t_{i-1}\mu_h(B_i) \right | + \\
+& + \left | \sum_{i=2}^N t_{i-1}\mu_h(B_i) - \sum_{i=2}^N t_{i-1}\mu (B_i) \right | + \left | \int_{\Omega} \varphi \, d \mu - \sum_{i=2}^N t_{i-1}\mu(B_i) \right | \\
+& \le \limsup_{h \to + \infty} t_{1} \mu_{h}(B_{0}) + t_{1} \mu(B_{0}) = 2 t_{1} \mu(B_{0}) \\
+& < \varepsilon \mu(\supp \varphi),
+\end{align*}
+from which we conclude, since $\varepsilon$ is arbitrary. Let us now consider the general case of $\varphi : \Omega\to \R$, and consider $$\psi := \varphi + \|\varphi\|_{\infty} \eta,$$ for some $\eta \in C_{c}(\Omega)$ such that $0 \le \eta \le 1$ and $\eta \equiv 1$ on $\supp(\varphi)$. It is plain to see that $\psi \ge 0$ and $\psi \in C_{c}(\Omega)$, so that we have
+\begin{align*}
+\int_{\Omega} \varphi \, d \mu_{h} &= \int_{\Omega} \psi \, d \mu_{h} - \int_{\Omega} \|\varphi\|_{\infty} \eta \, d \mu_{h} \\
+& \to \int_{\Omega} \psi \, d \mu - \int_{\Omega} \|\varphi\|_{\infty} \eta \, d \mu = \int_{\Omega} \varphi \, d \mu
+\end{align*}
+and this ends the proof.
 \end{enumerate}
 \end{proof}
 
-\newcommand{\weakstar}{\stackrel {*}{\rightharpoonup}}
 
-\begin{proposition}
-Let $\mu_h, \mu \in \mathcal{M}_{loc}(\Omega; \R^m)$ such that $\mu_h \weakstar
-\mu$. Let $\sigma \in \mathcal{M}^+_{loc}(\Omega)$ such that $|\mu_h| \weakstar
-\sigma$. Then $|\mu| \leq \sigma$ and 
-\[
-\lim \mu_h(E) = \mu(E) \quad 
-\text{$\forall E$ Borel, $E \Subset \Omega$ and such that $\sigma(\partial E) =
-0$.}
-\]
-\end{proposition}
+We quote now a useful result about weak$^{*}$ convergence of vector valued Radon measures.
 
-\begin{remark}
-It is not true $|\mu_h| \weakstar |\mu|$ in general. If $\mu_h = \sin(hx)
-\Leb{1}$ in $\R$, then $\mu_h \weakstar 0$; $|\mu_h| \weakstar \frac{2}{\pi}
-\Leb{1}$. So $\sigma > |mu|$ in general.
+\begin{lemma} \label{muweak-star} 
+If $\mu_{k}$ and $\mu$ are $\mathbb{R}^{m}$-vector valued Radon measures, $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ and $|\mu_{k}| \stackrel {*} {\rightharpoonup} \nu$, then $|\mu| \le \nu$. Moreover, if a $\mu$-measurable set $E \subset \subset \Omega$ satisfies $\nu(\partial E) = 0$, then 
+\[ \mu(E) = \lim_{k \to +\infty} \mu_{k}(E).  \]
+More generally, if $f : \Omega \to \mathbb{R}^{m}$ is a bounded Borel function with compact support such that the set of its discontinuity points is $\nu$-neglegible, then
+\[ \lim_{k \to +\infty} \int_{\Omega} f \cdot d\mu_{k} = \int_{\Omega} f \cdot d\mu.  \]
+\end{lemma}
+
+\begin{remark} By Remark \ref{neglcountable} and Lemma \ref{muweak-star}, we can assert that, if $\mu_{k}$ and $\mu$ are positive Radon measures in $\Omega$, for any $x \in \Omega$ and almost every $r \in (0, R)$, with $R = R_{x} > 0$ such that $B(x, R_{x}) \subset \subset \Omega$, $\mu(\partial B(x,r)) = 0$ and so, if $\mu_{k} \stackrel {*} {\rightharpoonup} \mu$, $\mu_{k}(B(x,r)) \to \mu(B(x,r))$. 
+\\
+Moreover, if $\mu_{k}$ and $\mu$ are vector valued Radon measures, $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ and $|\mu_{k}| \stackrel {*} {\rightharpoonup} \nu$, then for any $x \in \Omega$ and almost every $r \in (0, R)$, with $R = R_{x} > 0$ such that $B(x, R_{x}) \subset \subset \Omega$, $\nu(\partial B(x,r)) = 0$ and $\mu_{k}(B(x,r)) \to \mu(B(x,r))$.
 \end{remark}
 
-\begin{proof}
-Let $\varphi \in C_c(\Omega,\R^m)$. Then 
-\[
-\left|\int_\Omega \varphi \cdot d\mu_h \right| \leq \int_\Omega |\varphi|
-d|\mu_h|.
-\]
-Which converge for $k\to \infty$
-\[
-\left|\int_\Omega \varphi \cdot d\mu \right| \leq \int_\Omega |\varphi|
-d\sigma.
-\]
-Taking the supremum over $\varphi$ yields $|\mu| \leq \sigma$.
-For all $\varepsilon >0$ there exists a $A$ open and $K$ compact such that
-$\overline{A} \subset E \subset \overset{\circ}{K}$ and $\sigma (K \setminus A)
-< \varepsilon$. Let $\varphi \in C_c(\overset{\circ}{K})$, $0 \leq \varphi \leq
-1$ on $\overline {A}$, so we have:
-\begin{itemize}[]
-\item \TODO
-\end{itemize}
-Hence, 
-\[
-\limsup_{h\to \infty} |\mu_h(E) - \mu(E)| \leq \limsup |\mu_h|(K\setminus A) +
-|\mu|(K\setminus A)
-\leq 2\sigma(K\setminus A) < 2\varepsilon
-\]
-and since $\varepsilon$ is arbitrary we are done.
 
-Though, notice that if $\overset{\circ}{E} = \emptyset$, then \TODO
-\end{proof}
 
-\begin{remark}
-A stronger statement is the following: if $\mu_h \weakstar \mu$ and $|\mu_h|
-\weakstar \sigma$, then
-\[
-\int_\Omega u d\mu_h \to \int_\Omega u d\mu
-\]
-for all $u$ bounded Borel function with compact support in $\Omega$ such that
-	its discontinuity points are $\sigma$-negligable.
-\end{remark}
-\begin{remark}
-Let $\mu \in \mathcal{M}^+(\Omega)$ and $\{A_t\}_{t\in I}$, where $I$ is an
-interval in $\R$, be an increasing family of relatively compacts sets in
-$\Omega$:
-\[
-\overline{A_s} \subset A_t \quad \forall s < t, s,t \in I.
-\]
-Then $\mu(\partial A_t) = 0$ for all but countable many $t \in I$.
-\begin{proof}
-Define 
-\[
-I_k := \{ t \in I : \mu(\partial A_t) > \frac{1}{k}\} \quad k\in\N, k \geq 1.
-\]
-\[
-\infty > \mu\left(\bigcup_{t \in I} \partial A_t\right) \geq \sum_{t \in I_k}
-\mu (\partial A_t) > \frac{1}{k} \# I_k
-\]
-thus $I_k$ is finite. Thus 
-\[
-I_0 = \{t \in I : \mu(\partial A_t) > 0 \} = \bigcup_{k\in \N} I_k
-\]
-it's countable.
-\end{proof}
-Applicaion: For any $x \in \Omega$ and $\Leb{1}$-a.e. r> 0 such that $B(x,r) \subset
-\Omega$, $\mu(\partial B(x,r)) = 0$.
-\end{remark}
 
-\begin{proposition}
-If $\mu_h$, $\mu \in \mathcal{M}(\Omega;\R^m)$, $\mu_h \weakstar \mu$ (w.r.t.
-$C_c$) and $|\mu_h|(\Omega) \to |\mu|(\Omega)$, then $|\mu_h| \weakstar |mu|$.
-\end{proposition}
-\begin{proof}
-By lower semicontinuity, for all $A \subset \Omega$ open, $|\mu|(\Omega) \leq
-\liminf_{h\to \infty} |\mu_h|(A)$.
-Let $K \subset \Omega$ compact, then \TODO.
-\end{proof}
 
-\subsection{Mollification of Radon measure}
 
-Let $\mu \in \mathcal{M}_{loc}(\Omega;\R^m)$ and $g \in C_c(\R^n)$.
-We denote by $(\mu * g)$ the convolution :
-\[
-(\mu * g)(x) := \int_\Omega g(x-y) d\mu(y)
-\quad \forall x:
-\quad \text{the map $\quad y \mapsto g(x-y)$ is $C_c$}
-\]
-In particular, let $\rho \in C^\infty_c (B(0,1))$, $\rho(-x)= \rho(x)$, $\rho
-\geq 0$, $\int_{\R^n} \rho dx  = 1$ ($\rho$ is a mollifier), set
-$\rho_\varepsilon(x) : = \frac{1}{\varepsilon^n} \rho(\frac{x}{\varepsilon})$,
-then  
-\[
-(\mu * \rho_\varepsilon)(x) = \int_\Omega \rho_\varepsilon(x-y) d\mu(y)
-\]
-is well defined for all $x \in \Omega^\varepsilon := \{x \in \Omega:
-\dist(x,\partial \Omega) > \varepsilon\}$. 
 
-\begin{theorem}[Properties of mollifications]
-Let $\mu \in \mathcal{M}_{loc}(\Omega;\R^m)$, $\rho$ a mollifier. Then $\mu *
-\rho_\varepsilon \in C^\infty(\Omega^\varepsilon;\R^m)$, $D^\alpha(\mu *
-\rho_\varepsilon) = \mu * D^\alpha \rho_\varepsilon$ (for all $\alpha \in
-\N_0^n$). In addition
-\[
-\mu * \rho_\varepsilon \weakstar \mu 
-\]
-for all $E$ Lebesgue measure, $\int_E |\mu * \rho_\varepsilon|dx \leq
-	|\mu|(E_\varepsilon)$ for all $\varepsilon >0$.
-\end{theorem}
-\begin{proof}
-Regularity and differentiability is an exercise.
-Let $\varphi \in C_c(\Omega;\R^m)$
-\[
-\begin{aligned}
-\int_\Omega \varphi \cdot (\mu * \rho_\varepsilon) dx 
-= \int_\Omega \int_\Omega \varphi(x) \rho_\varepsilon(x-y) \cdot d\mu(y) dx 
-= \int_\Omega (\varphi * \rho_\varepsilon)(y) \cdot d\mu(y) \to \int \varphi
-\cdot d\mu(y),
-\end{aligned}
-\]
-where we used $\rho_\varepsilon(x-y) = \rho_\varepsilon(y-x)$ and
-$(\varphi*\rho_\varepsilon)(y) \to \varphi(y)$ uniformly.
-By Fubini's Theorem,
-\TODO
-\end{proof}
 
-\subsection{Differentiation of Radon and Hausdorff measures}
-We say that a family $\mathcal{F}$ is disjoint if $F \cap F' = \emptyset$ for
-all $F,F' \in \mathcal{F}$, $F \neq F'$.
 
-\begin{theorem}[Besicovitch covering theorem]
-There exists a $\xi_n \in \N$ such that for all families of closed balls
-$\mathcal{F}$ such that the set 
-$A: = \{ x \in \R^n \mid \exists \varrho > 0 : \overline{B(x,\varrho)} \in
-\mathcal{F}\}$ is bounded, there exists at mos $\xi_n$ disjoint subfamilies
-$\mathcal{F}_i \subset \mathcal{F}$ such that 
-\[
-A \subset \bigcup_{i=1}^{\xi_n} \bigcup_{\overline{B} \in \mathcal{F}_i}
-\overline{B}.
-\]
-\end{theorem}
-
-\begin{remark}
-It works also with open balls. 
-\end{remark}
-
-\begin{theorem}[consequence of Besicovitch]
-Let $A$ be a bounded set and $\varrho : A \to (0,\infty)$. Then there exists $S
-\subset A$ at most countable such that 
-\(
-A \subset \bigcup_{x\in S} B(x,\varrho(x)) 
-\)
-and for all $y \in \R^n$
-\[
-\sum_{x \in S} \chi_{B(x,\varrho(x))}(y) \leq \xi_n.
-\]
-\end{theorem}
-\begin{proof}
-Let $\mathcal{F} := \{(B(x,\varrho(x)) \mid x \in A\}$ \TODO
-\end{proof}
-
-\begin{definition}
-Let $\mathcal{F}$ be a family of closed balls and $A \subset \R^n$.
-$\mathcal{F}$ is called a fine covering of $A$ if 
-\[
-\inf \left\{ \varrho > 0 \mid \overline{B(x,\varrho)} \in \mathcal{F}\right \} =
-0 \quad \text{for all $x\in A$}.
-\]
-\end{definition}
-
-\begin{theorem}[Vitali]
-Let $A$ be a bounded Borel set and $\mathcal{F}$ be a fine covering of $A$. In
-any case $\mu \in \mathcal{M}^+_{loc}(\R^n)$ there exists $\mathcal{F}' \subset
-\mathcal{F}$ disjoint such that 
-\[
-\mu \left( A \setminus \bigcup_{\overline{B}
-\in \mathcal{F}'} \overline{B} \right) = 0
-\]
-\end{theorem}
-\begin{proof}
-\TODO
-\end{proof}
-
-\begin{theorem}
-let $\mu \in \mathcal{M}^+_{loc}(\Omega)$, $\lambda \in
-\mathcal{M}_{loc}(\Omega;\R^m)$, $|\lambda| << \mu$. Then, for $\mu$-a.e. $x \in
-\supp u$, the limit 
-\[
-\lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\mu(B(x,\varrho))}
-\]
-exists in $\R^n$.
-\end{theorem}
-
-By Radon-Nikodyn, $\lambda = f\mu$ for some $f \in
-\Leb{1}_{\text{loc}}(\Omega;\mu)$. Thus 
-\[
-f(x) = \lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\mu(B(x,\varrho))}$
-\]
-for $\mu$-a.e. $x \in \supp \mu$.
 
