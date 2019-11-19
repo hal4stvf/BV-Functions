@@ -122,6 +122,35 @@ f(x) = \lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\mu(B(x,\varrho))}
 for $\mu$-a.e. $x \in \supp \mu$.
 
 
+\begin{theorem}[Lebesgue-Besicovitch differentiation theorem]
+Let $\mu \in \mathcal{M}^+_{\rm loc}$, $f \in L^1_{\rm loc}(\Omega,\mu; \R^m)$.
+Then for $\mu$-a.e. $x\in \Omega$
+\[
+f(x) = \lim_{\varrho \to 0} \frac{1}{\mu(B(x,\varrho)} \int_{B(x,\varrho)} f(y)
+d\mu(y).
+\]
+In particular, if $\mu = \Leb{n}$, 
+\[
+f(x) = \lim_{\varrho \to 0} \frac{1}{\omega_n \varrho^n} \int_{B(x,\varrho)} f(y)
+dy,
+\]
+for $\Leb{n}$-a.e. $x\in \Omega$.
+
+If $f = \chi_E$, where $E$ is a $\Leb{n}$-measurable,
+\[
+\chi_E (x) = \lim_{\varrho \to 0^+} \frac{|E \cap B(x,\varrho)|}{|B(x,\varrho)|} 
+\]
+(density of $E$ at $x$ with respect to $\Leb{n}$).
+\end{theorem}
+As as consequence of Lebesgue-Besicovitch differentiation theorem, if $\lambda
+\in \mathcal{M}^+_{\rm loc}(\Omega)$ and $\lambda << \Leb{N}$, then there exists 
+\[
+\lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\omega_n \varrho^n} =:
+D_{\Leb{n} \lambda}
+\]
+for $\Leb{n}$-a.e. $x\in \Omega$ and $\lambda = D_{\Leb{n} \lambda} \Leb{n}$.
+
+\TODO: Lecture 6?
 
 \section{Fine properties of Lipschitz functions}
 
