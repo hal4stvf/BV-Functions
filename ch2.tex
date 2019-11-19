@@ -1,28 +1,396 @@
-\section{The area formula}
+\section{Covering theorems and differentiation of measures}
 
+\section{Fine properties of Lipschitz functions}
 
-\section{The coarea formula}
+We devote this section to the discussion of some properties of Lipschitz functions, which proved to be very useful in the framework of Geometric Measure Theory. 
+The choice of working with Lipschitz functions is due to the fact that such functions have a less rigid structure than $C^{1}$-differentiable functions (for instance, extension theorems are much easier to prove, see McShane's lemma), while they enjoy differentiability properties almost everywhere (see Rademacher's theorem).
 
+\begin{lemma}[McShane's lemma] \label{McShane_lemma}
+Let $E \subset \R^{n}$ and $f: E \to \R$ be a Lipschitz function. Then the function $f^{+} : \R^{n} \to \R$ defined as
+\begin{equation*}
+f^{+}(x) := \inf \{ f(y) + \Lip(f, E) |x - y| : y \in E\}
+\end{equation*}
+is Lipschitz and it satisfies $f^{+}(x) = f(x)$ for any $x \in E$ and $\Lip(f, E) = \Lip(f^{+}, \R^{n})$.
+\end{lemma}
+\begin{proof}
+For any $x, z \in \R^{n}$, by the triangle inequality, we have
+\begin{equation*}
+f^{+}(x) \le \inf \{ f(y) + \Lip(f, E) (|x - z| + |z - y|) : y \in E \} = f^{+}(z) + \Lip(f, E) |x - z|.
+\end{equation*}
+Then, interchanging the role of $x$ and $z$, we immediately get
+\begin{equation*}
+|f^{+}(x) - f^{+}(z)| \le \Lip(f, E) |x - z|.
+\end{equation*}
+Finally, let $x \in E$. It is easy to see that $f^{+}(x) \le f(x)$. In order to obtain the reverse inequality, notice that 
+\begin{equation*}
+f(x) \le f(y) + \Lip(f, E)|x - y|
+\end{equation*}
+for any $y \in E$, since $f$ is Lipschitz on $E$.
+\end{proof}
 
-\section{Rectifiability}
+\begin{remark} The extension given in McShane's lemma is the largest extension of $f$, while, arguing analogously, one can show that the smaller extension is given by
+\begin{equation*}
+f^{-}(x) := \sup \{ f(y) - \Lip(f, E) |x - y| : y \in E \}.
+\end{equation*}
+\end{remark}
 
-We start with the definitions of rectifiable set and approximated tangent space.
+It is not difficult to see that McShane's lemma can be extended to vector valued Lipschitz functions by hands; however, in such a way we loose the equality between the Lipschitz constants.
+
+\begin{corollary}
+Let $E \subset \R^{n}$ and $f: E \to \R^{m}$ be a Lipschitz function. Then there exists a Lipschitz function $\tildef{f} : \R^{n} \to \R^{m}$ such that $\tildef{f} = f$ on $E$ and $\Lip(\tildef{f}, \R^{n}) \le \sqrt{m} \Lip(f, E)$.
+\end{corollary}
+\begin{proof}
+Apply McShane's lemma (Lemma \ref{McShane_lemma}) to each component of $f$, thus defining
+\begin{equation*}
+\tildef{f} := (f_{1}^{+}, \dots, f_{m}^{+}).
+\end{equation*}
+Then it is easy to see that $\tildef{f}= f$ on $E$. As for the Lipschitz constant, notice that
+\begin{equation*}
+|\tildef{f}(x) - \tildef{f}(y)|^{2} = \sum_{i = 1}^{m}|f_{i}^{+}(x) - f_{i}^{+}(y)|^{2} \le m (\Lip(f, E))^{2} |x - y|^2.
+\end{equation*}
+This ends the proof.
+\end{proof}
+
+A more refined result was found by Kirszbraun.
+
+\begin{theorem}[Kirszbraun theorem]
+Let $E \subset \R^{n}$ and $f: E \to \R^{m}$ be a Lipschitz function. Then there exists a Lipschitz function $g: \R^{n} \to \R^{m}$ such that $g = f$ on $E$ and $\Lip(g, \R^{n}) = \Lip(f, E)$.
+\end{theorem}
+
+A practical consequence of these extension results for Lipschitz functions is that we may always assume, without loss of generality, that our Lipschitz maps are defined on the whole space $\R^{n}$.
+
+We shall now see that, quite surprisingly, the Lipschitz continuity property is enough to ensure differentiability outside of a Lebesgue negligible set. We start by recalling the notion of differentiability.
 
 \begin{definition}
-Let $k \in [0, n]$ be an integer and let $S \subset \R^{n}$ be a $\Haus{k}$-measurable set. We say that $S$ is countably $k$-rectifiable if there exist countably many Lipschitz functions $f_{i} : \R^{k} \to \R^{n}$ such that 
+A function $f : \R^{n} \to \R^{m}$ is {\em differentiable} at $x \in \R^{n}$ if there exists a linear mapping $L: \R^{n} \to \R^{m}$ such that
 \begin{equation*}
-S \subset \bigcup_{i} f_{i}(\R^{k}).
+\lim_{y \to x} \frac{|f(y) - f(x) - L(y - x)|}{|y - x|} = 0.
 \end{equation*}
+This linear mapping is denoted by $\nabla f(x)$ or $d f(x)$.
 \end{definition}
 
-\begin{definition}
-Let $k \in [0, n]$ be an integer, $\mu$ be a Radon measure in $\Omega$ and $x \in \Omega$. We say that the approximate tangent space of $\mu$ is a $k$-plane $\pi$ with multiplicity $\theta \in \R$ in $x$, and we write 
-\begin{equation*}
-\Tan^{k}(\mu, x) = \theta \Haus{k} \res \pi
-\end{equation*}
-if $r^{-k} \mu_{x, r}$ locally weak$^*$ converges to $\theta \Haus{k} \res \pi$ in $\Omega$ as $r \to 0$; that is, 
-\begin{equation*}
-\lim_{r \to 0} \frac{1}{r^{k}} \int_{\Omega} \phi\left (\frac{y - x}{r}\right) \, d \mu(y) = \int_{\pi} \phi(y) \, d \Haus{k}(y)
-\end{equation*}
-for any $\phi \in C_{c}(\Omega)$.
+\begin{theorem}[Rademacher's theorem]
+Let $f : \R^{n} \to \R^{m}$ be a locally Lipschitz function. Then $f$ is differentiable at $\Leb{n}$-a.e. $x \in \R^{n}$. In particular, $\nabla f(x)$ is well defined for $\Leb{n}$-a.e. $x \in \R^{n}$ and belongs to $L^{\infty}_{\rm loc}(\R^{n}; \R^{m} \times \R^{n})$, with $$\|\nabla f\|_{L^{\infty}(K; \R^{m} \times \R^{n})} \le \Lip(f, K)$$ for any compact set $K$.
+\end{theorem}
+
+An interesting consequence of this result is that the differential of a Lipschitz function vanishes on the level sets of the function.
+
+\begin{theorem}
+Let $f: \R^{n} \to \R^{m}$ be locally Lipschitz and $t \in \R$. Then $\nabla f(x) = 0$ for $\Leb{n}$-a.e. $x \in \{ f = t\} := \{ y \in \R^{n}: f(y) = t\}$.
+\end{theorem}
+
+\section{The area and coarea formulas}
+
+
+\subsection{Linear maps and Jacobians}
+
+We recall here some standard definitions and facts from linear algebra.
+
+\begin{definition} \hfill
+\begin{enumerate}[i)]
+\item A linear map $O : \R^{n} \to \R^{m}$ is {\em orthogonal} if $$(Ox) \cdot (Oy) = x \cdot y$$ for all $x, y \in \R^{n}$.
+\item A linear map $S: \R^{n} \to \R^{m}$ is {\em symmetric} if $$x \cdot (Sy) = (Sx) \cdot y$$ for all $x, y \in \R^{n}$.
+\item Let $A: \R^{n} \to \R^{m}$. The {\em adjoint} of $A$ is the linear map $A^{*}: \R^{m} \to \R^{n}$ defined by $$x \cdot (A^{*} y) = (Ax) \cdot y$$ for all $x \in \R^{n}, y \in \R^{m}$. 
+\end{enumerate}
 \end{definition}
+
+\begin{proposition} \label{prop:properties_linear} \hfill
+\begin{enumerate}[i)]
+\item Let $A: \R^{n} \to \R^{m}$ and $B: \R^{k} \to \R^{n}$ be linear maps. Then we have $A^{**} = A$ and $(A \circ B)^{*} = B^{*} \circ A^{*}$.
+\item Let $S : \R^{n} \to \R^{n}$ be a symmetric linear map. Then $S^{*} = S$.
+\item If $O : \R^{n} \to \R^{m}$ is an orthogonal linear map, then $n \le m$ and 
+\begin{align*}
+O^{*} \circ O = I & \text{ on } \R^{n}, \\
+O \circ O^{*} = I & \text{ on } \R^{m}.
+\end{align*}
+\end{enumerate}
+\end{proposition}
+
+\begin{theorem}[Polar decomposition] \label{thm:polar_decomposition_map}
+Let $L: \R^{n} \to \R^{m}$ be a linear mapping.
+\begin{enumerate}[i)]
+\item If $n \le m$, there exists a symmetric map $S: \R^{n} \to \R^{m}$ and an orthogonal map $O: \R^{n} \to \R^{m}$ such that $$L = O \circ S.$$
+\item If $n \ge m$, there exists a symmetric map $S: \R^{m} \to \R^{m}$ and an orthogonal map $O: \R^{m} \to \R^{n}$ such that $$L = S \circ O^{*}.$$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Jacobian]
+Assume $L : \R^{n} \to \R^{m}$ is linear.
+\begin{enumerate}[i)]
+\item If $n \le m$, we write $L = O \circ S$ as above, and we define the {\em Jacobian} of $L$ as $$\J L := |\det{S}|.$$ 
+\item If $n \le m$, we write $L = S \circ O^{*}$ as above, and we define the {\em Jacobian} of $L$ as $$\J L := |\det{S}|.$$ 
+\end{enumerate}
+\end{definition}
+
+In the literature, these two different definitions of Jacobian are also called {\em $n$-dimensional Jacobian} (or {\em area factor}), and {m}-dimensional {\em coarea factor}, respectively, and are denoted by $\J_{n}$ and ${\bf C}_{m}$.
+
+\begin{theorem}[Representation of Jacobian] \hfill
+\begin{enumerate}[i)]
+\item If $n \le m$, $$\J L = \sqrt{\det{(L^{*} \circ L)}}.$$
+\item If $n \ge m$, $$\J L = \sqrt{\det{(L \circ L^{*})}}.$$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Let $n \le m$ and $L = O \circ S$, by Theorem \ref{thm:polar_decomposition_map}. Then we have $L^{*} = S \circ O^{*}$, so that $$L^{*} \circ L = S \circ O^{*} \circ O \circ S = S^{2},$$ since $O$ is orthogonal and so $O^{*} \circ O$ is the identity mapping on $\R^{n}$ (by Proposition \ref{prop:properties_linear}). Hence $$\det{(L^{*} \circ L)} = \det{S^{2}} = (\J L)^{2}.$$
+The proof of (ii) is similar.
+\end{proof}
+
+\begin{remark}
+The definition of the Jacobian of $L$ is independent of the choices of $O$ and $S$, and we have $\J L = \J L^{*}$.
+\end{remark}
+
+\begin{proposition}[Cauchy-Binet formula] \label{Cauchy_Binet}
+If $n \le m$ and $L: \R^{n} \to \R^{m}$ is a linear map, then
+\begin{equation*}
+\J L = \sqrt{ \sum_{B} \det^{2}{(B)}}
+\end{equation*}
+where the sum is taken over all $n\times n$ minor of any matrix representation of $L$.
+\end{proposition}
+
+Let now $f : \R^{n} \to \R^{m}$, $f = (f^{1}, \dots, f^{m}),$ be a Lipschitz map. By Rademacher's theorem, $f$ is differentiable $\Leb{n}$-a.e. and therefore the gradient matrix 
+\[\nabla f(x) = \begin{pmatrix} \frac{\partial f^{1}}{\partial x_{1}} & \cdots & \frac{\partial f^{1}}{\partial x_{n}} & \\ \vdots & \ddots & \vdots \\  \frac{\partial f^{m}}{\partial x_{1}} & \cdots & \frac{\partial f^{m}}{\partial x_{n}} & \end{pmatrix}\]
+is well defined and can be considered a linear map from $\R^{n}$ into $\R^{m}$ for $\Leb{n}$-a.e. $x \in \R^{n}$.
+
+\begin{definition}
+If $f : \R^{n} \to \R^{m}$ is Lipschitz continuous and $x$ is a differentiability point, we define the {\em Jacobian} of $f$ as $$\J f(x) := \J \nabla f(x).$$
+\end{definition}
+
+\begin{remark}
+Notice that $\J f \le c_n \Lip(f)^{n}$.
+\end{remark}
+
+\subsection{The area formula}
+
+Through this subsection we assume $n \le m$ and $f : \R^{n} \to \R^{m}$ to be Lipschitz continuous.
+
+\begin{lemma} Let $A \subset \R^{n}$ be $\Leb{n}$-measurable. Then
+\begin{enumerate}[i)]
+\item $f(A)$ is $\Haus{n}$-measurable,
+\item the mapping $y \to \Haus{0}(A \cap f^{-1}(y))$ is $\Haus{n}$-measurable on $\R^{m}$ and
+\begin{equation*}
+\int_{\R^{m}} \Haus{0}(A \cap f^{-1}(y)) \, d \Haus{n}(y) \le (\Lip(f))^{n} \Leb{n}(A)
+\end{equation*}
+\end{enumerate}
+\end{lemma}
+
+\begin{definition}
+The mapping $y \to \Haus{0}(A \cap f^{-1}(y))$ is the {\em multiplicity function} of $f$ in $A$.
+\end{definition}
+
+\begin{remark}
+It is easy to notice that $\Haus{0}(A \cap f^{-1}(y))$ is equal to the cardinality of the set of $$\{ x \in A : f(x) = y \},$$
+so that $f^{-1}(y)$ is finite for $\Haus{n}$-a.e. $y \in \R^{m}$.
+In particular, if $f$ is injective, then
+\begin{equation*}
+\Haus{0}(A \cap f^{-1}(y)) = \begin{cases} 1 & y \in f(A), \\
+0 & y \notin f(A).
+\end{cases}
+\end{equation*}
+\end{remark}
+
+\begin{theorem}[Area formula] \label{area_formula}
+Let $f : \R^{n} \to \R^{m}$ be Lipschitz continuous and $n \le m$. Then, for all $\Leb{n}$-measurable sets $A \subset \R^{n}$, we have
+\begin{equation} \label{eq:area_formula}
+\int_{A} \J f(x) \, dx = \int_{\R^{m}} \Haus{0}(A \cap f^{-1}(y)) \, d\Haus{n}(y).
+\end{equation}
+\end{theorem}
+
+This means that the $\Haus{n}$-measure of $f(A)$, counting multiplicity, is equal to the integral of the Jacobian of $f$ over $A$. As an immediate consequence, we deduce a generalization of the classical change of variables formula.
+
+\begin{theorem}[General change of variables] \label{change_variables_gen}
+Let $f : \R^{n} \to \R^{m}$ be Lipschitz continuous and $n \le m$. Then, for all $\Leb{n}$-summable functions $g : \R^{n} \to \R$, we have
+\begin{equation} \label{eq:change_variables_gen}
+\int_{\R^{n}} g(x) \, \J f(x) \, dx = \int_{\R^{m}} \left (\sum_{x \in f^{-1}(y)} g(x) \right ) d \Haus{n}(y).
+\end{equation}
+\end{theorem}
+
+\begin{corollary}[Injective maps] \label{change_variables}
+Let $f : \R^{n} \to \R^{m}$ be Lipschitz continuous and $n \le m$. Let $g : \R^{n} \to \R$ be a $\Leb{n}$-summable function, and assume that $f$ is injective on the support of $g$. Then, we have
+\begin{equation} \label{eq:change_variables_1}
+\int_{\R^{n}} g(x) \, \J f(x) \, dx = \int_{f(\R^{n})} g(f^{-1}(y)) \, d \Haus{n}(y).
+\end{equation}
+Equivalently, if $h : \R^{m} \to \R$ is such that $h \circ f$ is $\Leb{n}$-summable and $f$ is injective on the support of $h$, then we have
+\begin{equation} \label{eq:change_variables_2}
+\int_{\R^{n}} h(f(x)) \, \J f(x) \, dx = \int_{f(\R^{n})} h(y) \, d \Haus{n}(y).
+\end{equation}
+If $g = \chi_{A}$ for some $\Leb{n}$-measurable set $A$, then
+\begin{equation} \label{eq:area_formula_inj}
+\Haus{n}(f(A)) = \int_{A} \J f(x) \, dx.
+\end{equation}
+\end{corollary}
+
+\begin{remark}
+Theorem \ref{change_variables_gen} and Corollary \ref{change_variables} hold also in the case $g : \R^{n} \to [0, + \infty]$ is $\Leb{n}$-measurable; however, the left hand sides of \eqref{eq:change_variables_gen} and \eqref{eq:change_variables_1} may be equal to $+ \infty$.
+In addition, since any Borel function is Lebesgue measurable, Theorem \ref{change_variables_gen} and Corollary \ref{change_variables} are valid for all Borel functions $g : \R^{n} \to \R$ either nonnegative or $\Leb{n}$-summable.
+\end{remark}
+
+We list here some remarkable applications of the area formula.
+
+\begin{example}[Length of a curve]
+Let $n = 1, m \ge 1$. Assume $f : \R \to \R^{m}$ is Lipschitz and injective. It is clear that, for $\Leb{1}$-a.e. $t \in \R$,
+\begin{equation*}
+\J_{1} f(t) = |\dot{f}(t)|. 
+\end{equation*}
+Therefore, for any $a, b \in \R, a < b$, the length of a curve $C := f([a, b])$ is given by
+\begin{equation*}
+\Haus{1}(C) = \int_{a}^{b} |\dot{f}| \, dt,
+\end{equation*}
+thanks to \eqref{eq:area_formula_inj}.
+\end{example}
+
+\begin{example}[Surface area of a graph]
+Let $n \ge 1$ and $m = n + 1$. Assume $g: \R^{n} \to \R$ is Lipschitz and define $f: \R^{n} \to \R^{n + 1}$ as $$f(x) := (x, g(x)).$$
+Then
+\[\nabla f(x) = \begin{pmatrix} 1 & \cdots & 0 & \\ \vdots & \ddots & \vdots \\ 
+0 & \cdots & 1 & \\ \frac{\partial g}{\partial x_{1}} & \cdots & \frac{\partial g}{\partial x_{n}} & \end{pmatrix},\]
+and so, by Cauchy-Binet formula (Proposition \ref{Cauchy_Binet}), we have
+\begin{equation*}
+\J f = \sqrt{1 + |\nabla g|^2}.
+\end{equation*}
+For any open set $\Omega \subset \R^{n}$, we define the graph of $g$ over $\Omega$ as
+$$ \Gamma(g, \Omega) := \{ (x, g(x)) : x \in \Omega \} \subset \R^{n + 1}.$$
+Therefore, \eqref{eq:area_formula_inj} yields
+\begin{equation*}
+\Haus{n}(\Gamma(g, \Omega)) = \int_{\Omega} \sqrt{1 + |\nabla g|^{2}} \, dx.
+\end{equation*}
+\end{example}
+
+\begin{example}[Surface area of a parametric hypersurface]
+Let $n \ge 1$ and $m = n + 1$. Assume $f : \R^{n} \to \R^{n + 1}, f = (f^1, \dots, f^{n + 1}),$ is Lipschitz and injective. For any $k \in \{1, \dots, n + 1 \}$, we define $$\hat{f}_{k} := (f^{1}, \dots, f^{k - 1}, f^{k + 1}, \dots, f^{n + 1});$$
+that is, the vector valued map $f$ without its $k$-th component. Then, it is not difficult to see that $$\J \hat{f}_{k} = |\det{\nabla \hat{f}_{k}}|,$$
+and so, as a consequence of Cauchy-Binet formula (Proposition \ref{Cauchy_Binet}), we have
+\begin{equation*}
+\J f = \sqrt{\sum_{k = 1}^{n + 1} (\J \hat{f}_{k})^{2}}.
+\end{equation*}
+Thus, if we define $\Sigma(f, \Omega) := f(\Omega)$, for any open set $\Omega \subset \R^{n}$ to be a portiong of the parametric hypersurface, \eqref{eq:area_formula_inj} yields
+\begin{equation*}
+\Haus{n}(\Sigma(f, \Omega)) = \int_{\Omega} \sqrt{\sum_{k = 1}^{n + 1} (\J \hat{f}_{k})^{2}} \, dx.
+\end{equation*}
+\end{example}
+
+\subsection{The coarea formula}
+
+In this subsection we assume $n \ge m$ and $f : \R^{n} \to \R^{m}$ to be Lipschitz.
+
+\begin{lemma} Let $A$ be $\Leb{n}$-measurable. Then
+\begin{enumerate}[i)]
+\item $A \cap f^{-1}(y)$ is $\Haus{n - m}$ measurable for $\Leb{m}$-a.e. $y \in \R^{m}$.
+\item the mapping $y \to \Haus{n - m}(A \cap f^{-1}(y))$ is $\Leb{m}$-measurable, and
+\begin{equation*}
+\int_{\R^{m}} \Haus{n - m}(A \cap f^{-1}(y)) \, d y \le c_{n, m} (\Lip(f))^{m} \Leb{n}(A).
+\end{equation*}
+\end{enumerate}
+\end{lemma}
+
+\begin{theorem}[Coarea formula] \label{coarea_formula}
+Let $f : \R^{n} \to \R^{m}$ be Lipschitz and $n \ge m$. Then, for all $\Leb{n}$-measurable sets $A \subset \R^{n}$, we have
+\begin{equation} \label{eq:coarea_formula}
+\int_A \J f \, dx = \int_{\R^{m}} \Haus{n - m}(A \cap f^{-1}(y)) \, dy.
+\end{equation}
+\end{theorem}
+
+Notice that the coarea formula can be seen as a generalized version of Fubini's theorem.
+
+\begin{remark}[Morse-Sard theorem]
+If we apply the coarea formula to $A = \{ \J f = 0 \}$, it is immediate to see that
+\begin{equation*}
+\Haus{n - m}( \{ \J f = 0 \} \cap f^{-1}(y)) = 0
+\end{equation*}
+for $\Leb{m}$-a.e. $y \in \R^{m}$. This is a weak variant of Morse-Sard theorem, which states that, if $f \in C^{k}(\R^{n}; \R^{m})$ for $k = 1 + n - m$, then
+\begin{equation*}
+\{\J f = 0 \} \cap f^{-1}(y) = \emptyset
+\end{equation*}
+for $\Leb{m}$-a.e. $y \in \R^{m}$.
+\end{remark}
+
+\begin{theorem}\label{integration_level_sets_gen}
+Let $f : \R^{n} \to \R^{m}$ be Lipschitz and $n \ge m$. Then, for all $\Leb{n}$-summable functions $g : \R^{n} \to \R$, we have $g|_{f^{-1}(y)}$ is $\Haus{n - m}$-summable for $\Leb{m}$-a.e. $y \in \R^{m}$, and
+\begin{equation} \label{eq:integration_level_sets_gen}
+\int_{\R^{n}} g \, \J f \,dx = \int_{\R^{m}} \int_{f^{-1}(y)} g \, d \Haus{n - m} \, dy.
+\end{equation}
+\end{theorem}
+
+\begin{remark}
+Notice that $f^{-1}(y)$ is closed for all $y \in \R^{m}$, so that it is immediately $\Haus{n - m}$-measurable.
+\end{remark}
+
+We list now some relevant applications of the coarea formula.
+
+\begin{theorem}[Polar coordinates] \label{polar_coordinates}
+Let $g : \R^{n} \to \R$ be $\Leb{n}$-summable. Then
+\begin{equation*} 
+\int_{\R^{n}} g \, dx = \int_{0}^{+\infty} \int_{\partial B(0, \rho)} g \, d \Haus{n - 1} \, d \rho
+\end{equation*}
+In particular, for any $r > 0$ and $g$ such that $g \chi_{B(0, r)}$ is $\Leb{n}$-summable, we have
+\begin{equation*}
+\int_{B(0, r)} g \, dx = \int_{0}^{r} \int_{\partial B(0, \rho)} g \, d \Haus{n - 1} \, d \rho,
+\end{equation*}
+so that, for $\Leb{1}$-a.e. $r > 0$,
+\begin{equation*}
+\frac{d}{dr} \int_{B(0, r)} g \, dx = \int_{\partial B(0, r)} g \, d \Haus{n - 1}.
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Apply Theorem \ref{integration_level_sets_gen} to $f(x) = |x|$, in the case $m = 1$. Then, for all $x \neq 0$, we have $$\nabla f(x) = \frac{x}{|x|}, \ \J f(x) = 1.$$
+Finally, the second equality is a consequence of the first, as the third can be derived from the second.
+\end{proof}
+
+In general, in the case $m = 1$ it is easy to notice that $\J f = |\nabla f|$, so that we have the following result.
+
+\begin{theorem}[Integration over level sets] \label{integration_level_sets}
+Let $f : \R^{n} \to \R$ be Lipschitz. Then we have
+\begin{equation} \label{eq:coarea_n_1}
+\int_{\R^{n}} |\nabla f| \, dx = \int_{- \infty}^{+ \infty} \Haus{n - 1}(\{f = t\}) \, dt.
+\end{equation}
+If we assume also that ${\rm ess} \inf |\nabla f| > 0$ and we let $g : \R^{n} \to \R$ be $\Leb{n}$-summable, then for all $t \in \R$ we obtain
+\begin{equation} \label{eq:integration_level_set}
+\int_{\{f > t \}} g \, dx = \int_{t}^{+ \infty} \int_{\{f =s\}} \frac{g}{|\nabla f|} \, d \Haus{n - 1} \, ds.
+\end{equation}
+In particular, 
+\begin{equation*}
+\frac{d}{dt} \int_{\{f > t\}} g \, dx = - \int_{\{f = t\}} \frac{g}{|\nabla f|} \, d \Haus{n -1}
+\end{equation*}
+for $\Leb{1}$-a.e. $t \in \R$.
+\end{theorem}
+\begin{proof}
+It is easy to see that \eqref{eq:coarea_n_1} is a simple consequence of \eqref{eq:coarea_formula} when $m = 1$. Then, by Theorem \ref{integration_level_sets_gen}, we have
+\begin{align*}
+\int_{\{f > t\}} g \, dx & = \int_{\R^{n}} \chi_{\{f > t\}} \frac{g}{|\nabla f|} \J f \, dx \\
+& = \int_{- \infty}^{+ \infty} \int_{\{ f = s\}} \chi_{\{f > t\}} \frac{g}{|\nabla f|} \, d \Haus{n - 1} \, ds \\
+& = \int_{t}^{+ \infty} \int_{\{ f = s\}} \chi_{\{f > t\}} \frac{g}{|\nabla f|} \, d \Haus{n - 1} \, ds.
+\end{align*}
+Then, the final equality follow easily by \eqref{eq:integration_level_set}.
+\end{proof}
+
+Finally, we conclude this section with the examination of the case in which $f$ is the distance function from a compact set.
+
+\begin{theorem}[Integration over the level set of the distance function] \label{integration_distance_function}
+Let $K\subset \R^{n}$ be a nonempty compact set and set $$d(x):= {\rm dist}(x, K).$$
+Then, for all $0 < a < b$ and all $g : \R^{n} \to \R$ $\Leb{n}$-summable we have
+\begin{equation*}
+\int_{a}^{b} \int_{\{ d = t\}} g \, d \Haus{n - 1} \, dt = \int_{\{ a < d \le b\}} g \, dx.
+\end{equation*}
+In particular,
+\begin{equation*}
+\int_{a}^{b} \Haus{n - 1}(\{d = t\}) \, dt = \Leb{n}(\{ a < d \le b\}).
+\end{equation*}
+\end{theorem}
+\begin{proof}
+It is enough to prove that $|\nabla d(x)| = 1$ for $\Leb{n}$-a.e. $x \in \R^{n} \setminus K$, and then we need just to apply Theorem \ref{integration_level_sets}. We start by showing the $d$ is Lipschitz. Let $x \in \R^{n}$: there exists a $c \in K$ such that $|x - c| = d(x)$. By the triangle inequality, we have
+\begin{equation*}
+d(y) - d(x) \le |y - c| - |x - c| \le |x - y|.
+\end{equation*}
+If we interchange now the roles of $x$ and $y$, we see that we get 
+\begin{equation*}
+|d(y) - d(x)| \le |x - y|,
+\end{equation*}
+which shows that $d$ is Lipschitz with $\Lip(d) \le 1$. Hence, Rademacher's theorem implies that the function $d$ is differentiable in $\Leb{n}$-a.e. $x \in \R^n$. Let now $x \in \R^{n} \setminus K$ be such that $\nabla d(x)$ exists. Then we have $|\nabla d(x)| \le 1$. In addition, if we select $c \in K$ as above, we also have
+\begin{equation*}
+d(tx + (1 - t)c) = t |x - c|
+\end{equation*}
+for all $t \in [0, 1]$ (since the segment is the shortest path). Therefore, by taking a derivative in $t$, we get
+\begin{equation*}
+|x - c| = \nabla d(x) \cdot (x - c) \le |\nabla d(x)| |x - c|,
+\end{equation*}
+which immediately implies $|\nabla d(x)| \ge 1$ for $\Leb{n}$-a.e. $x \in \R^{n} \setminus K$. Thus, the proof is completed.
+\end{proof}
