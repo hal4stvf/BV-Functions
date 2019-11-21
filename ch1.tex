@@ -387,7 +387,7 @@ We state now an important result on the equivalence between the Lebesgue measure
 $\Haus{n}_{\delta} = \Haus{n} = \Leb{n}$ on $\R^{n}$, for any $\delta > 0$.
 \end{theorem}
 
-\begin{remark}
+\begin{remark} \label{rem:Haus_not_Radon}
 As a consequence of Theorem \ref{thm:equivalence_Haus_Leb}, we see that $\Haus{\alpha}$ is \emph{not} a Radon measure for all $\alpha \in
 [0,n)$. Indeed, it is not bounded on some compact sets. Take for example the closed unit ball $\overline{B(0,1)}$ in $\R^n$. We know that 
 \begin{equation*}
@@ -987,12 +987,12 @@ Notice that a non-negative Radon measure may be concentrated on a set strictly s
 It is clear that $\mu$ is concentrated on the set $E = \left \{ \frac{1}{k}\right \}_{k \ge 1}$, but $\mu((-r, r)) > 0$ for any $r> 0$, so that $0 \in \supp(\mu)$. In fact, it is not difficult to check that $\supp(\mu) = \{0\} \cup \left \{ \frac{1}{k}\right \}_{k \ge 1} = \overline{E}$. 
 \end{remark}
 
-\begin{definition}
+\begin{definition}\hfill
 \begin{enumerate}[1.]
-\item Let $\mu \in \mathcal{M}^+(\Omega)$, $\mu \in \mathcal{M}(\Omega,\R^m)$. We say
+\item Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$, $\nu \in \mathcal{M}_{\rm loc}(\Omega,\R^m)$. We say
 that $\mu$ is absolutely continuous with respect to $\mu$, and we write $\nu \ll \mu$, if
 for all $B \in \mathcal{B}(\Omega)$ such that $\mu(B) = 0$, then $|\nu|(B) = 0$.
-\item If $\mu,\nu \in \mathcal{M}^+(\Omega)$, we say that they are mutually
+\item If $\mu,\nu \in \mathcal{M}^+_{\rm loc}(\Omega)$, we say that they are mutually
 singular if there exists $E,F \in \mathcal{B}(\Omega)$ such that $\mu(F) =0$,
 $\mu(E) = 0$ and 
 \[
@@ -1000,7 +1000,7 @@ $\mu(E) = 0$ and
 \nu(B) = \nu(B \cap F)
 \]
 for all $B \in \mathcal{B}(\Omega)$ and we write $\mu \perp \nu$. If $\mu,\nu
-\in \mathcal{M}(\Omega,\R^m)$, 
+\in \mathcal{M}_{\rm loc}(\Omega,\R^m)$, 
 \[
 \mu \perp \nu \iff |\mu| \perp |\mu|
 \]
@@ -1379,7 +1379,89 @@ Moreover, if $\mu_{k}$ and $\mu$ are vector valued Radon measures, $\mu_{k} \sta
 \end{remark}
 
 
+\section{Mollification of Radon measures}
 
+Let us recall that the {\em convolution} of two functions $f, g : \R^{n} \to \R$ is defined as 
+\begin{equation*}
+(f \ast g)(x) := \int_{\R^{n}} f(x - y) g(y) \, dy
+\end{equation*}
+for any $x \in \R^{n}$ for which the integral is well defined. It is easy to notice that, at least formally, the convolution operation is associative and commutative. In addition, it is well known that, under some summability assumptions for the functions $f$ and $g$, the convolution is well posed: for instance, if $f \in L^{1}(\R^{n})$ and $g \in L^{p}(\R^n)$ for some $p \ge 1$, then $f \ast g \in L^{p}(\R^{n})$, with $$\|f \ast g\|_{L^{p}(\R^{n})} \le \|f\|_{L^{1}(\R^{n})}\|g\|_{L^{p}(\R^{n})}.$$ 
+It is also not difficult to see that, if $f \in L^{1}_{\rm loc}(\R^{n})$ and $g \in C_{c}^{k}(\R^{n})$, for some $k \in \N_{0} \cup \{\infty\}$, then $f\ast g \in C^{k}(\R^{n}) \cap L^{\infty}(\R^{n})$ and its derivatives up to order $k$ are bounded, with
+\begin{equation*}
+\partial^{\gamma} (f \ast g) = f \ast (\partial^{\gamma} g)
+\end{equation*}
+for any multi-index $\gamma \in \N_{0}^{n}$ with $|\gamma|\le k$. In addition, we have
+\begin{equation*}
+\supp(f \ast g) \subset \supp(f) + \supp(g),
+\end{equation*}
+so that $f \ast g$ has compact support if both $f$ and $g$ are compactly supported. Moreover, all these properties of the convolution may be extended to the case of functions defined on some open set $\Omega \subset \R^{n}$, up to some suitable adjustments. 
+The main application of the notion of convolution is the construction of families of regular approximations of a locally summable function. To this purpose, we recall the definition of mollifier\footnote{The notion of mollifier was introduced in 1944 by Kurt Otto Friedrich (1901-1982) in the groundbreaking paper \cite{MR9701}. The curious origin of this name is recalled by Peter David Lax (1926-) in his commentary on that paper in  \cite{MR897749}: 
+
+{\em ``On English usage Friedrichs liked to consult his friend and colleague, Donald Flanders, a descendant of puritans and a puritan himself, with the highest standard of his own conduct, noncensorious towards others. In recognition of his moral qualities he was called Moll by his friends {\rm (a reference to the character of Moll Flanders, by Daniel Defoe, A/N)}. When asked by Friedrichs what to name the smoothing operator, Flanders remarked that they could be named mollifier after himself; Friedrichs was delighted, as on other occasions, to carry this joke into print."}
+
+In addition, the term mollifier is related to the verb `to mollify', which means `to smooth over' in a figurative sense. Finally, it should be noticed that the convolution kernels which we now call mollifiers where previously used in 1938 by Sergei Lvovich Sobolev (1908-1989) in the fundamental paper \cite{soboleff1938theoreme}, where the Sobolev embedding theorem appeared for the first time.}.
+
+\begin{definition}
+A function $\rho \in C^{\infty}_{c}(B(0, 1))$ which satisfies 
+\begin{equation*}
+\rho(-x)= \rho(x), \ \rho \geq 0 \text{ and } \int_{\R^n} \rho \, dx  = 1
+\end{equation*} 
+is called a {\em mollifier}. Given a mollifier $\rho$, we denote by $\{\rho_{\eps}\}_{\eps > 0}$ the family of mollifiers defined by 
+$$ \rho_{\eps}(x) = \frac{1}{\eps^{n}} \rho\left(\frac{x}{\eps}\right).\footnote{It is easy to notice that the families of mollifiers are a particular type of {\em approximate identities}.}$$
+\end{definition}
+
+It is well known that, given $f \in L^{p}_{\rm loc}(\R^{n})$, for some $p \in [1, \infty)$, and a mollifier $\rho$, the sequence $\{\rho_{\eps} \ast f\}_{\eps > 0}$ is smooth and it satisfies $\rho_{\eps} \ast f \to f$ in $L^{p}_{\rm loc}(\R^{n})$. Moreover, if $f$ is continuous, then $\rho_{\eps} \ast f \to f$ uniformly on compact sets of $\R^{n}$.
+
+In addition, it is a standard result that the convolution operator may be extended to the space of distributions, so that, in particular, we may define the convolution between Radon measures and continuous functions.
+
+\begin{definition}
+Let $\mu \in \mathcal{M}_{\rm loc}(\Omega;\R^m)$ and $g \in C_c(\R^n)$.
+We denote by $(\mu * g)$ the convolution between $f$ and $\mu$, given by
+\[
+(\mu \ast g)(x) := \int_\Omega g(x-y) d\mu(y)
+\]
+for all $x \in \R^{n}$ such that the map $y \mapsto g(x-y)$ is in $C_{c}(\Omega)$.
+\end{definition}
+
+In particular, if $\rho$ is a mollifier, then the mollification of a Radon measure $\mu \in \mathcal{M}_{\rm loc}(\Omega;\R^m)$, given by 
+\[
+(\mu * \rho_\varepsilon)(x) = \int_\Omega \rho_\varepsilon(x-y) d\mu(y),
+\]
+is well defined for all $x \in \Omega^\varepsilon := \{x \in \Omega:
+\dist(x,\partial \Omega) > \varepsilon\}$. 
+
+\begin{theorem}[Properties of the mollifications] \label{thm:moll_measure_prop}
+Let $\mu \in \mathcal{M}_{\rm loc}(\Omega;\R^m)$ and $\rho$ be a mollifier. Then $\mu *
+\rho_\varepsilon \in C^\infty(\Omega^\varepsilon;\R^m)$, with $\partial^\gamma(\mu *
+\rho_\varepsilon) = \mu \ast \partial^\gamma \rho_\varepsilon$ for all $\gamma \in
+\N_0^n$. In addition, we have
+\begin{equation} \label{eq:moll_measure_convergence}
+(\mu \ast \rho_\varepsilon)\Leb{n} \weakstarto \mu, \quad |\mu \ast \rho_{\eps}| \Leb{n} \weakstarto |\mu| 
+\end{equation}
+and, for all $E$ Lebesgue measure and $\eps > 0$, 
+\begin{equation} \label{eq:moll_measure_estimate}
+\int_E |\mu * \rho_\varepsilon|dx \leq |\mu|(E_\varepsilon),
+\end{equation}
+where $E_{\eps} := \{ x \in \Omega : \dist(x, E) \le \eps \}$.
+\end{theorem}
+\begin{proof}
+The regularity and the differentiability are easy to prove and are left as an exercise. In order to prove the first weak$^*$ convergence in \eqref{eq:moll_measure_convergence}, let $\varphi \in C_c(\Omega;\R^m)$ and notice that, by Fubini's theorem, we have
+\[
+\begin{aligned}
+\int_\Omega \varphi \cdot (\mu * \rho_\varepsilon) dx 
+= \int_\Omega \int_\Omega \varphi(x) \rho_\varepsilon(x-y) \cdot d\mu(y) dx 
+= \int_\Omega (\varphi * \rho_\varepsilon)(y) \cdot d\mu(y) \to \int \varphi
+\cdot d\mu(y),
+\end{aligned}
+\]
+where we used $\rho_\varepsilon(x-y) = \rho_\varepsilon(y-x)$ and
+$\varphi*\rho_\varepsilon \to \varphi$ uniformly. Then, we employ again Fubini's Theorem in order to prove \eqref{eq:moll_measure_estimate}: we have
+\begin{align*}
+\int_{E} |\rho_{\eps} \ast \mu| \, dx & = \frac{1}{\eps^{n}} \int_{E} \left | \int_{\Omega} \rho\left (\frac{x - y}{\eps}\right ) \, d \mu(y) \right | \, dx \le \eps^{-n} \int_{E} \int_{\Omega} \rho\left (\frac{x - y}{\eps}\right ) \, d |\mu|(y) \, dx \\
+& = \eps^{-n} \int_{E_{\eps}} \int_{E} \rho\left (\frac{x - y}{\eps}\right ) \, dx \, d |\mu|(y) \le \eps^{-n} \int_{E_{\eps}} \int_{\R^{n}} \rho\left (\frac{x - y}{\eps}\right ) \, dx \, d |\mu|(y) = |\mu|(E_{\eps}).
+\end{align*}
+Finally, the weak$^*$ convergence of the total variations follows from the weak$^*$ convergence of the measure and \eqref{eq:moll_measure_estimate}, and it is left as an exercise.
+\end{proof}
 
 
 

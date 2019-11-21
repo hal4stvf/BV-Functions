@@ -1,61 +1,17 @@
-\newcommand{\weakstar}{\overset{*}{\rightharpoonup}}
 \section{Covering theorems and differentiation of measures}
-\subsection{Mollification of Radon measure}
 
-Let $\mu \in \mathcal{M}_{loc}(\Omega;\R^m)$ and $g \in C_c(\R^n)$.
-We denote by $(\mu * g)$ the convolution :
-\[
-(\mu * g)(x) := \int_\Omega g(x-y) d\mu(y)
-\quad \forall x:
-\quad \text{the map $\quad y \mapsto g(x-y)$ is $C_c$}
-\]
-In particular, let $\rho \in C^\infty_c (B(0,1))$, $\rho(-x)= \rho(x)$, $\rho
-\geq 0$, $\int_{\R^n} \rho dx  = 1$ ($\rho$ is a mollifier), set
-$\rho_\varepsilon(x) : = \frac{1}{\varepsilon^n} \rho(\frac{x}{\varepsilon})$,
-then  
-\[
-(\mu * \rho_\varepsilon)(x) = \int_\Omega \rho_\varepsilon(x-y) d\mu(y)
-\]
-is well defined for all $x \in \Omega^\varepsilon := \{x \in \Omega:
-\dist(x,\partial \Omega) > \varepsilon\}$. 
+In this section we introduce the coverings and differentiation theorems, fundamental tools of Geometric Measure Theory. The exposition is based mostly on \cite[Chapter 2]{AFP}.
 
-\begin{theorem}[Properties of mollifications]
-Let $\mu \in \mathcal{M}_{loc}(\Omega;\R^m)$, $\rho$ a mollifier. Then $\mu *
-\rho_\varepsilon \in C^\infty(\Omega^\varepsilon;\R^m)$, $D^\alpha(\mu *
-\rho_\varepsilon) = \mu * D^\alpha \rho_\varepsilon$ (for all $\alpha \in
-\N_0^n$). In addition
-\[
-\mu * \rho_\varepsilon \weakstar \mu 
-\]
-for all $E$ Lebesgue measure, $\int_E |\mu * \rho_\varepsilon|dx \leq
-	|\mu|(E_\varepsilon)$ for all $\varepsilon >0$.
-\end{theorem}
-\begin{proof}
-Regularity and differentiability is an exercise.
-Let $\varphi \in C_c(\Omega;\R^m)$
-\[
-\begin{aligned}
-\int_\Omega \varphi \cdot (\mu * \rho_\varepsilon) dx 
-= \int_\Omega \int_\Omega \varphi(x) \rho_\varepsilon(x-y) \cdot d\mu(y) dx 
-= \int_\Omega (\varphi * \rho_\varepsilon)(y) \cdot d\mu(y) \to \int \varphi
-\cdot d\mu(y),
-\end{aligned}
-\]
-where we used $\rho_\varepsilon(x-y) = \rho_\varepsilon(y-x)$ and
-$(\varphi*\rho_\varepsilon)(y) \to \varphi(y)$ uniformly.
-By Fubini's Theorem,
-\TODO
-\end{proof}
-
-\subsection{Differentiation of Radon and Hausdorff measures}
-We say that a family $\mathcal{F}$ is disjoint if $F \cap F' = \emptyset$ for
+\subsection{Covering theorems}
+We say that a family of sets $\mathcal{F}$ is disjoint if $F \cap F' = \emptyset$ for
 all $F,F' \in \mathcal{F}$, $F \neq F'$.
+We notice that, since $\R^{n}$ is separable, every disjoint family of sets with nonempty interior is at most countable.
 
-\begin{theorem}[Besicovitch covering theorem]
+\begin{theorem}[Besicovitch covering theorem] \label{thm:Besicovitch_covering}
 There exists a $\xi_n \in \N$ such that for all families of closed balls
 $\mathcal{F}$ such that the set 
 $A: = \{ x \in \R^n \mid \exists \varrho > 0 : \overline{B(x,\varrho)} \in
-\mathcal{F}\}$ is bounded, there exists at mos $\xi_n$ disjoint subfamilies
+\mathcal{F}\}$ is bounded, there exists at most $\xi_n$ disjoint subfamilies
 $\mathcal{F}_i \subset \mathcal{F}$ such that 
 \[
 A \subset \bigcup_{i=1}^{\xi_n} \bigcup_{\overline{B} \in \mathcal{F}_i}
@@ -63,37 +19,44 @@ A \subset \bigcup_{i=1}^{\xi_n} \bigcup_{\overline{B} \in \mathcal{F}_i}
 \]
 \end{theorem}
 
-\begin{remark}
-It works also with open balls. 
+\begin{remark} \label{rem:open_balls}
+The balls in the statement of Theorem \ref{thm:Besicovitch_covering} may be taken to be open.
 \end{remark}
 
-\begin{theorem}[consequence of Besicovitch]
+\begin{theorem}[Consequence of Besicovitch theorem] \label{thm:Besicovitch_covering_1}
 Let $A$ be a bounded set and $\varrho : A \to (0,\infty)$. Then there exists $S
 \subset A$ at most countable such that 
 \(
 A \subset \bigcup_{x\in S} B(x,\varrho(x)) 
 \)
-and for all $y \in \R^n$
+and such that every point of $\R^{n}$ belongs to at most $\xi_{n}$ balls centered in points of $S$; that is,
 \[
-\sum_{x \in S} \chi_{B(x,\varrho(x))}(y) \leq \xi_n.
+\sum_{x \in S} \chi_{B(x,\varrho(x))}(y) \leq \xi_n
 \]
+for all $y \in \R^n$, where $\xi_{n}$ is the same constant of Theorem \ref{thm:Besicovitch_covering}.
 \end{theorem}
 \begin{proof}
-Let $\mathcal{F} := \{(B(x,\varrho(x)) \mid x \in A\}$ \TODO
+Let $\mathcal{F} := \{B(x,\varrho(x)) \mid x \in A\}$ and apply Besicovitch covering theorem (Theorem \ref{thm:Besicovitch_covering}): there exists $\xi_{n} \in \N$ and $\mathcal{F}_{i}, \dots, \mathcal{F}_{\xi_{n}}$ disjoint families of open balls (thanks to Remark \ref{rem:open_balls}) such that
+\begin{equation*}
+A \subset \bigcup_{i = 1}^{\xi_{n}} \bigcup_{B \in \mathcal{F}_{i}} B.
+\end{equation*} 
+Then, we set $S$ to be the set of centers of the balls in the families $\mathcal{F}_{i}$, for $i \in \{1, \dots, \xi_{n}\}$. Clearly, each one of these families is at most countable, being disjoint, so that $S$ is at most countable. This ends the proof.
 \end{proof}
+
+We employ now these results to show a covering theorem for Radon measure due to Vitali, which is the general version of Lemma \ref{lemmaVitaliCovering}. To this purpose we define the notion of fine covering.
 
 \begin{definition}
 Let $\mathcal{F}$ be a family of closed balls and $A \subset \R^n$.
-$\mathcal{F}$ is called a fine covering of $A$ if 
+$\mathcal{F}$ is called a {\em fine covering} of $A$ if 
 \[
 \inf \left\{ \varrho > 0 \mid \overline{B(x,\varrho)} \in \mathcal{F}\right \} =
 0 \quad \text{for all $x\in A$}.
 \]
 \end{definition}
 
-\begin{theorem}[Vitali]
+\begin{theorem}[Vitali covering theorem]
 Let $A$ be a bounded Borel set and $\mathcal{F}$ be a fine covering of $A$. In
-any case $\mu \in \mathcal{M}^+_{loc}(\R^n)$ there exists $\mathcal{F}' \subset
+any case $\mu \in \mathcal{M}^+_{\rm loc}(\R^n)$ there exists $\mathcal{F}' \subset
 \mathcal{F}$ disjoint such that 
 \[
 \mu \left( A \setminus \bigcup_{\overline{B}
@@ -104,24 +67,117 @@ any case $\mu \in \mathcal{M}^+_{loc}(\R^n)$ there exists $\mathcal{F}' \subset
 \TODO
 \end{proof}
 
-\begin{theorem}
-let $\mu \in \mathcal{M}^+_{loc}(\Omega)$, $\lambda \in
-\mathcal{M}_{loc}(\Omega;\R^m)$, $|\lambda| << \mu$. Then, for $\mu$-a.e. $x \in
-\supp u$, the limit 
-\[
-\lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\mu(B(x,\varrho))}
-\]
-exists in $\R^n$.
+\subsection{Differentiation of Radon and Hausdorff measures}
+
+\begin{theorem}[Lebesgue-Besicovitch differentiation theorem] \label{thm:Leb_Bes_diff}
+Let $\mu \in \mathcal{M}^+_{\rm loc}(\Omega)$, $\lambda \in
+\mathcal{M}_{\rm loc}(\Omega;\R^m)$, $\lambda \ll \mu$. Then, for $\mu$-a.e. $x \in
+\supp \mu$, the limit 
+\begin{equation} \label{eq:limit_measure_der}
+D_{\mu}\lambda(x) := \lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\mu(B(x,\varrho))}
+\end{equation}
+exists in $\R^m$. In addition, we have $\lambda = D_{\mu}\lambda \, \mu$.
 \end{theorem}
 
-By Radon-Nikodyn, $\lambda = f\mu$ for some $f \in
-\Leb{1}_{\text{loc}}(\Omega;\mu)$. Thus 
-\[
-f(x) = \lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\mu(B(x,\varrho))}
-\]
-for $\mu$-a.e. $x \in \supp \mu$.
+The limit in \eqref{eq:limit_measure_der}, sometimes also denoted by $(d\lambda/d\mu)(x)$, is called the {\em derivative}, or the {\em density}, of $\lambda$ with respect to $\mu$. 
 
+\begin{corollary}\label{cor:Leb_diff}
+Let $\mu \in \mathcal{M}^+_{\rm loc}(\Omega)$ and $f \in L^{1}_{\rm loc}(\Omega, \mu; \R^{m})$. Then we have
+\begin{equation*}
+f(x) = \lim_{\rho \to 0} \frac{1}{\mu(B(x,\rho))}\int_{B(x, \rho)} f(y) \, d \mu(y)
+\end{equation*} 
+for $\mu$-a.e. $x \in \Omega$.
+\end{corollary}
+\begin{proof}
+Let $\lambda := f \mu$. It is easy to check that $\lambda \in \mathcal{M}_{\rm loc}(\Omega; \R^{m})$.
+By Theorem \ref{thm:Leb_Bes_diff}, we know that, for $\mu$-a.e. $x \in \Omega$, there exists the limit 
+\begin{equation*}
+D_{\mu}\lambda(x) := \lim_{\rho \to 0} \frac{\lambda(B(x,\rho))}{\mu(B(x,\rho))} = \lim_{\rho \to 0} \frac{1}{\mu(B(x,\rho))}\int_{B(x, \rho)} f(y) \, d \mu(y),
+\end{equation*}
+and it satisfies $\lambda = D_{\mu}\lambda \, \mu$. Thus, we have $(f - D_{\mu}\lambda) \, \mu = 0$, which implies $f(x) = D_{\mu}\lambda(x)$ for $\mu$-a.e. $x \in \Omega$.
+\end{proof}
 
+\begin{remark}
+If we apply Corollary \ref{cor:Leb_diff} to the case $\mu = \Leb{n}$ and $f \in L^{1}_{\rm loc}(\Omega; \R^{m})$, we obtain the classical version of Lebesgue's differentiation theorem:
+\begin{equation*}
+f(x) = \lim_{\rho \to 0} \meanint_{B(x, \rho)} f(y) \, dy = \lim_{\rho \to 0} \frac{1}{\omega_{n} \rho^{n}} \int_{B(x, \rho)} f(y) \, dy
+\end{equation*}
+for $\Leb{n}$-a.e. $x \in \Omega$.
+In particular, if $f = \chi_{E}$ for some Lebesgue measurable set $E$ in $\R^{n}$, we obtain
+\begin{equation} \label{density_points_set}
+\chi_{E}(x) = \lim_{\rho \to 0} \frac{|E \cap B(x, \rho)|}{|B(x, \rho)|} =  \lim_{\rho \to 0} \frac{|E \cap B(x, \rho)|}{\omega_{n} \rho^{n}}
+\end{equation}
+for $\Leb{n}$-a.e. $x \in \R^{n}$.
+\end{remark}
+
+Actually, it is not difficult to show that the statement of Corollary \ref{cor:Leb_diff} may be refined to a slightly stronger version.
+
+\begin{corollary}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $f \in L^{1}(\Omega, \mu; \R^{m})$. Prove that for $\mu$-a.e. $x \in \Omega$ we have
+\begin{equation} \label{eq:Lebesgue_points}
+\lim_{\rho \to 0} \frac{1}{\mu(B(x, \rho))} \int_{B(x, \rho)}|f(y) - f(x)| \, d \mu(y) = 0.
+\end{equation}
+\end{corollary}
+Any point $x \in \Omega$ for which \eqref{eq:Lebesgue_points} holds is called {\em Lebesgue point} (or {\em approximate continuity point}) of $f$.
+
+\begin{proof}[Hint of the proof]
+It is enough to apply Corollary \ref{cor:Leb_diff} to the measures $\nu_{q} := |f - q| \mu$, for $q \in \Q$, and then to exploit the fact that $\Q$ is countable and dense in $\R$.
+\end{proof}
+
+We recall that the Hausdorff measures $\Haus{\alpha}$ for $\alpha \in [0, n)$ are Borel regular, but not Radon (see Remark \ref{rem:Haus_not_Radon}). Hence, the Lebesgue-Besicovitch differentiation theorem (Theorem \ref{thm:Leb_Bes_diff}) does not apply to such measures. Nevertheless, it is possible to define and to study a notion of density with respect to the Hausdorff measures. Such analysis is relevant in many applications, since it is useful to compare a generic Radon measure $\mu$ to $\Haus{\alpha}$ for some $\alpha \in [0, n]$, in order to to have some idea of the ``dimensionality'' of $\mu$.
+
+\begin{definition}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. For all $x \in \Omega$, we define the {\em upper and lower $\alpha$-dimensional densities} of $\mu$ at $x$ as
+\begin{equation*}
+\Theta^{*}_{\alpha}(\mu, x) := \limsup_{\rho \to 0} \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}} \quad \text{and} \quad \Theta_{* \alpha}(\mu, x) := \liminf \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}}.
+\end{equation*}
+If $\Theta^{*}_{\alpha}(\mu, x) = \Theta_{* \alpha}(\mu, x)$, the common value is denoted by $\Theta_{\alpha}(\mu, x)$.
+In the case $\mu = \Haus{\alpha} \res E$, for a $\Haus{\alpha}$-measurable set $E$ such that $\Haus{\alpha}(E) < \infty$, for simplicity we write
+\begin{equation*}
+\Theta^{*}_{\alpha}(E, x) := \Theta^{*}_{\alpha}(\Haus{\alpha} \res E, x), \ \Theta_{* \alpha}(E, x) := \Theta_{* \alpha}(\Haus{\alpha} \res E, x) \text{ and }  \Theta_{\alpha}(E, x) := \Theta_{\alpha}(\Haus{\alpha} \res E, x).
+\end{equation*}
+\end{definition}
+
+\begin{theorem}[$\alpha$-dimensional densities of Radon measures] \label{thm:alpha_density}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then, for all $B \in \mathcal{B}(\Omega)$ and $t > 0$, the following implications hold:
+\begin{align}
+\Theta^{*}_{\alpha}(\mu, x) \ge t \ \forall x \in B & \Longrightarrow \ \mu \ge t \Haus{\alpha} \res B, \label{eq:lower_bound_density} \\
+\Theta^{*}_{\alpha}(\mu, x) \le t \ \forall x \in B & \Longrightarrow \ \mu \le 2^{\alpha} t \Haus{\alpha} \res B. \label{eq:upper_bound_density}
+\end{align}
+\end{theorem}
+
+We illustrate now two useful consequences of Theorem \ref{thm:alpha_density}.
+
+\begin{corollary}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then we have
+\begin{enumerate}
+\item $\Theta^{*}_{\alpha}(\mu, x) < \infty$ for $\Haus{\alpha}$-a.e. $x \in \Omega$,
+\item if $\mu(B) = 0$ for some $B \in \mathcal{B}(\Omega)$, then $\Theta_{\alpha}(\mu, x) = 0$ for $\Haus{\alpha}$-a.e. $x \in B$.
+\end{enumerate}
+\end{corollary}
+
+Let us consider the case $\mu = \Haus{\alpha} \res E$, for some $\Haus{\alpha}$-measurable set $E$ in $\R^{n}$ such that $\Haus{\alpha}(E) < \infty$. We start by considering the extreme case $\alpha \in \{0, n\}$:
+\begin{itemize}
+\item if $\alpha = n$, thanks to \eqref{density_points_set}, we know that $\Theta_{n}(E, x) = \chi_{E}(x)$ for $\Leb{n}$-a.e. $x \in \R^{n}$; 
+\item if $\alpha = 0$, it is easy to check that
+\begin{equation*}
+\Theta_{0}(E, x) = \lim_{\rho \to 0} \Haus{0}(E \cap B(x, \rho)) = \begin{cases} 1 & \text{if} \ x \in E \\
+0 & \text{if} \ x \notin E
+\end{cases} = \chi_{E}(x),
+\end{equation*} 
+since $\Haus{0}(E) < \infty$ implies that $E$ is finite and therefore discrete.
+\end{itemize}
+Instead, in the case $\alpha \in (0, n)$, we cannot hope for such a strong result, in general. However, we are able to obtain the following estimates.
+
+\begin{proposition}
+Let $\alpha \in [0, n]$ and $E$ be an $\Haus{\alpha}$-measurable set in $\R^{n}$ such that $\Haus{\alpha}(E) < \infty$. Then we have
+\begin{enumerate}
+\item $\Theta_{\alpha}(E, x) = 0$ for $\Haus{\alpha}$-a.e. $x \notin E$,
+\item $2^{-\alpha} \le \Theta^{*}_{\alpha}(E, x) \le 1$ for $\Haus{\alpha}$-a.e. $x \in E$.
+\end{enumerate}
+\end{proposition}
+
+We notice that we do not have any general result on lower bounds for $\Theta_{* \alpha}(E, x)$, and this is the reason why we cannot ensure the existence of the full limit in general. However, as we shall see in the following, in the case $\alpha = k \in \{1, \dots, n - 1\}$ there is a way to characterize the sets for which $\Theta_{k}(E, x)$ is well defined and equal to $1$ for $\Haus{k}$-a.e. $x \in E$.
 
 \section{Fine properties of Lipschitz functions}
 
