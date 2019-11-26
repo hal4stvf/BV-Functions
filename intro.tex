@@ -89,12 +89,14 @@ where $\div \left ( \frac{\nabla u}{|\nabla u|} \right ) =: \Delta_{1}u$ is the 
 
 \section*{Minimal area problems and sets of finite perimeter}
 
-Other historically relevant problems from the Calculus of Variation are the minimal area problems, among which the most famous example is the \emph{Euclidean isoperimetric problem}: find the possibly unique set with minimal surface area among those with fixed volume. In mathematical terms, if we denote by $|F|$ the $n$-dimensional volume of a set $F \subset \R^{n}$ (hence, its Lebesgue measure $\Leb{n}(F)$) and by $\sigma_{n-1}(\partial F)$ its surface area (under the assumption the $\partial F$ is regular enough), we are looking for the set which realizes
+Other historically relevant problems from the Calculus of Variation are the minimal area problems, among which the most famous example is the \emph{Euclidean isoperimetric problem}: find the possibly unique set with minimal surface area among those with fixed volume. This problem is also called \quotemarks{Dido's problem}, referring to the ancient myth on the foundation of Carthago. As recounted in Virgil's {\em Aeneids}, queen Dido and her group of Phoenician exiles reached the coast of Tunisia, where she asked the Gaetulian king Iarbas for a small bit of land for a refuge, only as much land as could be encompassed by an oxhide; that is, the skin of an ox. The king naturally agreed. Dido then cut the oxhide into fine strips with which she could encircle a large semicircular region (with a side on the sea). In other words, to the ancient Mediterranean civilization it was probably known that the circle was the figure in the plane with minimal surface length among those with a fixed area. 
+
+In order to rephrase this problem in mathematical terms, we denote by $|F|$ the $n$-dimensional volume of a set $F \subset \R^{n}$ (hence, its Lebesgue measure $\Leb{n}(F)$) and by $\sigma_{n-1}(\partial F)$ its surface area (under the assumption the $\partial F$ is regular enough). Then we look for the set which realizes
 \[
 \inf \left\{\sigma_{n-1}(\partial F) \,:\, \partial F \in \mathcal{R}, |F| =
 k \right\} =: \gamma_{k},
 \]
-where $\mathcal{R}$ is a class of sufficiently smooth surfaces and $k > 0$. The Direct Method now consists in considering a minimizing sequence of sets $F_{j}$ such that 
+where $\mathcal{R}$ is a class of sufficiently smooth surfaces and $k > 0$. The Direct Method in this case consists in considering a minimizing sequence of sets $F_{j}$ such that 
 \begin{equation} \label{introeq:min_sequence}
 \partial F_{j} \in \mathcal{R}, \quad |F_{j}| = k \quad \text{and} \quad \sigma_{n - 1}(\partial F_{j}) \to \gamma_{k},
 \end{equation}
