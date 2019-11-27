@@ -105,13 +105,13 @@ Not any Borel regular measure is a Radon measure. However, it is possible to obt
 
 \begin{theorem} \label{thm:Borel_restriction_Radon}
 If $\mu$ is a Borel regular measure in $\R^n$ and $A \subset \R^n$ is
-$\mu$-measurable and $\mu(A) < \infty$, then $\mu \res A$ is a Radon measure. 
+$\mu$-measurable such that $\mu(A) < + \infty$, then $\mu \res A$ is a Radon measure. 
 \end{theorem}
 
-\begin{example}[Dirac delta]
-For $x \in \R^n$ we define the \emph{Dirac\footnote{Named after Paul Adrien Maurice Dirac (1902-1984), English theoretical physicist who shared the 1933 Nobel Prize in Physics with Erwin Schrödinger "for the discovery of new productive forms of atomic theory". He actually introduced the so-called {\em Dirac delta function} as a "convenient notation" in his influential 1930 book {\em The Principles of Quantum Mechanics}. The name "delta function" was chosen since it works like a continuous analogue of the discrete Kronecker delta 
+\begin{example}[Dirac delta] \label{example_delta_measure}
+Let $X \neq \emptyset$. For any $x_{0} \in X$ we define the \emph{Dirac\footnote{Named after Paul Adrien Maurice Dirac (1902-1984), English theoretical physicist who shared the 1933 Nobel Prize in Physics with Erwin Schrödinger ``for the discovery of new productive forms of atomic theory''. He actually introduced the so-called {\em Dirac delta function} as a ``convenient notation'' in his influential 1930 book {\em The Principles of Quantum Mechanics}. The name ``delta function'' was chosen since such measure acts like a continuous analogue of the discrete Kronecker delta 
 \[
-\delta_{i \, j} := 
+\delta_{i j} := 
 \begin{cases}
 1 & \text{if} \, i = j,
 \\
@@ -120,26 +120,26 @@ For $x \in \R^n$ we define the \emph{Dirac\footnote{Named after Paul Adrien Maur
 \]
 Indeed, for any sequence $\{a_{j}\}_{j \in \Z}$, we have
 \begin{equation*}
-\sum_{j = -\infty}^{\infty} a_{j} \delta_{i \, j} = a_{i},
+\sum_{j = -\infty}^{\infty} a_{j} \delta_{i j} = a_{i},
 \end{equation*}
-and, analogously, for any $x \in \R^{n}$ and any continuous function $f : \R \to \R$, the Dirac delta satisfies the property
+and, analogously (see Example \ref{example_delta_measure_int}), for any $x_{0} \in \R$ and any bounded function $f : \R \to \R$, the Dirac delta satisfies the property
 \begin{equation*}
-\int_{- \infty}^{+ \infty} f(y) \delta(x - y) \, dy = \int_{- \infty}^{\infty} f(y)\, d \delta_{x}(y) = f(x).
+\int_{- \infty}^{+ \infty} f(y) \delta(x_{0} - y) \, dy = \int_{- \infty}^{\infty} f(y)\, d \delta_{x_{0}}(y) = f(x_{0}).
 \end{equation*}
-} measure centered in $x$} by setting
+} measure centered in $x_{0}$} by setting
 \[
-\delta_x(A) := 
+\delta_{x_{0}}(A) := 
 \begin{cases}
-1 & x \in A,
+1 & x_{0} \in A,
 \\
-0 & x \not\in A.
+0 & x_{0} \not\in A,
 \end{cases}
 \]
-It is easy to check that this is indeed a Radon measure. In addition, any set in $\R^{n}$ is $\delta_{x}$-measurable.
+for any set $A \in \mathcal{P}(X)$. It is easy to check that any set $A$ is $\delta_{x_{0}}$-measurable. In addition, in the case $X = \R^{n}$ we can show that $\delta_{x_{0}}$ is indeed a Radon measure, for all $x_{0} \in \R^{n}$.
 \end{example}
 
 \begin{example}[The counting measure] 
-We define the \emph{counting measure} by setting
+Let $X \neq \emptyset$. For any $E \subset X$ we define the \emph{counting measure} by setting
 \[
 \# (E) = 
 \begin{cases}
@@ -148,17 +148,18 @@ We define the \emph{counting measure} by setting
 +\infty & \text{otherwise}.
 \end{cases}
 \]
-This measure is Borel regular, but \emph{not} a Radon measure, since it is
+It is again possible to show that any set is $\#$-measurable.
+In the case $X = \R^{n}$, this measure is Borel regular, but \emph{not} a Radon measure, since it is
 clearly not locally finite.
 \end{example}
 
 \begin{example}[The Lebesgue measure] 
-The well-known \emph{Lebesgue measure} is defined by
+The well-known \emph{Lebesgue measure} on $\R^{n}$ is defined by
 \[
 \Leb{n}(A) := \inf \left\{\sum_{i=1}^\infty \Leb{n}(Q_i) \mid A
 \subset \bigcup_{i=1}^\infty Q_i,\, Q_i \text{ cubes}\right\},
 \]
-where $\Leb{n}(Q_i) = ( l(Q_{i})^{n}$ and $l(Q_{i})$ is the side length of the cube $Q_i$. It is actually possible to show that in one dimension we have
+where $\Leb{n}(Q_i) = l(Q_{i})^{n}$ and $l(Q_{i})$ is the side length of the cube $Q_i$. It is possible to show that in one dimension we have
 \[
 \Leb{1}(A) = \inf \left\{ \sum_{ij=1}^\infty  \diam C_j \mid A
 \subset \bigcup_{i=1}^\infty C_j, \, C_j \subset \R \right\}
@@ -297,7 +298,7 @@ from which we deduce that, since $n < \alpha$,
 = 0.
 \end{aligned}
 \]
-Thus, the claim easily follows, since $\R^n$ can be covered by a countable collection of unit cubes and $\Haus{n}$ is $\sigma$-subadditive.
+Thus, the claim easily follows, since $\R^n$ can be covered by a countable collection of unit cubes and $\Haus{\alpha}$ is $\sigma$-subadditive.
 \end{enumerate}
 The proofs of (4) and (5) are left as an exercise.
 \end{proof}
@@ -327,7 +328,7 @@ Hence, we have $\Haus{\alpha}_{\delta_\varepsilon} \leq
 \begin{proposition} \label{prop:prop_Hausdorff_dim}
 Let $A \subseteq \R^n$, $0 \leq s < t < \infty$.
 \begin{enumerate}[(1)]
-\item If $\Haus{s}(A) < \infty$, then $\Haus{t}(A) = 0$. 
+\item If $\Haus{s}(A) < + \infty$, then $\Haus{t}(A) = 0$. 
 \item If $\Haus{t}(A) > 0$, then $\Haus{s}(A) = +\infty$.
 \end{enumerate}
 \end{proposition}
@@ -399,9 +400,8 @@ $\Haus{\alpha}(\overline{B(0,1)}) = +\infty$ for all $\alpha < n$.
 
 Even though $\Haus{\alpha}$ is not a Radon measure for $\alpha \in [0, n)$, it is possible to show that its restriction to some suitable Borel set is indeed a Radon measure.
 
-\begin{proposition}
-If a Borel set $E \subseteq \R^n$ satisfies $\Haus{\alpha}(E) \in
-(0,\infty)$, then $\Haus{\alpha} \res E$ is a Radon measure.
+\begin{proposition} \label{prop:Haus_Radon_res}
+If a Borel set $E \subseteq \R^n$ satisfies $\Haus{\alpha}(E) < + \infty$, then $\Haus{\alpha} \res E$ is a Radon measure.
 \end{proposition}
 \begin{proof}
 It is a simple consequence of Theorem \ref{thm:Borel_restriction_Radon}. 
@@ -497,7 +497,7 @@ where $C_{\alpha, \gamma} = \Lip(f)^{\alpha}$, if $\gamma = 1$.
 By sending $\delta \searrow 0$ we conclude the proof.
 \end{proof}
 
-\begin{example}[Sierpinski triangle\footnote{Fractal described by Waclaw Sierpinski in 1915, \cite{sierpinski1915courbe}, and appearing in Italian art from the 11th century \cite{conversano2011sierpinski}.}] We provide an example on the estimation of the Hausdorff measure for a set with non integer Hausdorff dimension.
+\begin{example}[Sierpinski triangle\footnote{Fractal described by Waclaw Sierpinski (1882-1969) in 1915, \cite{sierpinski1915courbe}, and appearing in Italian art from the 11th century \cite{conversano2011sierpinski}.}] We provide an example on the estimation of the Hausdorff measure for a set with non integer Hausdorff dimension.
 Let us construct a self-similar fractal in $\R^{2}$ in the following way: 
 
 \begin{enumerate}[1.]
@@ -512,11 +512,19 @@ By iterating this procedure $k$ times, we construct the set $S_k$ as the union o
 \begin{equation*}
 S := \bigcup_{k=0}^\infty S_k,
 \end{equation*}
-which is therefore compact and nonempty. Since the area of an equilateral triangle of side length $l$ is $\frac{\sqrt{3}}{4} l^2$, so that we have
+which is therefore compact and nonempty. 
+
+\begin{figure}[!ht]
+\caption{Sierpinski triangle}
+\centering
+\includegraphics[width=0.5\textwidth]{sierpinski_triangle.jpg}
+\end{figure}
+
+The area of an equilateral triangle of side length $l$ is $\frac{\sqrt{3}}{4} l^2$, so that we have
 \begin{equation*}
 \Leb{2}(S) \le \Leb{2}(S_{k}) = 3^{k} \frac{\sqrt{3}}{4} 4^{-k}
 \end{equation*}
-for any $k \ge 0$, so that, by taking the limit as $k \to + \infty$, we conclude that $\Leb{2}(S) = 0$. We proceed now to estimate the Hausdorff measure of $S$. We notice that $$S_{k} = \bigcup_{j = 1}^{3^{k}} S_{k, j},$$ if we denote by $S_{k, j}$ the $j$-th equilateral triangle of the $k$-th iteration step. It is not difficult to see that $\diam(S_{k, j}) = 2^{-k}$. Therefore, since clearly $S \subset S_{k}$, for any $k \ge 0$, we see that, by choosing $\delta = 2^{-k}$, we obtain the following estimate
+for any $k \ge 0$. Therefore, by taking the limit as $k \to + \infty$, we conclude that $\Leb{2}(S) = 0$. We proceed now to estimate the Hausdorff measure of $S$. We notice that $$S_{k} = \bigcup_{j = 1}^{3^{k}} S_{k, j},$$ if we denote by $S_{k, j}$ the $j$-th equilateral triangle of the $k$-th iteration step. It is not difficult to see that $\diam(S_{k, j}) = 2^{-k}$. Therefore, since clearly $S \subset S_{k}$, for any $k \ge 0$, we see that, by choosing $\delta = 2^{-k}$, we obtain the following estimate
 \[
 \Haus{\alpha}_{\frac{1}{2^k}}(S) 
 \leq \sum_{j=1}^{3^k}
@@ -532,6 +540,12 @@ have $\Haus{\alpha}(S) = 0$, and this yields an upper bound on the Hausdorff dim
 \[
 \dim_{\mathcal{H}}(S) \leq \frac{\log 3}{\log 2}.
 \]
+
+\begin{figure}[!ht]
+\caption{Sierpinski triangle decoration in a church}
+\centering
+\includegraphics[width=0.3\textwidth]{sierpinski_triangle_decoration.jpg}
+\end{figure}
 \end{example}
 
 We come now to the proof of Theorem \ref{thm:equivalence_Haus_Leb}, which is crucially based on the two following statements.
@@ -650,9 +664,9 @@ Since $\varepsilon > 0$ is arbitrary, this inequality ends the proof.
 \end{proof}
 
 \begin{proof}[Proof of the isodiametric inequality (Theorem \ref{thmIso})]
-Without loss of generality, we may assume $E$ to be compact. Indeed, notice that $\diam A = \diam \overline{A}$, and, if $\diam E = + \infty$, the inequality is trivially true.
+Without loss of generality, we may assume $E$ to be compact. Indeed, notice that $\diam A = \diam \overline{A}$ for any set $A$, and, if $\diam E = + \infty$, the inequality is trivially true.
 
-Next, observe that, if $E \subset B(x, \frac{\diam E}{2})$ for some $x \in \R^{n}$, then there is nothing to prove. We employ Steiner symmetrization\footnote{Introduced in 1838 by Jakob Steiner \cite{steiner1838einfache}.} in order to reduce ourselves to such a case.
+Next, observe that, if $E \subset B\left (x, \frac{\diam E}{2}\right)$ for some $x \in \R^{n}$, then there is nothing to prove. We employ Steiner symmetrization\footnote{Introduced in 1838 by Jakob Steiner (1796 - 1863) \cite{steiner1838einfache}.} in order to reduce ourselves to such a case.
 
 Decompose $\R^n = \R^{n-1}\times \R^1$ and let $p
 : \R^n \to \R^{n-1}$, $q: \R^n \to \R$ be the orthogonal projections, $$p(x) = (x_{1}, \dots, x_{n - 1}), \quad q(x) =x_{n},$$ so that $$x = (p(x), q(x)) \quad \text{and} \quad |x|^2 = |p(x)|^2 + |q(x)|^2.$$ T
@@ -703,9 +717,7 @@ $$ |q(x) - q(y)| \leq |q(M(x)) - q(m(y))|.$$
 As a consequence, we see that
 \begin{align*}
 |x-y|^2 & = |p(x-y)|^2 + |q(x-y)|^2 \leq |p(M(x)) - p(m(y))|^2 + |q(M(x)) - q(m(y))|^2 \\
-& = |M(x) - m(y)|^2 = \max \left\{|M(x) - m(y)|, |M(y) -
-m(x)|\right\}^2
-\leq (\diam E)^2 .
+& = |M(x) - m(y)|^2 = \max \left\{|M(x) - m(y)|, |M(y) - m(x)|\right\}^2 \leq (\diam E)^2 .
 \end{align*}
 This means that $|x - y| \leq \diam E$ for all $x,y \in E^s$, which immediately implies \eqref{eq:diam_control}.
 
@@ -717,7 +729,7 @@ symmetrization with respect to the $i$-th coordinate axis. Hence, if we set $E_0
 And so we are done!
 \end{proof}
 
-\section{Integration and Radon measures}
+\section{Integration and fundamental convergence theorems}
  
 In this section, let $X \neq \emptyset$, and $\mu$ be a measure on $X$. Recall the definition of the {\em extended real line} $$\overline{\R}:= [-\infty,\infty].$$
 
@@ -725,22 +737,21 @@ In this section, let $X \neq \emptyset$, and $\mu$ be a measure on $X$. Recall t
 \begin{enumerate}[(1)]
 \item A function $u : X \to \overline{\R}$ is \emph{$\mu$-measurable} if the {\em superlevel set} $$\{u > t\} := \{ x \in X : u(x) > t\}$$ 
 is $\mu$-measurable for all $t\in \overline{\R}$.
-\item $u$ is a \emph{$\mu$-simple function} if it is $\mu$-measurable and $u(X)$ is
+\item A function $u : X \to \overline{\R}$ is a \emph{$\mu$-simple function} if it is $\mu$-measurable and $u(X)$ is
 countable; that is, $$u(x) = \sum_{k=1}^\infty u_k \chi_{E_k}(x),$$
 for some sequences of real numbers $\{u_{k}\}$ and of $\mu$-measurable disjoint sets $\{E_{k}\}$.
-\item If $u$ is a non-negative $\mu$-simple function, we define 
+\item If $u$ is a nonnegative $\mu$-simple function, we define 
 \[
 \int_X u \, d\mu := \sum_{t \in u(X)} t\mu(\{u=t\}) = \sum_{k=1}^\infty u_k
 \mu(E_k) \in [0,\infty]
 \]
 with the convention that $0 \cdot \infty = 0$.
 \item We set $u^\pm := \max\{\pm u, 0 \}$, so that $u = u^+ - u^-$ and $|u| = u^{+} + u^{-}$. 
-If $u$ is $\mu$-simple and $\int_X u^+ d\mu$ or $\int_X u^- d\mu < \infty$, then we define
-\begin{equation} \label{eq:mu_integrable_simple}
+If $u$ is $\mu$-simple and $\int_X u^+ d\mu$ or $\int_X u^- d\mu < \infty$, then $u$ is a {\em $\mu$-integrable simple function}, and we set
+\begin{equation*} 
 \int_X u \, d\mu := \int_X u^+ d\mu - \int_X u^- d\mu \in [-\infty,\infty]
-\end{equation}
-If $u$ satisfies \eqref{eq:mu_integrable_simple}, then it is called {\em $\mu$-integrable simple function}.
-\item If $u$ is $\mu$-measurable, we define the {\em upper and lower integrals} of $u$
+\end{equation*}
+\item If $u : X \to \overline{\R}$ is $\mu$-measurable, we define the {\em upper and lower integrals} of $u$
 as
 \[
 \int^*_X u \, d\mu := \inf \left\{ \int_X v \, d\mu \mid 
@@ -749,16 +760,20 @@ as
 \]
 or
 \[
-{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u \, d\mu := \sup\left\{ \int_X v \, d\mu \mid 
+%{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} 
+\int_{* X} u \, d\mu := \sup\left\{ \int_X v \, d\mu \mid 
 \text{$v \leq u$ $\mu$-a.e, $v$ $\mu$-integrable simple function}
 \right\}
 \]
 respectively. 
 If
 \[
-{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u \, d\mu = \int^*_X u \, d\mu,
+\int_{* X} u \, d\mu = \int^*_X u \, d\mu,
 \]
-then $u$ is {\em $\mu$-integrable}.
+then we say that $u$ is {\em $\mu$-integrable}, and we set
+\begin{equation*}
+\int_{X} u \, d \mu := \int^*_X u \, d\mu = \int_{* X} u \, d\mu.
+\end{equation*}
 \item A measurable function $u$ is \emph{$\mu$-summable} if $|u|$ is
 $\mu$-integrable and 
 \[
@@ -767,8 +782,8 @@ $\mu$-integrable and
 \end{enumerate}
 \end{definition}
 
-\begin{example}[Integral with respect to the Dirac measure]
-Let $x_{0} \in X$ and $\mu = \delta_{x_{0}}$. Notice that any subset in $X$ is $\delta_{x_{0}}$-measurable, so that any function $u: X \to \overline{\R}$ is $\delta_{x_{0}}$-measurable. Then, any $u : X \to \overline{\R}$ simple function is $\mu$-integrable. Indeed, assuming at first $u : X \to [0, \infty]$, for some sequence of nonnegative real numbers $\{u_{k}\}$ and a partition $\{E_{k}\}$ of $X$, we have
+\begin{example}[Integral with respect to the Dirac measure] \label{example_delta_measure_int}
+Let $x_{0} \in X$ and $\mu = \delta_{x_{0}}$ be the Dirac measure centered in $x_{0}$, as defined in Example \ref{example_delta_measure}. Notice that any subset in $X$ is $\delta_{x_{0}}$-measurable, so that any function $u: X \to \overline{\R}$ is $\delta_{x_{0}}$-measurable. Then, any $u : X \to \overline{\R}$ simple function is $\mu$-integrable. Indeed, assuming at first $u : X \to [0, \infty]$, for some sequence of nonnegative real numbers $\{u_{k}\}$ and a partition $\{E_{k}\}$ of $X$, we have
 \begin{equation*}
 u(x) = \sum_{k=1}^\infty u_k \chi_{E_k}(x),
 \end{equation*}
@@ -776,17 +791,22 @@ so that
 \begin{equation*}
 \int_{X} u \, d \delta_{x_{0}} = \sum_{k = 1}^{\infty} u_{k} \delta_{x_{0}}(E_{k}) = u_{k_{0}},
 \end{equation*}
-where $k_{0}$ satisfies $E_{k_{0}} \ni x_{0}$, which implies $u(x_{0}) = u_{k_{0}}$. Therefore, we can easily see that
+where $k_{0}$ satisfies $E_{k_{0}} \ni x_{0}$, which implies $u(x_{0}) = u_{k_{0}}$. Then, if $u : X \to \overline{\R}$ is simple, then we have either $u^{+}(x_{0}) > 0$ or $u^{-}(x_{0}) > 0$, so that either 
+\begin{equation*}
+\int_{X} u^{-} \, d \delta_{x_{0}} = 0 \quad \text{or} \quad \int_{X} u^{+} \, d \delta_{x_{0}}  = 0,
+\end{equation*}
+respectively.
+Therefore, we can easily see that
 \begin{equation*}
 \int_{X} u \, d \delta_{x_{0}} = u^{+}(x_{0}) - u^{-}(x_{0}) = u(x_{0})
 \end{equation*}
 for any simple function $u$. As a consequence, any $u : X \to \overline{\R}$ is $\delta_{x_{0}}$-integrable. Indeed, for any simple function $v \ge u$ and any simple function $w \le u$, we have
 \begin{equation*}
-w(x_{0}) \le {\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u \, d\delta_{x_{0}} \le \int^*_X u \, d\delta_{x_{0}} \le v(x_{0}),
+w(x_{0}) \le \int_{* X} u \, d\delta_{x_{0}} \le \int^*_X u \, d\delta_{x_{0}} \le v(x_{0}),
 \end{equation*} 
 so that we get 
 \begin{equation*}
-{\phantom{\int}}_{*}\hspace{-0.3em}\int_{X} u \, d\delta_{x_{0}} = \int^*_X u \, d\delta_{x_{0}} = u(x_{0}),
+\int_{* X} u \, d\delta_{x_{0}} = \int^*_X u \, d\delta_{x_{0}} = u(x_{0}),
 \end{equation*}
 by choosing 
 \begin{equation*}
@@ -823,21 +843,137 @@ and that $u$ is $\delta_{x_{0}}$-summable if and only if $|u(x_{0})| < \infty$.
 
 We define now general versions of the familiar $L^{p}$-function spaces.
 
-\begin{definition} Let $p \in (1, \infty)$.
+\begin{definition} \hfill
 \begin{itemize}[]
-\item $L^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid \text{$u$ is
+\item $L^1(X,\mu) := \left\{ u: X \to \overline{\R} : \text{$u$ is
 $\mu$-summable} \right\}$ and we set $$\|u\|_{L^{1}(X, \mu)} := \int_{X} |u| \, d \mu.$$
-\item $L_{\textnormal{loc}}^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid \|u\chi_K \|_{L^{1}(X, \mu)} < \infty \text{ for all $K\subset X$ compact} \right\}.$
-\item $L^p(X,\mu) := \left\{ u: X \to \overline{\R} \mid \text{$|u|^p$ is
+%\item $L_{\textnormal{loc}}^1(X,\mu) := \left\{ u: X \to \overline{\R} \mid \|u\chi_K \|_{L^{1}(X, \mu)} < \infty \text{ for all $K\subset X$ compact} \right\}.$
+\item For any $p \in (1, \infty)$, we define $L^p(X,\mu) := \left\{ u: X \to \overline{\R} : \text{$|u|^p$ is
 $\mu$-summable} \right\}$ and we set $$\|u\|_{L^{p}(X, \mu)} := \left ( \int_{X} |u|^p \, d \mu \right )^{\frac{1}{p}}.$$
-\item $L_{\textnormal{loc}}^{p}(X,\mu) := \left\{ u: X \to \overline{\R} \mid \|u\chi_K \|_{L^{p}(X, \mu)} < \infty \text{ for all $K\subset X$ compact} \right\}.$
-\item Let $u : X \to \overline{R}$ be $\mu$-measurable. We set $$\|u\|_{L^{\infty}(X, \mu)} := \inf \{ \lambda > 0 : \mu(\{ |u| > \lambda \}) = 0 \}.$$
+%\item $L_{\textnormal{loc}}^{p}(X,\mu) := \left\{ u: X \to \overline{\R} \mid \|u\chi_K \|_{L^{p}(X, \mu)} < \infty \text{ for all $K\subset X$ compact} \right\}.$
+\item Let $u : X \to \overline{R}$ be $\mu$-measurable. We set $$\|u\|_{L^{\infty}(X, \mu)} := \inf \left \{ \lambda > 0 : \mu(\{ |u| > \lambda \}) = 0 \right \}.$$
 As a consequence, we define $L^{\infty}(X, \mu) := \left \{ u: X \to \overline{\R} :  \|u\|_{L^{\infty}(X, \mu)} < \infty \right \}$.
-\item $L^{\infty}_{\rm loc}(X,\mu) := \left\{ u: X \to \overline{\R} \mid \|u\chi_K \|_{L^{\infty}(X, \mu)} < \infty \text{ for all $K\subset X$ compact} \right\}.$
+\item For any $p \in [1, \infty]$, we define the local $L^{p}$-spaces as
+$$L^{p}_{\rm loc}(X,\mu) := \left\{ u: X \to \overline{\R} : \|u\chi_K \|_{L^{p}(X, \mu)} < \infty \text{ for all $K\subset X$ compact} \right\}.$$
 \end{itemize}
+\item For any $m \in \N$, we set $L^{p}(X, \mu; \R^{m}) := \left \{ u: X \to \R^{m} : |u| \in L^{p}(X, \mu) \right \}$, with
+$$ \|u\|_{L^{p}(X, \mu; \R^{m})} := \||u|\|_{L^{p}(X, \mu)}, \quad |u(x)| := \sqrt{\sum_{j = 1}^{m} u_{j}(x)^{2}},$$
+and 
+$$L^{p}_{\rm loc}(X, \mu; \R^{m}) := \left \{ u : X \to \R^{m} : \|u\chi_K \|_{L^{p}(X, \mu; \R^{m})} < \infty \text{ for all $K\subset X$ compact} \right\}.$$
 \end{definition}
 
-In the case $X = \R^{n}$ and $\mu = \Leb{n}$, we shall set for brevity $L^{p}(\R^{n}) := L^{p}(\R^{n}, \Leb{n})$, for any $p \in [1, \infty]$.
+In the case $X = \R^{n}$ and $\mu = \Leb{n}$, we shall set for brevity 
+\begin{equation*}
+L^{p}(\R^{n}; \R^{m}) := L^{p}(\R^{n}, \Leb{n}; \R^{m}) \quad \text{and} \quad L^{p}_{\rm loc}(\R^{n}; \R^{m}) := L^{p}_{\rm loc}(\R^{n}, \Leb{n}; \R^{m}),
+\end{equation*} 
+for any $p \in [1, \infty]$.
+
+\begin{example}[The spaces $L^{p}(X, \delta_{x_{0}})$]
+In light of Example \ref{example_delta_measure_int}, we see that, for all $x_{0} \in X$ and $p \in [1, \infty]$, the spaces $L^{p}(X, \delta_{x_{0}})$ and $L^{p}_{\rm loc}(X, \delta_{x_{0}})$ all coincide with the space
+\begin{equation*}
+\left \{ u : X \to \overline{\R} : |u(x_{0})| < + \infty \right \}.
+\end{equation*}
+\end{example}
+
+We recall now the simple and very useful Chebychev inequality.
+
+\begin{proposition}[Chebychev inequality] \label{prop:Cheb_ineq}
+Let $u : X \to [0, + \infty]$ be $\mu$-integrable. Then, for all $t > 0$, we have
+\begin{equation} \label{eq:Cheb_ineq}
+\int_{\{u \ge t\}} u \, d \mu \ge t \mu(\{ u \ge t \}).
+\end{equation}
+\end{proposition}
+\begin{proof}
+If $u$ is simple, then we have
+\begin{equation*}
+u(x) = \sum_{k = 1}^{\infty} u_{k} \chi_{E_{k}}(x),
+\end{equation*}
+and so
+\begin{equation*}
+\int_{\{u \ge t\}} u \, d \mu = \int_{X} u \chi_{\{u \ge t\}} \, d \mu \ge t \sum_{k : u_{k} \ge t} \mu(E_{k} \cap \{ u \ge t \}) = t \mu(\{ u \ge t \}).
+\end{equation*}
+Then the conclusion follows by approximation with simple functions.
+\end{proof}
+
+\begin{remark} \label{rem_easy_Cheb} Let $u : X \to \overline{\R}$ be a $\mu$-integrable function. Then, we have the following simple consequence of the Chebychev inequality (Proposition \ref{prop:Cheb_ineq}):
+\begin{enumerate}[i)]
+\item if $\int_{X} |u| \, d \mu < + \infty$, then $\mu(\{ |u| = + \infty\}) = 0$;
+\item if $\int_{X} |u| \, d \mu = 0$, then $u(x) = 0$ for $\mu$-a.e. $x \in X$. 
+\end{enumerate}
+It is easy to see that (i) follows from \eqref{eq:Cheb_ineq}, since
+\begin{equation*}
+\int_{X} |u| \, d \mu \ge \int_{\{|u| = + \infty\}} |u| \, d \mu = \int_{\{|u| = + \infty\} \cap \{|u| \ge t\}} |u| \, d \mu \ge t \mu(\{ |u| = + \infty\}) 
+\end{equation*}
+for all $t > 0$, since $\{|u| = + \infty\} \cap \{|u| \ge t\} = \{|u| = + \infty\}$.
+Instead, in order to prove (ii), it is enough to notice that, again by \eqref{eq:Cheb_ineq}, for any $\eps > 0$ we have
+\begin{equation*}
+0 = \int_{X} |u| \, d \mu \ge \int_{\{|u| \ge \eps\}}|u| \, d \mu \ge \eps \mu(\{ |u| \ge \eps \}),
+\end{equation*} 
+so that 
+\begin{equation*}
+\mu\left(\{ |u| > 0\}\right) = \mu \left ( \bigcup_{k = 1}^{\infty} \left \{ |u| \ge \frac{1}{k} \right \} \right ) \le \sum_{k = 1}^{\infty} \mu \left ( \left \{ |u| \ge \frac{1}{k} \right \} \right ) = 0.
+\end{equation*}
+\end{remark}
+
+We recall now some fundamental convergence results concerning the exchange between limits and integrals.
+
+\begin{theorem}[Monotone convergence theorem] \label{thm:monotone_thm}
+If $\{u_{k}\}_{k \in \N}$ is a sequence of nonnegative $\mu$-measurable functions such that $u_{k} \le u_{k + 1}$ $\mu$-a.e. on $X$ for all $k \in \N$, then
+\begin{equation*}
+\lim_{k \to + \infty} \int_{X} u_{k} \, d \mu = \int_{X} \sup_{k \in \N} u_{k} \, d\mu.
+\end{equation*}
+If instead $u_{k} \ge u_{k + 1}$ $\mu$-a.e. on $X$ for all $k \in \N$ and $u_{1} \in L^{1}(X, \mu)$, then
+\begin{equation*}
+\lim_{k \to + \infty} \int_{X} u_{k} \, d \mu = \int_{X} \inf_{k \in \N} u_{k} \, d\mu.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}[Fatou's lemma] \label{thm:Fatou}
+If $\{u_{k}\}_{k \in \N}$ is a sequence of nonnegative $\mu$-measurable functions, then
+\begin{equation*}
+\int_{X} \liminf_{k \to + \infty} u_{k} \, d \mu \le \liminf_{k \to + \infty} \int_{X} u_{k} \, d \mu.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}[Dominated convergence theorem] \label{thm:dominated_convergence}
+Let $\{u_{k}\}_{k \in \N}$ be a sequence of $\mu$-measurable functions such that there exist a $\mu$-measurable function $u$ satisfying $u_{k}(x) \to u(x)$ for $\mu$-a.e. $x \in X$ and $v \in L^{1}(X, \mu)$ satisfying $|u_{k}| \le v$ $\mu$-a.e. on $X$ for all $k \in \N$. Then, we have
+\begin{equation*}
+\lim_{k \to + \infty} \int_{X} |u_{k} - u| \, d \mu = 0,
+\end{equation*}
+and, in particular,
+\begin{equation*}
+\lim_{k \to + \infty} \int_{X} u_{k} \, d \mu = \int_{X} u \, d \mu.
+\end{equation*}
+\end{theorem}
+
+\begin{theorem}
+Assume $u_{k}, u$ are $\mu$-summable functions, for all $k \in \N$, and
+\begin{equation*}
+\lim_{k \to + \infty} \int_{X} |u_{k} - u| \, d \mu = 0.
+\end{equation*}
+Then there exists a subsequence $\{u_{k_{j}}\}$ such that $u_{k_{j}}(x) \to u(x)$ for $\mu$-a.e. $x \in X$.
+\end{theorem}
+\begin{proof}
+Let $\{u_{k_{j}}\}$ be a subsequence satisfying
+\begin{equation*}
+\sum_{j = 1}^{\infty} \int_{X} |u_{k_{j}} - u| \, d \mu < \infty.
+\end{equation*}
+Notice that such a subsequence exists, since 
+\begin{equation*}
+a_{k} := \int_{X} |u_{k} - u| \, d \mu  \to 0,
+\end{equation*}
+so that we can select a subsequence $a_{k_{j}}$ satisfying $a_{k_{j}} \le 2^{-j}$ for all $j \in \N$. By the monotone convergence theorem (Theorem \ref{thm:monotone_thm}), we have
+\begin{equation*}
+\sum_{j = 1}^{\infty} \int_{X} |u_{k_{j}} - u| \, d \mu = \int_{X} \sum_{j = 1}^{\infty} |u_{k_{j}} - u| \, d \mu < \infty.
+\end{equation*}
+Therefore, by Remark \ref{rem_easy_Cheb}, we obtain 
+\begin{equation*}
+\sum_{j = 1}^{\infty} |u_{k_{j}}(x) - u(x)| < \infty
+\end{equation*}
+for $\mu$-a.e. $x \in X$, and thus we conclude that $u_{k_{j}}(x) \to u(x)$ for $\mu$-a.e. $x \in X$.
+\end{proof}
+
+Thanks to the notion of integral with respect to a general measure $\mu$, it is plain to see that the integration of a nonnegative $\mu$-measurable function is itself a measure, so that we can formulate the following definition.
 
 \begin{definition}[Integral measures] \label{def:intregral_measure}
 If $u : X \to [0,\infty]$ $\mu$-measurable, then we define the {\em integral measure} $\nu = u \mu$ (or
@@ -853,7 +989,7 @@ $\mu \res u$) as
 Through this section, let $\Omega \subset \R^{n}$ be an open set. We exploit now the concept of integral measure introduced in Definition \ref{def:intregral_measure} to define signed and vector valued Radon measures. In order to avoid ambiguity, from this point on we shall refer to the Radon measure introduced in Definition \ref{def:Borel_Radon_measure} as nonnegative Radon measures.
 
 \begin{definition}[Signed Radon measures]
-Given a non-negative Radon measure $\mu$ on $\Omega$ and $f: \Omega \to
+Given a nonnegative Radon measure $\mu$ on $\Omega$ and $f: \Omega \to
 [-\infty,\infty]$ locally $\mu$-summable. Then we set $\nu := f \mu$ to be the integral measure satisfying
 \[
 \nu(K) = \int_K f \, d\mu 
@@ -863,7 +999,7 @@ $\nu$ is said to be a \emph{signed Radon measure} on $\Omega$.
 \end{definition}
 
 \begin{definition}[Vector valued Radon measures]
-Given a non-negative Radon measure $\mu$ on $\Omega$ and $f: \Omega \to
+Given a nonnegative Radon measure $\mu$ on $\Omega$ and $f: \Omega \to
 \R^m$ is locally $\mu$-summable. Then we set $\nu := f \mu$ to be the vector valued Radon measure satisfying
 \[
 \nu(K) = \int_K f \, d\mu 
@@ -872,11 +1008,12 @@ Given a non-negative Radon measure $\mu$ on $\Omega$ and $f: \Omega \to
 $\nu$ is said to be a \emph{vector valued Radon measure} on $\Omega$.
 \end{definition}
 
+Exploiting the inner regularity of the 
 
 
 \begin{definition}[Alternative approach] \hfill
 \begin{itemize}
-\item A non-negative Radon measure is a mapping $\mu : \mathcal{B}(\Omega) \to
+\item A nonnegative Radon measure is a mapping $\mu : \mathcal{B}(\Omega) \to
 [0,\infty]$ which is $\sigma$-additive and finite on compact sets. We denote the space of such measures by $\mathcal{M}_{\rm loc}^{+}(\Omega)$.
 \item A vector valued (real or signed if $m = 1$) Radon measure is a mapping $\mu :
 \mathcal{B}(\Omega) \to \R^m$ which is $\sigma$-additive and its total variation
@@ -888,9 +1025,9 @@ $|\mu|$ is finite on compact sets; that is
 \right\} < \infty \text{ for all $K$ compact in $\Omega$}.
 \]
 The space of such measures is denote by $\mathcal{M}_{\rm loc}(\Omega; \R^{m})$; and by $\mathcal{M}_{\rm loc}(\Omega)$ if $m = 1$.
-\item We say that a non-negative Radon measure $\mu : \mathcal{B}(\Omega) \to
+\item We say that a nonnegative Radon measure $\mu : \mathcal{B}(\Omega) \to
 [0,\infty)$ is finite if $\mu(\Omega) < \infty$; and we denote by $\mathcal{M}^+(\Omega)$ the space of such measures.
-\item We say that a non-negative vector-valued Radon measure $\mu : \mathcal{B}(\Omega) \to
+\item We say that a nonnegative vector-valued Radon measure $\mu : \mathcal{B}(\Omega) \to
 \R^m$ is finite if $|\mu|(\Omega) < \infty$; and we denote by $\mathcal{M}(\Omega,\R^m)$, and $\mathcal{M}(\Omega)$ if $m = 1$, the space of such measures.
 \end{itemize}
 \end{definition}
@@ -907,7 +1044,7 @@ B= \bigcup B_j, B_j \cap B_i = \emptyset \, i\neq j, B_j \in \mathcal{B}(\Omega)
 for any $B \Subset \Omega$.
 In particular, $\sum \mu(B_j)$ is absolutely convergent for all $\{B_j\}$
 partition of a some set $B \Subset \Omega$.
-\item The total variation is the smallest non-negative Radon measure $\nu$ such
+\item The total variation is the smallest nonnegative Radon measure $\nu$ such
 that $\nu (B) \geq |\mu(B)|$ for all $B \in \mathcal{B}(\Omega)$.
 \item If $\mu \in \mathcal{M}(\Omega)$, we define the {\em positive and negative
 parts} of $\mu$ 
@@ -961,7 +1098,7 @@ since
 \end{proof}
 
 \begin{definition}
-Let $\mu$ be a non-negative measure on $\Omega$.
+Let $\mu$ be a nonnegative measure on $\Omega$.
 \begin{itemize}
 \item We say that $\mu$ is concentrated on a set $E \subset \Omega$ if  
 \[
@@ -976,14 +1113,14 @@ which $\mu$ is concentrated :
 \end{definition}
 
 \begin{exercise}
-Equivalently, we may characterize the support of a non-negative Radon measure $\mu$ in terms of its behaviour on balls:
+Equivalently, we may characterize the support of a nonnegative Radon measure $\mu$ in terms of its behaviour on balls:
 \[
 \supp (\mu) = \{x \in \Omega \mid \mu(B(x,r)) > 0, \forall r > 0 \, \text{ such that } B(x,r) \subset \Omega\}
 \]
 \end{exercise}
 
 \begin{remark}
-Notice that a non-negative Radon measure may be concentrated on a set strictly smaller than its support. Indeed, let $\Omega = \R$ and $$\mu = \sum_{k = 1}^{\infty} \frac{1}{2^{k}} \delta_{\frac{1}{k}}.$$
+Notice that a nonnegative Radon measure may be concentrated on a set strictly smaller than its support. Indeed, let $\Omega = \R$ and $$\mu = \sum_{k = 1}^{\infty} \frac{1}{2^{k}} \delta_{\frac{1}{k}}.$$
 It is clear that $\mu$ is concentrated on the set $E = \left \{ \frac{1}{k}\right \}_{k \ge 1}$, but $\mu((-r, r)) > 0$ for any $r> 0$, so that $0 \in \supp(\mu)$. In fact, it is not difficult to check that $\supp(\mu) = \{0\} \cup \left \{ \frac{1}{k}\right \}_{k \ge 1} = \overline{E}$. 
 \end{remark}
 
@@ -1397,7 +1534,7 @@ for any multi-index $\gamma \in \N_{0}^{n}$ with $|\gamma|\le k$. In addition, w
 so that $f \ast g$ has compact support if both $f$ and $g$ are compactly supported. Moreover, all these properties of the convolution may be extended to the case of functions defined on some open set $\Omega \subset \R^{n}$, up to some suitable adjustments. 
 The main application of the notion of convolution is the construction of families of regular approximations of a locally summable function. To this purpose, we recall the definition of mollifier\footnote{The notion of mollifier was introduced in 1944 by Kurt Otto Friedrich (1901-1982) in the groundbreaking paper \cite{MR9701}. The curious origin of this name is recalled by Peter David Lax (1926-) in his commentary on that paper in  \cite{MR897749}: 
 
-{\em ``On English usage Friedrichs liked to consult his friend and colleague, Donald Flanders, a descendant of puritans and a puritan himself, with the highest standard of his own conduct, noncensorious towards others. In recognition of his moral qualities he was called Moll by his friends {\rm (a reference to the character of Moll Flanders, by Daniel Defoe, A/N)}. When asked by Friedrichs what to name the smoothing operator, Flanders remarked that they could be named mollifier after himself; Friedrichs was delighted, as on other occasions, to carry this joke into print."}
+{\em ``On English usage Friedrichs liked to consult his friend and colleague, Donald Flanders, a descendant of puritans and a puritan himself, with the highest standard of his own conduct, noncensorious towards others. In recognition of his moral qualities he was called Moll by his friends {\rm (a reference to the character of Moll Flanders, by Daniel Defoe, A/N)}. When asked by Friedrichs what to name the smoothing operator, Flanders remarked that they could be named mollifier after himself; Friedrichs was delighted, as on other occasions, to carry this joke into print.''}
 
 In addition, the term mollifier is related to the verb `to mollify', which means `to smooth over' in a figurative sense. Finally, it should be noticed that the convolution kernels which we now call mollifiers where previously used in 1938 by Sergei Lvovich Sobolev (1908-1989) in the fundamental paper \cite{soboleff1938theoreme}, where the Sobolev embedding theorem appeared for the first time.}.
 
