@@ -1,61 +1,17 @@
-\newcommand{\weakstar}{\overset{*}{\rightharpoonup}}
 \section{Covering theorems and differentiation of measures}
-\subsection{Mollification of Radon measure}
 
-Let $\mu \in \mathcal{M}_{loc}(\Omega;\R^m)$ and $g \in C_c(\R^n)$.
-We denote by $(\mu * g)$ the convolution :
-\[
-(\mu * g)(x) := \int_\Omega g(x-y) d\mu(y)
-\quad \forall x:
-\quad \text{the map $\quad y \mapsto g(x-y)$ is $C_c$}
-\]
-In particular, let $\rho \in C^\infty_c (B(0,1))$, $\rho(-x)= \rho(x)$, $\rho
-\geq 0$, $\int_{\R^n} \rho dx  = 1$ ($\rho$ is a mollifier), set
-$\rho_\varepsilon(x) : = \frac{1}{\varepsilon^n} \rho(\frac{x}{\varepsilon})$,
-then  
-\[
-(\mu * \rho_\varepsilon)(x) = \int_\Omega \rho_\varepsilon(x-y) d\mu(y)
-\]
-is well defined for all $x \in \Omega^\varepsilon := \{x \in \Omega:
-\dist(x,\partial \Omega) > \varepsilon\}$. 
+In this section we introduce the coverings and differentiation theorems, fundamental tools of Geometric Measure Theory. The exposition is based mostly on \cite[Chapter 2]{AFP}.
 
-\begin{theorem}[Properties of mollifications]
-Let $\mu \in \mathcal{M}_{loc}(\Omega;\R^m)$, $\rho$ a mollifier. Then $\mu *
-\rho_\varepsilon \in C^\infty(\Omega^\varepsilon;\R^m)$, $D^\alpha(\mu *
-\rho_\varepsilon) = \mu * D^\alpha \rho_\varepsilon$ (for all $\alpha \in
-\N_0^n$). In addition
-\[
-\mu * \rho_\varepsilon \weakstar \mu 
-\]
-for all $E$ Lebesgue measure, $\int_E |\mu * \rho_\varepsilon|dx \leq
-	|\mu|(E_\varepsilon)$ for all $\varepsilon >0$.
-\end{theorem}
-\begin{proof}
-Regularity and differentiability is an exercise.
-Let $\varphi \in C_c(\Omega;\R^m)$
-\[
-\begin{aligned}
-\int_\Omega \varphi \cdot (\mu * \rho_\varepsilon) dx 
-= \int_\Omega \int_\Omega \varphi(x) \rho_\varepsilon(x-y) \cdot d\mu(y) dx 
-= \int_\Omega (\varphi * \rho_\varepsilon)(y) \cdot d\mu(y) \to \int \varphi
-\cdot d\mu(y),
-\end{aligned}
-\]
-where we used $\rho_\varepsilon(x-y) = \rho_\varepsilon(y-x)$ and
-$(\varphi*\rho_\varepsilon)(y) \to \varphi(y)$ uniformly.
-By Fubini's Theorem,
-\TODO
-\end{proof}
-
-\subsection{Differentiation of Radon and Hausdorff measures}
-We say that a family $\mathcal{F}$ is disjoint if $F \cap F' = \emptyset$ for
+\subsection{Covering theorems}
+We say that a family of sets $\mathcal{F}$ is disjoint if $F \cap F' = \emptyset$ for
 all $F,F' \in \mathcal{F}$, $F \neq F'$.
+We notice that, since $\R^{n}$ is separable, every disjoint family of sets with nonempty interior is at most countable.
 
-\begin{theorem}[Besicovitch covering theorem]
+\begin{theorem}[Besicovitch covering theorem] \label{thm:Besicovitch_covering}
 There exists a $\xi_n \in \N$ such that for all families of closed balls
 $\mathcal{F}$ such that the set 
 $A: = \{ x \in \R^n \mid \exists \varrho > 0 : \overline{B(x,\varrho)} \in
-\mathcal{F}\}$ is bounded, there exists at mos $\xi_n$ disjoint subfamilies
+\mathcal{F}\}$ is bounded, there exists at most $\xi_n$ disjoint subfamilies
 $\mathcal{F}_i \subset \mathcal{F}$ such that 
 \[
 A \subset \bigcup_{i=1}^{\xi_n} \bigcup_{\overline{B} \in \mathcal{F}_i}
@@ -63,37 +19,44 @@ A \subset \bigcup_{i=1}^{\xi_n} \bigcup_{\overline{B} \in \mathcal{F}_i}
 \]
 \end{theorem}
 
-\begin{remark}
-It works also with open balls. 
+\begin{remark} \label{rem:open_balls}
+The balls in the statement of Theorem \ref{thm:Besicovitch_covering} may be taken to be open.
 \end{remark}
 
-\begin{theorem}[consequence of Besicovitch]
+\begin{theorem}[Consequence of Besicovitch theorem] \label{thm:Besicovitch_covering_1}
 Let $A$ be a bounded set and $\varrho : A \to (0,\infty)$. Then there exists $S
 \subset A$ at most countable such that 
 \(
 A \subset \bigcup_{x\in S} B(x,\varrho(x)) 
 \)
-and for all $y \in \R^n$
+and such that every point of $\R^{n}$ belongs to at most $\xi_{n}$ balls centered in points of $S$; that is,
 \[
-\sum_{x \in S} \chi_{B(x,\varrho(x))}(y) \leq \xi_n.
+\sum_{x \in S} \chi_{B(x,\varrho(x))}(y) \leq \xi_n
 \]
+for all $y \in \R^n$, where $\xi_{n}$ is the same constant of Theorem \ref{thm:Besicovitch_covering}.
 \end{theorem}
 \begin{proof}
-Let $\mathcal{F} := \{(B(x,\varrho(x)) \mid x \in A\}$ \TODO
+Let $\mathcal{F} := \{B(x,\varrho(x)) \mid x \in A\}$ and apply Besicovitch covering theorem (Theorem \ref{thm:Besicovitch_covering}): there exists $\xi_{n} \in \N$ and $\mathcal{F}_{i}, \dots, \mathcal{F}_{\xi_{n}}$ disjoint families of open balls (thanks to Remark \ref{rem:open_balls}) such that
+\begin{equation*}
+A \subset \bigcup_{i = 1}^{\xi_{n}} \bigcup_{B \in \mathcal{F}_{i}} B.
+\end{equation*} 
+Then, we set $S$ to be the set of centers of the balls in the families $\mathcal{F}_{i}$, for $i \in \{1, \dots, \xi_{n}\}$. Clearly, each one of these families is at most countable, being disjoint, so that $S$ is at most countable. This ends the proof.
 \end{proof}
+
+We employ now these results to show a covering theorem for Radon measure due to Vitali, which is the general version of Lemma \ref{lemmaVitaliCovering}. To this purpose we define the notion of fine covering.
 
 \begin{definition}
 Let $\mathcal{F}$ be a family of closed balls and $A \subset \R^n$.
-$\mathcal{F}$ is called a fine covering of $A$ if 
+$\mathcal{F}$ is called a {\em fine covering} of $A$ if 
 \[
 \inf \left\{ \varrho > 0 \mid \overline{B(x,\varrho)} \in \mathcal{F}\right \} =
 0 \quad \text{for all $x\in A$}.
 \]
 \end{definition}
 
-\begin{theorem}[Vitali]
+\begin{theorem}[Vitali covering theorem]
 Let $A$ be a bounded Borel set and $\mathcal{F}$ be a fine covering of $A$. In
-any case $\mu \in \mathcal{M}^+_{loc}(\R^n)$ there exists $\mathcal{F}' \subset
+any case $\mu \in \mathcal{M}^+_{\rm loc}(\R^n)$ there exists $\mathcal{F}' \subset
 \mathcal{F}$ disjoint such that 
 \[
 \mu \left( A \setminus \bigcup_{\overline{B}
@@ -101,56 +64,152 @@ any case $\mu \in \mathcal{M}^+_{loc}(\R^n)$ there exists $\mathcal{F}' \subset
 \]
 \end{theorem}
 \begin{proof}
-\TODO
+
 \end{proof}
 
-\begin{theorem}
-let $\mu \in \mathcal{M}^+_{loc}(\Omega)$, $\lambda \in
-\mathcal{M}_{loc}(\Omega;\R^m)$, $|\lambda| << \mu$. Then, for $\mu$-a.e. $x \in
-\supp u$, the limit 
-\[
-\lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\mu(B(x,\varrho))}
-\]
-exists in $\R^n$.
+\subsection{Differentiation of Radon and Hausdorff measures}
+
+\begin{theorem}[Lebesgue-Besicovitch differentiation theorem] \label{thm:Leb_Bes_diff}
+Let $\mu \in \mathcal{M}^+_{\rm loc}(\Omega)$, $\lambda \in
+\mathcal{M}_{\rm loc}(\Omega;\R^m)$, $\lambda \ll \mu$. Then, for $\mu$-a.e. $x \in
+\supp \mu$, the limit 
+\begin{equation} \label{eq:limit_measure_der}
+D_{\mu}\lambda(x) := \lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\mu(B(x,\varrho))}
+\end{equation}
+exists in $\R^m$. In addition, we have $\lambda = D_{\mu}\lambda \, \mu$.
 \end{theorem}
 
-By Radon-Nikodyn, $\lambda = f\mu$ for some $f \in
-\Leb{1}_{\text{loc}}(\Omega;\mu)$. Thus 
-\[
-f(x) = \lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\mu(B(x,\varrho))}
-\]
-for $\mu$-a.e. $x \in \supp \mu$.
+The limit in \eqref{eq:limit_measure_der}, sometimes also denoted by $(d\lambda/d\mu)(x)$, is called the {\em derivative}, or the {\em density}, of $\lambda$ with respect to $\mu$. 
 
+\begin{corollary}\label{cor:Leb_diff}
+Let $\mu \in \mathcal{M}^+_{\rm loc}(\Omega)$ and $f \in L^{1}_{\rm loc}(\Omega, \mu; \R^{m})$. Then we have
+\begin{equation*}
+f(x) = \lim_{\rho \to 0} \frac{1}{\mu(B(x,\rho))}\int_{B(x, \rho)} f(y) \, d \mu(y)
+\end{equation*} 
+for $\mu$-a.e. $x \in \Omega$.
+\end{corollary}
+\begin{proof}
+Let $\lambda := f \mu$. It is easy to check that $\lambda \in \mathcal{M}_{\rm loc}(\Omega; \R^{m})$.
+By Theorem \ref{thm:Leb_Bes_diff}, we know that, for $\mu$-a.e. $x \in \Omega$, there exists the limit 
+\begin{equation*}
+D_{\mu}\lambda(x) := \lim_{\rho \to 0} \frac{\lambda(B(x,\rho))}{\mu(B(x,\rho))} = \lim_{\rho \to 0} \frac{1}{\mu(B(x,\rho))}\int_{B(x, \rho)} f(y) \, d \mu(y),
+\end{equation*}
+and it satisfies $\lambda = D_{\mu}\lambda \, \mu$. Thus, we have $(f - D_{\mu}\lambda) \, \mu = 0$, which implies $f(x) = D_{\mu}\lambda(x)$ for $\mu$-a.e. $x \in \Omega$.
+\end{proof}
 
-\begin{theorem}[Lebesgue-Besicovitch differentiation theorem]
-Let $\mu \in \mathcal{M}^+_{\rm loc}$, $f \in L^1_{\rm loc}(\Omega,\mu; \R^m)$.
-Then for $\mu$-a.e. $x\in \Omega$
-\[
-f(x) = \lim_{\varrho \to 0} \frac{1}{\mu(B(x,\varrho)} \int_{B(x,\varrho)} f(y)
-d\mu(y).
-\]
-In particular, if $\mu = \Leb{n}$, 
-\[
-f(x) = \lim_{\varrho \to 0} \frac{1}{\omega_n \varrho^n} \int_{B(x,\varrho)} f(y)
-dy,
-\]
-for $\Leb{n}$-a.e. $x\in \Omega$.
+\begin{remark}
+If we apply Corollary \ref{cor:Leb_diff} to the case $\mu = \Leb{n}$ and $f \in L^{1}_{\rm loc}(\Omega; \R^{m})$, we obtain the classical version of Lebesgue's differentiation theorem:
+\begin{equation*}
+f(x) = \lim_{\rho \to 0} \meanint_{B(x, \rho)} f(y) \, dy = \lim_{\rho \to 0} \frac{1}{\omega_{n} \rho^{n}} \int_{B(x, \rho)} f(y) \, dy
+\end{equation*}
+for $\Leb{n}$-a.e. $x \in \Omega$.
+In particular, if $f = \chi_{E}$ for some Lebesgue measurable set $E$ in $\R^{n}$, we obtain
+\begin{equation} \label{density_points_set}
+\chi_{E}(x) = \lim_{\rho \to 0} \frac{|E \cap B(x, \rho)|}{|B(x, \rho)|} =  \lim_{\rho \to 0} \frac{|E \cap B(x, \rho)|}{\omega_{n} \rho^{n}}
+\end{equation}
+for $\Leb{n}$-a.e. $x \in \R^{n}$.
+\end{remark}
 
-If $f = \chi_E$, where $E$ is a $\Leb{n}$-measurable,
-\[
-\chi_E (x) = \lim_{\varrho \to 0^+} \frac{|E \cap B(x,\varrho)|}{|B(x,\varrho)|} 
-\]
-(density of $E$ at $x$ with respect to $\Leb{n}$).
+Actually, it is not difficult to show that the statement of Corollary \ref{cor:Leb_diff} may be refined to a slightly stronger version.
+
+\begin{corollary}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $f \in L^{1}(\Omega, \mu; \R^{m})$. Prove that for $\mu$-a.e. $x \in \Omega$ we have
+\begin{equation} \label{eq:Lebesgue_points}
+\lim_{\rho \to 0} \frac{1}{\mu(B(x, \rho))} \int_{B(x, \rho)}|f(y) - f(x)| \, d \mu(y) = 0.
+\end{equation}
+\end{corollary}
+Any point $x \in \Omega$ for which \eqref{eq:Lebesgue_points} holds is called {\em Lebesgue point} (or {\em approximate continuity point}) of $f$.
+
+\begin{proof}[Hint of the proof]
+It is enough to apply Corollary \ref{cor:Leb_diff} to the measures $\nu_{q} := |f - q| \mu$, for $q \in \Q$, and then to exploit the fact that $\Q$ is countable and dense in $\R$.
+\end{proof}
+
+We recall that the Hausdorff measures $\Haus{\alpha}$ for $\alpha \in [0, n)$ are Borel regular, but not Radon (see Remark \ref{rem:Haus_not_Radon}). Hence, the Lebesgue-Besicovitch differentiation theorem (Theorem \ref{thm:Leb_Bes_diff}) does not apply to such measures. Nevertheless, it is possible to define and to study a notion of density with respect to the Hausdorff measures. Such analysis is relevant in many applications, since it is useful to compare a generic Radon measure $\mu$ to $\Haus{\alpha}$ for some $\alpha \in [0, n]$, in order to to have some idea of the ``dimensionality'' of $\mu$.
+
+\begin{definition}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. For all $x \in \Omega$, we define the {\em upper and lower $\alpha$-dimensional densities} of $\mu$ at $x$ as
+\begin{equation*}
+\Theta^{*}_{\alpha}(\mu, x) := \limsup_{\rho \to 0} \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}} \quad \text{and} \quad \Theta_{* \alpha}(\mu, x) := \liminf \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}}.
+\end{equation*}
+If $\Theta^{*}_{\alpha}(\mu, x) = \Theta_{* \alpha}(\mu, x)$, the common value is denoted by $\Theta_{\alpha}(\mu, x)$.
+In the case $\mu = \Haus{\alpha} \res E$, for a $\Haus{\alpha}$-measurable set $E$ such that $\Haus{\alpha}(E) < + \infty$, for simplicity we write
+\begin{equation*}
+\Theta^{*}_{\alpha}(E, x) := \Theta^{*}_{\alpha}(\Haus{\alpha} \res E, x), \ \Theta_{* \alpha}(E, x) := \Theta_{* \alpha}(\Haus{\alpha} \res E, x) \text{ and }  \Theta_{\alpha}(E, x) := \Theta_{\alpha}(\Haus{\alpha} \res E, x).
+\end{equation*}
+\end{definition}
+Recall that, by Proposition \ref{prop:Haus_Radon_res}, $\mu = \Haus{\alpha} \res E$ is a Radon measure, for any $\Haus{\alpha}$-measurable set $E$ such that $\Haus{\alpha}(E) < + \infty$, so that the definitions of $\Theta^{*}_{\alpha}(E, x), \Theta_{* \alpha}(E, x)$ and $\Theta_{\alpha}(E, x)$ are well posed.
+
+\begin{theorem}[$\alpha$-dimensional densities of Radon measures] \label{thm:alpha_density}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then, for all $B \in \mathcal{B}(\Omega)$ and $t > 0$, the following implications hold:
+\begin{align}
+\Theta^{*}_{\alpha}(\mu, x) \ge t \ \forall x \in B & \Longrightarrow \ \mu \ge t \Haus{\alpha} \res B, \label{eq:lower_bound_density} \\
+\Theta^{*}_{\alpha}(\mu, x) \le t \ \forall x \in B & \Longrightarrow \ \mu \le 2^{\alpha} t \Haus{\alpha} \res B. \label{eq:upper_bound_density}
+\end{align}
 \end{theorem}
-As as consequence of Lebesgue-Besicovitch differentiation theorem, if $\lambda
-\in \mathcal{M}^+_{\rm loc}(\Omega)$ and $\lambda << \Leb{N}$, then there exists 
-\[
-\lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\omega_n \varrho^n} =:
-D_{\Leb{n} \lambda}
-\]
-for $\Leb{n}$-a.e. $x\in \Omega$ and $\lambda = D_{\Leb{n} \lambda} \Leb{n}$.
 
-\TODO: Lecture 6?
+We illustrate now two useful consequences of Theorem \ref{thm:alpha_density}.
+
+%<<<<<<< HEAD
+%\begin{theorem}[Lebesgue-Besicovitch differentiation theorem]
+%Let $\mu \in \mathcal{M}^+_{\rm loc}$, $f \in L^1_{\rm loc}(\Omega,\mu; \R^m)$.
+%Then for $\mu$-a.e. $x\in \Omega$
+%\[
+%f(x) = \lim_{\varrho \to 0} \frac{1}{\mu(B(x,\varrho)} \int_{B(x,\varrho)} f(y)
+%d\mu(y).
+%\]
+%In particular, if $\mu = \Leb{n}$, 
+%\[
+%f(x) = \lim_{\varrho \to 0} \frac{1}{\omega_n \varrho^n} \int_{B(x,\varrho)} f(y)
+%dy,
+%\]
+%for $\Leb{n}$-a.e. $x\in \Omega$.
+%
+%If $f = \chi_E$, where $E$ is a $\Leb{n}$-measurable,
+%\[
+%\chi_E (x) = \lim_{\varrho \to 0^+} \frac{|E \cap B(x,\varrho)|}{|B(x,\varrho)|} 
+%\]
+%(density of $E$ at $x$ with respect to $\Leb{n}$).
+%\end{theorem}
+%As as consequence of Lebesgue-Besicovitch differentiation theorem, if $\lambda
+%\in \mathcal{M}^+_{\rm loc}(\Omega)$ and $\lambda << \Leb{N}$, then there exists 
+%\[
+%\lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\omega_n \varrho^n} =:
+%D_{\Leb{n} \lambda}
+%\]
+%for $\Leb{n}$-a.e. $x\in \Omega$ and $\lambda = D_{\Leb{n} \lambda} \Leb{n}$.
+%
+%\TODO: Lecture 6?
+%=======
+\begin{corollary}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then we have
+\begin{enumerate}
+\item $\Theta^{*}_{\alpha}(\mu, x) < \infty$ for $\Haus{\alpha}$-a.e. $x \in \Omega$,
+\item if $\mu(B) = 0$ for some $B \in \mathcal{B}(\Omega)$, then $\Theta_{\alpha}(\mu, x) = 0$ for $\Haus{\alpha}$-a.e. $x \in B$.
+\end{enumerate}
+\end{corollary}
+
+Let us consider the case $\mu = \Haus{\alpha} \res E$, for some $\Haus{\alpha}$-measurable set $E$ in $\R^{n}$ such that $\Haus{\alpha}(E) < + \infty$. We start by considering the extreme case $\alpha \in \{0, n\}$:
+\begin{itemize}
+\item if $\alpha = n$, thanks to \eqref{density_points_set}, we know that $\Theta_{n}(E, x) = \chi_{E}(x)$ for $\Leb{n}$-a.e. $x \in \R^{n}$; 
+\item if $\alpha = 0$, it is easy to check that
+\begin{equation*}
+\Theta_{0}(E, x) = \lim_{\rho \to 0} \Haus{0}(E \cap B(x, \rho)) = \begin{cases} 1 & \text{if} \ x \in E \\
+0 & \text{if} \ x \notin E
+\end{cases} = \chi_{E}(x),
+\end{equation*} 
+since $\Haus{0}(E) < \infty$ implies that $E$ is finite and therefore discrete.
+\end{itemize}
+Instead, in the case $\alpha \in (0, n)$, we cannot hope for such a strong result, in general. However, we are able to obtain the following estimates.
+
+\begin{proposition}
+Let $\alpha \in [0, n]$ and $E$ be an $\Haus{\alpha}$-measurable set in $\R^{n}$ such that $\Haus{\alpha}(E) < \infty$. Then we have
+\begin{enumerate}
+\item $\Theta_{\alpha}(E, x) = 0$ for $\Haus{\alpha}$-a.e. $x \notin E$,
+\item $2^{-\alpha} \le \Theta^{*}_{\alpha}(E, x) \le 1$ for $\Haus{\alpha}$-a.e. $x \in E$.
+\end{enumerate}
+\end{proposition}
+
+We notice that we do not have any general result on lower bounds for $\Theta_{* \alpha}(E, x)$, and this is the reason why we cannot ensure the existence of the full limit in general. However, as we shall see in the following, in the case $\alpha = k \in \{1, \dots, n - 1\}$ there is a way to characterize the sets for which $\Theta_{k}(E, x)$ is well defined and equal to $1$ for $\Haus{k}$-a.e. $x \in E$.
 
 \section{Fine properties of Lipschitz functions}
 
@@ -162,7 +221,7 @@ Let $E \subset \R^{n}$ and $f: E \to \R$ be a Lipschitz function. Then the funct
 \begin{equation*}
 f^{+}(x) := \inf \{ f(y) + \Lip(f, E) |x - y| : y \in E\}
 \end{equation*}
-is Lipschitz and it satisfies $f^{+}(x) = f(x)$ for any $x \in E$ and $\Lip(f, E) = \Lip(f^{+}, \R^{n})$.
+is Lipschitz and it satisfies $f^{+}(x) = f(x)$ for all $x \in E$ and $\Lip(f, E) = \Lip(f^{+}, \R^{n})$.
 \end{lemma}
 \begin{proof}
 For any $x, z \in \R^{n}$, by the triangle inequality, we have
@@ -171,13 +230,18 @@ f^{+}(x) \le \inf \{ f(y) + \Lip(f, E) (|x - z| + |z - y|) : y \in E \} = f^{+}(
 \end{equation*}
 Then, interchanging the role of $x$ and $z$, we immediately get
 \begin{equation*}
-|f^{+}(x) - f^{+}(z)| \le \Lip(f, E) |x - z|.
+|f^{+}(x) - f^{+}(z)| \le \Lip(f, E) |x - z|,
 \end{equation*}
-Finally, let $x \in E$. It is easy to see that $f^{+}(x) \le f(x)$. In order to obtain the reverse inequality, notice that 
+which implies $\Lip(f^{+}, \R^{n}) \le \Lip(f, E)$.
+Now, let $x \in E$. It is easy to see that $f^{+}(x) \le f(x)$. In order to obtain the reverse inequality, notice that 
 \begin{equation*}
 f(x) \le f(y) + \Lip(f, E)|x - y|
 \end{equation*}
-for any $y \in E$, since $f$ is Lipschitz on $E$.
+for any $y \in E$, since $f$ is Lipschitz on $E$. By taking the infimum in $y \in E$, we get $f(x) \le f^{+}(x)$, so that $f^{+}(x) = f(x)$ for all $x \in E$. Finally, this identity implies
+\begin{equation*}
+\Lip(f, E) = \Lip(f^{+}, E) \le \Lip(f^{+}, \R^{n}),
+\end{equation*}
+from which we conclude that $\Lip(f, E) = \Lip(f^{+}, \R^{n})$.
 \end{proof}
 
 \begin{remark} The extension given in McShane's lemma is the largest extension of $f$, while, arguing analogously, one can show that the smaller extension is given by
@@ -231,7 +295,7 @@ An interesting consequence of this result is that the differential of a Lipschit
 Let $f: \R^{n} \to \R^{m}$ be locally Lipschitz and $t \in \R$. Then $\nabla f(x) = 0$ for $\Leb{n}$-a.e. $x \in \{ f = t\} := \{ y \in \R^{n}: f(y) = t\}$.
 \end{theorem}
 
-\section{The area and coarea formulas}
+\section{The area and Gauss--Green formulas}
 
 
 \subsection{Linear maps and Jacobians}
@@ -250,11 +314,11 @@ We recall here some standard definitions and facts from linear algebra.
 \begin{enumerate}[i)]
 \item Let $A: \R^{n} \to \R^{m}$ and $B: \R^{k} \to \R^{n}$ be linear maps. Then we have $A^{**} = A$ and $(A \circ B)^{*} = B^{*} \circ A^{*}$.
 \item Let $S : \R^{n} \to \R^{n}$ be a symmetric linear map. Then $S^{*} = S$.
-\item If $O : \R^{n} \to \R^{m}$ is an orthogonal linear map, then $n \le m$ and 
-\begin{align*}
-O^{*} \circ O = I & \text{ on } \R^{n}, \\
-O \circ O^{*} = I & \text{ on } \R^{m}.
-\end{align*}
+\item If $O : \R^{n} \to \R^{m}$ is an orthogonal linear map, then $n \le m$ and $O^{*} \circ O = I$ on $\R^{n}$. 
+%\begin{align*}
+%O^{*} \circ O = I & \text{ on } \R^{n}.
+%%O \circ O^{*} = I & \text{ on } \R^{m}.
+%\end{align*}
 \end{enumerate}
 \end{proposition}
 
@@ -420,129 +484,7 @@ Thus, if we define $\Sigma(f, \Omega) := f(\Omega)$, for any open set $\Omega \s
 \end{equation*}
 \end{example}
 
-\subsection{The coarea formula}
 
-In this subsection we assume $n \ge m$ and $f : \R^{n} \to \R^{m}$ to be Lipschitz.
 
-\begin{lemma} Let $A$ be $\Leb{n}$-measurable. Then
-\begin{enumerate}[i)]
-\item $A \cap f^{-1}(y)$ is $\Haus{n - m}$ measurable for $\Leb{m}$-a.e. $y \in \R^{m}$.
-\item the mapping $y \to \Haus{n - m}(A \cap f^{-1}(y))$ is $\Leb{m}$-measurable, and
-\begin{equation*}
-\int_{\R^{m}} \Haus{n - m}(A \cap f^{-1}(y)) \, d y \le c_{n, m} (\Lip(f))^{m} \Leb{n}(A).
-\end{equation*}
-\end{enumerate}
-\end{lemma}
+\subsection{The Gauss--Green and integration by parts formulas}
 
-\begin{theorem}[Coarea formula] \label{coarea_formula}
-Let $f : \R^{n} \to \R^{m}$ be Lipschitz and $n \ge m$. Then, for all $\Leb{n}$-measurable sets $A \subset \R^{n}$, we have
-\begin{equation} \label{eq:coarea_formula}
-\int_A \J f \, dx = \int_{\R^{m}} \Haus{n - m}(A \cap f^{-1}(y)) \, dy.
-\end{equation}
-\end{theorem}
-
-Notice that the coarea formula can be seen as a generalized version of Fubini's theorem.
-
-\begin{remark}[Morse-Sard theorem]
-If we apply the coarea formula to $A = \{ \J f = 0 \}$, it is immediate to see that
-\begin{equation*}
-\Haus{n - m}( \{ \J f = 0 \} \cap f^{-1}(y)) = 0
-\end{equation*}
-for $\Leb{m}$-a.e. $y \in \R^{m}$. This is a weak variant of Morse-Sard theorem, which states that, if $f \in C^{k}(\R^{n}; \R^{m})$ for $k = 1 + n - m$, then
-\begin{equation*}
-\{\J f = 0 \} \cap f^{-1}(y) = \emptyset
-\end{equation*}
-for $\Leb{m}$-a.e. $y \in \R^{m}$.
-\end{remark}
-
-\begin{theorem}\label{integration_level_sets_gen}
-Let $f : \R^{n} \to \R^{m}$ be Lipschitz and $n \ge m$. Then, for all $\Leb{n}$-summable functions $g : \R^{n} \to \R$, we have $g|_{f^{-1}(y)}$ is $\Haus{n - m}$-summable for $\Leb{m}$-a.e. $y \in \R^{m}$, and
-\begin{equation} \label{eq:integration_level_sets_gen}
-\int_{\R^{n}} g \, \J f \,dx = \int_{\R^{m}} \int_{f^{-1}(y)} g \, d \Haus{n - m} \, dy.
-\end{equation}
-\end{theorem}
-
-\begin{remark}
-Notice that $f^{-1}(y)$ is closed for all $y \in \R^{m}$, so that it is immediately $\Haus{n - m}$-measurable.
-\end{remark}
-
-We list now some relevant applications of the coarea formula.
-
-\begin{theorem}[Polar coordinates] \label{polar_coordinates}
-Let $g : \R^{n} \to \R$ be $\Leb{n}$-summable. Then
-\begin{equation*} 
-\int_{\R^{n}} g \, dx = \int_{0}^{+\infty} \int_{\partial B(0, \rho)} g \, d \Haus{n - 1} \, d \rho
-\end{equation*}
-In particular, for any $r > 0$ and $g$ such that $g \chi_{B(0, r)}$ is $\Leb{n}$-summable, we have
-\begin{equation*}
-\int_{B(0, r)} g \, dx = \int_{0}^{r} \int_{\partial B(0, \rho)} g \, d \Haus{n - 1} \, d \rho,
-\end{equation*}
-so that, for $\Leb{1}$-a.e. $r > 0$,
-\begin{equation*}
-\frac{d}{dr} \int_{B(0, r)} g \, dx = \int_{\partial B(0, r)} g \, d \Haus{n - 1}.
-\end{equation*}
-\end{theorem}
-\begin{proof}
-Apply Theorem \ref{integration_level_sets_gen} to $f(x) = |x|$, in the case $m = 1$. Then, for all $x \neq 0$, we have $$\nabla f(x) = \frac{x}{|x|}, \ \J f(x) = 1.$$
-Finally, the second equality is a consequence of the first, as the third can be derived from the second.
-\end{proof}
-
-In general, in the case $m = 1$ it is easy to notice that $\J f = |\nabla f|$, so that we have the following result.
-
-\begin{theorem}[Integration over level sets] \label{integration_level_sets}
-Let $f : \R^{n} \to \R$ be Lipschitz. Then we have
-\begin{equation} \label{eq:coarea_n_1}
-\int_{\R^{n}} |\nabla f| \, dx = \int_{- \infty}^{+ \infty} \Haus{n - 1}(\{f = t\}) \, dt.
-\end{equation}
-If we assume also that ${\rm ess} \inf |\nabla f| > 0$ and we let $g : \R^{n} \to \R$ be $\Leb{n}$-summable, then for all $t \in \R$ we obtain
-\begin{equation} \label{eq:integration_level_set}
-\int_{\{f > t \}} g \, dx = \int_{t}^{+ \infty} \int_{\{f =s\}} \frac{g}{|\nabla f|} \, d \Haus{n - 1} \, ds.
-\end{equation}
-In particular, 
-\begin{equation*}
-\frac{d}{dt} \int_{\{f > t\}} g \, dx = - \int_{\{f = t\}} \frac{g}{|\nabla f|} \, d \Haus{n -1}
-\end{equation*}
-for $\Leb{1}$-a.e. $t \in \R$.
-\end{theorem}
-\begin{proof}
-It is easy to see that \eqref{eq:coarea_n_1} is a simple consequence of \eqref{eq:coarea_formula} when $m = 1$. Then, by Theorem \ref{integration_level_sets_gen}, we have
-\begin{align*}
-\int_{\{f > t\}} g \, dx & = \int_{\R^{n}} \chi_{\{f > t\}} \frac{g}{|\nabla f|} \J f \, dx \\
-& = \int_{- \infty}^{+ \infty} \int_{\{ f = s\}} \chi_{\{f > t\}} \frac{g}{|\nabla f|} \, d \Haus{n - 1} \, ds \\
-& = \int_{t}^{+ \infty} \int_{\{ f = s\}} \chi_{\{f > t\}} \frac{g}{|\nabla f|} \, d \Haus{n - 1} \, ds.
-\end{align*}
-Then, the final equality follow easily by \eqref{eq:integration_level_set}.
-\end{proof}
-
-Finally, we conclude this section with the examination of the case in which $f$ is the distance function from a compact set.
-
-\begin{theorem}[Integration over the level set of the distance function] \label{integration_distance_function}
-Let $K\subset \R^{n}$ be a nonempty compact set and set $$d(x):= {\rm dist}(x, K).$$
-Then, for all $0 < a < b$ and all $g : \R^{n} \to \R$ $\Leb{n}$-summable we have
-\begin{equation*}
-\int_{a}^{b} \int_{\{ d = t\}} g \, d \Haus{n - 1} \, dt = \int_{\{ a < d \le b\}} g \, dx.
-\end{equation*}
-In particular,
-\begin{equation*}
-\int_{a}^{b} \Haus{n - 1}(\{d = t\}) \, dt = \Leb{n}(\{ a < d \le b\}).
-\end{equation*}
-\end{theorem}
-\begin{proof}
-It is enough to prove that $|\nabla d(x)| = 1$ for $\Leb{n}$-a.e. $x \in \R^{n} \setminus K$, and then we need just to apply Theorem \ref{integration_level_sets}. We start by showing the $d$ is Lipschitz. Let $x \in \R^{n}$: there exists a $c \in K$ such that $|x - c| = d(x)$. By the triangle inequality, we have
-\begin{equation*}
-d(y) - d(x) \le |y - c| - |x - c| \le |x - y|.
-\end{equation*}
-If we interchange now the roles of $x$ and $y$, we see that we get 
-\begin{equation*}
-|d(y) - d(x)| \le |x - y|,
-\end{equation*}
-which shows that $d$ is Lipschitz with $\Lip(d) \le 1$. Hence, Rademacher's theorem implies that the function $d$ is differentiable in $\Leb{n}$-a.e. $x \in \R^n$. Let now $x \in \R^{n} \setminus K$ be such that $\nabla d(x)$ exists. Then we have $|\nabla d(x)| \le 1$. In addition, if we select $c \in K$ as above, we also have
-\begin{equation*}
-d(tx + (1 - t)c) = t |x - c|
-\end{equation*}
-for all $t \in [0, 1]$ (since the segment is the shortest path). Therefore, by taking a derivative in $t$, we get
-\begin{equation*}
-|x - c| = \nabla d(x) \cdot (x - c) \le |\nabla d(x)| |x - c|,
-\end{equation*}
-which immediately implies $|\nabla d(x)| \ge 1$ for $\Leb{n}$-a.e. $x \in \R^{n} \setminus K$. Thus, the proof is completed.
-\end{proof}
