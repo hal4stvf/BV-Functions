@@ -209,6 +209,87 @@ Let $\alpha \in [0, n]$ and $E$ be an $\Haus{\alpha}$-measurable set in $\R^{n}$
 \end{enumerate}
 \end{proposition}
 
+
+\begin{remark}
+If we apply Corollary \ref{cor:Leb_diff} to the case $\mu = \Leb{n}$ and $f \in L^{1}_{\rm loc}(\Omega; \R^{m})$, we obtain the classical version of Lebesgue's differentiation theorem:
+\begin{equation*}
+f(x) = \lim_{\rho \to 0} \meanint_{B(x, \rho)} f(y) \, dy = \lim_{\rho \to 0} \frac{1}{\omega_{n} \rho^{n}} \int_{B(x, \rho)} f(y) \, dy
+\end{equation*}
+for $\Leb{n}$-a.e. $x \in \Omega$.
+In particular, if $f = \chi_{E}$ for some Lebesgue measurable set $E$ in $\R^{n}$, we obtain
+\begin{equation} \label{density_points_set}
+\chi_{E}(x) = \lim_{\rho \to 0} \frac{|E \cap B(x, \rho)|}{|B(x, \rho)|} =  \lim_{\rho \to 0} \frac{|E \cap B(x, \rho)|}{\omega_{n} \rho^{n}}
+\end{equation}
+for $\Leb{n}$-a.e. $x \in \R^{n}$.
+\end{remark}
+
+Actually, it is not difficult to show that the statement of Corollary \ref{cor:Leb_diff} may be refined to a slightly stronger version.
+
+\begin{corollary}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $f \in L^{1}(\Omega, \mu; \R^{m})$. Prove that for $\mu$-a.e. $x \in \Omega$ we have
+\begin{equation} \label{eq:Lebesgue_points}
+\lim_{\rho \to 0} \frac{1}{\mu(B(x, \rho))} \int_{B(x, \rho)}|f(y) - f(x)| \, d \mu(y) = 0.
+\end{equation}
+\end{corollary}
+Any point $x \in \Omega$ for which \eqref{eq:Lebesgue_points} holds is called {\em Lebesgue point} (or {\em approximate continuity point}) of $f$.
+
+\begin{proof}[Hint of the proof]
+It is enough to apply Corollary \ref{cor:Leb_diff} to the measures $\nu_{q} := |f - q| \mu$, for $q \in \Q$, and then to exploit the fact that $\Q$ is countable and dense in $\R$.
+\end{proof}
+
+We recall that the Hausdorff measures $\Haus{\alpha}$ for $\alpha \in [0, n)$ are Borel regular, but not Radon (see Remark \ref{rem:Haus_not_Radon}). Hence, the Lebesgue-Besicovitch differentiation theorem (Theorem \ref{thm:Leb_Bes_diff}) does not apply to such measures. Nevertheless, it is possible to define and to study a notion of density with respect to the Hausdorff measures. Such analysis is relevant in many applications, since it is useful to compare a generic Radon measure $\mu$ to $\Haus{\alpha}$ for some $\alpha \in [0, n]$, in order to to have some idea of the ``dimensionality'' of $\mu$.
+
+\begin{definition}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. For all $x \in \Omega$, we define the {\em upper and lower $\alpha$-dimensional densities} of $\mu$ at $x$ as
+\begin{equation*}
+\Theta^{*}_{\alpha}(\mu, x) := \limsup_{\rho \to 0} \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}} \quad \text{and} \quad \Theta_{* \alpha}(\mu, x) := \liminf \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}}.
+\end{equation*}
+If $\Theta^{*}_{\alpha}(\mu, x) = \Theta_{* \alpha}(\mu, x)$, the common value is denoted by $\Theta_{\alpha}(\mu, x)$.
+In the case $\mu = \Haus{\alpha} \res E$, for a $\Haus{\alpha}$-measurable set $E$ such that $\Haus{\alpha}(E) < \infty$, for simplicity we write
+\begin{equation*}
+\Theta^{*}_{\alpha}(E, x) := \Theta^{*}_{\alpha}(\Haus{\alpha} \res E, x), \ \Theta_{* \alpha}(E, x) := \Theta_{* \alpha}(\Haus{\alpha} \res E, x) \text{ and }  \Theta_{\alpha}(E, x) := \Theta_{\alpha}(\Haus{\alpha} \res E, x).
+\end{equation*}
+\end{definition}
+
+\begin{theorem}[$\alpha$-dimensional densities of Radon measures] \label{thm:alpha_density}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then, for all $B \in \mathcal{B}(\Omega)$ and $t > 0$, the following implications hold:
+\begin{align}
+\Theta^{*}_{\alpha}(\mu, x) \ge t \ \forall x \in B & \Longrightarrow \ \mu \ge t \Haus{\alpha} \res B, \label{eq:lower_bound_density} \\
+\Theta^{*}_{\alpha}(\mu, x) \le t \ \forall x \in B & \Longrightarrow \ \mu \le 2^{\alpha} t \Haus{\alpha} \res B. \label{eq:upper_bound_density}
+\end{align}
+\end{theorem}
+
+We illustrate now two useful consequences of Theorem \ref{thm:alpha_density}.
+
+\begin{corollary}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then we have
+\begin{enumerate}
+\item $\Theta^{*}_{\alpha}(\mu, x) < \infty$ for $\Haus{\alpha}$-a.e. $x \in \Omega$,
+\item if $\mu(B) = 0$ for some $B \in \mathcal{B}(\Omega)$, then $\Theta_{\alpha}(\mu, x) = 0$ for $\Haus{\alpha}$-a.e. $x \in B$.
+\end{enumerate}
+\end{corollary}
+
+Let us consider the case $\mu = \Haus{\alpha} \res E$, for some $\Haus{\alpha}$-measurable set $E$ in $\R^{n}$ such that $\Haus{\alpha}(E) < \infty$. We start by considering the extreme case $\alpha \in \{0, n\}$:
+\begin{itemize}
+\item if $\alpha = n$, thanks to \eqref{density_points_set}, we know that $\Theta_{n}(E, x) = \chi_{E}(x)$ for $\Leb{n}$-a.e. $x \in \R^{n}$; 
+\item if $\alpha = 0$, it is easy to check that
+\begin{equation*}
+\Theta_{0}(E, x) = \lim_{\rho \to 0} \Haus{0}(E \cap B(x, \rho)) = \begin{cases} 1 & \text{if} \ x \in E \\
+0 & \text{if} \ x \notin E
+\end{cases} = \chi_{E}(x),
+\end{equation*} 
+since $\Haus{0}(E) < \infty$ implies that $E$ is finite and therefore discrete.
+\end{itemize}
+Instead, in the case $\alpha \in (0, n)$, we cannot hope for such a strong result, in general. However, we are able to obtain the following estimates.
+
+\begin{proposition}
+Let $\alpha \in [0, n]$ and $E$ be an $\Haus{\alpha}$-measurable set in $\R^{n}$ such that $\Haus{\alpha}(E) < \infty$. Then we have
+\begin{enumerate}
+\item $\Theta_{\alpha}(E, x) = 0$ for $\Haus{\alpha}$-a.e. $x \notin E$,
+\item $2^{-\alpha} \le \Theta^{*}_{\alpha}(E, x) \le 1$ for $\Haus{\alpha}$-a.e. $x \in E$.
+\end{enumerate}
+\end{proposition}
+
 We notice that we do not have any general result on lower bounds for $\Theta_{* \alpha}(E, x)$, and this is the reason why we cannot ensure the existence of the full limit in general. However, as we shall see in the following, in the case $\alpha = k \in \{1, \dots, n - 1\}$ there is a way to characterize the sets for which $\Theta_{k}(E, x)$ is well defined and equal to $1$ for $\Haus{k}$-a.e. $x \in E$.
 
 \section{Fine properties of Lipschitz functions}
@@ -488,3 +569,81 @@ Thus, if we define $\Sigma(f, \Omega) := f(\Omega)$, for any open set $\Omega \s
 
 \subsection{The Gauss--Green and integration by parts formulas}
 
+\begin{theorem}[Polar coordinates] \label{polar_coordinates}
+Let $g : \R^{n} \to \R$ be $\Leb{n}$-summable. Then
+\begin{equation*} 
+\int_{\R^{n}} g \, dx = \int_{0}^{+\infty} \int_{\partial B(0, \rho)} g \, d \Haus{n - 1} \, d \rho
+\end{equation*}
+In particular, for any $r > 0$ and $g$ such that $g \chi_{B(0, r)}$ is $\Leb{n}$-summable, we have
+\begin{equation*}
+\int_{B(0, r)} g \, dx = \int_{0}^{r} \int_{\partial B(0, \rho)} g \, d \Haus{n - 1} \, d \rho,
+\end{equation*}
+so that, for $\Leb{1}$-a.e. $r > 0$,
+\begin{equation*}
+\frac{d}{dr} \int_{B(0, r)} g \, dx = \int_{\partial B(0, r)} g \, d \Haus{n - 1}.
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Apply Theorem \ref{integration_level_sets_gen} to $f(x) = |x|$, in the case $m = 1$. Then, for all $x \neq 0$, we have $$\nabla f(x) = \frac{x}{|x|}, \ \J f(x) = 1.$$
+Finally, the second equality is a consequence of the first, as the third can be derived from the second.
+\end{proof}
+
+In general, in the case $m = 1$ it is easy to notice that $\J f = |\nabla f|$, so that we have the following result.
+
+\begin{theorem}[Integration over level sets] \label{integration_level_sets}
+Let $f : \R^{n} \to \R$ be Lipschitz. Then we have
+\begin{equation} \label{eq:coarea_n_1}
+\int_{\R^{n}} |\nabla f| \, dx = \int_{- \infty}^{+ \infty} \Haus{n - 1}(\{f = t\}) \, dt.
+\end{equation}
+If we assume also that ${\rm ess} \inf |\nabla f| > 0$ and we let $g : \R^{n} \to \R$ be $\Leb{n}$-summable, then for all $t \in \R$ we obtain
+\begin{equation} \label{eq:integration_level_set}
+\int_{\{f > t \}} g \, dx = \int_{t}^{+ \infty} \int_{\{f =s\}} \frac{g}{|\nabla f|} \, d \Haus{n - 1} \, ds.
+\end{equation}
+In particular, 
+\begin{equation*}
+\frac{d}{dt} \int_{\{f > t\}} g \, dx = - \int_{\{f = t\}} \frac{g}{|\nabla f|} \, d \Haus{n -1}
+\end{equation*}
+for $\Leb{1}$-a.e. $t \in \R$.
+\end{theorem}
+\begin{proof}
+It is easy to see that \eqref{eq:coarea_n_1} is a simple consequence of \eqref{eq:coarea_formula} when $m = 1$. Then, by Theorem \ref{integration_level_sets_gen}, we have
+\begin{align*}
+\int_{\{f > t\}} g \, dx & = \int_{\R^{n}} \chi_{\{f > t\}} \frac{g}{|\nabla f|} \J f \, dx \\
+& = \int_{- \infty}^{+ \infty} \int_{\{ f = s\}} \chi_{\{f > t\}} \frac{g}{|\nabla f|} \, d \Haus{n - 1} \, ds \\
+& = \int_{t}^{+ \infty} \int_{\{ f = s\}} \chi_{\{f > t\}} \frac{g}{|\nabla f|} \, d \Haus{n - 1} \, ds.
+\end{align*}
+Then, the final equality follow easily by \eqref{eq:integration_level_set}.
+\end{proof}
+
+Finally, we conclude this section with the examination of the case in which $f$ is the distance function from a compact set.
+
+\begin{theorem}[Integration over the level set of the distance function] \label{integration_distance_function}
+Let $K\subset \R^{n}$ be a nonempty compact set and set $$d(x):= {\rm dist}(x, K).$$
+Then, for all $0 < a < b$ and all $g : \R^{n} \to \R$ $\Leb{n}$-summable we have
+\begin{equation*}
+\int_{a}^{b} \int_{\{ d = t\}} g \, d \Haus{n - 1} \, dt = \int_{\{ a < d \le b\}} g \, dx.
+\end{equation*}
+In particular,
+\begin{equation*}
+\int_{a}^{b} \Haus{n - 1}(\{d = t\}) \, dt = \Leb{n}(\{ a < d \le b\}).
+\end{equation*}
+\end{theorem}
+\begin{proof}
+It is enough to prove that $|\nabla d(x)| = 1$ for $\Leb{n}$-a.e. $x \in \R^{n} \setminus K$, and then we need just to apply Theorem \ref{integration_level_sets}. We start by showing the $d$ is Lipschitz. Let $x \in \R^{n}$: there exists a $c \in K$ such that $|x - c| = d(x)$. By the triangle inequality, we have
+\begin{equation*}
+d(y) - d(x) \le |y - c| - |x - c| \le |x - y|.
+\end{equation*}
+If we interchange now the roles of $x$ and $y$, we see that we get 
+\begin{equation*}
+|d(y) - d(x)| \le |x - y|,
+\end{equation*}
+which shows that $d$ is Lipschitz with $\Lip(d) \le 1$. Hence, Rademacher's theorem implies that the function $d$ is differentiable in $\Leb{n}$-a.e. $x \in \R^n$. Let now $x \in \R^{n} \setminus K$ be such that $\nabla d(x)$ exists. Then we have $|\nabla d(x)| \le 1$. In addition, if we select $c \in K$ as above, we also have
+\begin{equation*}
+d(tx + (1 - t)c) = t |x - c|
+\end{equation*}
+for all $t \in [0, 1]$ (since the segment is the shortest path). Therefore, by taking a derivative in $t$, we get
+\begin{equation*}
+|x - c| = \nabla d(x) \cdot (x - c) \le |\nabla d(x)| |x - c|,
+\end{equation*}
+which immediately implies $|\nabla d(x)| \ge 1$ for $\Leb{n}$-a.e. $x \in \R^{n} \setminus K$. Thus, the proof is completed.
+\end{proof}
