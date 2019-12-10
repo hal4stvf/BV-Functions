@@ -1,7 +1,7 @@
 \ProvidesPackage{pde_style}
 
-\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
+\usepackage[russian, english]{babel}
 \usepackage[T1]{fontenc} 
 \usepackage[a4paper,top=30mm,bottom=20mm,inner=30mm,outer=30mm]{geometry} 
 \usepackage{paralist} %Adds more function to listing environments
@@ -49,13 +49,14 @@
 
 %Zahlenkörper
 \newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
+%\renewcommand{\C}{\mathbb{C}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \renewcommand{\S}{\mathbb{S}}
 \newcommand{\J}{{\bf J}}
 \newcommand{\eps}{\varepsilon}
+\newcommand{\M}{\mathcal{M}}
 
 
 \newcommand{\skp}{\boldsymbol{\cdot}}
@@ -90,6 +91,7 @@ bounding box.center)}] {\draw[->] (0,0) -- (0.8,0);}\,}
 \renewcommand{\dim}{{\rm dim}} %dimension
 \newcommand{\Tan}{\mbox{\rm Tan}}
 \newcommand{\weakstarto}{\overset{*}{\rightharpoonup}}
+\newcommand{\ban}[1]{\left\langle  #1 \right\rangle}  % <  >
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TODOs

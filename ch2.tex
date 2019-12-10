@@ -80,7 +80,6 @@ exists in $\R^m$. In addition, we have $\lambda = D_{\mu}\lambda \, \mu$.
 \end{theorem}
 
 The limit in \eqref{eq:limit_measure_der}, sometimes also denoted by $(d\lambda/d\mu)(x)$, is called the {\em derivative}, or the {\em density}, of $\lambda$ with respect to $\mu$. 
-%<<<<<<< HEAD
 
 \begin{corollary}\label{cor:Leb_diff}
 Let $\mu \in \mathcal{M}^+_{\rm loc}(\Omega)$ and $f \in L^{1}_{\rm loc}(\Omega, \mu; \R^{m})$. Then we have
@@ -150,37 +149,6 @@ Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then, f
 
 We illustrate now two useful consequences of Theorem \ref{thm:alpha_density}.
 
-%<<<<<<< HEAD
-%\begin{theorem}[Lebesgue-Besicovitch differentiation theorem]
-%Let $\mu \in \mathcal{M}^+_{\rm loc}$, $f \in L^1_{\rm loc}(\Omega,\mu; \R^m)$.
-%Then for $\mu$-a.e. $x\in \Omega$
-%\[
-%f(x) = \lim_{\varrho \to 0} \frac{1}{\mu(B(x,\varrho)} \int_{B(x,\varrho)} f(y)
-%d\mu(y).
-%\]
-%In particular, if $\mu = \Leb{n}$, 
-%\[
-%f(x) = \lim_{\varrho \to 0} \frac{1}{\omega_n \varrho^n} \int_{B(x,\varrho)} f(y)
-%dy,
-%\]
-%for $\Leb{n}$-a.e. $x\in \Omega$.
-%
-%If $f = \chi_E$, where $E$ is a $\Leb{n}$-measurable,
-%\[
-%\chi_E (x) = \lim_{\varrho \to 0^+} \frac{|E \cap B(x,\varrho)|}{|B(x,\varrho)|} 
-%\]
-%(density of $E$ at $x$ with respect to $\Leb{n}$).
-%\end{theorem}
-%As as consequence of Lebesgue-Besicovitch differentiation theorem, if $\lambda
-%\in \mathcal{M}^+_{\rm loc}(\Omega)$ and $\lambda << \Leb{N}$, then there exists 
-%\[
-%\lim_{\varrho \to 0} \frac{\lambda(B(x,\varrho))}{\omega_n \varrho^n} =:
-%D_{\Leb{n} \lambda}
-%\]
-%for $\Leb{n}$-a.e. $x\in \Omega$ and $\lambda = D_{\Leb{n} \lambda} \Leb{n}$.
-%
-%\TODO: Lecture 6?
-%=======
 \begin{corollary}
 Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then we have
 \begin{enumerate}
@@ -190,187 +158,6 @@ Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then we
 \end{corollary}
 
 Let us consider the case $\mu = \Haus{\alpha} \res E$, for some $\Haus{\alpha}$-measurable set $E$ in $\R^{n}$ such that $\Haus{\alpha}(E) < + \infty$. We start by considering the extreme case $\alpha \in \{0, n\}$:
-\begin{itemize}
-\item if $\alpha = n$, thanks to \eqref{density_points_set}, we know that $\Theta_{n}(E, x) = \chi_{E}(x)$ for $\Leb{n}$-a.e. $x \in \R^{n}$; 
-\item if $\alpha = 0$, it is easy to check that
-\begin{equation*}
-\Theta_{0}(E, x) = \lim_{\rho \to 0} \Haus{0}(E \cap B(x, \rho)) = \begin{cases} 1 & \text{if} \ x \in E \\
-0 & \text{if} \ x \notin E
-\end{cases} = \chi_{E}(x),
-\end{equation*} 
-since $\Haus{0}(E) < \infty$ implies that $E$ is finite and therefore discrete.
-\end{itemize}
-Instead, in the case $\alpha \in (0, n)$, we cannot hope for such a strong result, in general. However, we are able to obtain the following estimates.
-
-\begin{proposition}
-Let $\alpha \in [0, n]$ and $E$ be an $\Haus{\alpha}$-measurable set in $\R^{n}$ such that $\Haus{\alpha}(E) < \infty$. Then we have
-\begin{enumerate}
-\item $\Theta_{\alpha}(E, x) = 0$ for $\Haus{\alpha}$-a.e. $x \notin E$,
-\item $2^{-\alpha} \le \Theta^{*}_{\alpha}(E, x) \le 1$ for $\Haus{\alpha}$-a.e. $x \in E$.
-\end{enumerate}
-\end{proposition}
-%=======
-%
-%\begin{corollary}\label{cor:Leb_diff}
-%Let $\mu \in \mathcal{M}^+_{\rm loc}(\Omega)$ and $f \in L^{1}_{\rm loc}(\Omega, \mu; \R^{m})$. Then we have
-%\begin{equation*}
-%f(x) = \lim_{\rho \to 0} \frac{1}{\mu(B(x,\rho))}\int_{B(x, \rho)} f(y) \, d \mu(y)
-%\end{equation*} 
-%for $\mu$-a.e. $x \in \Omega$.
-%\end{corollary}
-%\begin{proof}
-%Let $\lambda := f \mu$. It is easy to check that $\lambda \in \mathcal{M}_{\rm loc}(\Omega; \R^{m})$.
-%By Theorem \ref{thm:Leb_Bes_diff}, we know that, for $\mu$-a.e. $x \in \Omega$, there exists the limit 
-%\begin{equation*}
-%D_{\mu}\lambda(x) := \lim_{\rho \to 0} \frac{\lambda(B(x,\rho))}{\mu(B(x,\rho))} = \lim_{\rho \to 0} \frac{1}{\mu(B(x,\rho))}\int_{B(x, \rho)} f(y) \, d \mu(y),
-%\end{equation*}
-%and it satisfies $\lambda = D_{\mu}\lambda \, \mu$. Thus, we have $(f - D_{\mu}\lambda) \, \mu = 0$, which implies $f(x) = D_{\mu}\lambda(x)$ for $\mu$-a.e. $x \in \Omega$.
-%\end{proof}
-%>>>>>>> origin/GiovanniComi-patch-6
-
-\begin{remark}
-If we apply Corollary \ref{cor:Leb_diff} to the case $\mu = \Leb{n}$ and $f \in L^{1}_{\rm loc}(\Omega; \R^{m})$, we obtain the classical version of Lebesgue's differentiation theorem:
-\begin{equation*}
-f(x) = \lim_{\rho \to 0} \meanint_{B(x, \rho)} f(y) \, dy = \lim_{\rho \to 0} \frac{1}{\omega_{n} \rho^{n}} \int_{B(x, \rho)} f(y) \, dy
-\end{equation*}
-for $\Leb{n}$-a.e. $x \in \Omega$.
-In particular, if $f = \chi_{E}$ for some Lebesgue measurable set $E$ in $\R^{n}$, we obtain
-\begin{equation} \label{density_points_set}
-\chi_{E}(x) = \lim_{\rho \to 0} \frac{|E \cap B(x, \rho)|}{|B(x, \rho)|} =  \lim_{\rho \to 0} \frac{|E \cap B(x, \rho)|}{\omega_{n} \rho^{n}}
-\end{equation}
-for $\Leb{n}$-a.e. $x \in \R^{n}$.
-\end{remark}
-
-Actually, it is not difficult to show that the statement of Corollary \ref{cor:Leb_diff} may be refined to a slightly stronger version.
-
-\begin{corollary}
-Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $f \in L^{1}(\Omega, \mu; \R^{m})$. Prove that for $\mu$-a.e. $x \in \Omega$ we have
-\begin{equation} \label{eq:Lebesgue_points}
-\lim_{\rho \to 0} \frac{1}{\mu(B(x, \rho))} \int_{B(x, \rho)}|f(y) - f(x)| \, d \mu(y) = 0.
-\end{equation}
-\end{corollary}
-Any point $x \in \Omega$ for which \eqref{eq:Lebesgue_points} holds is called {\em Lebesgue point} (or {\em approximate continuity point}) of $f$.
-
-\begin{proof}[Hint of the proof]
-It is enough to apply Corollary \ref{cor:Leb_diff} to the measures $\nu_{q} := |f - q| \mu$, for $q \in \Q$, and then to exploit the fact that $\Q$ is countable and dense in $\R$.
-\end{proof}
-
-We recall that the Hausdorff measures $\Haus{\alpha}$ for $\alpha \in [0, n)$ are Borel regular, but not Radon (see Remark \ref{rem:Haus_not_Radon}). Hence, the Lebesgue-Besicovitch differentiation theorem (Theorem \ref{thm:Leb_Bes_diff}) does not apply to such measures. Nevertheless, it is possible to define and to study a notion of density with respect to the Hausdorff measures. Such analysis is relevant in many applications, since it is useful to compare a generic Radon measure $\mu$ to $\Haus{\alpha}$ for some $\alpha \in [0, n]$, in order to to have some idea of the ``dimensionality'' of $\mu$.
-
-\begin{definition}
-Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. For all $x \in \Omega$, we define the {\em upper and lower $\alpha$-dimensional densities} of $\mu$ at $x$ as
-\begin{equation*}
-\Theta^{*}_{\alpha}(\mu, x) := \limsup_{\rho \to 0} \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}} \quad \text{and} \quad \Theta_{* \alpha}(\mu, x) := \liminf \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}}.
-\end{equation*}
-If $\Theta^{*}_{\alpha}(\mu, x) = \Theta_{* \alpha}(\mu, x)$, the common value is denoted by $\Theta_{\alpha}(\mu, x)$.
-In the case $\mu = \Haus{\alpha} \res E$, for a $\Haus{\alpha}$-measurable set $E$ such that $\Haus{\alpha}(E) < + \infty$, for simplicity we write
-\begin{equation*}
-\Theta^{*}_{\alpha}(E, x) := \Theta^{*}_{\alpha}(\Haus{\alpha} \res E, x), \ \Theta_{* \alpha}(E, x) := \Theta_{* \alpha}(\Haus{\alpha} \res E, x) \text{ and }  \Theta_{\alpha}(E, x) := \Theta_{\alpha}(\Haus{\alpha} \res E, x).
-\end{equation*}
-\end{definition}
-Recall that, by Proposition \ref{prop:Haus_Radon_res}, $\mu = \Haus{\alpha} \res E$ is a Radon measure, for any $\Haus{\alpha}$-measurable set $E$ such that $\Haus{\alpha}(E) < + \infty$, so that the definitions of $\Theta^{*}_{\alpha}(E, x), \Theta_{* \alpha}(E, x)$ and $\Theta_{\alpha}(E, x)$ are well posed.
-
-\begin{theorem}[$\alpha$-dimensional densities of Radon measures] \label{thm:alpha_density}
-Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then, for all $B \in \mathcal{B}(\Omega)$ and $t > 0$, the following implications hold:
-\begin{align}
-\Theta^{*}_{\alpha}(\mu, x) \ge t \ \forall x \in B & \Longrightarrow \ \mu \ge t \Haus{\alpha} \res B, \label{eq:lower_bound_density} \\
-\Theta^{*}_{\alpha}(\mu, x) \le t \ \forall x \in B & \Longrightarrow \ \mu \le 2^{\alpha} t \Haus{\alpha} \res B. \label{eq:upper_bound_density}
-\end{align}
-\end{theorem}
-
-We illustrate now two useful consequences of Theorem \ref{thm:alpha_density}.
-
-\begin{corollary}
-Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then we have
-\begin{enumerate}
-\item $\Theta^{*}_{\alpha}(\mu, x) < \infty$ for $\Haus{\alpha}$-a.e. $x \in \Omega$,
-\item if $\mu(B) = 0$ for some $B \in \mathcal{B}(\Omega)$, then $\Theta_{\alpha}(\mu, x) = 0$ for $\Haus{\alpha}$-a.e. $x \in B$.
-\end{enumerate}
-\end{corollary}
-
-Let us consider the case $\mu = \Haus{\alpha} \res E$, for some $\Haus{\alpha}$-measurable set $E$ in $\R^{n}$ such that $\Haus{\alpha}(E) < + \infty$. We start by considering the extreme case $\alpha \in \{0, n\}$:
-\begin{itemize}
-\item if $\alpha = n$, thanks to \eqref{density_points_set}, we know that $\Theta_{n}(E, x) = \chi_{E}(x)$ for $\Leb{n}$-a.e. $x \in \R^{n}$; 
-\item if $\alpha = 0$, it is easy to check that
-\begin{equation*}
-\Theta_{0}(E, x) = \lim_{\rho \to 0} \Haus{0}(E \cap B(x, \rho)) = \begin{cases} 1 & \text{if} \ x \in E \\
-0 & \text{if} \ x \notin E
-\end{cases} = \chi_{E}(x),
-\end{equation*} 
-since $\Haus{0}(E) < \infty$ implies that $E$ is finite and therefore discrete.
-\end{itemize}
-Instead, in the case $\alpha \in (0, n)$, we cannot hope for such a strong result, in general. However, we are able to obtain the following estimates.
-
-\begin{proposition}
-Let $\alpha \in [0, n]$ and $E$ be an $\Haus{\alpha}$-measurable set in $\R^{n}$ such that $\Haus{\alpha}(E) < \infty$. Then we have
-\begin{enumerate}
-\item $\Theta_{\alpha}(E, x) = 0$ for $\Haus{\alpha}$-a.e. $x \notin E$,
-\item $2^{-\alpha} \le \Theta^{*}_{\alpha}(E, x) \le 1$ for $\Haus{\alpha}$-a.e. $x \in E$.
-\end{enumerate}
-\end{proposition}
-
-We notice that we do not have any general result on lower bounds for $\Theta_{* \alpha}(E, x)$, and this is the reason why we cannot ensure the existence of the full limit in general. However, as we shall see in the following, in the case $\alpha = k \in \{1, \dots, n - 1\}$ there is a way to characterize the sets for which $\Theta_{k}(E, x)$ is well defined and equal to $1$ for $\Haus{k}$-a.e. $x \in E$.
-
-\begin{remark}
-If we apply Corollary \ref{cor:Leb_diff} to the case $\mu = \Leb{n}$ and $f \in L^{1}_{\rm loc}(\Omega; \R^{m})$, we obtain the classical version of Lebesgue's differentiation theorem:
-\begin{equation*}
-f(x) = \lim_{\rho \to 0} \meanint_{B(x, \rho)} f(y) \, dy = \lim_{\rho \to 0} \frac{1}{\omega_{n} \rho^{n}} \int_{B(x, \rho)} f(y) \, dy
-\end{equation*}
-for $\Leb{n}$-a.e. $x \in \Omega$.
-In particular, if $f = \chi_{E}$ for some Lebesgue measurable set $E$ in $\R^{n}$, we obtain
-\begin{equation} \label{density_points_set}
-\chi_{E}(x) = \lim_{\rho \to 0} \frac{|E \cap B(x, \rho)|}{|B(x, \rho)|} =  \lim_{\rho \to 0} \frac{|E \cap B(x, \rho)|}{\omega_{n} \rho^{n}}
-\end{equation}
-for $\Leb{n}$-a.e. $x \in \R^{n}$.
-\end{remark}
-
-Actually, it is not difficult to show that the statement of Corollary \ref{cor:Leb_diff} may be refined to a slightly stronger version.
-
-\begin{corollary}
-Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $f \in L^{1}(\Omega, \mu; \R^{m})$. Prove that for $\mu$-a.e. $x \in \Omega$ we have
-\begin{equation} \label{eq:Lebesgue_points}
-\lim_{\rho \to 0} \frac{1}{\mu(B(x, \rho))} \int_{B(x, \rho)}|f(y) - f(x)| \, d \mu(y) = 0.
-\end{equation}
-\end{corollary}
-Any point $x \in \Omega$ for which \eqref{eq:Lebesgue_points} holds is called {\em Lebesgue point} (or {\em approximate continuity point}) of $f$.
-
-\begin{proof}[Hint of the proof]
-It is enough to apply Corollary \ref{cor:Leb_diff} to the measures $\nu_{q} := |f - q| \mu$, for $q \in \Q$, and then to exploit the fact that $\Q$ is countable and dense in $\R$.
-\end{proof}
-
-We recall that the Hausdorff measures $\Haus{\alpha}$ for $\alpha \in [0, n)$ are Borel regular, but not Radon (see Remark \ref{rem:Haus_not_Radon}). Hence, the Lebesgue-Besicovitch differentiation theorem (Theorem \ref{thm:Leb_Bes_diff}) does not apply to such measures. Nevertheless, it is possible to define and to study a notion of density with respect to the Hausdorff measures. Such analysis is relevant in many applications, since it is useful to compare a generic Radon measure $\mu$ to $\Haus{\alpha}$ for some $\alpha \in [0, n]$, in order to to have some idea of the ``dimensionality'' of $\mu$.
-
-\begin{definition}
-Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. For all $x \in \Omega$, we define the {\em upper and lower $\alpha$-dimensional densities} of $\mu$ at $x$ as
-\begin{equation*}
-\Theta^{*}_{\alpha}(\mu, x) := \limsup_{\rho \to 0} \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}} \quad \text{and} \quad \Theta_{* \alpha}(\mu, x) := \liminf \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}}.
-\end{equation*}
-If $\Theta^{*}_{\alpha}(\mu, x) = \Theta_{* \alpha}(\mu, x)$, the common value is denoted by $\Theta_{\alpha}(\mu, x)$.
-In the case $\mu = \Haus{\alpha} \res E$, for a $\Haus{\alpha}$-measurable set $E$ such that $\Haus{\alpha}(E) < \infty$, for simplicity we write
-\begin{equation*}
-\Theta^{*}_{\alpha}(E, x) := \Theta^{*}_{\alpha}(\Haus{\alpha} \res E, x), \ \Theta_{* \alpha}(E, x) := \Theta_{* \alpha}(\Haus{\alpha} \res E, x) \text{ and }  \Theta_{\alpha}(E, x) := \Theta_{\alpha}(\Haus{\alpha} \res E, x).
-\end{equation*}
-\end{definition}
-
-\begin{theorem}[$\alpha$-dimensional densities of Radon measures] \label{thm:alpha_density}
-Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then, for all $B \in \mathcal{B}(\Omega)$ and $t > 0$, the following implications hold:
-\begin{align}
-\Theta^{*}_{\alpha}(\mu, x) \ge t \ \forall x \in B & \Longrightarrow \ \mu \ge t \Haus{\alpha} \res B, \label{eq:lower_bound_density} \\
-\Theta^{*}_{\alpha}(\mu, x) \le t \ \forall x \in B & \Longrightarrow \ \mu \le 2^{\alpha} t \Haus{\alpha} \res B. \label{eq:upper_bound_density}
-\end{align}
-\end{theorem}
-
-We illustrate now two useful consequences of Theorem \ref{thm:alpha_density}.
-
-\begin{corollary}
-Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then we have
-\begin{enumerate}
-\item $\Theta^{*}_{\alpha}(\mu, x) < \infty$ for $\Haus{\alpha}$-a.e. $x \in \Omega$,
-\item if $\mu(B) = 0$ for some $B \in \mathcal{B}(\Omega)$, then $\Theta_{\alpha}(\mu, x) = 0$ for $\Haus{\alpha}$-a.e. $x \in B$.
-\end{enumerate}
-\end{corollary}
-
-Let us consider the case $\mu = \Haus{\alpha} \res E$, for some $\Haus{\alpha}$-measurable set $E$ in $\R^{n}$ such that $\Haus{\alpha}(E) < \infty$. We start by considering the extreme case $\alpha \in \{0, n\}$:
 \begin{itemize}
 \item if $\alpha = n$, thanks to \eqref{density_points_set}, we know that $\Theta_{n}(E, x) = \chi_{E}(x)$ for $\Leb{n}$-a.e. $x \in \R^{n}$; 
 \item if $\alpha = 0$, it is easy to check that
@@ -467,7 +254,7 @@ A function $f : \R^{n} \to \R^{m}$ is {\em differentiable} at $x \in \R^{n}$ if 
 This linear mapping is denoted by $\nabla f(x)$ or $d f(x)$.
 \end{definition}
 
-\begin{theorem}[Rademacher's theorem]
+\begin{theorem}[Rademacher's theorem] \label{thm:Rademacher}
 Let $f : \R^{n} \to \R^{m}$ be a locally Lipschitz function. Then $f$ is differentiable at $\Leb{n}$-a.e. $x \in \R^{n}$. In particular, $\nabla f(x)$ is well defined for $\Leb{n}$-a.e. $x \in \R^{n}$ and belongs to $L^{\infty}_{\rm loc}(\R^{n}; \R^{m} \times \R^{n})$, with $$\|\nabla f\|_{L^{\infty}(K; \R^{m} \times \R^{n})} \le \Lip(f, K)$$ for any compact set $K$.
 \end{theorem}
 
@@ -540,14 +327,14 @@ The definition of the Jacobian of $L$ is independent of the choices of $O$ and $
 \begin{proposition}[Cauchy-Binet formula] \label{Cauchy_Binet}
 If $n \le m$ and $L: \R^{n} \to \R^{m}$ is a linear map, then
 \begin{equation*}
-\J L = \sqrt{ \sum_{B} \det^{2}{(B)}}
+\J L = \sqrt{ \sum_{B} (\det{(B)})^{2}}
 \end{equation*}
 where the sum is taken over all $n\times n$ minor of any matrix representation of $L$.
 \end{proposition}
 
-Let now $f : \R^{n} \to \R^{m}$, $f = (f^{1}, \dots, f^{m}),$ be a Lipschitz map. By Rademacher's theorem, $f$ is differentiable $\Leb{n}$-a.e. and therefore the gradient matrix 
-\[\nabla f(x) = \begin{pmatrix} \frac{\partial f^{1}}{\partial x_{1}} & \cdots & \frac{\partial f^{1}}{\partial x_{n}} & \\ \vdots & \ddots & \vdots \\  \frac{\partial f^{m}}{\partial x_{1}} & \cdots & \frac{\partial f^{m}}{\partial x_{n}} & \end{pmatrix}\]
-is well defined and can be considered a linear map from $\R^{n}$ into $\R^{m}$ for $\Leb{n}$-a.e. $x \in \R^{n}$.
+Let now $f : \R^{n} \to \R^{m}$, $f = (f^{1}, \dots, f^{m}),$ be a Lipschitz map. By Rademacher's theorem (Theorem \ref{thm:Rademacher}), $f$ is differentiable $\Leb{n}$-a.e. and therefore the gradient matrix 
+\[\nabla f(x) = \begin{pmatrix} \frac{\partial f^{1}}{\partial x_{1}} & \cdots & \frac{\partial f^{1}}{\partial x_{n}} & \\ \vdots & \ddots & \vdots \\  \frac{\partial f^{m}}{\partial x_{1}} & \cdots & \frac{\partial f^{m}}{\partial x_{n}} & \end{pmatrix}(x)\]
+is well defined for $\Leb{n}$-a.e. $x \in \R^{n}$ and can be considered a linear map from $\R^{n}$ into $\R^{m}$.
 
 \begin{definition}
 If $f : \R^{n} \to \R^{m}$ is Lipschitz continuous and $x$ is a differentiability point, we define the {\em Jacobian} of $f$ as $$\J f(x) := \J \nabla f(x).$$
@@ -639,18 +426,23 @@ thanks to \eqref{eq:area_formula_inj}.
 \begin{example}[Surface area of a graph]
 Let $n \ge 1$ and $m = n + 1$. Assume $g: \R^{n} \to \R$ is Lipschitz and define $f: \R^{n} \to \R^{n + 1}$ as $$f(x) := (x, g(x)).$$
 Then
-\[\nabla f(x) = \begin{pmatrix} 1 & \cdots & 0 & \\ \vdots & \ddots & \vdots \\ 
+\[\nabla f = \begin{pmatrix} 1 & \cdots & 0 & \\ \vdots & \ddots & \vdots \\ 
 0 & \cdots & 1 & \\ \frac{\partial g}{\partial x_{1}} & \cdots & \frac{\partial g}{\partial x_{n}} & \end{pmatrix},\]
 and so, by Cauchy-Binet formula (Proposition \ref{Cauchy_Binet}), we have
 \begin{equation*}
 \J f = \sqrt{1 + |\nabla g|^2}.
 \end{equation*}
-For any open set $\Omega \subset \R^{n}$, we define the graph of $g$ over $\Omega$ as
-$$ \Gamma(g, \Omega) := \{ (x, g(x)) : x \in \Omega \} \subset \R^{n + 1}.$$
-Therefore, \eqref{eq:area_formula_inj} yields
+For any set $G \subset \R^{n}$, we define the graph of $g$ over $G$ as
+$$ \Gamma(g, G) := \{ (x, g(x)) : x \in G \} \subset \R^{n + 1},$$
+and we write $\Gamma(g) := \Gamma(g, \R^{n})$.
+Therefore, if $G$ is $\Leb{n}$-measurable, \eqref{eq:area_formula_inj} yields
 \begin{equation*}
-\Haus{n}(\Gamma(g, \Omega)) = \int_{\Omega} \sqrt{1 + |\nabla g|^{2}} \, dx.
+\Haus{n}(\Gamma(g, G)) = \int_{G} \sqrt{1 + |\nabla g|^{2}} \, dx,
 \end{equation*}
+so that $\dim_{\Haus{}}\left ( \Gamma(g, G)\right ) = n$. Thus, we see that $\Haus{n} \res \Gamma(g)$ is a locally finite Radon measure on $\R^{n + 1}$. In addition, by \eqref{eq:change_variables_2}, for any $\varphi \in C_{c}(\R^{n})$ we have
+\begin{equation*}
+\int_{\Gamma(g)} \varphi \, d \Haus{n} = \int_{\R^{n}} \varphi(x, g(x)) \sqrt{1 + |\nabla g(x)|^{2}} \, d x.
+\end{equation*} 
 \end{example}
 
 \begin{example}[Surface area of a parametric hypersurface]
@@ -667,26 +459,107 @@ Thus, if we define $\Sigma(f, \Omega) := f(\Omega)$, for any open set $\Omega \s
 \end{example}
 
 
-\subsection{The Gauss--Green and integration by parts formulas}
 
-\begin{theorem}[Polar coordinates] \label{polar_coordinates}
-Let $g : \R^{n} \to \R$ be $\Leb{n}$-summable. Then
-\begin{equation*} 
-\int_{\R^{n}} g \, dx = \int_{0}^{+\infty} \int_{\partial B(0, \rho)} g \, d \Haus{n - 1} \, d \rho
-\end{equation*}
-In particular, for any $r > 0$ and $g$ such that $g \chi_{B(0, r)}$ is $\Leb{n}$-summable, we have
+\subsection{The Gauss--Green and integration by parts formulas on regular open sets}
+
+We conclude this section by exploiting the area formula to prove the classical Gauss--Green formula on open sets with $C^1$-regular boundary.
+
+\begin{definition}
+Let $E$ be an open set in $\R^{n}$ and $k \in \N \cup \{\infty\}$. We say that $E$ has {\em $C^{k}$ boundary} (or {\em smooth boundary} if $k = \infty$) if for all $x \in \partial E$ there exists $r > 0$ and $\psi \in C^{k}(B(x, r))$ with $\nabla \psi(y) \neq 0$ for all $y \in B(x, r)$ and 
+\begin{align*}
+B(x, r) \cap E & = \{ y \in B(x, r) : \psi(y) > 0 \}, \\
+B(x, r) \cap \partial E & = \{ y \in B(x, r) : \psi(y) = 0 \}.
+\end{align*}
+We define the {\em inner unit normal to $E$}, $\nu_{E}(y)$ for $y \in \partial E$ as 
 \begin{equation*}
-\int_{B(0, r)} g \, dx = \int_{0}^{r} \int_{\partial B(0, \rho)} g \, d \Haus{n - 1} \, d \rho,
+\nu_{E}(y) := \frac{\nabla \psi(y)}{|\nabla \psi(y)|} \ \text{ for all } y \in B(x, r) \cap \partial E.
 \end{equation*}
-so that, for $\Leb{1}$-a.e. $r > 0$,
+\end{definition}
+
+It can be checked that this definition is independent from the choice of $\psi$ and $r$. Therefore, $\nu_{E}$ can be considered as a vector field defined on the whole of $\partial E$, and $\nu_{E} \in C^{k - 1}(\partial E; \mathbb{S}^{n - 1})$.
+
+\begin{remark}
+If $E$ is an open set with $C^{1}$ boundary, then $\Haus{n - 1} \res \partial E$ is a Radon measure on $\R^{n}$.
+\end{remark}
+
+\begin{theorem}[Gauss--Green formula] \label{thm:Gauss_Green_formula}
+If $E$ is an open set with $C^{1}$ boundary, then for all $\varphi \in C^{1}_{c}(\R^{n})$ we have
+\begin{equation} \label{eq:Gauss_Green_formula}
+\int_{E} \nabla \varphi \,dx = - \int_{\partial E} \varphi \, \nu_{E} \, d \Haus{n - 1}.
+\end{equation}
+\end{theorem}
+
+\begin{corollary}[Divergence theorem] \label{cor:divergence_theorem}
+If $E$ is an open set with $C^{1}$ boundary, then for all $F \in C^{1}_{c}(\R^{n}; \R^{n})$ we have
+\begin{equation} \label{eq:divergence_theorem}
+\int_{E} \div F \,dx = - \int_{\partial E} F \cdot \nu_{E} \, d \Haus{n - 1}.
+\end{equation}
+\end{corollary}
+
+\begin{corollary}[Integration by parts formula] \label{cor:integration_parts_formula}
+If $E$ is an open set with $C^{1}$ boundary, then for all $F \in C^{1}_{c}(\R^{n}; \R^{n})$ and $\varphi \in C^{1}_{c}(\R^{n})$ we have
+\begin{equation} \label{eq:integration_parts_formula}
+\int_{E} \varphi \, \div F \, dx + \int_{E} F \cdot \nabla \varphi \, dx = - \int_{\partial E} \varphi \, F \cdot \nu_{E} \, d \Haus{n - 1}.
+\end{equation}
+\end{corollary}
+
+We notice that it is possible to extend Theorem \ref{thm:Gauss_Green_formula} to a slightly larger family of integration domains.
+
+\begin{definition}
+We say that an open set $E$ in $\R^{n}$ has {\em almost $C^{1}$ boundary} if there exists a closed set $M_{0} \subset \partial E$ with $\Haus{n - 1}(M_{0}) = 0$ and such that $M:= \partial E \setminus M_{0}$ is $C^{1}$-regular. $M$ is called the {\em regular part of $\partial E$}, while $M_{0}$ is the {\em singular part}.
+\end{definition}
+
+\begin{theorem} \label{thm:Gauss_Green_almost_C_1}
+Let $E$ be an open set with almost $C^{1}$ boundary. Then for all $\varphi \in C^{1}_{c}(\R^{n})$ we have
 \begin{equation*}
-\frac{d}{dr} \int_{B(0, r)} g \, dx = \int_{\partial B(0, r)} g \, d \Haus{n - 1}.
+\int_{E} \nabla \varphi \,dx = - \int_{M} \varphi \, \nu_{E} \, d \Haus{n - 1}.
 \end{equation*}
 \end{theorem}
+
+\begin{remark}
+Since the singular part of the boundary of a set with almost $C^1$ boundary is $\Haus{n - 1}$-negligible, we see that we actually have
+\begin{equation*}
+\int_{E} \nabla \varphi \,dx = - \int_{\partial E} \varphi \, \nu_{E} \, d \Haus{n - 1}
+\end{equation*}
+for any $\varphi \in C^{1}_{c}(\R^{n})$, up to setting $\nu_{E} \equiv {\rm e}_{1}$ on $M_{0}$, for instance.
+\end{remark}
+
+We finally prove the integration by parts for Lipschiz functions.
+
+\begin{proposition} \label{prop:weak_der_Lip_b}
+If $f \in \Lip(\R^{n}) \cap L^{\infty}(\R^{n})$, then
+\begin{equation} \label{eq:weak_der_Lip_b}
+\int_{\R^{n}} f \, \div \varphi \, dx = - \int_{\R^{n}} \varphi \cdot \nabla f \, dx
+\end{equation}
+for all $\varphi \in C^{1}_{c}(\R^{n}; \R^{n})$.
+\end{proposition}
 \begin{proof}
-Apply Theorem \ref{integration_level_sets_gen} to $f(x) = |x|$, in the case $m = 1$. Then, for all $x \neq 0$, we have $$\nabla f(x) = \frac{x}{|x|}, \ \J f(x) = 1.$$
-Finally, the second equality is a consequence of the first, as the third can be derived from the second.
+Let $\nu \in \mathbb{S}^{n - 1}$ and define
+\begin{equation*}
+g_{t, \nu}(x) := \frac{f(x + t \nu) -f(x)}{t}
+\end{equation*}
+for $t > 0$. It is easy to see that $\|g_{t, \nu}\|_{L^{\infty}(\R^{n})} \le \Lip(f; \R^{n})$.
+By Rademacher's theorem (Theorem \ref{thm:Rademacher}), we have that $\nabla f(x)$ exists for $\Leb{n}$-a.e. $x \in \R^{n}$, and it satisfies
+\begin{equation*}
+g_{t, \nu}(x) \to \nabla f(x) \cdot \nu
+\end{equation*}
+as $t \to 0^{+}$ for $\Leb{n}$-a.e. $x \in \R^{n}$. Then, for any $\psi \in C^{1}_{c}(\R^{n})$ we have
+\begin{equation*}
+\int_{\R^{n}} g_{t, \nu}(x) \, \psi(x) \, dx = \int_{\R^{n}} \frac{f(x + t\nu) -f(x)}{t} \, \psi(x) \, dx = \int_{\R^{n}} f(x) \, \frac{\psi(x - t \nu) - \psi(x)}{t} \, dx.
+\end{equation*}
+Therefore, by taking the limit as $t \to 0^{+}$, Lebesgue's dominated convergence theorem implies that
+\begin{equation*}
+\int_{\R^{n}} \nabla f(x) \cdot \nu \, \psi(x) \, dx = \int_{\R^{n}} f(x) \, \nabla \psi(x) \cdot (- \nu) \, dx.
+\end{equation*}
+Thus, by taking $\nu = {\rm e}_{j}$ for each $j \in \{1, \dots, n\}$, we obtain
+\begin{equation*}
+\int_{\R^{n}} \frac{\partial f}{\partial x_{j}} \, \psi \,dx = - \int_{\R^{n}} f \, \frac{\partial \psi}{\partial x_{j}} \, dx.
+\end{equation*}
+Finally, if $\varphi \in C^{1}_{c}(\R^{n}; \R^{n})$, we conclude that
+\begin{equation*}
+\int_{\R^{n}} \nabla f \cdot \varphi \, dx = \int_{\R^{n}} \sum_{j = 1}^{n} \frac{\partial f}{\partial x_{j}} \, \varphi_{j} \,dx = - \sum_{j = 1}^{n} \int_{\R^{n}} f \, \frac{\partial \varphi_{j}}{\partial x_{j}} \, dx = - \int_{\R^{n}} f  \, \div \varphi \, dx.
+\end{equation*}
 \end{proof}
 
-In general, in the case $m = 1$ it is easy to notice that $\J f = |\nabla f|$, so that we have the following result.
+
 
