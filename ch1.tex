@@ -875,9 +875,9 @@ In light of Example \ref{example_delta_measure_int}, we see that, for all $x_{0}
 \end{equation*}
 \end{example}
 
-We recall now the simple and very useful Chebychev inequality.
+We recall now the simple and very useful Chebyshev's inequality\footnote{This inequality is named after the Russian mathematician Pafnuty Chebyshev (1821-1894), whose surname has been translitterated from the Cyrillic \selectlanguage{russian}Чебышёв\selectlanguage{english} in many alternative ways: Chebysheff, Chebychov, Chebyshov, Tchebychev, Tchebycheff, Tschebyschev, Tschebyschef, Tschebyscheff and Chebychev. Actually, this theorem was first stated without proof by his friend and colleague Irénée-Jules Bienaymé (1796-1878) in 1853 \cite{bienayme1853considerations} and later proved by Chebyshev in 1867 \cite{chebyshev1867valeurs}. His student Andrey Markov (1856–1922) provided another proof in his 1884 Ph.D. thesis \cite{markov1884certain}, and for this reason in Probability Theory this inequality is usually called Markov's inequality.}.
 
-\begin{proposition}[Chebychev inequality] \label{prop:Cheb_ineq}
+\begin{proposition}[Chebyshev's inequality] \label{prop:Cheb_ineq}
 Let $u : X \to [0, + \infty]$ be $\mu$-integrable. Then, for all $t > 0$, we have
 \begin{equation} \label{eq:Cheb_ineq}
 \int_{\{u \ge t\}} u \, d \mu \ge t \mu(\{ u \ge t \}).
@@ -1382,10 +1382,10 @@ We shall write $\mu_{k} \weakstarto \mu$ in $\mathcal{M}(\Omega; \R^{m})$ and in
 \begin{remark} \label{equivalenceweak-star} Weak$^{*}$ convergence of finite Radon measures is equivalent to local weak$^{*}$ convergence with the condition that $$\sup_{k} |\mu_{k}|(\Omega) = C < \infty.$$
 
 Clearly, weak$^{*}$ convergence always implies local weak$^{*}$ convergence. 
-On the other hand, if we suppose that $\mu_{k}$ locally weak$^{*}$ converges to $\mu$, then, given $\psi \in C_{0}(\Omega; \mathbb{R}^{m})$, for any $\eps > 0$ there exists $\varphi \in C_{c}(\Omega; \mathbb{R}^{m})$ such that $\|\psi - \varphi\|_{\infty} < \epsilon$ and so
+On the other hand, if we suppose that $\mu_{k}$ locally weak$^{*}$ converges to $\mu$, then, given $\psi \in C_{0}(\Omega; \mathbb{R}^{m})$, for any $\eps > 0$ there exists $\varphi \in C_{c}(\Omega; \mathbb{R}^{m})$ such that $\|\psi - \varphi\|_{\infty} < \eps$ and so
 \begin{align*} \left | \int_{\Omega} \psi \cdot \, d\mu_{k} - \int_{\Omega} \psi \cdot \, d\mu \right | & \le \left | \int_{\Omega} (\psi - \varphi) \cdot \, d\mu_{k} \right | + \left | \int_{\Omega} (\psi - \varphi) \cdot \, d\mu \right | \\
 & + \left | \int_{\Omega} \varphi \cdot \, d\mu_{k} - \int_{\Omega} \varphi \cdot \, d\mu \right | \\
-& \le 2 C \epsilon + \left | \int_{\Omega} \varphi \cdot \, d\mu_{k} - \int_{\Omega} \varphi \cdot \, d\mu \right |.
+& \le 2 C \eps + \left | \int_{\Omega} \varphi \cdot \, d\mu_{k} - \int_{\Omega} \varphi \cdot \, d\mu \right |.
 \end{align*}
 Now, $$\int_{\Omega} \varphi \cdot \, d\mu_{k} \to \int_{\Omega} \varphi \cdot \, d\mu$$ and so, since $\eps$ is arbitrary, we obtain the weak$^{*}$ convergence.
 \end{remark}
@@ -1539,7 +1539,7 @@ The simplest example of an application of this property is the case of families 
 
 We state some important equivalent characterizations of the weak$^*$ convergence.
 
-\begin{theorem}[Criterions for weak$^{*}$ convergence]
+\begin{theorem}[Criterions for weak$^{*}$ convergence] \label{thm:criterion_weak_star_convergence}
 Let $\{\mu_k\}$ be a sequence and $\mu$ in $\mathcal{M}^{+}_{\rm loc}(\Omega)$. The following are equivalent
 \begin{enumerate}[(1)]
 \item $\mu_k \stackrel {*}{\rightharpoonup} \mu$ in $\mathcal{M}_{\rm loc}(\Omega)$. 
@@ -1621,21 +1621,106 @@ and this ends the proof.
 \end{enumerate}
 \end{proof}
 
-
-We quote now a useful result about weak$^{*}$ convergence of vector valued Radon measures.
-
-\begin{lemma} \label{muweak-star} 
-If $\mu_{k}$ and $\mu$ are $\mathbb{R}^{m}$-vector valued Radon measures, $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ and $|\mu_{k}| \stackrel {*} {\rightharpoonup} \nu$, then $|\mu| \le \nu$. Moreover, if a $\mu$-measurable set $E \subset \subset \Omega$ satisfies $\nu(\partial E) = 0$, then 
-\[ \mu(E) = \lim_{k \to +\infty} \mu_{k}(E).  \]
-More generally, if $f : \Omega \to \mathbb{R}^{m}$ is a bounded Borel function with compact support such that the set of its discontinuity points is $\nu$-neglegible, then
-\[ \lim_{k \to +\infty} \int_{\Omega} f \cdot d\mu_{k} = \int_{\Omega} f \cdot d\mu.  \]
-\end{lemma}
-
-\begin{remark} By Remark \ref{neglcountable} and Lemma \ref{muweak-star}, we can assert that, if $\mu_{k}$ and $\mu$ are positive Radon measures in $\Omega$, for any $x \in \Omega$ and $\Leb{1}$-almost every $r \in (0, r_{x})$, with $r_{x} := {\rm dist}(x, \partial \Omega)$, $\mu(\partial B(x,r)) = 0$ and so, if $\mu_{k} \stackrel {*} {\rightharpoonup} \mu$, we have $$\mu_{k}(B(x,r)) \to \mu(B(x,r)).$$
-
-Moreover, if $\mu_{k}$ and $\mu$ are vector valued Radon measures, $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ and $|\mu_{k}| \stackrel {*} {\rightharpoonup} \nu$, then for any $x \in \Omega$ and $\Leb{1}$-almost every $r \in (0, r_{x})$, $\nu(\partial B(x,r)) = 0$ and $$\mu_{k}(B(x,r)) \to \mu(B(x,r)).$$
+\begin{remark}
+It is possible to improve the implication $(1) \Rightarrow (2)$ of Theorem \ref{thm:criterion_weak_star_convergence} to the following statement: if $\mu_{k}, \mu \in \M^{+}_{\rm loc}(\Omega)$ for all $k \in \N$ and $\mu_k \stackrel {*}{\rightharpoonup} \mu$ in $\mathcal{M}_{\rm loc}(\Omega)$, then
+\begin{enumerate}[i)]
+\item $\displaystyle \liminf_{k \to + \infty} \int_{\Omega} u \, d \mu_{k} \ge \int_{\Omega} u \, d \mu$ for all lower semicontinuous functions $u: \Omega \to [0, + \infty]$, 
+\item $\displaystyle \limsup_{k \to + \infty} \int_{\Omega} v \, d \mu_{k} \le \int_{\Omega} v \, d\mu$ for all upper semicontinuous functions with compact support $v : \Omega \to [0, + \infty)$.
+\end{enumerate}
 \end{remark}
 
+We consider now the case of weakly$^{*}$ convergencing sequences of vector valued Radon measures.
+
+\begin{theorem} \label{muweak-star} 
+Let a sequence $\{\mu_{k}\}$ and a measure $\mu$ be in $\M(\Omega; \R^{m})$. Assume that $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ in $\M(\Omega; \R^{m})$, and that there exists $\nu \in \M^{+}(\Omega)$ such that $|\mu_{k}| \stackrel {*} {\rightharpoonup} \nu$ in $\M(\Omega)$. Then we have $|\mu| \le \nu$. Moreover, if a Borel set $E \Subset \Omega$ satisfies $\nu(\partial E) = 0$, then 
+\[ \mu(E) = \lim_{k \to +\infty} \mu_{k}(E).  \]
+\end{theorem}
+\begin{proof}
+Let $\varphi \in C_{0}(\Omega; \R^{m})$. It is clear that we have
+\begin{equation*}
+\left |\int_{\Omega} \varphi \cdot d \mu_{k} \right | \le \int_{\Omega} |\varphi| \, d |\mu_{k}|.
+\end{equation*}
+Therefore, by taking the limit as $k \to + \infty$, we obtain
+\begin{equation*}
+\left |\int_{\Omega} \varphi \cdot d \mu \right | \le \int_{\Omega} |\varphi| \, d \nu
+\end{equation*}
+for any $\varphi \in C_{0}(\Omega; \R^{m})$. Let now $A \subset \Omega$ be an open set: by passing to the supremum in $\varphi \in C_{c}(A; \R^{m})$ with $\|\varphi\|_{\infty} \le 1$, thanks to Proposition \ref{prop:characterization_tot_var} we get
+\begin{equation*}
+|\mu|(A) \le \nu(A).
+\end{equation*}
+By the outer regularity of Radon measures, this inequality implies that $|\mu|(B) \le \nu(B)$ for any Borel set $B$; that is, $|\mu| \le \nu$ in the sense of Radon measures.
+Let now $E \Subset \Omega$ be a Borel set satisfying $\nu(\partial E) = 0$. Assume at first that $\overset{\circ}E \neq \emptyset$. For all $\eps > 0$, thanks to the regularity of the Radon measure $\nu$, there exist an open set $A$ and a compact set $K$ such that 
+\begin{equation*}
+\overline{A} \subset E \subset \overset{\circ}K \text{ and } \nu(K \setminus A) \le \eps.
+\end{equation*}
+For all $\varphi \in C_{c}(\overset{\circ}K)$ satisfying $0 \le \varphi \le 1$ and $\varphi \equiv 1$ on $\overline{A}$, and for all $j \in \{1, \dots, n\}$, we have
+\begin{align*}
+\left | \int_{\Omega} \varphi \, {\rm e}_{j} \cdot d \mu_{k} - {\rm e}_{j} \cdot\mu_{k}(E) \right | & \le \int_{\Omega} |\varphi - \chi_{E}| \, d |\mu_{k}| \le |\mu_{k}|(K \setminus A), \\
+\left | \int_{\Omega} \varphi \, {\rm e}_{j} \cdot d \mu - {\rm e}_{j} \cdot\mu(E) \right | & \le \int_{\Omega} |\varphi - \chi_{E}| \, d |\mu| \le |\mu|(K \setminus A), \\
+\lim_{k \to + \infty} \int_{\Omega} \varphi \, {\rm e}_{j} \cdot d \mu_{k} & = \int_{\Omega} \varphi \, {\rm e}_{j} \cdot d \mu,
+\end{align*}
+where ${\rm e}_{j}$ is the $j$-th coordinate unit vector in $\R^{n}$. All in all, by the triangle inequality we obtain
+\begin{align*}
+\limsup_{k \to + \infty} |\mu_{k}(E) - \mu(E)| & \le \limsup_{k \to + \infty} \sum_{j = 1}^{n} |{\rm e}_{j} \cdot (\mu_{k}(E) - \mu(E))| \\
+& \le \limsup_{k \to + \infty} n |\mu_{k}|(K \setminus A) + n \nu(K \setminus A) + \sum_{j = 1}^{n} \left | \int_{\Omega} \varphi \, {\rm e}_{j} \cdot d \mu_{k} - \int_{\Omega} \varphi \, {\rm e}_{j} \cdot d \mu \right | \\
+& \le 2 n \nu(K \setminus A) \le 2 n \eps,
+\end{align*}
+and so the conclusion follows, since $\eps > 0$ is arbitrary. Finally, let $\overset{\circ}E = \emptyset$. In such case, it is plain to see that $E = E \cap \partial E$, and so $$|\mu(E)| \le \nu(E) \le \nu(\partial E) = 0,$$
+by the hypotheses on $E$. Thus, we can choose $A = \emptyset$ and repeat the previous steps to obtain the convergence $\mu_{k}(E) \to 0$. This ends the proof.
+\end{proof}
+
+\begin{remark}
+Under the same hypotheses of Theorem \ref{muweak-star}, it is actually possible to prove that, more generally, if $f : \Omega \to \mathbb{R}^{m}$ is a bounded Borel function with compact support such that the set of its discontinuity points is $\nu$-neglegible, then
+\[ \lim_{k \to +\infty} \int_{\Omega} f \cdot d\mu_{k} = \int_{\Omega} f \cdot d\mu.  \]
+\end{remark}
+
+\begin{remark} By Remark \ref{neglcountable} and Theorem \ref{muweak-star}, we can assert that, if $\mu_{k}$ and $\mu$ are positive Radon measures in $\Omega$, then, for any $x \in \Omega$ and $\Leb{1}$-almost every $r \in (0, r_{x})$, with $r_{x} := {\rm dist}(x, \partial \Omega)$, we get $\mu(\partial B(x,r)) = 0$ and so, if $\mu_{k} \stackrel {*} {\rightharpoonup} \mu$, we have $$\mu_{k}(B(x,r)) \to \mu(B(x,r)).$$
+
+Moreover, if $\mu_{k}$ and $\mu$ are vector valued Radon measures, $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ and $|\mu_{k}| \stackrel {*} {\rightharpoonup} \nu$, then, for any $x \in \Omega$ and $\Leb{1}$-almost every $r \in (0, r_{x})$, we get $\nu(\partial B(x,r)) = 0$, and so we have $$\mu_{k}(B(x,r)) \to \mu(B(x,r)).$$
+\end{remark}
+
+\begin{remark}
+We stress the fact that the inequality $|\mu| \le \nu$ in Theorem \ref{muweak-star} is strict, in general. Indeed, let $\Omega = \R$ and $\mu_{k} = \sin{(kx)} \Leb{1}$. It can be proved that 
+\begin{equation*}
+\mu_{k} \weakstarto 0 \, \text{ and } \, |\mu_{k}| \weakstarto \frac{2}{\pi} \Leb{1} \, \text{ in } \M_{\rm loc}(\R).
+\end{equation*}
+In addition, if we have a sequence of signed Radon measures $\{\mu_{k}\}$ locally weakly$^{*}$ converging to a signed Radon measure $\mu$, we cannot in general deduce that
+\begin{equation*}
+\mu_{k}^{\pm} \weakstarto \mu^{\pm}.
+\end{equation*}
+Indeed, let $\Omega$ be an open set in $\R^{n}$, $x_{0} \in \Omega$ and $\{x_{k}\}, \{y_{k}\}$ be two sequences of points in $\Omega$ such that $x_{k} \neq y_{k}$ for all $k \in \N$, $x_{k} \to x_{0}$ and $y_{k} \to x_{0}$. Then, it is not difficult to check that the sequence of measures
+\begin{equation*}
+\mu_{k} = \delta_{x_{k}} - \delta_{y_{k}}
+\end{equation*}
+satisfies
+\begin{equation*}
+\mu_{k}^{+} = \delta_{x_{k}} \, \text{ and } \, \mu_{k}^{-} = \delta_{y_{k}},
+\end{equation*}
+so that
+\begin{align*}
+\mu_{k} \weakstarto 0, \ \ \mu_{k}^{+} \weakstarto \delta_{x_{0}} \, \text{ and } \mu_{k}^{-} \weakstarto \delta_{x_{0}}
+\end{align*}
+in $\M(\Omega)$.
+Incidentally, we also notice that $|\mu_{k}| \weakstarto 2 \delta_{x_{0}} = \nu$, so that $\nu > |\mu|$, where $\mu = 0$ is the weak$^*$ limit of $\mu_{k}$.
+\end{remark}
+
+We conclude this section by showing that, under some suitable assumptions, the weak$^{*}$ convergence of vector valued Radon measures implies the weak$^{*}$ convergence of the total variations.
+
+\begin{proposition}
+Let a sequence $\{\mu_{k}\}$ and a measure $\mu$ be in $\M(\Omega; \R^{m})$. Assume that $\mu_{k} \stackrel {*}{\rightharpoonup} \mu$ in $\M(\Omega; \R^{m})$, and that $|\mu_{k}|(\Omega) \to |\mu|(\Omega)$. Then we have $|\mu_{k}| \weakstarto |\mu|$ in $\M(\Omega)$.
+\end{proposition}
+\begin{proof}
+By the weakly$^{*}$ lower semicontinuity of the total variation (Proposition \ref{prop:weak_star_LSC}), we have
+\begin{equation*}
+|\mu|(A) \le \liminf_{k \to + \infty} |\mu_{k}|(A)
+\end{equation*}
+for any open set $A \subset \Omega$. Let now $K \subset \Omega$ be a compact set, and let $A = \Omega \setminus K$. Then, we get
+\begin{align*}
+|\mu|(K) & = |\mu|(\Omega) - |\mu|(A) \ge \lim_{k \to + \infty} |\mu_{k}|(\Omega)  - \liminf_{k \to + \infty} |\mu_{k}|(A) = \limsup_{k \to + \infty} |\mu_{k}|(\Omega) + \limsup_{k \to + \infty} - |\mu_{k}|(A) \\
+& \ge \limsup_{k \to + \infty} |\mu_{k}|(\Omega) - |\mu_{k}|(A) = \limsup_{k \to + \infty} |\mu_{k}|(K),
+\end{align*}
+by the subadditivity of the limsup. By Theorem \ref{thm:criterion_weak_star_convergence}, we deduce that $|\mu_{k}| \weakstarto |\mu|$ in $\M_{\rm loc}(\Omega)$. Then, we notice that $\sup_{k \in \N} |\mu_{k}|(\Omega) < \infty$, since $\{ |\mu_{k}|(\Omega)\}$ is a converging sequence. Thus, by Remark \ref{equivalenceweak-star} we conclude that $|\mu_{k}|$ weakly$^{*}$ converges to $|\mu|$ in $\M(\Omega)$.
+\end{proof}
 
 \section{Mollification of Radon measures}
 
