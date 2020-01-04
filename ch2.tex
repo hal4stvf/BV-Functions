@@ -29,7 +29,7 @@ Let $A$ be a bounded set and $\varrho : A \to (0,\infty)$. Then there exists $S
 \(
 A \subset \bigcup_{x\in S} B(x,\varrho(x)) 
 \)
-and such that every point of $\R^{n}$ belongs to at most $\xi_{n}$ balls centered in points of $S$; that is,
+and such that every point of $\R^{n}$ belongs to at most $\xi_{n}$ open balls centered in points of $S$; that is,
 \[
 \sum_{x \in S} \chi_{B(x,\varrho(x))}(y) \leq \xi_n
 \]
@@ -54,9 +54,8 @@ $\mathcal{F}$ is called a {\em fine covering} of $A$ if
 \]
 \end{definition}
 
-\begin{theorem}[Vitali covering theorem]
-Let $A$ be a bounded Borel set and $\mathcal{F}$ be a fine covering of $A$. In
-any case $\mu \in \mathcal{M}^+_{\rm loc}(\R^n)$ there exists $\mathcal{F}' \subset
+\begin{theorem}[Vitali covering theorem] \label{thm:Vitali_covering_theorem}
+Let $A$ be a bounded Borel set and $\mathcal{F}$ be a fine covering of $A$. For any $\mu \in \mathcal{M}^+_{\rm loc}(\R^n)$ there exists $\mathcal{F}' \subset
 \mathcal{F}$ disjoint such that 
 \[
 \mu \left( A \setminus \bigcup_{\overline{B}
@@ -64,10 +63,64 @@ any case $\mu \in \mathcal{M}^+_{\rm loc}(\R^n)$ there exists $\mathcal{F}' \sub
 \]
 \end{theorem}
 \begin{proof}
+Let $\xi = \xi_{n}$ be the constant from Besicovitch covering theorem (Theorem \ref{thm:Besicovitch_covering}), and let $$\delta := 1 - \frac{1}{2 \xi}.$$
+It is clear that $\delta \in (0, 1)$.
 
+{\em Claim}: there exists a finite subfamily $\mathcal{F}_{1} \subset \mathcal{F}$ such that
+\begin{equation} \label{eq:claim_one_Vitali}
+\mu \left ( A \cap \bigcup_{ \overline{B} \in \mathcal{F}_{1}} \overline{B} \right ) \ge \frac{1}{2 \xi} \mu(A).
+\end{equation}
+In order to prove this claim, we notice that, since $\mathcal{F}$ is a covering of $A$, there exist disjoint at most countable families $\mathcal{D}_{1}, \dots, \mathcal{D}_{\xi}$ which cover $A$. In particular, there exists $i \in \{1, \dots, \xi \}$ such that 
+\begin{equation*}
+\mu \left ( A \cap \bigcup_{ \overline{B} \in \mathcal{D}_{i}} \overline{B} \right ) \ge \frac{1}{\xi} \mu(A).
+\end{equation*}
+The reason of this lies in the fact that
+\begin{equation*}
+\mu(A) = \mu \left ( A \cap \bigcup_{j = 1}^{\xi} \bigcup_{ \overline{B} \in \mathcal{D}_{j}}  \overline{B} \right) \le \sum_{j = 1}^{\xi} \mu \left ( A \cap \bigcup_{ \overline{B} \in \mathcal{D}_{j}}  \overline{B} \right ).
+\end{equation*}
+In particular, we can select a finite subfamily $\mathcal{F}_{1} \subset \mathcal{D}_{i}$ such that \eqref{eq:claim_one_Vitali} holds.
+
+We let now $$A_{1} := A \setminus \bigcup_{ \overline{B} \in \mathcal{F}_{1}}  \overline{B},$$
+and we apply the same procedure to the family 
+\begin{equation*}
+\tildef{\mathcal{F}} := \left \{ \overline{B(x, \rho)} \in \mathcal{F} :  \overline{B(x, \rho)} \cap \bigcup_{ \overline{B} \in \mathcal{F}_1}  \overline{B} = \emptyset \right \}.
+\end{equation*}
+Notice that $\tildef{\mathcal{F}}$ covers $A_{1}$, since $\mathcal{F}$ is a fine cover of $A$. Indeed, if $x \in A_{1}$, then there exists $\rho > 0$ such that $\overline{B(x, \rho)} \cap \bigcup_{ \overline{B} \in \mathcal{F}_1}  \overline{B} = \emptyset$, being $\mathcal{F}_1$ finite and the balls closed.
+In this way, we find a disjoint subfamily $\mathcal{F}_{2} \subset \mathcal{F}$ disjoint from $\mathcal{F}_{1}$ such that
+\begin{equation*}
+\mu \left ( A_{1} \cap \bigcup_{ \overline{B} \in \mathcal{F}_{2}}  \overline{B} \right ) \ge \frac{1}{2 \xi} \mu(A_{1}).
+\end{equation*}
+In addition, we observe that, by \eqref{eq:claim_one_Vitali},
+\begin{equation} \label{eq:delta_contraction}
+\mu(A_{1}) = \mu \left ( A \setminus \bigcup_{ \overline{B} \in \mathcal{F}_{1}}  \overline{B} \right ) = \mu(A) - \mu \left ( A \cup \bigcup_{ \overline{B} \in \mathcal{F}_{1}}  \overline{B} \right ) \le \mu(A) - \frac{1}{2 \xi} \mu(A)  = \delta \mu(A).
+\end{equation}
+By iteration, we construct a collection of finite disjoint family of closed balls $\{\mathcal{F}_{k}\}_{k \in \N}$ and a decreasing family of sets $\{A_{k}\}_{k \in \N}$, by setting $A_{0} = A$ and
+\begin{equation*} 
+A_{k} = A_{k - 1} \setminus \bigcup_{ \overline{B} \in \mathcal{F}_{k}}  \overline{B}.
+\end{equation*}
+By \eqref{eq:delta_contraction}, it is easy to see that
+\begin{equation*}
+\mu(A_{k + 1}) \le \delta \mu(A_{k}),
+\end{equation*}
+which easily implies
+\begin{equation} \label{eq:delta_contraction_1}
+\mu(A_{k}) \le \delta^{k} \mu(A).
+\end{equation}
+If we let $$\mathcal{F}' := \bigcup_{k = 1}^{\infty} \mathcal{F}_{k},$$
+it is easy to see that $\mathcal{F}'$ is countable and disjoint, and satisfies
+\begin{equation*}
+A \setminus \bigcup_{ \overline{B} \in \mathcal{F}'}  \overline{B} \subset \bigcap_{k = 1}^{\infty} A_{k}.
+\end{equation*} 
+Thus, \eqref{eq:delta_contraction_1} implies
+\begin{equation*}
+\mu \left ( A \setminus \bigcup_{ \overline{B} \in \mathcal{F}'} \overline{B} \right ) \le \lim_{k \to + \infty} \mu(A_{k}) \le \mu(A) \lim_{k \to + \infty} \delta^{k} = 0,
+\end{equation*}
+and this ends the proof.
 \end{proof}
 
 \subsection{Differentiation of Radon and Hausdorff measures}
+
+One of the main applications of the covering theorems from the previous section is the differentiation of measures, which allows us to pass from local properties to global ones.
 
 \begin{theorem}[Lebesgue-Besicovitch differentiation theorem] \label{thm:Leb_Bes_diff}
 Let $\mu \in \mathcal{M}^+_{\rm loc}(\Omega)$, $\lambda \in
@@ -126,10 +179,10 @@ It is enough to apply Corollary \ref{cor:Leb_diff} to the measures $\nu_{q} := |
 
 We recall that the Hausdorff measures $\Haus{\alpha}$ for $\alpha \in [0, n)$ are Borel regular, but not Radon (see Remark \ref{rem:Haus_not_Radon}). Hence, the Lebesgue-Besicovitch differentiation theorem (Theorem \ref{thm:Leb_Bes_diff}) does not apply to such measures. Nevertheless, it is possible to define and to study a notion of density with respect to the Hausdorff measures. Such analysis is relevant in many applications, since it is useful to compare a generic Radon measure $\mu$ to $\Haus{\alpha}$ for some $\alpha \in [0, n]$, in order to to have some idea of the ``dimensionality'' of $\mu$.
 
-\begin{definition}
+\begin{definition} \label{def:alpha_dimensional_densities}
 Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. For all $x \in \Omega$, we define the {\em upper and lower $\alpha$-dimensional densities} of $\mu$ at $x$ as
 \begin{equation*}
-\Theta^{*}_{\alpha}(\mu, x) := \limsup_{\rho \to 0} \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}} \quad \text{and} \quad \Theta_{* \alpha}(\mu, x) := \liminf \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}}.
+\Theta^{*}_{\alpha}(\mu, x) := \limsup_{\rho \to 0} \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}} \quad \text{and} \quad \Theta_{* \alpha}(\mu, x) := \liminf_{\rho \to 0} \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}}.
 \end{equation*}
 If $\Theta^{*}_{\alpha}(\mu, x) = \Theta_{* \alpha}(\mu, x)$, the common value is denoted by $\Theta_{\alpha}(\mu, x)$.
 In the case $\mu = \Haus{\alpha} \res E$, for a $\Haus{\alpha}$-measurable set $E$ such that $\Haus{\alpha}(E) < + \infty$, for simplicity we write
@@ -137,7 +190,12 @@ In the case $\mu = \Haus{\alpha} \res E$, for a $\Haus{\alpha}$-measurable set $
 \Theta^{*}_{\alpha}(E, x) := \Theta^{*}_{\alpha}(\Haus{\alpha} \res E, x), \ \Theta_{* \alpha}(E, x) := \Theta_{* \alpha}(\Haus{\alpha} \res E, x) \text{ and }  \Theta_{\alpha}(E, x) := \Theta_{\alpha}(\Haus{\alpha} \res E, x).
 \end{equation*}
 \end{definition}
+
+\begin{remark} \label{rem:Borel_densities}
 Recall that, by Proposition \ref{prop:Haus_Radon_res}, $\mu = \Haus{\alpha} \res E$ is a Radon measure, for any $\Haus{\alpha}$-measurable set $E$ such that $\Haus{\alpha}(E) < + \infty$, so that the definitions of $\Theta^{*}_{\alpha}(E, x), \Theta_{* \alpha}(E, x)$ and $\Theta_{\alpha}(E, x)$ are well posed.
+
+In addition, for any $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$, the functions $\Theta^{*}_{\alpha}(\mu, \cdot)$ and $\Theta_{* \alpha}(\mu, \cdot)$ are Borel, since the map $x \to \mu(B(x, \rho))$ is lower semicontinuous, for any fixed $\rho > 0$, by Fatou's lemma.
+\end{remark}
 
 \begin{theorem}[$\alpha$-dimensional densities of Radon measures] \label{thm:alpha_density}
 Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then, for all $B \in \mathcal{B}(\Omega)$ and $t > 0$, the following implications hold:
@@ -146,18 +204,102 @@ Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then, f
 \Theta^{*}_{\alpha}(\mu, x) \le t \ \forall x \in B & \Longrightarrow \ \mu \le 2^{\alpha} t \Haus{\alpha} \res B. \label{eq:upper_bound_density}
 \end{align}
 \end{theorem}
+\begin{proof}
+Without loss of generality, let $t = 1$ and $B$ bounded. Indeed, we may set $\tildef{\mu} := t \mu$; and, if $B$ is unbounded, we can cover it with countably many bounded sets.
+
+\smallskip
+
+We start by proving \eqref{eq:lower_bound_density}. To this purpose, let $B' \in \mathcal{B}(\Omega)$ be a subset of $B$, $\delta \in (0, 1)$, and $A \supset B'$ be an open bounded set in $\Omega$. Let us consider the open balls $B(x_{j}, r_{j})$ such that $B(x_{j}, r_{j}) \subset A, 2 r_{j} < \delta$ and $$\mu(B(x_{j}, r_{j})) \ge (1 - \delta) \omega_{\alpha} r_{j}^{\alpha}.$$
+By Theorem \ref{thm:Besicovitch_covering_1}, there exists a subfamily $\{B(x_{j_{k}}, r_{j_{k}})\}_{k \in \N}$ such that
+\begin{equation*}
+\sum_{k \in \N} \chi_{B(x_{j_{k}}, r_{j_{k}})} \le \xi_{n}
+\end{equation*}
+and $B' \subset \bigcup_{k \in \N} B(x_{j_{k}}, r_{j_{k}})$. Then, we have
+\begin{equation*}
+\Haus{\alpha}_{\delta}(B') \le \sum_{k \in \N} \omega_{\alpha} r_{j_{k}}^{\alpha} \le \frac{1}{1 - \delta} \sum_{k \in \N} \mu(B(x_{j_{k}}, r_{j_{k}})) \le \frac{\xi_{n}}{1 - \delta} \mu(A),
+\end{equation*}
+which easily implies
+\begin{equation*}
+\Haus{\alpha}(B') \le \xi_{n} \mu(A) < \infty.
+\end{equation*}
+This means that $\Haus{\alpha} \res B'$ is a Radon measure, thanks to Proposition \ref{prop:Haus_Radon_res}. Therefore, we can apply Vitali covering theorem (Theorem \ref{thm:Vitali_covering_theorem}) to $\Haus{\alpha} \res B'$ and to the covering of closed balls $C$ in $A$ with diameter less than $\delta$ and such that
+\begin{equation*}
+\mu(C) \ge (1 - \delta) \omega_{\alpha} \frac{({\rm diam} (C))^{\alpha}}{2^{\alpha}}.
+\end{equation*}
+Hence, we get a disjoint subfamily $\{C_{i}\}$, for which we have
+%\begin{equation*}
+%\left ( \Haus{\alpha} \res B' \right)\left ( A \setminus \bigcup_{i} C_{i} \right ) = \Haus{\alpha} \left ( B' \setminus \bigcup_{i} C_{i} \right ) = 0,
+%\end{equation*}
+\begin{equation*}
+\Haus{\alpha}_{\delta}(B') \le \sum_{i} \frac{\omega_{\alpha}}{2^{\alpha}} ({\rm diam} (C_{i}))^{\alpha} \le \frac{1}{1 - \delta} \sum_{i} \mu(C_{i}) \le \frac{\mu(A)}{1 - \delta}.
+\end{equation*}
+Thus, we obtain $\Haus{\alpha}(B') \le \mu(B')$ for any Borel set $B' \subset B$, since $A$ and $\delta$ are arbitrary and $\mu$ is outer regular (see Theorem \ref{thm:regularity_Radon}). This shows \eqref{eq:lower_bound_density}.
+
+\smallskip
+
+We pass now to the proof of \eqref{eq:upper_bound_density}. Let $B' \in \mathcal{B}(\Omega)$ be a subset of $B$, and $\tau > 1$. For any $k \in \N, k \ge 1$ we set
+\begin{equation*}
+B_{k} := \left \{ x \in B' : \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}} < \tau  \ \forall \rho \in \left (0, \frac{1}{k} \right ) \right \}. 
+\end{equation*}
+Notice that $B_{k} \neq \emptyset$, for $k$ large enough, since
+\begin{equation*}
+\limsup_{\rho \to 0} \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}} \le 1 
+\end{equation*}
+by our assumption. In addition, $B_{k} \subset B_{k + 1}$ and $\bigcup_{k = 1}^{\infty} B_{k} = B'$. For any $k$, let $\{C_{i, k}\}$ be a covering of $B_{k}$ of sets with diameter less than $1/k$ such that
+\begin{equation} \label{eq:estimate_C_i_k_density}
+\sum_{i} \omega_{\alpha} \left ( \frac{{\rm diam}(C_{i, k})}{2} \right )^{\alpha} < \Haus{\alpha}_{\frac{1}{k}}(B_{k}) + \frac{1}{k}.
+\end{equation}
+Without loss of generality, assume $x_{i} \in B_{k} \cap C_{i, k}$ and let $C_{i, k}' = B(x_{i}, 2 \rho_{i, k})$, where $$\rho_{i, k} := \frac{\diam(C_{i, k})}{2}.$$
+Therefore, $B_{k} \subset \bigcup_{i} C_{i, k}'$ and, by \eqref{eq:estimate_C_i_k_density}, we have 
+\begin{equation*}
+\mu(B_{k}) \le \sum_{i} \mu(C_{i, k}') \le \tau \sum_{i} \omega_{\alpha} (2 \rho_{i, k})^{\alpha} < \tau \left ( 2^{\alpha} \Haus{\alpha}(B') + \frac{1}{k} \right ).
+\end{equation*}
+Then we send $k \to + \infty$ and $\tau \to 1^{+}$, and this ends the proof.
+\end{proof}
 
 We illustrate now two useful consequences of Theorem \ref{thm:alpha_density}.
 
-\begin{corollary}
-Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then we have
+\begin{corollary} \label{cor:Hausdorff_density_estimate}
+Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. Then we have the following statements:
 \begin{enumerate}
 \item $\Theta^{*}_{\alpha}(\mu, x) < \infty$ for $\Haus{\alpha}$-a.e. $x \in \Omega$,
 \item if $\mu(B) = 0$ for some $B \in \mathcal{B}(\Omega)$, then $\Theta_{\alpha}(\mu, x) = 0$ for $\Haus{\alpha}$-a.e. $x \in B$.
 \end{enumerate}
 \end{corollary}
+\begin{proof}
+We start by showing point 1. Let $D \Subset \Omega$ be a Borel set satisfying
+\begin{equation*} 
+D \subset D_{\infty} := \{ x \in \Omega : \Theta^{*}_{\alpha}(\mu, x) = \infty \}.
+\end{equation*}
+Then we have $\Theta^{*}_{\alpha}(\mu, x) \ge t$ for any $x \in D$ and $t > 0$, so that, by \eqref{eq:lower_bound_density}, we obtain $$\mu(D) \ge t \Haus{\alpha}(D)$$ for any $t > 0$. Since $\mu(D) < \infty$, this implies $\Haus{\alpha}(D) = 0$.
+Then, for any $k \in \N, \ge 1$, let 
+\begin{equation*}
+D_{k} := \left \{ x \in D_{\infty}, |x| \le k, \dist(x, \partial \Omega) \ge \frac{1}{k} \right \}.
+\end{equation*}
+Recall that $\Theta^{*}_{\alpha}(\mu, \cdot)$ is a Borel function (see Remark \ref{rem:Borel_densities}), so that $D_{\infty}$ and $D_{k}$ are Borel sets.
+It is plain to see that $D_{k} \subset D_{\infty}$, $D_{k} \Subset \Omega$ and $\bigcup_{k = 1}^{\infty} D_{k} = D_{\infty}$.
+Thus, we have
+\begin{equation*}
+\Haus{\alpha}( D_{\infty}) \le \sum_{k = 1}^{\infty} \Haus{\alpha}(D_{k}) = 0.
+\end{equation*}
+\smallskip
 
-Let us consider the case $\mu = \Haus{\alpha} \res E$, for some $\Haus{\alpha}$-measurable set $E$ in $\R^{n}$ such that $\Haus{\alpha}(E) < + \infty$. We start by considering the extreme case $\alpha \in \{0, n\}$:
+As for point 2, let $t > 0$, $B \in \mathcal{B}(\Omega)$ be such that $\mu(B) = 0$, and set
+\begin{equation*}
+E_{t} := \left \{ x \in B : \Theta^{*}_{\alpha}(\mu, x) > t \right \}.
+\end{equation*}
+Then, by \eqref{eq:lower_bound_density}, we have
+\begin{equation*}
+0 = \mu(B) \ge \mu(E_{t}) \ge t \Haus{\alpha}(E_{t}).
+\end{equation*}
+Since clearly $E_{0} = \bigcup_{k =1}^{\infty} E_{\frac{1}{k}}$, we have 
+\begin{equation*}
+\Haus{\alpha}(E_{0}) \le \sum_{k = 1}^{\infty} \Haus{\alpha}(E_{\frac{1}{k}}) = 0,
+\end{equation*}
+and this ends the proof.
+\end{proof}
+
+Let us consider the case $\mu = \Haus{\alpha} \res E$, for some $\Haus{\alpha}$-measurable set $E$ in $\R^{n}$ such that $\Haus{\alpha}(E) < + \infty$. We start by considering the extreme values of $\alpha$:
 \begin{itemize}
 \item if $\alpha = n$, thanks to \eqref{density_points_set}, we know that $\Theta_{n}(E, x) = \chi_{E}(x)$ for $\Leb{n}$-a.e. $x \in \R^{n}$; 
 \item if $\alpha = 0$, it is easy to check that
@@ -168,15 +310,38 @@ Let us consider the case $\mu = \Haus{\alpha} \res E$, for some $\Haus{\alpha}$-
 \end{equation*} 
 since $\Haus{0}(E) < \infty$ implies that $E$ is finite and therefore discrete.
 \end{itemize}
+This means that, for $\alpha \in \{0, n\}$, we have $\Theta_{\alpha}(E, x) = \chi_{E}(x)$ for $\Haus{\alpha}$-a.e. $x \in \R^{n}$.
 Instead, in the case $\alpha \in (0, n)$, we cannot hope for such a strong result, in general. However, we are able to obtain the following estimates.
 
-\begin{proposition}
+\begin{proposition}\label{prop:Hausdorff_density_estimate_1}
 Let $\alpha \in [0, n]$ and $E$ be an $\Haus{\alpha}$-measurable set in $\R^{n}$ such that $\Haus{\alpha}(E) < \infty$. Then we have
 \begin{enumerate}
 \item $\Theta_{\alpha}(E, x) = 0$ for $\Haus{\alpha}$-a.e. $x \notin E$,
 \item $2^{-\alpha} \le \Theta^{*}_{\alpha}(E, x) \le 1$ for $\Haus{\alpha}$-a.e. $x \in E$.
 \end{enumerate}
 \end{proposition}
+\begin{proof}
+Point 1 follows immediately by applying Corollary \ref{cor:Hausdorff_density_estimate} to the Radon measure $\Haus{\alpha} \res E$, since clearly $(\Haus{\alpha} \res E)(\R^{n} \setminus E) = 0$.
+\smallskip
+
+In order to prove point 2, we set 
+\begin{equation*}
+B_{t} := \{ x \in E :  \Theta^{*}_{\alpha}(E, x) \le t \}
+\end{equation*}
+for $t < 2^{- \alpha}$. By \eqref{eq:upper_bound_density} to the Radon measure $\Haus{\alpha} \res E$, we have
+\begin{equation*}
+\Haus{\alpha}(B_{t}) = (\Haus{\alpha} \res E)(B_t) \le 2^{\alpha} t \Haus{\alpha}(B_{t}),
+\end{equation*}
+which implies $\Haus{\alpha}(B_{t}) = 0$. On the other hand, if we set
+\begin{equation*}
+C_{t} := \{ x \in E : \Theta^{*}_{\alpha}(E, x) \ge t \}
+\end{equation*}
+for $t > 1$, and we apply \eqref{eq:lower_bound_density} to $\Haus{\alpha} \res E$, we obtain
+\begin{equation*}
+\Haus{\alpha}(C_{t}) \ge t \Haus{\alpha}(C_{t}),
+\end{equation*}
+which yields $\Haus{\alpha}(C_{t}) = 0$.
+\end{proof}
 
 We notice that we do not have any general result on lower bounds for $\Theta_{* \alpha}(E, x)$, and this is the reason why we cannot ensure the existence of the full limit in general. However, as we shall see in the following, in the case $\alpha = k \in \{1, \dots, n - 1\}$ there is a way to characterize the sets for which $\Theta_{k}(E, x)$ is well defined and equal to $1$ for $\Haus{k}$-a.e. $x \in E$.
 
@@ -213,7 +378,11 @@ for any $y \in E$, since $f$ is Lipschitz on $E$. By taking the infimum in $y \i
 from which we conclude that $\Lip(f, E) = \Lip(f^{+}, \R^{n})$.
 \end{proof}
 
-\begin{remark} The extension given in McShane's lemma is the largest extension of $f$, while, arguing analogously, one can show that the smaller extension is given by
+\begin{remark} The extension given in McShane's lemma is the largest Lipschitz extension of $f$ preserving the Lipschitz constant. Indeed, let $\tilde{f}$ be another such extension: then, for any $x \in \R^{n}$ and $y \in E$, we have
+\begin{equation*}
+\tilde{f}(x) \le f(y) + \Lip(E, f) |y - x|,
+\end{equation*} 
+so that, by taking the infimum in $y \in E$, we obtain $\tilde{f}(x) \le f^{+}(x)$. On the other hand, arguing analogously, one can show that the smaller extension is given by
 \begin{equation*}
 f^{-}(x) := \sup \{ f(y) - \Lip(f, E) |x - y| : y \in E \}.
 \end{equation*}
@@ -236,7 +405,7 @@ Then it is easy to see that $\tildef{f}= f$ on $E$. As for the Lipschitz constan
 This ends the proof.
 \end{proof}
 
-A more refined result was found by Kirszbraun.
+A more refined result was found by M. D. Kirszbraun (\cite[2.10.43]{Fe} and \cite[Theorem I.7.2]{maggi2012sets}).
 
 \begin{theorem}[Kirszbraun theorem]
 Let $E \subset \R^{n}$ and $f: E \to \R^{m}$ be a Lipschitz function. Then there exists a Lipschitz function $g: \R^{n} \to \R^{m}$ such that $g = f$ on $E$ and $\Lip(g, \R^{n}) = \Lip(f, E)$.
@@ -404,7 +573,7 @@ If $g = \chi_{A}$ for some $\Leb{n}$-measurable set $A$, then
 \end{equation}
 \end{corollary}
 
-\begin{remark}
+\begin{remark} \label{rem:other_good_cases}
 Theorem \ref{change_variables_gen} and Corollary \ref{change_variables} hold also in the case $g : \R^{n} \to [0, + \infty]$ is $\Leb{n}$-measurable; however, the left hand sides of \eqref{eq:change_variables_gen} and \eqref{eq:change_variables_1} may be equal to $+ \infty$.
 In addition, since any Borel function is Lebesgue measurable, Theorem \ref{change_variables_gen} and Corollary \ref{change_variables} are valid for all Borel functions $g : \R^{n} \to \R$ either nonnegative or $\Leb{n}$-summable.
 \end{remark}
@@ -423,7 +592,7 @@ Therefore, for any $a, b \in \R, a < b$, the length of a curve $C := f([a, b])$ 
 thanks to \eqref{eq:area_formula_inj}.
 \end{example}
 
-\begin{example}[Surface area of a graph]
+\begin{example}[Surface area of a graph] \label{example:surface_area_graph}
 Let $n \ge 1$ and $m = n + 1$. Assume $g: \R^{n} \to \R$ is Lipschitz and define $f: \R^{n} \to \R^{n + 1}$ as $$f(x) := (x, g(x)).$$
 Then
 \[\nabla f = \begin{pmatrix} 1 & \cdots & 0 & \\ \vdots & \ddots & \vdots \\ 
@@ -439,10 +608,10 @@ Therefore, if $G$ is $\Leb{n}$-measurable, \eqref{eq:area_formula_inj} yields
 \begin{equation*}
 \Haus{n}(\Gamma(g, G)) = \int_{G} \sqrt{1 + |\nabla g|^{2}} \, dx,
 \end{equation*}
-so that $\dim_{\Haus{}}\left ( \Gamma(g, G)\right ) = n$. Thus, we see that $\Haus{n} \res \Gamma(g)$ is a locally finite Radon measure on $\R^{n + 1}$. In addition, by \eqref{eq:change_variables_2}, for any $\varphi \in C_{c}(\R^{n})$ we have
-\begin{equation*}
-\int_{\Gamma(g)} \varphi \, d \Haus{n} = \int_{\R^{n}} \varphi(x, g(x)) \sqrt{1 + |\nabla g(x)|^{2}} \, d x.
-\end{equation*} 
+so that $\dim_{\Haus{}}\left ( \Gamma(g, G)\right ) = n$ for any $\Leb{n}$-measurable set $G$. Thus, we see that $\Haus{n} \res \Gamma(g)$ is a locally finite Radon measure on $\R^{n + 1}$. In addition, by \eqref{eq:change_variables_2} and Remark \ref{rem:other_good_cases}, for any Borel function $\varphi$ with compact support and any $\Leb{n}$-measurable set $G$ we have
+\begin{equation} \label{eq:area_formula_surface}
+\int_{\Gamma(g, G)} \varphi(y) \, d \Haus{n}(y) = \int_{G} \varphi(x, g(x)) \sqrt{1 + |\nabla g(x)|^{2}} \, d x.
+\end{equation} 
 \end{example}
 
 \begin{example}[Surface area of a parametric hypersurface]
@@ -464,7 +633,7 @@ Thus, if we define $\Sigma(f, \Omega) := f(\Omega)$, for any open set $\Omega \s
 
 We conclude this section by exploiting the area formula to prove the classical Gauss--Green formula on open sets with $C^1$-regular boundary.
 
-\begin{definition}
+\begin{definition} \label{def:C_k_boundary}
 Let $E$ be an open set in $\R^{n}$ and $k \in \N \cup \{\infty\}$. We say that $E$ has {\em $C^{k}$ boundary} (or {\em smooth boundary} if $k = \infty$) if for all $x \in \partial E$ there exists $r > 0$ and $\psi \in C^{k}(B(x, r))$ with $\nabla \psi(y) \neq 0$ for all $y \in B(x, r)$ and 
 \begin{align*}
 B(x, r) \cap E & = \{ y \in B(x, r) : \psi(y) > 0 \}, \\
@@ -478,8 +647,38 @@ We define the {\em inner unit normal to $E$}, $\nu_{E}(y)$ for $y \in \partial E
 
 It can be checked that this definition is independent from the choice of $\psi$ and $r$. Therefore, $\nu_{E}$ can be considered as a vector field defined on the whole of $\partial E$, and $\nu_{E} \in C^{k - 1}(\partial E; \mathbb{S}^{n - 1})$.
 
-\begin{remark}
-If $E$ is an open set with $C^{1}$ boundary, then $\Haus{n - 1} \res \partial E$ is a Radon measure on $\R^{n}$.
+\begin{remark}\label{rem:local_param_C_1}
+If $E$ is an open set with $C^{1}$ boundary, then $\Haus{n - 1} \res \partial E$ is a (locally finite) Radon measure on $\R^{n}$.
+Indeed, we can see this by applying the implicit function theorem. We set 
+\begin{equation*}
+p: \R^{n} \to \R^{n - 1} \text{ and } q :\R^{n} \to \R
+\end{equation*}
+to be orthogonal projections, so that $x = (p(x), q(x))$, and, for any $s, r > 0$, let
+\begin{equation*}
+D(p(x), s) := \{ w \in \R^{n - 1} : |p(x) - w| < s \} 
+\end{equation*}
+and 
+\begin{equation*}
+C(x, r) := \{ y \in \R^{n} : |p(x - y)| < r, |q(x - y)| < r \}
+\end{equation*}
+to be a disk in $\R^{n - 1}$ and a cylinder in $\R^{n}$ centered in $x$, respectively. If $x \in \partial E$ and $r > 0$ satisfy the conditions of Definition \ref{def:C_k_boundary}, then there exists $s > 0$ and $u \in C^{1}(D(p(x), s))$ such that $C(x, s) \subset B(x, r)$ and, up to a rotation,
+\begin{align} 
+\begin{split} \label{eq:param_C_1}
+C(x, s) \cap E & = \{ y \in C(x, s) : q(y) > u(p(y)) \}, \\
+C(x, s) \cap \partial E & = \{ y \in C(x, s) : q(y) = u(p(y)) \}.
+\end{split}
+\end{align}
+Then, following the notation of Example \ref{example:surface_area_graph}, we have
+\begin{equation*}
+\Haus{n - 1} \res C(x, s) \cap \partial E = \Haus{n - 1} \res \Gamma(u, D(p(x), s)),
+\end{equation*}
+so that this is a finite Radon measure, by the area formula \eqref{eq:area_formula_surface}. Thus, $\Haus{n - 1}\res \partial E$ is a locally finite Radon measure in $\R^{n}$, since we can cover $\partial E$ with countably many cylinders with the properties listed above.
+
+In addition, it is possible to see that the inner unit normal can be written as
+\begin{equation} \label{eq:inner_unit_param}
+\nu_{E}(y)= \frac{(- \nabla u(p(y)), 1)}{\sqrt{1 + |\nabla u(p(y))|^2}}
+\end{equation}
+for any $y \in C(x, s) \cap \partial E$.
 \end{remark}
 
 \begin{theorem}[Gauss--Green formula] \label{thm:Gauss_Green_formula}
@@ -488,6 +687,8 @@ If $E$ is an open set with $C^{1}$ boundary, then for all $\varphi \in C^{1}_{c}
 \int_{E} \nabla \varphi \,dx = - \int_{\partial E} \varphi \, \nu_{E} \, d \Haus{n - 1}.
 \end{equation}
 \end{theorem}
+
+As an immediate consequence of this theorem, we have the following two corollaries: the divergence theorem and the integration by parts formula.
 
 \begin{corollary}[Divergence theorem] \label{cor:divergence_theorem}
 If $E$ is an open set with $C^{1}$ boundary, then for all $F \in C^{1}_{c}(\R^{n}; \R^{n})$ we have
@@ -503,31 +704,10 @@ If $E$ is an open set with $C^{1}$ boundary, then for all $F \in C^{1}_{c}(\R^{n
 \end{equation}
 \end{corollary}
 
-We notice that it is possible to extend Theorem \ref{thm:Gauss_Green_formula} to a slightly larger family of integration domains.
-
-\begin{definition}
-We say that an open set $E$ in $\R^{n}$ has {\em almost $C^{1}$ boundary} if there exists a closed set $M_{0} \subset \partial E$ with $\Haus{n - 1}(M_{0}) = 0$ and such that $M:= \partial E \setminus M_{0}$ is $C^{1}$-regular. $M$ is called the {\em regular part of $\partial E$}, while $M_{0}$ is the {\em singular part}.
-\end{definition}
-
-\begin{theorem} \label{thm:Gauss_Green_almost_C_1}
-Let $E$ be an open set with almost $C^{1}$ boundary. Then for all $\varphi \in C^{1}_{c}(\R^{n})$ we have
-\begin{equation*}
-\int_{E} \nabla \varphi \,dx = - \int_{M} \varphi \, \nu_{E} \, d \Haus{n - 1}.
-\end{equation*}
-\end{theorem}
-
-\begin{remark}
-Since the singular part of the boundary of a set with almost $C^1$ boundary is $\Haus{n - 1}$-negligible, we see that we actually have
-\begin{equation*}
-\int_{E} \nabla \varphi \,dx = - \int_{\partial E} \varphi \, \nu_{E} \, d \Haus{n - 1}
-\end{equation*}
-for any $\varphi \in C^{1}_{c}(\R^{n})$, up to setting $\nu_{E} \equiv {\rm e}_{1}$ on $M_{0}$, for instance.
-\end{remark}
-
-We finally prove the integration by parts for Lipschiz functions.
+In order to prove Theorem \ref{thm:Gauss_Green_formula} we need a preliminary result on Lipschitz functions.
 
 \begin{proposition} \label{prop:weak_der_Lip_b}
-If $f \in \Lip(\R^{n}) \cap L^{\infty}(\R^{n})$, then
+If $f \in \Lip(\R^{n})$, then
 \begin{equation} \label{eq:weak_der_Lip_b}
 \int_{\R^{n}} f \, \div \varphi \, dx = - \int_{\R^{n}} \varphi \cdot \nabla f \, dx
 \end{equation}
@@ -560,6 +740,88 @@ Finally, if $\varphi \in C^{1}_{c}(\R^{n}; \R^{n})$, we conclude that
 \int_{\R^{n}} \nabla f \cdot \varphi \, dx = \int_{\R^{n}} \sum_{j = 1}^{n} \frac{\partial f}{\partial x_{j}} \, \varphi_{j} \,dx = - \sum_{j = 1}^{n} \int_{\R^{n}} f \, \frac{\partial \varphi_{j}}{\partial x_{j}} \, dx = - \int_{\R^{n}} f  \, \div \varphi \, dx.
 \end{equation*}
 \end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:Gauss_Green_formula}]
+Recall the definitions of the projections $p, q$, the disk $D(p(x), s)$ and the cylinder $C(x, r)$ given in Remark \ref{rem:local_param_C_1}.
+Given $x \in \partial E$, up to a rotation, we can choose $r, s > 0$ and $u \in C^{1}(D(p(x), s))$ such that \eqref{eq:param_C_1} holds. We claim that
+\begin{equation} \label{eq:claim_GG}
+\int_{E} \nabla \varphi \, dx = - \int_{\partial E} \varphi \nu_{E} \, d \Haus{n - 1}
+\end{equation}
+for any $\varphi \in C^{1}_{c}(C(x, s))$. To show this, let $\delta > 0$ and define a Lipschitz function $f_{\delta} : \R^{n} \to \R$ by setting
+\begin{equation*}
+f_{\delta}(y) = \begin{cases} 1 & \text{ if } q(y) > u(p(y)) + \delta, \\
+0 & \text{ if } q(y) < u(p(y)) - \delta, \\
+\frac{q(y) - u(p(y)) + \delta}{2 \delta} & \text{ if } |q(y) - u(p(y))| \le \delta, \end{cases}
+\end{equation*}
+for any $y \in C(x, s)$, and then by extending it to $\R^{n}$ using McShane's lemma (Lemma \ref{McShane_lemma}). It is easy to see that $f_{\delta} \to \chi_{C(x, s) \cap E}$ in $L^{1}(C(x, s))$. Hence, we obtain
+\begin{equation*}
+\int_{E} \nabla \varphi \, dx = \lim_{\delta \to 0^{+}} \int_{C(x, s)} f_{\delta} \nabla \varphi \, d x = - \lim_{\delta \to 0^{+}} \int_{C(x, s)} \varphi \nabla f_{\delta} \, dx,
+\end{equation*}
+where in the last equality we used Proposition \ref{prop:weak_der_Lip_b}. Let
+\begin{equation*}
+F_{\delta} := \{ y \in C(x, s) : |q(y) - u(p(y))| \le \delta \}.
+\end{equation*}
+Then, we have $\nabla f_{\delta}(y) = 0$ for any $y \in C(x, s) \setminus F_{\delta}$ and 
+\begin{equation*}
+\nabla f_{\delta}(y) = \frac{1}{2 \delta} (- \nabla u(p(y)), 1) \ \text{ for any } y \in F_{\delta}.
+\end{equation*}
+By Fubini's theorem, we obtain
+\begin{equation*}
+\int_{C(x, s)} \varphi \nabla f_{\delta} \, dx = \int_{F_{\delta}} \varphi \nabla f_{\delta} \, dx = \int_{D(p(x), s)} (- \nabla u(p(y)), 1) \frac{1}{2 \delta} \int_{u(z) - \delta}^{u(z) + \delta} \varphi(z, t) \, dt \, dz.
+\end{equation*}
+Therefore, by exploiting the continuity of $\varphi$, we can pass to the limit as $\delta \to 0^+$, and, exploiting \eqref{eq:inner_unit_param} and the area formula \eqref{eq:area_formula_surface}, we obtain
+\begin{align*}
+\int_{E} \nabla \varphi \, dx & = - \lim_{\delta \to 0^{+}} \int_{C(x, s)} \varphi \nabla f_{\delta} \, dx \\
+& = - \lim_{\delta \to 0^{+}} \int_{D(p(x), s)} (- \nabla u(p(y)), 1) \frac{1}{2 \delta} \int_{u(z) - \delta}^{u(z) + \delta} \varphi(z, t) \, dt \, dz \\
+& = - \int_{D(p(x), s)} (- \nabla u(p(y)), 1) \varphi(z, u(z)) \, d z \\
+& = - \int_{D(p(x), s)} \varphi(z, u(z)) \nu_{E}(z, u(z)) \sqrt{1 + |\nabla u(z)|^2} \, dz \\
+& = - \int_{C(x, s) \cap \partial E} \varphi \nu_{E} \, d \Haus{n - 1} = - \int_{\partial E} \varphi \nu_{E} \, d \Haus{n - 1}.
+\end{align*}
+We conclude now the proof by a partition of unity argument. Let $\varphi \in C^{1}_c(\R^{n})$ and $A$ be an open bounded set such that $\supp \varphi \cap \partial E \subset A$. By compactness, there exist $\{x_{k}\}_{k = 1}^{N} \subset A \cap \partial E$ and $\{s_{k}\}_{k = 1}^{N} \subset (0, + \infty)$ such that 
+\begin{itemize}
+\item $C(x_k, s_k) \subset A$,
+\item $\supp \varphi \cap \partial E \subset \bigcup_{k = 1}^{N} C(x_k, s_k)$,
+\item $\displaystyle \int_{E} \nabla (\zeta_{k} \varphi) \, dx = - \int_{\partial E} \zeta_{k} \varphi \nu_{E} \, d \Haus{n - 1}$ for any $\zeta_{k} \in C^{1}_{c}(C(x_{k}, s_{k}))$.
+\end{itemize}
+Consider now a partition of unity $\{\zeta_k\}_{k = 1}^{N}$ satisfying 
+\begin{equation*}
+\zeta_{k} \in C^{1}_{c}(C(x_{k}, s_{k})), 0 \le \zeta_k \le 1 \text{ and } \sum_{k = 1}^{N} \zeta_{k}(x) = 1 \text{ for any } x \in A.
+\end{equation*}
+Then, we can find a cutoff function $\zeta_{0} \in C^{1}_{c}(E)$ such that $0 \le \zeta_{0} \le 1$ and $$\sum_{k = 0}^{N} \zeta_{k}(x) = 1 \text{ for any } x \in E \cap A.$$
+It is clear that $\zeta_{0} \varphi \in C^{1}_{c}(E)$, so that
+\begin{equation*}
+\int_{E} \nabla(\zeta_{0} \varphi ) \, dx = 0.
+\end{equation*}
+Thus, we obtain
+\begin{equation*}
+\int_{E} \nabla \varphi \, dx = \sum_{k = 0}^{N} \int_{E} \nabla (\zeta_{k} \varphi) \, dx = - \sum_{k = 1}^{N} \int_{\partial E} \zeta_{k} \varphi \nu_{E} \, d \Haus{n - 1} = - \int_{\partial E} \varphi \nu_{E} \, d \Haus{n - 1}.
+\end{equation*}
+\end{proof}
+
+We notice that it is possible to extend Theorem \ref{thm:Gauss_Green_formula} to a slightly larger family of integration domains.
+
+\begin{definition}
+We say that an open set $E$ in $\R^{n}$ has {\em almost $C^{1}$ boundary} if there exists a closed set $M_{0} \subset \partial E$ with $\Haus{n - 1}(M_{0}) = 0$ and such that $M:= \partial E \setminus M_{0}$ is $C^{1}$-regular. $M$ is called the {\em regular part of $\partial E$}, while $M_{0}$ is the {\em singular part}.
+\end{definition}
+
+\begin{theorem} \label{thm:Gauss_Green_almost_C_1}
+Let $E$ be an open set with almost $C^{1}$ boundary. Then for all $\varphi \in C^{1}_{c}(\R^{n})$ we have
+\begin{equation*}
+\int_{E} \nabla \varphi \,dx = - \int_{M} \varphi \, \nu_{E} \, d \Haus{n - 1}.
+\end{equation*}
+\end{theorem}
+
+\begin{remark}
+Since the singular part of the boundary of a set with almost $C^1$ boundary is $\Haus{n - 1}$-negligible, we see that we actually have
+\begin{equation*}
+\int_{E} \nabla \varphi \,dx = - \int_{\partial E} \varphi \, \nu_{E} \, d \Haus{n - 1}
+\end{equation*}
+for any $\varphi \in C^{1}_{c}(\R^{n})$, up to setting $\nu_{E} \equiv {\rm e}_{1}$ on $M_{0}$, for instance.
+\end{remark}
+
+
+
+
 
 
 
