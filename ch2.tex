@@ -126,7 +126,7 @@ It is enough to apply Corollary \ref{cor:Leb_diff} to the measures $\nu_{q} := |
 
 We recall that the Hausdorff measures $\Haus{\alpha}$ for $\alpha \in [0, n)$ are Borel regular, but not Radon (see Remark \ref{rem:Haus_not_Radon}). Hence, the Lebesgue-Besicovitch differentiation theorem (Theorem \ref{thm:Leb_Bes_diff}) does not apply to such measures. Nevertheless, it is possible to define and to study a notion of density with respect to the Hausdorff measures. Such analysis is relevant in many applications, since it is useful to compare a generic Radon measure $\mu$ to $\Haus{\alpha}$ for some $\alpha \in [0, n]$, in order to to have some idea of the ``dimensionality'' of $\mu$.
 
-\begin{definition}
+\begin{definition} \label{def:alpha_dimensional_densities}
 Let $\mu \in \mathcal{M}^{+}_{\rm loc}(\Omega)$ and $\alpha \in [0, n]$. For all $x \in \Omega$, we define the {\em upper and lower $\alpha$-dimensional densities} of $\mu$ at $x$ as
 \begin{equation*}
 \Theta^{*}_{\alpha}(\mu, x) := \limsup_{\rho \to 0} \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}} \quad \text{and} \quad \Theta_{* \alpha}(\mu, x) := \liminf \frac{\mu(B(x, \rho))}{\omega_{\alpha} \rho^{\alpha}}.
@@ -236,7 +236,7 @@ Then it is easy to see that $\tildef{f}= f$ on $E$. As for the Lipschitz constan
 This ends the proof.
 \end{proof}
 
-A more refined result was found by Kirszbraun.
+A more refined result was found by M. D. Kirszbraun (\cite[2.10.43]{Fe} and \cite[Theorem I.7.2]{maggi2012sets}).
 
 \begin{theorem}[Kirszbraun theorem]
 Let $E \subset \R^{n}$ and $f: E \to \R^{m}$ be a Lipschitz function. Then there exists a Lipschitz function $g: \R^{n} \to \R^{m}$ such that $g = f$ on $E$ and $\Lip(g, \R^{n}) = \Lip(f, E)$.
